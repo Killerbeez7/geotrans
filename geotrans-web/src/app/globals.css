@@ -2,69 +2,68 @@
 @import "tailwindcss/utilities";
 
 html {
-    overflow-y: scroll;
+  overflow-y: scroll;
 }
 
 :root {
-    --background: #e7e7e7;
-    --foreground: #171717;
+  --background: #e7e7e7;
+  --foreground: #171717;
 
-    --color-primary: #16A085;
-    --color-secondary: #17bebb;
-    --color-accent: #f6ae2d;
-    --color-neutral: #f5f5f5;
-    --color-dark: #233d4d;
+  --color-primary: #16a085;
+  --color-secondary: #17bebb;
+  --color-accent: #f6ae2d;
+  --color-neutral: #f5f5f5;
+  --color-dark: #233d4d;
 
-    --color-accept: #27ae60;
+  --color-accept: #27ae60;
 
-    --color-link: #3498db;
+  --color-link: #3498db;
 
-    /* navabar */
-    --nav: #7F8C8D;
-    --nav-tx: #ECF0F1;
+  /* navabar */
+  --nav: #7f8c8d;
+  --nav-tx: #ecf0f1;
 }
 
 @theme inline {
-    --color-background: var(--background);
-    --color-foreground: var(--foreground);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
 
-    /* navbar */
-    --color-navbar: var(--nav);
-    --color-navbar-text: var(--nav-tx);
+  /* navbar */
+  --color-navbar: var(--nav);
+  --color-navbar-text: var(--nav-tx);
 
-    /* theme */
-    --color-primary: var(--color-primary);
-    --color-secondary: var(--color-secondary);
-    --color-accent: var(--color-accent);
-    --color-neutral: var(--color-neutral);
-    --color-dark: var(--color-dark);
+  /* theme */
+  --color-primary: var(--color-primary);
+  --color-secondary: var(--color-secondary);
+  --color-accent: var(--color-accent);
+  --color-neutral: var(--color-neutral);
+  --color-dark: var(--color-dark);
 
-    /* text */
-    --color-text-primary: var(--color-foreground);
-    --color-text-secondary: var(--color-dark);
-    --color-text-accent: var(--color-accent);
+  /* text */
+  --color-text-primary: var(--color-foreground);
+  --color-text-secondary: var(--color-dark);
+  --color-text-accent: var(--color-accent);
 
-    --color-link: var(--color-link);
+  --color-link: var(--color-link);
 
-    /* btn */
-    --color-btn-primary: var(--color-primary);
-    --color-btn-secondary: var(--color-secondary);
-    --color-btn-accept: var(--color-accent);
-    --color-btn-reject: var(--color-dark);
+  /* btn */
+  --color-btn-primary: var(--color-primary);
+  --color-btn-secondary: var(--color-secondary);
+  --color-btn-accept: var(--color-accent);
+  --color-btn-reject: var(--color-dark);
 
-    /* font */
-    --font-sans: var(--font-geist-sans);
-    --font-mono: var(--font-geist-mono);
+  /* font */
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
 }
 
 body {
-    background: var(--background);
-    color: var(--foreground);
-    font-family: Arial, Helvetica, sans-serif;
+  background: var(--background);
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
 }
 
-
 .no-drag {
-    user-select: none;
-    -webkit-user-drag: none;
-  }
+  user-select: none;
+  -webkit-user-drag: none;
+}
