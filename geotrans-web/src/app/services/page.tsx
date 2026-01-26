@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { SERVICE_LINKS } from "../config/ServicesConfig";
+import { SERVICE_LINKS } from "../../config/ServicesConfig";
 
 export default function ServicesPage() {
     return (

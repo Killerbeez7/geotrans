@@ -1,5 +1,5 @@
 import { notFound } from "next/navigation";
-import { getServiceBySlug, SERVICE_LINKS } from "../../config/ServicesConfig";
+import { getServiceBySlug, SERVICE_LINKS } from "../../../config/ServicesConfig";
 
 export const dynamicParams = false;
 
