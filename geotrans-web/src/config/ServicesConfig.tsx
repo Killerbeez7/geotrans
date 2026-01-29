@@ -101,4 +101,4 @@ export const SERVICE_LINKS: Service[] = [
   },
 ];
 
-// export const getServiceBySlug = (slug: string) => SERVICE_LINKS.find((s) => s.slug === slug);
+export const getServiceBySlug = (slug: string) => SERVICE_LINKS.find((s) => s.slug === slug);
