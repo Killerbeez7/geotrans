@@ -2,68 +2,107 @@
 @import "tailwindcss/utilities";
 
 html {
-  overflow-y: scroll;
-}
-
-:root {
-  --background: #e7e7e7;
-  --foreground: #171717;
-
-  --color-primary: #16a085;
-  --color-secondary: #17bebb;
-  --color-accent: #f6ae2d;
-  --color-neutral: #f5f5f5;
-  --color-dark: #233d4d;
-
-  --color-accept: #27ae60;
-
-  --color-link: #3498db;
-
-  /* navabar */
-  --nav: #7f8c8d;
-  --nav-tx: #ecf0f1;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-
-  /* navbar */
-  --color-navbar: var(--nav);
-  --color-navbar-text: var(--nav-tx);
-
-  /* theme */
-  --color-primary: var(--color-primary);
-  --color-secondary: var(--color-secondary);
-  --color-accent: var(--color-accent);
-  --color-neutral: var(--color-neutral);
-  --color-dark: var(--color-dark);
-
-  /* text */
-  --color-text-primary: var(--color-foreground);
-  --color-text-secondary: var(--color-dark);
-  --color-text-accent: var(--color-accent);
-
-  --color-link: var(--color-link);
-
-  /* btn */
-  --color-btn-primary: var(--color-primary);
-  --color-btn-secondary: var(--color-secondary);
-  --color-btn-accept: var(--color-accent);
-  --color-btn-reject: var(--color-dark);
-
-  /* font */
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+    overflow-y: scroll;
+    box-sizing: border-box;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+    margin: 0;
+    padding: 0;
+    font-size: 16px;
+    color: var(--text-primary);
+    background-color: var(--bg-primary);
+}
+
+:root {
+    /* background colors */
+    --bg-primary: #ffffff;
+    --bg-secondary: #e8e8e8;
+
+    /* accent colors */
+    --accent-primary: #f6ae2d;
+    --accent-secondary: #dd9613;
+
+    /* border colors */
+    --border-default: #0d0d0d1a;
+    --border-heavy: #0d0d0d26;
+    --border-light: #0d0d0d0d;
+
+    /* text colors */
+    --text-primary: #0d0d0d;
+    --text-secondary: #5d5d5d;
+    --text-accent: #f6ae2d;
+
+    /* icon colors */
+    --icon-primary: #0d0d0d;
+    --icon-secondary: #5d5d5d;
+
+    /* interactive background colors */
+    --interactive-cta-primary-default: #778579;
+    --interactive-cta-primary-hover: #647066;
+
+    --interactive-hover-primary-accent: #f6ae2d;
+
+    --interactive-bg-primary-press: #0d0d0de5;
+    --interactive-bg-primary-inactive: #0d0d0d;
+    --interactive-bg-primary-selected: #0d0d0d;
+
+    /* Navbar Colors */
+    --navbar-bg: #535c56;
+    /* --navbar-bg: #778579; */
+
+    --navbar-link: #fafafa;
+    --navbar-cta-bg: #778579;
+    --navbar-cta-br: #778579;
+}
+
+@theme inline {
+    /* Navigation */
+    --color-nav: var(--navbar-bg);
+    --color-nav-link: var(--navbar-link);
+    --color-nav-hover: var(--interactive-hover-primary-accent);
+
+    --color-nav-cta: var(--navbar-cta-bg);
+    --color-nav-cta-br: var(--navbar-cta-br);
+    --color-nav-cta-hover: var(--navbar-cta-hover-bg);
+
+    /* Brand */
+    --color-brand-color-1: var(--text-primary);
+    --color-brand-color-2: var(--text-accent);
+
+    /* theme */
+    --color-primary: var(--color-primary);
+    --color-secondary: var(--color-secondary);
+    --color-accent: var(--color-accent);
+    --color-neutral: var(--color-neutral);
+    --color-dark: var(--color-dark);
+
+    /* text */
+    --color-text-primary: var(--color-foreground);
+    --color-text-secondary: var(--color-dark);
+    --color-text-accent: var(--accent-primary);
+
+    --color-link: var(--color-link);
+
+    /* btn */
+    --color-btn-primary: var(--interactive-cta-primary-default);
+    --color-btn-hover: var(--interactive-cta-primary-hover);
+    --color-btn-accept: var(--interactive-cta-accept-default);
+    --color-btn-reject: var(--interactive-cta-reject-default);
+
+    /* text */
+    --text-primary: var(--text-primary);
+    --text-base: 1rem;
+    --text-base-line-height: calc(1.5/1);
+}
+
+body {
+    background: var(--background);
+    color: var(--foreground);
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 .no-drag {
-  user-select: none;
-  -webkit-user-drag: none;
+    user-select: none;
+    -webkit-user-drag: none;
 }
