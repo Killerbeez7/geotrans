@@ -8,7 +8,7 @@ import { FaPhone } from "react-icons/fa6";
 import clsx from "clsx";
 import { IoIosArrowDown } from "react-icons/io";
 import { NAV_LINKS, NavItem } from "../config/NavConfig";
-import { ServicesList } from "./ServicesList";
+import { NavSrvList } from "./NavSrvList";
 
 // Styles
 const navLinkCls = (active: boolean) =>
@@ -77,7 +77,7 @@ export const Navbar = () => {
                         )}
                     >
                         <ul className="py-2">
-                            <ServicesList itemClass={desktopSrvCls} />
+                            <NavSrvList itemClass={desktopSrvCls} />
                         </ul>
                     </div>
                 )}
@@ -118,7 +118,7 @@ export const Navbar = () => {
 
                 {open && (
                     <ul className="ml-4 mt-1 flex flex-col gap-1">
-                        <ServicesList
+                        <NavSrvList
                             onClick={closeAll}
                             itemClass={(active) =>
                                 clsx(
