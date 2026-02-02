@@ -4,12 +4,12 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { SERVICE_LINKS } from "../config/ServicesConfig";
 
-type SrvListProps = {
+type NavSrvListProps = {
     onClick?: () => void;
     itemClass: (active: boolean) => string;
 };
 
-export const ServicesList = ({ onClick, itemClass }: SrvListProps) => {
+export const NavSrvList = ({ onClick, itemClass }: NavSrvListProps) => {
     const pathname = usePathname();
 
     const isExact = (href: string) => pathname === href;
