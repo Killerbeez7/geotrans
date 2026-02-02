@@ -1,9 +1,9 @@
 "use client";
 
 import Link from "next/link";
-// import Image from "next/image";
 import { useState } from "react";
 import { usePathname } from "next/navigation";
+import { FaPhone } from "react-icons/fa6";
 
 import clsx from "clsx";
 import { IoIosArrowDown } from "react-icons/io";
@@ -14,7 +14,7 @@ import { ServicesList } from "./ServicesList";
 const navLinkCls = (active: boolean) =>
     clsx(
         "relative group flex items-center gap-1 px-2 py-1",
-        "text-nav-link",
+        "text-nav-text",
         // Underline on hover
         "after:absolute after:left-1/2 after:bottom-0",
         "after:h-[2px] after:w-full after:-translate-x-1/2",
@@ -26,8 +26,8 @@ const navLinkCls = (active: boolean) =>
 
 const desktopSrvCls = (active: boolean) =>
     clsx(
-        "block px-4 py-2 transition",
-        active ? "bg-black/10 font-medium text-black" : "hover:bg-black/5",
+        "flex items-center gap-2 px-4 py-2 transition whitespace-nowrap",
+        active ? "bg-black/15" : "hover:bg-black/10",
     );
 
 // Component
@@ -68,11 +68,11 @@ export const Navbar = () => {
                 {item.hasDropdown && (
                     <div
                         className={clsx(
-                            "absolute left-0 top-full mt-2 min-w-55",
-                            " rounded-xl bg-white text-black shadow-lg",
+                            "absolute left-[-10] top-full mt-2 min-w-56",
+                            "rounded-xl bg-nav text-nav-text shadow-lg",
                             "opacity-0 scale-95 pointer-events-none",
-                            "     transition-all duration-200",
-                            " group-hover:opacity-100 group-hover:scale-100 group-hover:pointer-events-auto",
+                            "transition-all duration-200",
+                            "group-hover:opacity-100 group-hover:scale-100 group-hover:pointer-events-auto",
                             "before:absolute before:-top-2 before:h-2 before:w-full",
                         )}
                     >
@@ -106,13 +106,13 @@ export const Navbar = () => {
         return (
             <div key={item.name} className="flex flex-col">
                 <button
-                    className={clsx(navLinkCls(active), "flex justify-between")}
+                    className={clsx(navLinkCls(active), "flex justify-between w-full")}
                     onClick={() => setMobileDropdown(open ? null : item.name)}
                     aria-expanded={open}
                 >
                     {item.name}
                     <IoIosArrowDown
-                        className={clsx("transition", open && "rotate-180")}
+                        className={clsx("transition-transform", open && "rotate-180")}
                     />
                 </button>
 
@@ -122,10 +122,10 @@ export const Navbar = () => {
                             onClick={closeAll}
                             itemClass={(active) =>
                                 clsx(
-                                    "px-4 py-2 rounded-md text-sm",
+                                    "px-4 py-2 rounded-md text-sm transition",
                                     active
                                         ? "bg-white/15 font-medium"
-                                        : "hover:bg-white/10",
+                                        : "hover:bg-bg-muted/70",
                                 )
                             }
                         />
@@ -138,52 +138,46 @@ export const Navbar = () => {
     // Component render
     return (
         <header className="sticky top-0 z-50 w-full bg-nav shadow-md no-drag">
-            <nav className="mx-auto max-w-7xl px-4">
+            <nav className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 ">
                 <div className="flex h-16 items-center justify-between">
                     <Link
                         href="/"
                         draggable={false}
-                        className="flex items-center gap-2 text-2xl font-semibold tracking-wide"
+                        className="flex items-center gap-2 text-sm sm:text-xl tracking-wide"
                     >
-                        {/* <Image src="/globe.svg" alt="GeoTrans" className="text-black" width={28} height={28} /> */}
-                        <svg className="w-7 h-7" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" fill="none" aria-hidden>
+                        <svg
+                            className="w-7 h-7 text-nav-hover"
+                            viewBox="0 0 16 16"
+                            xmlns="http://www.w3.org/2000/svg"
+                            fill="none"
+                            aria-hidden
+                        >
                             <g clipPath="url(#a)">
-                                <path fillRule="evenodd" clipRule="evenodd" d="M10.27 14.1a6.5 6.5 0 0 0 3.67-3.45q-1.24.21-2.7.34-.31 1.83-.97 3.1M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16m.48-1.52a7 7 0 0 1-.96 0H7.5a4 4 0 0 1-.84-1.32q-.38-.89-.63-2.08a40 40 0 0 0 3.92 0q-.25 1.2-.63 2.08a4 4 0 0 1-.84 1.31zm2.94-4.76q1.66-.15 2.95-.43a7 7 0 0 0 0-2.58q-1.3-.27-2.95-.43a18 18 0 0 1 0 3.44m-1.27-3.54a17 17 0 0 1 0 3.64 39 39 0 0 1-4.3 0 17 17 0 0 1 0-3.64 39 39 0 0 1 4.3 0m1.1-1.17q1.45.13 2.69.34a6.5 6.5 0 0 0-3.67-3.44q.65 1.26.98 3.1M8.48 1.5l.01.02q.41.37.84 1.31.38.89.63 2.08a40 40 0 0 0-3.92 0q.25-1.2.63-2.08a4 4 0 0 1 .85-1.32 7 7 0 0 1 .96 0m-2.75.4a6.5 6.5 0 0 0-3.67 3.44 29 29 0 0 1 2.7-.34q.31-1.83.97-3.1M4.58 6.28q-1.66.16-2.95.43a7 7 0 0 0 0 2.58q1.3.27 2.95.43a18 18 0 0 1 0-3.44m.17 4.71q-1.45-.12-2.69-.34a6.5 6.5 0 0 0 3.67 3.44q-.65-1.27-.98-3.1" fill="currentColor"/>
+                                <path
+                                    fillRule="evenodd"
+                                    clipRule="evenodd"
+                                    d="M10.27 14.1a6.5 6.5 0 0 0 3.67-3.45q-1.24.21-2.7.34-.31 1.83-.97 3.1M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16m.48-1.52a7 7 0 0 1-.96 0H7.5a4 4 0 0 1-.84-1.32q-.38-.89-.63-2.08a40 40 0 0 0 3.92 0q-.25 1.2-.63 2.08a4 4 0 0 1-.84 1.31zm2.94-4.76q1.66-.15 2.95-.43a7 7 0 0 0 0-2.58q-1.3-.27-2.95-.43a18 18 0 0 1 0 3.44m-1.27-3.54a17 17 0 0 1 0 3.64 39 39 0 0 1-4.3 0 17 17 0 0 1 0-3.64 39 39 0 0 1 4.3 0m1.1-1.17q1.45.13 2.69.34a6.5 6.5 0 0 0-3.67-3.44q.65 1.26.98 3.1M8.48 1.5l.01.02q.41.37.84 1.31.38.89.63 2.08a40 40 0 0 0-3.92 0q.25-1.2.63-2.08a4 4 0 0 1 .85-1.32 7 7 0 0 1 .96 0m-2.75.4a6.5 6.5 0 0 0-3.67 3.44 29 29 0 0 1 2.7-.34q.31-1.83.97-3.1M4.58 6.28q-1.66.16-2.95.43a7 7 0 0 0 0 2.58q1.3.27 2.95.43a18 18 0 0 1 0-3.44m.17 4.71q-1.45-.12-2.69-.34a6.5 6.5 0 0 0 3.67 3.44q-.65-1.27-.98-3.1"
+                                    fill="currentColor"
+                                />
                             </g>
                             <defs>
-                                <clipPath id="a"><path fill="currentColor" d="M0 0h16v16H0z"/></clipPath>
+                                <clipPath id="a">
+                                    <path fill="currentColor" d="M0 0h16v16H0z" />
+                                </clipPath>
                             </defs>
                         </svg>
-                        <span className="text-brand-color-1">Geo</span>
-                        <span className="text-brand-color-2">Trans</span>
+                        <span className="text-nav-text">Geo</span>
+                        <span className="text-nav-text">Trans</span>
                     </Link>
 
                     {/* Desktop */}
                     <ul className="hidden items-center gap-6 md:flex">
                         {NAV_LINKS.map(renderDesktopItem)}
-
-                        {/* <li>
-                            <Link
-                                href="/contacts"
-                                draggable={false}
-                                className={clsx(
-                                    "inline-flex items-center justify-center",
-                                    "rounded-2xl bg-nav-cta px-3 py-2",
-                                    "text-sm font-semibold text-white",
-                                    "transition-transform duration-200",
-                                    "hover:scale-105 hover:shadow-lg/10",
-                                    "border border-nav-cta-br",
-                                    "hover:shadow-lg/10",
-                                )}
-                            >
-                                Запитване
-                            </Link>
-                        </li> */}
                     </ul>
 
                     {/* Mobile toggle */}
                     <button
-                        className="md:hidden p-2 rounded-md hover:bg-white/10"
+                        className="md:hidden p-2 rounded-md text-2xl text-nav-text"
                         onClick={() => setMobileOpen((o) => !o)}
                         aria-expanded={mobileOpen}
                     >
@@ -193,14 +187,14 @@ export const Navbar = () => {
 
                 {/* Mobile menu */}
                 {mobileOpen && (
-                    <div className="md:hidden pb-4">
-                        <div className="rounded-xl bg-white/10 p-3 flex flex-col gap-2">
+                    <div className="md:hidden text-(--text-inverse) pb-6 mt-2">
+                        <div className="p-4 flex flex-col gap-3">
                             {NAV_LINKS.map(renderMobileItem)}
 
                             <Link
                                 href="/contacts"
                                 onClick={closeAll}
-                                className="mt-2 rounded-lg bg-btn-primary px-3 py-2 text-center text-sm font-semibold text-white"
+                                className="mt-3 rounded-lg bg-nav-cta px-4 py-3 text-center text-sm font-semibold text-btn-primary-text hover:bg-nav-cta-hover transition"
                             >
                                 Запитване
                             </Link>
