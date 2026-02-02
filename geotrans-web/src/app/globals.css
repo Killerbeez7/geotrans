@@ -34,10 +34,6 @@
     --text-muted: var(--gray-400);
     --text-inverse: var(--gray-0);
 
-    --border-light: #e8e9e90d;
-    --border-default: #d8dcdc33;
-    --border-strong: #a8aeae66;
-
     --success-500: #4aa784;
     --warning-500: #e0a638;
     --danger-500: #d9534f;
@@ -73,6 +69,11 @@
     --color-warning: var(--warning-500);
     --color-danger: var(--danger-500);
     --color-info: var(--info-500);
+
+    /* Borders */
+    --color-border-light: var(--gray-100);
+    --color-border-default: var(--gray-300);
+    --color-border-strong: var(--gray-600);
 }
 
 html {
