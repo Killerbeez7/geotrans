@@ -1,5 +1,7 @@
-import Image from "next/image";
+import clsx from "clsx";
 import Link from "next/link";
+import Image from "next/image";
+import { FaPhone } from "react-icons/fa6";
 
 type HeroSectionProps = {
     title: string;
@@ -26,16 +28,22 @@ export function HeroSection({
                     </h1>
 
                     {subtitle && (
-                        <p className="mt-4 text-md text-text-secondary">{subtitle}</p>
+                        <p className="mt-4 text-md text-(--text-secondary)">{subtitle}</p>
                     )}
 
                     {ctaLabel && ctaHref && (
                         <div className="mt-8">
                             <Link
                                 href={ctaHref}
-                                className="inline-flex rounded-xl bg-btn-primary hover:bg-btn-hover text-white px-8 py-4 font-semibold shadow-lg hover:shadow-xl hover:scale-105 transition"
+                                className={clsx(
+                                    "inline-flex items-center justify-center gap-2 rounded-xl",
+                                    "bg-btn-primary hover:bg-btn-primary-hover",
+                                    "px-6 py-4 font-semibold shadow-lg hover:shadow-xl",
+                                    "transition-transform hover:scale-105",
+                                )}
                             >
-                                {ctaLabel}
+                                <FaPhone className="block shrink-0 text-lg" />
+                                <span className="leading-none">{ctaLabel}</span>
                             </Link>
                         </div>
                     )}
