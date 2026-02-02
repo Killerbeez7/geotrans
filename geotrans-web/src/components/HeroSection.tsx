@@ -5,19 +5,13 @@ import { FaPhone } from "react-icons/fa6";
 
 type HeroSectionProps = {
     title: string;
-    subtitle?: string;
+    desc?: string;
     image?: string;
     ctaLabel?: string;
     ctaHref?: string;
 };
 
-export function HeroSection({
-    title,
-    subtitle,
-    image,
-    ctaLabel,
-    ctaHref,
-}: HeroSectionProps) {
+export function HeroSection({ title, desc, image, ctaLabel, ctaHref }: HeroSectionProps) {
     return (
         <section className="relative overflow-hidden px-10">
             <div className="flex flex-col-reverse sm:flex-row items-center gap-16 py-16 sm:py-20">
@@ -27,8 +21,8 @@ export function HeroSection({
                         {title}
                     </h1>
 
-                    {subtitle && (
-                        <p className="mt-4 text-md text-(--text-secondary)">{subtitle}</p>
+                    {desc && (
+                        <p className="mt-4 text-md text-(--text-secondary)">{desc}</p>
                     )}
 
                     {ctaLabel && ctaHref && (
