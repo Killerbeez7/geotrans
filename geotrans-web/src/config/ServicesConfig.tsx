@@ -37,7 +37,7 @@ export const SERVICE_LINKS: Service[] = [
     {
         href: "/services/trasirane",
         slug: "trasirane",
-        title: "Трасиране",
+        title: "Трасиране на имоти",
         thumbnail: "/images/trasirane.jpg",
         description: "Пренасяне на проектни точки/оси на терен и контролни измервания.",
         neededWhen: [
@@ -89,28 +89,28 @@ export const SERVICE_LINKS: Service[] = [
             "Коти/наклони и обяснения (по договорка)",
         ],
     },
-    {
-        href: "/services/proektirane",
-        slug: "proektirane",
-        title: "Проектиране",
-        thumbnail: "/images/proektirane.png",
-        description:
-            "Проектантски услуги, свързани с геодезия и устройствени решения (по обхват).",
-        neededWhen: [
-            "Инвестиционни намерения",
-            "Подготовка за съгласуване",
-            "Комбинирани услуги",
-        ],
-        requiredDocs: [
-            "Изходни данни за имота/обекта",
-            "Задание/изисквания",
-            "Налични материали (ако има)",
-        ],
-        deliverables: [
-            "Проектни материали по договорка",
-            "Координация с други части (ако е приложимо)",
-        ],
-    },
+    // {
+    //     href: "/services/proektirane",
+    //     slug: "proektirane",
+    //     title: "Проектиране",
+    //     thumbnail: "/images/proektirane.png",
+    //     description:
+    //         "Проектантски услуги, свързани с геодезия и устройствени решения (по обхват).",
+    //     neededWhen: [
+    //         "Инвестиционни намерения",
+    //         "Подготовка за съгласуване",
+    //         "Комбинирани услуги",
+    //     ],
+    //     requiredDocs: [
+    //         "Изходни данни за имота/обекта",
+    //         "Задание/изисквания",
+    //         "Налични материали (ако има)",
+    //     ],
+    //     deliverables: [
+    //         "Проектни материали по договорка",
+    //         "Координация с други части (ако е приложимо)",
+    //     ],
+    // },
 ];
 
 export const getServiceBySlug = (slug: string) =>
