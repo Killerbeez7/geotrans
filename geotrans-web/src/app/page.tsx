@@ -22,15 +22,15 @@ export default function Home() {
 
             <HorizontalDivider />
 
+            {/* Services */}
             <ServiceSection
                 title={Content.services.title}
                 subtitle={Content.services.subtitle}
-                // ctaLabel={Content.services.ctaLabel}
-                // ctaHref={Content.services.ctaHref}
             />
 
             <HorizontalDivider />
 
+            {/* How it works */}
             <HowItWorksSection />
 
             {/* Coverage + CTA */}
