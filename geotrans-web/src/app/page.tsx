@@ -6,7 +6,7 @@ import { HorizontalDivider } from "../components/HorizontalDivider";
 import { HeroSection } from "../components/HeroSection";
 import { ServiceSection } from "../components/ServiceSection";
 import { GallerySection } from "../components/GallerySection";
-import { HowItWorksSection } from "../components/HowItWorksSection";
+import  WorkflowSection  from "../components/WorkflowSection";
 
 export default function Home() {
     return (
@@ -14,7 +14,7 @@ export default function Home() {
             {/* Hero */}
             <HeroSection
                 title={Content.hero.title}
-                subtitle={Content.hero.subtitle}
+                desc={Content.hero.description}
                 image={Content.hero.image}
                 ctaLabel={Content.cta.label}
                 ctaHref={Content.cta.href}
@@ -25,13 +25,17 @@ export default function Home() {
             {/* Services */}
             <ServiceSection
                 title={Content.services.title}
-                subtitle={Content.services.subtitle}
+                subtitle={Content.services.description}
             />
 
             <HorizontalDivider />
 
             {/* How it works */}
-            <HowItWorksSection />
+            <WorkflowSection
+                title={Content.workflow.title}
+                desc={Content.workflow.description}
+                steps={Content.workflow.steps}
+            />
 
             {/* Coverage + CTA */}
             <section className="mt-10 grid gap-4 sm:grid-cols-2">
