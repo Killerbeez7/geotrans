@@ -14,7 +14,7 @@ type HeroSectionProps = {
 export function HeroSection({ title, desc, image, ctaLabel, ctaHref }: HeroSectionProps) {
     return (
         <section className="relative overflow-hidden px-10">
-            <div className="flex flex-col-reverse sm:flex-row items-center gap-16 py-16 sm:py-20">
+            <div className="flex flex-col-reverse md:flex-row items-center gap-16 py-16 sm:py-20">
                 {/* Text */}
                 <div>
                     <h1 className="text-3xl font-semibold tracking-tight max-w-md">
