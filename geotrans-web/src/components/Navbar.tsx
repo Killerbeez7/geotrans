@@ -3,7 +3,6 @@
 import Link from "next/link";
 import { useState } from "react";
 import { usePathname } from "next/navigation";
-import { FaPhone } from "react-icons/fa6";
 
 import clsx from "clsx";
 import { IoIosArrowDown } from "react-icons/io";
@@ -35,10 +34,12 @@ export const Navbar = () => {
   const pathname = usePathname();
   const [mobileOpen, setMobileOpen] = useState(false);
   const [mobileDropdown, setMobileDropdown] = useState<string | null>(null);
+  const [desktopDropdown, setDesktopDropdown] = useState<string | null>(null);
 
   const closeAll = () => {
     setMobileOpen(false);
     setMobileDropdown(null);
+    setDesktopDropdown(null);
   };
 
   const isActivePath = (href?: string): boolean => {
@@ -48,20 +49,30 @@ export const Navbar = () => {
 
   // Desktop render
   const renderDesktopItem = (item: NavItem) => {
-    const active = isActivePath(item.href);
+    const isActive = isActivePath(item.href);
+    const isOpen = desktopDropdown === item.name;
 
     return (
-      <li key={item.name} className="relative group">
+      <li
+        key={item.name}
+        className="relative group"
+        onMouseEnter={() => setDesktopDropdown(item.name)}
+        onMouseLeave={() => setDesktopDropdown(null)}
+      >
         <Link
           href={item.href}
           draggable={false}
-          className={navLinkCls(active)}
+          className={navLinkCls(isActive)}
           aria-haspopup={item.hasDropdown ? "menu" : undefined}
         >
           {item.name}
-
           {item.hasDropdown && (
-            <IoIosArrowDown className="mt-px text-xs opacity-70 transition-transform group-hover:rotate-180" />
+            <IoIosArrowDown
+              className={clsx(
+                "mt-px text-xs opacity-70 transition-transform",
+                isOpen && "rotate-180"
+              )}
+            />
           )}
         </Link>
 
@@ -70,14 +81,18 @@ export const Navbar = () => {
             className={clsx(
               "absolute left-[-10] top-full mt-2 min-w-56",
               "rounded-xl bg-nav text-nav-text shadow-lg",
-              "opacity-0 scale-95 pointer-events-none",
-              "transition-all duration-200",
-              "group-hover:opacity-100 group-hover:scale-100 group-hover:pointer-events-auto",
+              "transition-all duration-200 ease-out",
+              isOpen
+                ? "opacity-100 scale-100 pointer-events-auto"
+                : "opacity-0 scale-95 pointer-events-none",
               "before:absolute before:-top-2 before:h-2 before:w-full"
             )}
           >
             <ul className="py-2">
-              <NavSrvList itemClass={desktopSrvCls} />
+              <NavSrvList
+                itemClass={desktopSrvCls}
+                onClick={() => setDesktopDropdown(null)}
+              />
             </ul>
           </div>
         )}
@@ -87,8 +102,8 @@ export const Navbar = () => {
 
   // Mobile render
   const renderMobileItem = (item: NavItem) => {
-    const active = isActivePath(item.href);
-    const open = mobileDropdown === item.name;
+    const isActive = isActivePath(item.href);
+    const isOpen = mobileDropdown === item.name;
 
     if (!item.hasDropdown) {
       return (
@@ -96,7 +111,7 @@ export const Navbar = () => {
           key={item.name}
           href={item.href}
           onClick={closeAll}
-          className={navLinkCls(active)}
+          className={navLinkCls(isActive)}
         >
           {item.name}
         </Link>
@@ -106,17 +121,17 @@ export const Navbar = () => {
     return (
       <div key={item.name} className="flex flex-col">
         <button
-          className={clsx(navLinkCls(active), "flex justify-between w-full")}
-          onClick={() => setMobileDropdown(open ? null : item.name)}
-          aria-expanded={open}
+          className={clsx(navLinkCls(isActive), "flex justify-between w-full")}
+          onClick={() => setMobileDropdown(isOpen ? null : item.name)}
+          aria-expanded={isOpen}
         >
           {item.name}
           <IoIosArrowDown
-            className={clsx("transition-transform", open && "rotate-180")}
+            className={clsx("transition-transform", isOpen && "rotate-180")}
           />
         </button>
 
-        {open && (
+        {isOpen && (
           <ul className="ml-4 mt-1 flex flex-col gap-1">
             <NavSrvList
               onClick={closeAll}
