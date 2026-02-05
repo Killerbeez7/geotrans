@@ -7,10 +7,15 @@ type ServiceSectionProps = {
 
 export const ServiceSection = ({ title, subtitle }: ServiceSectionProps) => {
   return (
-    <section className="py-20 bg-white">
+    <section className="py-14 sm:py-20 bg-white">
       <div className="container mx-auto px-6">
-        <h1 className="text-3xl font-semibold text-center">{title}</h1>
-        <p className="text-center text-(--text-secondary) mt-2">{subtitle}</p>
+        <h2 className="font-semibold text-center tracking-tight text-2xl lg:text-3xl xl:text-4xl">
+          {title}
+        </h2>
+
+        <p className="mx-auto mt-2 max-w-2xl text-center text-base xl:text-lg text-(--text-secondary)">
+          {subtitle}
+        </p>
 
         <SwiperCarousel />
       </div>

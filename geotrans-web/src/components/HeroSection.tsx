@@ -24,7 +24,7 @@ export function HeroSection({ title, desc, image, ctaLabel, ctaHref }: HeroSecti
       >
         {/* Text */}
         <div className="w-full max-w-xl text-center lg:text-left">
-          <h1 className="font-semibold tracking-tight text-2xl lg:text-2xl xl:text-3xl">
+          <h1 className="font-semibold tracking-tight text-2xl lg:text-3xl xl:text-4xl">
             {title1}
             <br />
             {title2}
