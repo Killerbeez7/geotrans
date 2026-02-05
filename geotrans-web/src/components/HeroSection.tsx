@@ -5,13 +5,15 @@ import { FaPhone } from "react-icons/fa6";
 
 type HeroSectionProps = {
   title: string;
-  desc?: string;
-  image?: string;
+  desc: string;
+  image: string;
   ctaLabel?: string;
   ctaHref?: string;
 };
 
 export function HeroSection({ title, desc, image, ctaLabel, ctaHref }: HeroSectionProps) {
+  const [title1, title2] = title.split("||");
+
   return (
     <section className="relative overflow-hidden px-4 sm:px-6 lg:px-12">
       <div
@@ -22,12 +24,14 @@ export function HeroSection({ title, desc, image, ctaLabel, ctaHref }: HeroSecti
       >
         {/* Text */}
         <div className="w-full max-w-xl text-center lg:text-left">
-          <h1 className="font-semibold tracking-tight text-2xl sm:text-3xl lg:text-4xl">
-            {title}
+          <h1 className="font-semibold tracking-tight text-2xl lg:text-2xl xl:text-3xl">
+            {title1}
+            <br />
+            {title2}
           </h1>
 
           {desc && (
-            <p className="mt-4 text-base text-(--text-secondary) sm:text-lg">{desc}</p>
+            <p className="mt-4 text-base text-(--text-secondary) xl:text-lg">{desc}</p>
           )}
 
           {ctaLabel && ctaHref && (
