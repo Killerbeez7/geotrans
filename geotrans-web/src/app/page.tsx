@@ -20,7 +20,7 @@ export default function Home() {
         ctaHref={Content.cta.href}
       />
 
-      <HorizontalDivider />
+      {/* <HorizontalDivider /> */}
 
       {/* Services */}
       <ServiceSection
@@ -28,7 +28,7 @@ export default function Home() {
         subtitle={Content.services.description}
       />
 
-      <HorizontalDivider />
+      {/* <HorizontalDivider /> */}
 
       {/* How it works */}
       <WorkflowSection
@@ -36,6 +36,7 @@ export default function Home() {
         desc={Content.workflow.description}
         steps={Content.workflow.steps}
       />
+      <HorizontalDivider />
 
       {/* Coverage + CTA */}
       <section className="mt-10 grid gap-4 sm:grid-cols-2">
