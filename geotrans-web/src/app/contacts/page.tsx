@@ -1,105 +1,157 @@
-export default function Contacts() {
+import { FaHome, FaPhone, FaEnvelope } from "react-icons/fa";
+import { Content } from "components/config/ContentConfig";
+
+function ContactItem({
+    icon,
+    title,
+    text,
+}: {
+    icon: React.ReactNode;
+    title: string;
+    text: React.ReactNode;
+}) {
     return (
-        <div className="container mx-auto px-4 py-12">
-            {/* Header */}
-            <header className="mb-10 text-center">
-                <h1 className="text-4xl text-primary font-bold mb-2">Контакти</h1>
-                <p className="text-accent text-lg">
-                    Свържете се с нас за геодезически, кадастрални и инженерни услуги
-                </p>
-            </header>
+        <div className="flex items-start gap-5">
+            <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-full bg-white text-2xl text-gray-800">
+                {icon}
+            </div>
 
-            {/* Contact Info Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-10 mb-16">
-                {/* Left Column – Contact Info */}
-                <div>
-                    <h2 className="text-2xl font-semibold mb-4">Информация за контакт</h2>
-                    <ul className="space-y-3 text-dark">
-                        <li>
-                            <strong>Адрес:</strong> ул. „Примерна“ 123, София
-                        </li>
-                        <li>
-                            <strong>Телефон:</strong>{" "}
-                            <a href="tel:+359888000000" className="text-link hover:underline">
-                                +359 888 000 000
-                            </a>
-                        </li>
-                        <li>
-                            <strong>Email:</strong>{" "}
-                            <a href="mailto:info@geodesy-bg.com" className="text-link hover:underline">
-                                info@geodesy-bg.com
-                            </a>
-                        </li>
-                        <li>
-                            <strong>Работно време:</strong> Пон–Пет: 9:00 – 18:00
-                        </li>
-                        <li>
-                            <strong>Булстат / ЕИК:</strong> 123456789
-                        </li>
-                    </ul>
-
-                    <h3 className="text-xl font-semibold mt-8 mb-3">Социални мрежи</h3>
-                    <ul className="space-y-2 text-dark">
-                        <li>
-                            <a href="#" className="text-link hover:underline">
-                                Facebook
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" className="text-link hover:underline">
-                                LinkedIn
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-
-                {/* Right Column – Contact Form */}
-                <div>
-                    <h2 className="text-2xl font-semibold mb-4">Изпратете запитване</h2>
-                    <form className="space-y-4">
-                        <div>
-                            <label className="block font-medium mb-1">Име *</label>
-                            <input
-                                type="text"
-                                className="w-full border rounded-lg px-3 py-2"
-                                required
-                            />
-                        </div>
-
-                        <div>
-                            <label className="block font-medium mb-1">Телефон *</label>
-                            <input
-                                type="text"
-                                className="w-full border rounded-lg px-3 py-2"
-                                required
-                            />
-                        </div>
-
-                        <div>
-                            <label className="block font-medium mb-1">Email</label>
-                            <input
-                                type="email"
-                                className="w-full border rounded-lg px-3 py-2"
-                            />
-                        </div>
-
-                        <div>
-                            <label className="block font-medium mb-1">Съобщение *</label>
-                            <textarea
-                                className="w-full border rounded-lg px-3 py-2 h-28"
-                                required
-                            ></textarea>
-                        </div>
-
-                        <button
-                            type="submit"
-                            className="bg-primary text-white px-6 py-3 rounded-lg hover:opacity-90 transition"
-                        >
-                            Изпрати
-                        </button>
-                    </form>
-                </div>
+            <div>
+                <h4 className="text-lg font-semibold text-cyan-400">{title}</h4>
+                <p className="mt-1 text-white">{text}</p>
             </div>
         </div>
+    );
+}
+
+function FloatingInput({ label, type = "text" }: { label: string; type?: string }) {
+    return (
+        <div className="relative">
+            <input
+                type={type}
+                required
+                placeholder=" " // required for peer-placeholder-shown
+                className="
+          peer w-full px-4 pt-6 pb-2 rounded-xl
+          bg-white/10 backdrop-blur-sm border border-gray-400/50
+          text-gray-900 placeholder-transparent
+          focus:outline-none focus:border-cyan-400 focus:ring-2 focus:ring-cyan-400/30
+          transition-all duration-200
+        "
+            />
+            <label
+                className="
+          absolute left-4 top-1/2 -translate-y-1/2
+          text-gray-500 text-base transition-all duration-200
+          peer-focus:text-cyan-400 peer-focus:text-sm peer-focus:top-2 peer-focus:translate-y-0
+          peer-not-placeholder-shown:text-cyan-400 peer-not-placeholder-shown:text-sm peer-not-placeholder-shown:top-2 peer-not-placeholder-shown:translate-y-0
+          pointer-events-none origin-left
+        "
+            >
+                {label}
+            </label>
+        </div>
+    );
+}
+
+function FloatingTextarea({ label }: { label: string }) {
+    return (
+        <div className="relative">
+            <textarea
+                required
+                rows={4}
+                placeholder=" "
+                className="
+          peer w-full px-4 pt-6 pb-2 rounded-xl
+          bg-white/10 backdrop-blur-sm border border-gray-400/50
+          text-gray-900 placeholder-transparent resize-none
+          focus:outline-none focus:border-cyan-400 focus:ring-2 focus:ring-cyan-400/30
+          transition-all duration-200
+        "
+            />
+            <label
+                className="
+          absolute left-4 top-5 -translate-y-1/2
+          text-gray-500 text-base transition-all duration-200
+          peer-focus:text-cyan-400 peer-focus:text-sm peer-focus:top-2 peer-focus:translate-y-0
+          peer-not-placeholder-shown:text-cyan-400 peer-not-placeholder-shown:text-sm peer-not-placeholder-shown:top-2 peer-not-placeholder-shown:translate-y-0
+          pointer-events-none origin-left
+        "
+            >
+                {label}
+            </label>
+        </div>
+    );
+}
+export default function Contacts() {
+    const title = Content.contacts.title;
+    const description = Content.contacts.description;
+
+    const phone = Content.contacts.phone;
+    const email = Content.contacts.email;
+    const address = Content.contacts.address.split("||").map((line, index) => (
+        <span key={index}>
+            {line}
+            <br />
+        </span>
+    ));
+
+    return (
+        <section className="relative isolate min-h-[calc(100dvh)] pt-24">
+            {/* Background image */}
+            <div
+                className="absolute inset-0 -z-20 bg-cover bg-center"
+                style={{
+                    backgroundImage: "url(/images/contacts-bg.webp)",
+                }}
+            />
+
+            {/* Dark overlay */}
+            <div className="absolute inset-0 -z-10 bg-linear-to-b from-black/80 to-black/70" />
+
+            <div className="mx-auto max-w-7xl px-6 sm:px-8">
+                {/* Header */}
+                <div className="mb-14 text-center">
+                    <h2 className="text-2xl font-bold tracking-tight text-white sm:text-3xl lg:text-4xl">
+                        {title}
+                    </h2>
+                    <p className="mx-auto mt-4 max-w-2xl text-base text-white/80 sm:text-lg">
+                        {description}
+                    </p>
+                </div>
+
+                {/* Content */}
+                <div className="grid items-start gap-12 lg:grid-cols-2">
+                    {/* Contact Info */}
+                    <div className="space-y-8">
+                        <ContactItem icon={<FaPhone />} title="Phone" text={phone} />
+
+                        <ContactItem icon={<FaEnvelope />} title="Email" text={email} />
+
+                        <ContactItem icon={<FaHome />} title="Address" text={address} />
+                    </div>
+
+                    {/* Form */}
+                    <div className="rounded-2xl bg-white p-8 shadow-xl">
+                        <h3 className="mb-6 text-xl font-semibold text-gray-800">
+                            Send Message
+                        </h3>
+
+                        <form className="space-y-6">
+                            <FloatingInput label="Full Name" type="text" />
+                            <FloatingInput label="Email" type="email" />
+                            <FloatingTextarea label="Type your Message..." />
+
+                            <button
+                                type="submit"
+                                className="w-full rounded-md border border-cyan-500 bg-cyan-500 px-4 py-2 text-lg font-medium text-white transition hover:bg-white hover:text-cyan-500"
+                            >
+                                Send
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
     );
 }

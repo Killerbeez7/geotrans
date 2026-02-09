@@ -1,3 +1,5 @@
+import { describe } from "node:test";
+
 export const Content = {
   hero: {
     title: "Геодезия с точност, на която||можеш да разчиташ.",
@@ -57,5 +59,12 @@ export const Content = {
     description: "Свържете се с нас за консултация и точна оферта според вашия имот.",
     label: "Свържи се",
     href: "/contacts",
+  },
+  contacts: {
+    title:"Контакти",
+    description:"Не се колебайте да се свържете с нас за всякакви въпроси или запитвания.",
+    phone: "+359 98 831 6263",
+    email: "tonitrans08@abv.bg",
+    address: "1618 bul Bulgaria||Sofia, Bulgaria",
   },
 };
