@@ -15,7 +15,7 @@ export default function ServiceCard({ title, desc, thumb, href }: CardProps) {
       <div
         className={clsx(
           "group relative h-72 w-full max-w-full mx-auto",
-          "overflow-hidden rounded-2xl border border-border-default",
+          "overflow-hidden rounded-3xl border border-border-default",
           "transition hover:shadow-sm hover:-translate-y-1 duration-300"
         )}
       >

@@ -150,9 +150,9 @@ export const Navbar = () => {
   // Component render
   return (
     <header className="sticky top-0 z-1000 w-full bg-nav shadow-md no-drag">
-      {/* <header className="fixed top-0 z-1000 w-full no-drag"> */}
+    {/* <header className="fixed top-0 z-1000 w-full no-drag"> */}
       <nav className="mx-auto max-w-7xl px-4 lg:px-8 ">
-        {/* <nav
+      {/* <nav
         className={clsx(
           "mx-auto max-w-7xl px-4 lg:px-8",
           "bg-nav/85 backdrop-blur-xl shadow-lg",

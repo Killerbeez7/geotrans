@@ -54,7 +54,7 @@ export function HeroSection({ title, desc, image, ctaLabel, ctaHref }: HeroSecti
 
         {/* Image */}
         {image && (
-          <div className="relative aspect-4/3 w-full max-w-md sm:max-w-lg lg:max-w-xl overflow-hidden rounded-2xl shadow-lg">
+          <div className="relative aspect-4/3 w-full max-w-md sm:max-w-lg lg:max-w-xl overflow-hidden rounded-3xl shadow-lg">
             <Image
               src={image}
               alt="Геодезическо заснемане на терен"
