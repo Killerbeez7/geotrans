@@ -149,16 +149,16 @@ export const Navbar = () => {
   };
   // Component render
   return (
-    // <header className="sticky top-0 z-1000 w-full bg-nav shadow-md no-drag">
-    <header className="fixed top-0 z-1000 w-full no-drag">
-      {/* <nav className="mx-auto max-w-7xl px-4 lg:px-8 "> */}
-      <nav
+    <header className="sticky top-0 z-1000 w-full bg-nav shadow-md no-drag">
+      {/* <header className="fixed top-0 z-1000 w-full no-drag"> */}
+      <nav className="mx-auto max-w-7xl px-4 lg:px-8 ">
+        {/* <nav
         className={clsx(
           "mx-auto max-w-7xl px-4 lg:px-8",
           "bg-nav/85 backdrop-blur-xl shadow-lg",
           "border-b border-white/10 rounded-b-4xl"
         )}
-      >
+      > */}
         <div className="flex h-16 items-center justify-between">
           <Link
             href="/"
