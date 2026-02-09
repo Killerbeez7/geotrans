@@ -108,10 +108,10 @@ img {
   -webkit-user-select: none;
 }
 
-:focus-visible {
+/* :focus-visible {
   outline: 2px solid var(--color-accent);
   outline-offset: 2px;
-}
+} */
 
 /* Swiper Carousel */
 .swiper-button-prev,
