@@ -1,13 +1,7 @@
 import { Content } from "../config/ContentConfig";
 import Link from "next/link";
 
-type FooterProps = {
-    phone: string;
-    email: string;
-    address: string;
-};
-
-export const Footer = (props: FooterProps) => {
+export const Footer = () => {
     const phone = Content.contacts.phone;
     const email = Content.contacts.email;
     const address = Content.contacts.address.split("||").map((line, index) => (
