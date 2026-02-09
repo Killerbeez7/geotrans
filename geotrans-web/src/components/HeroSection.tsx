@@ -15,11 +15,11 @@ export function HeroSection({ title, desc, image, ctaLabel, ctaHref }: HeroSecti
   const [title1, title2] = title.split("||");
 
   return (
-    <section className="relative overflow-hidden px-4 sm:px-6 lg:px-12">
+    <section className="relative overflow-hidden mt-16 px-4 sm:px-6 lg:px-12 ">
       <div
         className={clsx(
           "mx-auto max-w-7xl flex flex-col-reverse items-center gap-12 py-12",
-          "sm:py-16 lg:flex-row lg:gap-20"
+          "sm:py-16 lg:flex-row lg:gap-20 justify-between"
         )}
       >
         {/* Text */}
@@ -54,14 +54,15 @@ export function HeroSection({ title, desc, image, ctaLabel, ctaHref }: HeroSecti
 
         {/* Image */}
         {image && (
-          <div className="relative aspect-[4/3] w-full max-w-md sm:max-w-lg lg:max-w-xl overflow-hidden rounded-2xl shadow-lg">
+          <div className="relative aspect-4/3 w-full max-w-md sm:max-w-lg lg:max-w-xl overflow-hidden rounded-2xl shadow-lg">
             <Image
               src={image}
               alt="Геодезическо заснемане на терен"
               fill
               priority
-              className="object-cover"
+              className="object-cover saturate-90 contrast-95"
             />
+            <div className="absolute inset-0 bg-linear-to-t from-black/10 via-transparent to-transparent" />
           </div>
         )}
       </div>
