@@ -1,11 +1,26 @@
-export interface GalleryImage {
-  id: number;
-  src: string;
-  alt: string;
-}
+export type GalleryImageProps = {
+    id: string | number;
+    src: string;
+    alt: string;
+    caption?: string;
+    category?: string;
+    blurDataURL?: string;
+};
 
-export const GALLERY_IMAGES: GalleryImage[] = [
-  { id: 1, src: "/images/teren.jpg", alt: "Геодезист с тотална станция на терен" },
-  { id: 2, src: "/images/tripod.jpg", alt: "Геодезическо оборудване" },
-  { id: 3, src: "/images/teren.jpg", alt: "Геодезическо заснемане на обект" },
+export const GALLERY_IMAGES: GalleryImageProps[] = [
+    {
+        id: 1,
+        src: "/images/tripod.jpg",
+        alt: "Геодезическо заснемане на земеделски терен с GNSS",
+        caption: "Точно определяне на граници върху 120 дка земеделска земя",
+        category: "Заснемане",
+    },
+    {
+        id: 2,
+        src: "/images/trasirane.jpg",
+        alt: "Работа с тотална станция на строителен обект",
+        caption: "Трасиране на регулационни линии за нов строеж",
+        category: "Трасиране",
+    },
+
 ];
