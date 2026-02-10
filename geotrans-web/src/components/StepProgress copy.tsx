@@ -11,19 +11,19 @@ interface StepProgressProps {
     currentStep?: number; // 1-based
 }
 
-export default function StepProgress({ steps, currentStep = 1 }: StepProgressProps) {
+export default function StepProgress({ steps, currentStep = 2 }: StepProgressProps) {
     const progress =
         steps.length > 1 ? ((currentStep - 1) / (steps.length - 1)) * 100 : 0;
 
     return (
-        <div className="mx-auto w-full max-w-6xl px-4 sm:px-6 py-10 sm:py-12">
+        <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 py-10 sm:py-16">
             <div className="relative hidden md:block">
                 {/* Background line */}
-                <div className="absolute top-6 left-[5%] right-[5%] h-px bg-green-300" />
+                <div className="absolute top-6 left-[11%] right-[11%] h-px bg-(--br-light-2)" />
 
                 {/* Progress line */}
                 <div
-                    className="absolute top-6 left-[5%] h-px bg-amber-600 transition-all duration-500"
+                    className="absolute top-6 left-[11%] h-px bg-green-400 transition-all duration-500"
                     style={{ width: `${progress * 0.9}%` }}
                 />
             </div>
@@ -44,12 +44,12 @@ export default function StepProgress({ steps, currentStep = 1 }: StepProgressPro
                                 className={clsx(
                                     "z-10 flex h-11 w-11 items-center justify-center rounded-full border transition-all",
                                     isCompleted &&
-                                        "bg-red border-amber-400 text-(--tx-muted)",
+                                        "bg-white border-gray-300 text-(--tx-muted)",
                                     isActive &&
-                                        "bg-amber-700 border-accent text-accent ring-4 ring-accent/20",
+                                        "bg-white border-accent text-accent ring-4 ring-accent/20",
                                     !isCompleted &&
                                         !isActive &&
-                                        "bg-amber-600 border-gray-300 text-(--tx-muted)",
+                                        "bg-white border-gray-300 text-(--tx-muted)",
                                 )}
                             >
                                 {isCompleted ? (
@@ -65,8 +65,8 @@ export default function StepProgress({ steps, currentStep = 1 }: StepProgressPro
                             <div
                                 className={clsx(
                                     "md:mt-3 max-w-56 text-left md:text-center",
-                                    isActive && "text-(--tx-primary)",
-                                    !isActive && "text-(--tx-muted)",
+                                    isActive && "text-(--tx-secondary)",
+                                    !isActive && "text-(--tx-secondary)",
                                 )}
                             >
                                 <div className="text-sm font-semibold leading-snug">

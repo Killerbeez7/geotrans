@@ -21,6 +21,7 @@
     --amber-600: #d4892a;
 
     /* Greenscale colors */
+    --green-300: #788d83;
     --green-500: #6a7d74;
     --green-600: #5a6a62;
     --green-700: #48554e;
@@ -47,6 +48,7 @@
 
     /* Borders */
     --br-light: var(--gray-100);
+    --br-light-2: var(--gray-200);
     --br-default: var(--gray-300);
     --br-strong: var(--gray-600);
 }
