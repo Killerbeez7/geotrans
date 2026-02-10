@@ -8,7 +8,7 @@ export interface NavItem {
 export const NAV_LINKS: (NavItem)[] = [
     { name: "Начало", href: "/" },
     { name: "Услуги", href: "/services", hasDropdown: true},
-    { name: "Галерия", href: "/gallery" },
+    { name: "Проекти", href: "/projects" },
     { name: "За нас", href: "/about" },
     { name: "Контакти", href: "/contacts" },
 ];

@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { GALLERY_IMAGES } from "../config/GalleryConfig";
 import { GalleryCard } from "./GalleryCard";
-import { GalleryLightbox } from "../app/gallery/GalleryLightbox";
+import { GalleryLightbox } from "../app/projects/GalleryLightbox";
 import { useState } from "react";
 
 export function GallerySection() {
@@ -22,7 +22,7 @@ export function GallerySection() {
             </p>
           </div>
           <Link
-            href="/gallery"
+            href="/projects"
             className={`
               rounded-xl px-5 py-2.5 text-sm font-semibold
               bg-(--color-accent)/10 text-(--color-accent)
