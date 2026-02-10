@@ -13,20 +13,20 @@ import { NavSrvList } from "./NavSrvList";
 const navLinkCls = (active: boolean) =>
     clsx(
         "relative group flex items-center gap-1 px-2 py-1",
-        "text-nav-text",
+        "text-(--tx-inverse)",
         // Underline on hover
         "after:absolute after:left-1/2 after:bottom-0",
         "after:h-[2px] after:w-full after:-translate-x-1/2",
-        "after:origin-center after:scale-x-0 after:bg-nav-hover",
-        "after:transition-transform after:duration-300 after:ease-out",
+        "after:origin-center after:scale-x-0 after:bg-(--accent)",
+        "after:transition-transform after:duration-300",
         "group-hover:after:scale-x-100",
         active && "after:scale-x-100",
     );
 
-const desktopSrvCls = (active: boolean) =>
+const dropdownSrvCls = (active: boolean) =>
     clsx(
-        "flex items-center gap-2 px-4 py-2 transition whitespace-nowrap",
-        active ? "bg-black/15" : "hover:bg-black/10",
+        "flex items-center gap-2 px-4 py-2 whitespace-nowrap transition",
+        active ? "bg-(--bg-muted)/40" : "hover:bg-(--bg-muted)/20",
     );
 
 // Component
@@ -79,9 +79,9 @@ export const Navbar = () => {
                 {item.hasDropdown && (
                     <div
                         className={clsx(
-                            "absolute left-[-10] top-full mt-2 min-w-56",
-                            "rounded-xl bg-nav text-nav-text shadow-lg",
-                            "transition-all duration-200 ease-out",
+                            "absolute left-[-10] top-full mt-2 min-w-60 rounded-xl",
+                            "bg-(--bg-nav) text-(--tx-inverse)",
+                            "shadow-lg transition-all duration-200",
                             isOpen
                                 ? "opacity-100 scale-100 pointer-events-auto"
                                 : "opacity-0 scale-95 pointer-events-none",
@@ -90,8 +90,8 @@ export const Navbar = () => {
                     >
                         <ul className="py-2">
                             <NavSrvList
-                                itemClass={desktopSrvCls}
-                                onClick={() => setDesktopDropdown(null)}
+                                itemClass={dropdownSrvCls}
+                                onClick={closeAll}
                             />
                         </ul>
                     </div>
@@ -121,7 +121,7 @@ export const Navbar = () => {
         return (
             <div key={item.name} className="flex flex-col">
                 <button
-                    className={clsx(navLinkCls(isActive), "flex justify-between w-full")}
+                    className={clsx(navLinkCls(isActive), "flex w-full justify-between")}
                     onClick={() => setMobileDropdown(isOpen ? null : item.name)}
                     aria-expanded={isOpen}
                 >
@@ -139,8 +139,8 @@ export const Navbar = () => {
                                 clsx(
                                     "px-4 py-2 rounded-md text-sm transition",
                                     active
-                                        ? "bg-white/15 font-medium"
-                                        : "hover:bg-bg-muted/70",
+                                        ? "bg-(--bg-muted)/40 font-medium"
+                                        : "hover:bg-(--bg-muted)/25",
                                 )
                             }
                         />
@@ -149,18 +149,26 @@ export const Navbar = () => {
             </div>
         );
     };
-    // Component render
+    // Render
     return (
-        <header className="fixed top-0 z-1000 w-full bg-nav/85 shadow-lg backdrop-blur-xl no-drag border-b border-white/10">
-            <nav className="mx-auto max-w-7xl px-4 lg:px-8 ">
+        <header
+            className={clsx(
+                "fixed top-0 z-1000 w-full",
+                "bg-(--bg-nav)/85",
+                "backdrop-blur-xl shadow-lg",
+                "border-b border-(--br-strong)/40",
+                "no-drag",
+            )}
+        >
+            <nav className="mx-auto max-w-7xl px-5">
                 <div className="flex h-16 items-center justify-between">
                     <Link
                         href="/"
                         draggable={false}
-                        className="flex items-center gap-2 pl-2 text-md sm:text-xl tracking-wide"
+                        className="flex items-center gap-2 px-2 py-1 text-lg tracking-wide text-(--tx-inverse)"
                     >
                         <svg
-                            className="w-7 h-7 text-nav-hover"
+                            className="w-7 h-7 text-accent"
                             viewBox="0 0 16 16"
                             xmlns="http://www.w3.org/2000/svg"
                             fill="none"
@@ -180,18 +188,18 @@ export const Navbar = () => {
                                 </clipPath>
                             </defs>
                         </svg>
-                        <span className="text-nav-text">Geo</span>
-                        <span className="text-nav-text">Trans</span>
+                        <span>Geo</span>
+                        <span>Trans</span>
                     </Link>
 
-                    {/* Desktop */}
-                    <ul className="hidden items-center gap-2 lg:gap-6 md:flex">
+                    {/* Desktop Links*/}
+                    <ul className="hidden items-center gap-6 md:flex">
                         {NAV_LINKS.map(renderDesktopItem)}
                     </ul>
 
                     {/* Mobile toggle */}
                     <button
-                        className="md:hidden p-2 rounded-md text-2xl text-nav-text"
+                        className="md:hidden p-2 text-2xl text-(--tx-inverse)"
                         onClick={() => setMobileOpen((o) => !o)}
                         aria-expanded={mobileOpen}
                     >
@@ -201,14 +209,14 @@ export const Navbar = () => {
 
                 {/* Mobile menu */}
                 {mobileOpen && (
-                    <div className="md:hidden text-(--text-inverse) pb-6 mt-2">
+                    <div className="md:hidden pb-6 mt-2 text-(--tx-inverse)">
                         <div className="p-4 flex flex-col gap-3">
                             {NAV_LINKS.map(renderMobileItem)}
 
                             <Link
                                 href="/contacts"
                                 onClick={closeAll}
-                                className="mt-3 rounded-lg bg-accent px-4 py-3 text-center text-sm font-semibold text-btn-primary-text hover:bg-nav-cta-hover transition"
+                                className="mt-3 px-4 py-3 rounded-lg bg-accent text-center text-sm font-semibold"
                             >
                                 Запитване
                             </Link>

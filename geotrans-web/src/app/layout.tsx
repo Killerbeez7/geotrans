@@ -6,23 +6,23 @@ import { Navbar } from "../components/Navbar";
 import { Footer } from "../components/Footer";
 
 const inter = Inter({
-  subsets: ["latin", "cyrillic"],
-  display: "swap",
+    subsets: ["latin", "cyrillic"],
+    display: "swap",
 });
 
 export const metadata: Metadata = {
-  title: "GeoTrans",
-  description: "Професионални геодезически услуги",
+    title: "GeoTrans",
+    description: "Професионални геодезически услуги",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
-  return (
-    <html lang="bg">
-      <body className={`${inter.className} antialiased flex flex-col`}>
-        <Navbar />
-        <main className="grow">{children}</main>
-        <Footer />
-      </body>
-    </html>
-  );
+    return (
+        <html lang="bg">
+            <body className={`${inter.className} antialiased flex flex-col`}>
+                <Navbar />
+                <main className="grow pt-16">{children}</main>
+                <Footer />
+            </body>
+        </html>
+    );
 }

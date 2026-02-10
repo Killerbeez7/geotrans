@@ -97,7 +97,7 @@ export default function Contacts() {
     ));
 
     return (
-        <section className="relative isolate min-h-[calc(100dvh)] pt-24">
+        <section className="relative isolate min-h-[calc(100dvh)] pt-16">
             {/* Background image */}
             <div
                 className="absolute inset-0 -z-20 bg-cover bg-center"

@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import clsx from "clsx";
 import { usePathname } from "next/navigation";
 import { SERVICE_LINKS } from "../config/ServicesConfig";
 
@@ -16,18 +17,6 @@ export const NavSrvList = ({ onClick, itemClass }: NavSrvListProps) => {
 
     return (
         <>
-            <li>
-                <Link
-                    href="/services"
-                    onClick={onClick}
-                    className={itemClass(isExact("/services"))}
-                >
-                    Всички услуги
-                </Link>
-            </li>
-
-            <li className="my-1 h-px bg-black/10" />
-
             {SERVICE_LINKS.map((service) => {
                 const active = isExact(`/services/${service.slug}`);
 
@@ -43,6 +32,25 @@ export const NavSrvList = ({ onClick, itemClass }: NavSrvListProps) => {
                     </li>
                 );
             })}
+            <li
+                aria-hidden
+                className={clsx(
+                    "mt-3 mx-3 h-px",
+                    "bg-linear-to-r",
+                    "from-transparent",
+                    "via-(--br-light)/40",
+                    "to-transparent",
+                )}
+            />
+            <li>
+                <Link
+                    href="/services"
+                    onClick={onClick}
+                    className={itemClass(isExact("/services"))}
+                >
+                    Виж всички
+                </Link>
+            </li>
         </>
     );
 };

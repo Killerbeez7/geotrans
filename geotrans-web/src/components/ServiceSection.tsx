@@ -7,7 +7,7 @@ type ServiceSectionProps = {
 
 export const ServiceSection = ({ title, subtitle }: ServiceSectionProps) => {
   return (
-    <section className="py-14 sm:py-20 bg-white">
+    <section className="py-14 sm:py-20  bg-(--bg-page)">
       <div className="container mx-auto px-6">
         <h2 className="font-semibold text-center tracking-tight text-2xl lg:text-3xl xl:text-4xl">
           {title}
