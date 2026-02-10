@@ -1,128 +1,136 @@
 @import "tailwindcss";
 
 :root {
-  --gray-0: #ffffff;
-  --gray-25: #fcfcfc;
-  --gray-50: #f8f9f9;
-  --gray-100: #f3f4f4;
-  --gray-200: #e8e9e9;
-  --gray-300: #d8dcdc;
-  --gray-400: #b8b8b8;
-  --gray-500: #7a8282;
-  --gray-600: #5c6363;
-  --gray-700: #3e4444;
-  --gray-800: #222626;
-  --gray-900: #0f0f0f;
+    /* Grayscale colors */
+    --gray-0: #ffffff;
+    --gray-25: #fcfcfc;
+    --gray-50: #f8f9f9;
+    --gray-100: #f3f4f4;
+    --gray-200: #e8e9e9;
+    --gray-300: #d8dcdc;
+    --gray-400: #b8b8b8;
+    --gray-500: #7a8282;
+    --gray-600: #5c6363;
+    --gray-700: #3e4444;
+    --gray-800: #222626;
+    --gray-900: #0f0f0f;
 
-  --amber-400: #f4b04a;
-  --amber-500: #e89c38;
-  --amber-600: #d4892a;
+    /* Accent colors */
+    --amber-400: #f4b04a;
+    --amber-500: #e89c38;
+    --amber-600: #d4892a;
 
-  --green-500: #6a7d74;
-  --green-600: #5a6a62;
-  --green-700: #48554e;
-  --green-800: #38443e;
+    /* Greenscale colors */
+    --green-500: #6a7d74;
+    --green-600: #5a6a62;
+    --green-700: #48554e;
+    --green-800: #38443e;
 
-  --bg-page: var(--gray-0);
-  --bg-section: var(--gray-25);
-  --bg-surface: var(--gray-50);
-  --bg-muted: var(--gray-100);
-  --bg-elevated: var(--gray-0);
+    /* Backgrounds */
+    --bg-page: var(--gray-0);
+    --bg-section: var(--gray-25);
+    --bg-surface: var(--gray-50);
+    --bg-muted: var(--gray-100);
+    --bg-nav: var(--green-700);
+    --bg-inverse: var(--gray-900);
 
-  --text-primary: var(--gray-900);
-  --text-secondary: var(--gray-600);
-  --text-muted: var(--gray-400);
-  --text-inverse: var(--gray-0);
+    /* Text */
+    --tx-primary: var(--gray-900);
+    --tx-secondary: var(--gray-700);
+    --tx-muted: var(--gray-500);
+    --tx-inverse: var(--gray-0);
 
-  --success-500: #4aa784;
-  --warning-500: #e0a638;
-  --danger-500: #d9534f;
-  --info-500: #3a8bbf;
+    /* Accent */
+    --accent: var(--amber-400);
+    --accent-hover: var(--amber-500);
+    --accent-strong: var(--amber-600);
+
+    /* Borders */
+    --br-light: var(--gray-100);
+    --br-default: var(--gray-300);
+    --br-strong: var(--gray-600);
 }
 
 @theme inline {
-  /* Backgrounds */
-  --color-bg-page: var(--gray-0);
-  --color-bg-section: var(--gray-25);
-  --color-bg-surface: var(--gray-50);
-  --color-bg-muted: var(--gray-100);
-  --color-bg-elevated: var(--gray-0);
+    /* Accent */
+    --color-accent: var(--accent);
+    --color-accent-hover: var(--accent-hover);
+    --color-accent-dark: var(--accent-strong);
 
-  /* Brand & Accent */
-  --color-accent: var(--amber-400);
-  --color-accent-dark: var(--amber-600);
-  --color-accent-hover: var(--amber-500);
+    /* Buttons */
+    --color-btn-primary: var(--accent);
+    --color-btn-primary-hover: var(--accent-hover);
 
-  /* Buttons */
-  --color-btn-primary: var(--amber-400);
-  --color-btn-primary-hover: var(--amber-500);
-
-  /* Navigation */
-  --color-nav: var(--green-700);
-  --color-nav-text: var(--gray-0);
-  --color-nav-hover: var(--amber-400);
-  --color-nav-cta: var(--green-500);
-  --color-nav-cta-hover: var(--green-600);
-
-  /* Status / feedback */
-  --color-success: var(--success-500);
-  --color-warning: var(--warning-500);
-  --color-danger: var(--danger-500);
-  --color-info: var(--info-500);
-
-  /* Borders */
-  --color-border-light: var(--gray-100);
-  --color-border-default: var(--gray-300);
-  --color-border-strong: var(--gray-600);
+    /* Borders */
+    --color-border-light: var(--br-light);
+    --color-border-default: var(--br-default);
+    --color-border-strong: var(--br-strong);
 }
 
 html {
-  box-sizing: border-box;
-  overflow-y: scroll;
-  overflow-x: clip;
-  overflow-clip-margin: 1;
+    box-sizing: border-box;
+    overflow-y: scroll;
+    overflow-x: clip;
+    /* overflow-clip-margin: 1; */
 }
 
 *,
 *::before,
 *::after {
-  box-sizing: inherit;
+    box-sizing: inherit;
 }
 
 body {
-  margin: 0;
-  padding: 0;
-  font-size: 16px;
-  line-height: 1.55;
-  background-color: var(--bg-page);
-  color: var(--text-primary);
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+    margin: 0;
+    padding: 0;
+    font-size: 16px;
+    line-height: 1.55;
+    background-color: var(--bg-page);
+    color: var(--tx-primary);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.card {
+    background: var(--bg-surface);
+    color: var(--tx-primary);
 }
 
 /* Utilities */
 .no-drag,
 img {
-  user-select: none;
-  -webkit-user-drag: none;
-  -webkit-user-select: none;
+    user-select: none;
+    -webkit-user-drag: none;
+    -webkit-user-select: none;
 }
 
-/* :focus-visible {
-  outline: 2px solid var(--color-accent);
-  outline-offset: 2px;
+a,
+button {
+    transition: color 0.2s ease;
+}
+
+/* Make sure dark text on light bg has enough contrast */
+/* .text-primary, .text-dark {
+  --tw-text-opacity: 1;
+  color: rgb(15 15 15 / var(--tw-text-opacity));
+} */
+
+/* Light text on dark */
+/* .text-inverse, .text-nav-text {
+  --tw-text-opacity: 1;
+  color: rgb(255 255 255 / var(--tw-text-opacity));
 } */
 
 /* Swiper Carousel */
 .swiper-button-prev,
 .swiper-button-next {
-  color: var(--color-accent) !important;
+    color: var(--color-accent) !important;
 }
 
 .swiper-pagination-bullet {
-  background-color: var(--color-accent) !important;
+    background-color: var(--color-accent) !important;
 }
 
 .swiper-pagination-bullet-active {
-  background-color: var(--color-accent) !important;
+    background-color: var(--color-accent) !important;
 }
