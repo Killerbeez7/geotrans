@@ -1,7 +1,7 @@
 import clsx from "clsx";
-import Link from "next/link";
 import Image from "next/image";
 import { FaPhone } from "react-icons/fa6";
+import { CtaButton } from "../parts/CtaButton";
 
 type HeroSectionProps = {
     title: string;
@@ -15,7 +15,10 @@ export function HeroSection({ title, desc, image, ctaLabel, ctaHref }: HeroSecti
     const [title1, title2] = title.split("||");
 
     return (
-        <section className="relative overflow-hidden px-4 sm:px-6 lg:px-12 bg-(--bg-page)">
+        <section
+            id="hero-section"
+            className="relative overflow-hidden px-4 sm:px-6 lg:px-12 bg-(--bg-page)"
+        >
             <div
                 className={clsx(
                     "mx-auto max-w-7xl ",
@@ -39,20 +42,10 @@ export function HeroSection({ title, desc, image, ctaLabel, ctaHref }: HeroSecti
 
                     {ctaLabel && ctaHref && (
                         <div className="mt-8 flex justify-center lg:justify-start">
-                            <Link
-                                href={ctaHref}
-                                className={clsx(
-                                    "inline-flex items-center gap-2 rounded-xl",
-                                    "px-6 py-4 font-semibold",
-                                    "bg-(--accent) text-(--tx-inverse)",
-                                    "hover:bg-(--accent-hover)",
-                                    "shadow-lg hover:shadow-xl",
-                                    "transition-transform hover:scale-105",
-                                )}
-                            >
-                                <FaPhone className="shrink-0 text-lg opacity-90" />
-                                <span className="leading-none">{ctaLabel}</span>
-                            </Link>
+                            <CtaButton href={ctaHref}>
+                                <FaPhone className="text-lg opacity-90" />
+                                {ctaLabel}
+                            </CtaButton>
                         </div>
                     )}
                 </div>
