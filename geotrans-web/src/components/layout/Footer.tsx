@@ -1,4 +1,4 @@
-import { Content } from "../config/ContentConfig";
+import { Content } from "@/config/ContentConfig";
 import Link from "next/link";
 
 export const Footer = () => {
