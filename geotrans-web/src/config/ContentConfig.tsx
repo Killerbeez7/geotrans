@@ -1,5 +1,3 @@
-import { describe } from "node:test";
-
 export const Content = {
   hero: {
     title: "Геодезия с точност, на която||можеш да разчиташ.",

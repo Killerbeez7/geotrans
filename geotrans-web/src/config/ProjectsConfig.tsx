@@ -1,4 +1,4 @@
-export type GalleryImageProps = {
+export type ProjectImageProps = {
     id: string | number;
     src: string;
     alt: string;
@@ -7,7 +7,7 @@ export type GalleryImageProps = {
     blurDataURL?: string;
 };
 
-export const GALLERY_IMAGES: GalleryImageProps[] = [
+export const PROJECT_IMAGES: ProjectImageProps[] = [
     {
         id: 1,
         src: "/images/tripod.jpg",
