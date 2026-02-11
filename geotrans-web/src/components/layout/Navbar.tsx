@@ -6,7 +6,7 @@ import { usePathname } from "next/navigation";
 
 import clsx from "clsx";
 import { IoIosArrowDown } from "react-icons/io";
-import { NAV_LINKS, NavItem } from "../config/NavConfig";
+import { NAV_LINKS, NavItem } from "@/config/NavConfig";
 import { NavSrvList } from "./NavSrvList";
 
 // Styles
@@ -89,10 +89,7 @@ export const Navbar = () => {
                         )}
                     >
                         <ul className="py-2">
-                            <NavSrvList
-                                itemClass={dropdownSrvCls}
-                                onClick={closeAll}
-                            />
+                            <NavSrvList itemClass={dropdownSrvCls} onClick={closeAll} />
                         </ul>
                     </div>
                 )}
@@ -152,9 +149,10 @@ export const Navbar = () => {
     // Render
     return (
         <header
+            id={"navbar"}
             className={clsx(
                 "fixed top-0 z-1000 w-full",
-                "bg-(--bg-nav)/85",
+                "bg-(--bg-nav)/90",
                 "backdrop-blur-xl shadow-lg",
                 "border-b border-(--br-strong)/40",
                 "no-drag",
