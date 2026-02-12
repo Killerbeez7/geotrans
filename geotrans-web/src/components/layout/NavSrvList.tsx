@@ -3,7 +3,7 @@
 import Link from "next/link";
 import clsx from "clsx";
 import { usePathname } from "next/navigation";
-import { SERVICE_LINKS } from "../config/ServicesConfig";
+import { SERVICE_LINKS } from "../../config/ServicesConfig";
 
 type NavSrvListProps = {
     onClick?: () => void;
