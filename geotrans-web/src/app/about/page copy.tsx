@@ -2,51 +2,43 @@ import Link from "next/link";
 import Image from "next/image";
 import { FaCheckCircle, FaMapMarkedAlt, FaUsers } from "react-icons/fa";
 import { Stats } from "../../components/sections/StatsSection";
-import { CtaButton } from "@/components/parts/CtaButton";
 
 export default function About() {
     return (
-        <main className="relative min-h-screen bg-(--bg-main)">
-            {/* ================= HERO ================= */}
-            <section className="relative isolate pt-16 pb-20 md:pt-44 md:pb-28 overflow-hidden">
-                {/* Background image */}
-                <div className="absolute top-0 inset-0 -z-20 bg-contain bg-center bg-no-repeat bg-[url('/images/element-bg.png')]" />
-                {/* <div
-                    className="absolute inset-x-0 top-16 bottom-0 -z-20 
-                  bg-contain bg-center bg-no-repeat 
-                  bg-[url('/images/element-bg.png')]"
-                /> */}
+        <main className="relative min-h-screen">
+            {/* Hero Section with topographic / map background */}
+            <section className="relative isolate pt-32 pb-16 md:pt-40 md:pb-24 overflow-hidden">
+                <div className="absolute inset-0 -z-10 bg-contain bg-center bg-no-repeat bg-[url('/images/element-bg.png')]" />
 
-                {/* Dark overlay */}
-                <div className="absolute inset-0 -z-10 bg-linear-to-b from-black/70 via-black/60 to-black/80" />
-
-                {/* Accent glow */}
-                {/* <div className="absolute top-1/2 left-1/2 -z-10 h-[500px] w-[500px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-(--color-accent)/5 blur-3xl" /> */}
+                <div className="absolute inset-0 -z-10 bg-linear-to-b from-black/60 via-black/50 to-black/70" />
 
                 <div className="mx-auto max-w-7xl px-6 lg:px-8 text-center">
-                    <h1 className="text-4xl font-bold tracking-tight text-white sm:text-5xl lg:text-6xl leading-tight">
+                    <h1 className="text-4xl font-bold tracking-tight text-white sm:text-5xl lg:text-6xl">
                         За нас
                     </h1>
-
                     <p className="mx-auto mt-6 max-w-3xl text-xl text-gray-200 leading-relaxed">
                         GeoTrans е компания за професионални геодезически и кадастрални
                         услуги, която комбинира модерна технология, експертен опит и
                         безкомпромисна точност. Работим с частни клиенти, инвеститори и
-                        строителни компании в цялата страна.
+                        строителни компании в София област.
                     </p>
+                    {/* <p className="mx-auto mt-6 max-w-3xl text-xl text-gray-200 leading-relaxed">
+                        Ние измерваме с точност. Планираме с отговорност. Изпълняваме с
+                        увереност. GeoTrans е вашият надежден партньор в геодезията и
+                        кадастъра.
+                    </p> */}
                 </div>
             </section>
 
-            {/* ================= STORY ================= */}
-            <section className="py-20 md:py-28 bg-(--bg-section)">
+            {/* Story / History */}
+            <section className="py-16 md:py-24 bg-(--bg-section)">
                 <div className="mx-auto max-w-7xl px-6 lg:px-8">
-                    <div className="grid lg:grid-cols-2 gap-16 items-center">
+                    <div className="grid lg:grid-cols-2 gap-12 items-center">
                         <div>
                             <h2 className="text-3xl font-bold tracking-tight text-(--text-primary) sm:text-4xl">
                                 Нашата история
                             </h2>
-
-                            <div className="mt-6 space-y-6 text-lg text-(--text-secondary) leading-relaxed">
+                            <div className="mt-6 space-y-6 text-lg text-(--text-secondary)">
                                 <p>
                                     GeoTrans е основана през 2015 г. от екип лицензирани
                                     геодезисти с дългогодишен практически опит в
@@ -55,35 +47,45 @@ export default function About() {
                                     прецизността, прозрачността и коректността към
                                     клиента.
                                 </p>
-
                                 <p>
                                     Днес реализираме проекти с различен мащаб – от
                                     заснемане и трасиране на частни имоти до участие в
-                                    инфраструктурни и инвестиционни проекти. Работим със
-                                    съвременна техника и софтуер, което ни позволява да
+                                    инфраструктурни и инвестиционни проекти. Работим с
+                                    модерна техника и софтуер, което ни позволява да
                                     гарантираме надеждни резултати във всеки етап от
                                     процеса.
                                 </p>
+                                {/* <p>
+                                    GeoTrans е създадена през [година, напр. 2015] от екип
+                                    геодезисти с дългогодишен опит в кадастрални и
+                                    инженерни заснемания. Започнахме с малки проекти в
+                                    [регион/град], а днес работим по обекти от национално
+                                    значение – от регулации на парцели до големи
+                                    инфраструктурни проекти.
+                                </p>
+                                <p>
+                                    Нашата мисия е проста: да предоставяме точни, бързи и
+                                    коректни геодезически услуги, които спестяват време и
+                                    пари на нашите клиенти и предотвратяват скъпи грешки.
+                                </p> */}
                             </div>
                         </div>
 
-                        <div className="relative rounded-3xl overflow-hidden shadow-2xl border border-white/10 group">
-                            <div className="relative aspect-[4/3]">
-                                <Image
-                                    src="/images/tripod.jpg"
-                                    alt="Екипът на GeoTrans на терен"
-                                    fill
-                                    className="object-cover scale-105 group-hover:scale-110 transition-transform duration-700"
-                                />
-                                <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
-                            </div>
+                        <div className="relative rounded-2xl overflow-hidden shadow-2xl aspect-4/3 lg:aspect-auto">
+                            <Image
+                                src="/images/tripod.jpg"
+                                alt="Екипът на GeoTrans на терен"
+                                fill
+                                className="object-cover"
+                            />
+                            <div className="absolute inset-0 bg-linear-to-t from-black/40 via-transparent to-transparent" />
                         </div>
                     </div>
                 </div>
             </section>
 
-            {/* ================= VALUES ================= */}
-            <section className="py-20 md:py-28 bg-(--color-nav)/5 border-t border-b border-(--color-border-light)">
+            {/* Mission & Values */}
+            <section className="py-16 md:py-24 bg-(--color-nav)/5 border-t border-b border-(--color-border-light)">
                 <div className="mx-auto max-w-7xl px-6 lg:px-8">
                     <div className="text-center">
                         <h2 className="text-3xl font-bold tracking-tight text-(--text-primary) sm:text-4xl">
@@ -101,6 +103,7 @@ export default function About() {
                                     <FaCheckCircle className="h-10 w-10 text-(--color-accent)" />
                                 ),
                                 title: "Прецизност",
+                                // desc: "Използваме най-съвременна техника (GNSS, тотални станции, лазерно сканиране) и двойна проверка на всяко измерване.",
                                 desc: "Работим с GNSS системи, тотални станции и съвременен софтуер за обработка на данни. Всяко измерване преминава през вътрешен контрол за гарантирана точност.",
                             },
                             {
@@ -108,6 +111,7 @@ export default function About() {
                                     <FaMapMarkedAlt className="h-10 w-10 text-(--color-accent)" />
                                 ),
                                 title: "Скорост",
+                                // desc: "Знаем колко е важно времето - затова оптимизираме процесите и доставяме резултати в договорените срокове.",
                                 desc: "Оптимизирали сме процесите си така, че да осигурим бързо изпълнение без компромис в качеството. Спазването на срокове е наш стандарт.",
                             },
                             {
@@ -115,21 +119,18 @@ export default function About() {
                                     <FaUsers className="h-10 w-10 text-(--color-accent)" />
                                 ),
                                 title: "Партньорство",
+                                // desc: "Работим като част от вашия екип - с разбиране към проекта и пълна прозрачност.",
                                 desc: "Изграждаме дългосрочни отношения, базирани на доверие, ясна комуникация и професионална отговорност към всеки проект.",
                             },
                         ].map((value, i) => (
                             <div
                                 key={i}
-                                className="group bg-(--bg-surface) p-8 rounded-3xl backdrop-blur-sm shadow-xl border border-(--color-border-light) text-center hover:-translate-y-2 hover:shadow-2xl transition-all duration-300"
+                                className="bg-(--bg-surface) p-8 rounded-2xl shadow-lg border border-(--color-border-light) text-center hover:shadow-xl transition-shadow"
                             >
-                                <div className="mx-auto transition-transform duration-300 group-hover:scale-110">
-                                    {value.icon}
-                                </div>
-
-                                <h3 className="mt-6 text-xl font-semibold text-(--text-primary)">
+                                <div className="mx-auto">{value.icon}</div>
+                                <h3 className="mt-6 text-xl font-semibold">
                                     {value.title}
                                 </h3>
-
                                 <p className="mt-4 text-(--text-secondary)">
                                     {value.desc}
                                 </p>
@@ -139,25 +140,30 @@ export default function About() {
                 </div>
             </section>
 
-            {/* ================= STATS ================= */}
+            {/* Stats */}
             <Stats />
 
-            {/* ================= CTA ================= */}
-            <section className="py-20 md:py-28 bg-(--color-nav)/10 border-t border-(--color-border-light)">
+            {/* CTA */}
+            <section className="py-16 md:py-24 bg-(--color-nav)/10 border-t border-(--color-border-light)">
                 <div className="mx-auto max-w-4xl px-6 lg:px-8 text-center">
                     <h2 className="text-3xl font-bold text-(--text-primary) sm:text-4xl">
                         Готови ли сте да започнем?
                     </h2>
-
                     <p className="mt-6 text-lg text-(--text-secondary)">
                         Нуждаете се от геодезически услуги или консултация? Свържете се с
                         нас и ще получите професионално съдействие още днес.
                     </p>
 
+                    {/* <p className="mt-6 text-lg text-(--text-secondary)">
+                        Свържете се с нас и нека обсъдим как можем да помогнем.
+                    </p> */}
                     <div className="mt-10">
-                        <CtaButton href="/contacts" size="lg">
-                            Запитване
-                        </CtaButton>
+                        <Link
+                            href="/contacts"
+                            className="inline-flex items-center gap-3 rounded-xl bg-(--color-btn-primary) px-8 py-4 text-lg font-semibold text-white shadow-lg hover:bg-(--color-btn-primary-hover) hover:shadow-xl transition-all"
+                        >
+                            Изпратете запитване
+                        </Link>
                     </div>
                 </div>
             </section>
