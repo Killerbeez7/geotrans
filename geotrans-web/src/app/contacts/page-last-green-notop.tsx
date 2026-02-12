@@ -131,7 +131,7 @@ export default function Contacts() {
     ));
 
     return (
-        <section className="relative isolate min-h-screen pt-16 pb-28 overflow-hidden">
+        <section className="relative isolate min-h-screen pt-28 pb-28 overflow-hidden">
             {/* Background Image */}
             <div
                 className="absolute inset-0 -z-20 bg-cover bg-center"
@@ -148,11 +148,11 @@ export default function Contacts() {
 
             <div className="mx-auto max-w-7xl px-6 sm:px-8 relative">
                 {/* Header */}
-                <div className="mb-16 text-center">
+                <div className="mb-20 text-center">
                     <h2 className="text-4xl font-bold tracking-tight text-white">
                         {title}
                     </h2>
-                    <p className="mx-auto mt-4 max-w-2xl text-lg text-white/70 leading-relaxed">
+                    <p className="mx-auto mt-6 max-w-2xl text-lg text-white/70 leading-relaxed">
                         {description}
                     </p>
                 </div>
