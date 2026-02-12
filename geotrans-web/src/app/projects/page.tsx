@@ -3,11 +3,11 @@
 import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { GALLERY_IMAGES, GalleryImageProps } from "../../config/GalleryConfig";
-import { GalleryLightbox } from "./GalleryLightbox";
+import { PROJECT_IMAGES, ProjectImageProps } from "../../config/ProjectsConfig";
+import { ProjectsLightbox } from "./ProjectsLightbox";
 
 export default function GalleryPage() {
-    const [selectedImage, setSelectedImage] = useState<GalleryImageProps | null>(null);
+    const [selectedImage, setSelectedImage] = useState<ProjectImageProps | null>(null);
 
     return (
         <main className="relative min-h-screen bg-(--bg-page)">
@@ -35,7 +35,7 @@ export default function GalleryPage() {
 
                     {/* Gallery Grid */}
                     <div className="mt-16 columns-1 sm:columns-2 lg:columns-3 xl:columns-4 gap-6 space-y-6">
-                        {GALLERY_IMAGES.map((img) => (
+                        {PROJECT_IMAGES.map((img) => (
                             <div
                                 key={img.id}
                                 className="group break-inside-avoid cursor-pointer rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:scale-[1.02]"
@@ -60,7 +60,7 @@ export default function GalleryPage() {
                     </div>
 
                     {/* Low count message */}
-                    {GALLERY_IMAGES.length < 6 && (
+                    {PROJECT_IMAGES.length < 6 && (
                         <div className="mt-16 text-center text-(--text-secondary)">
                             <p className="text-lg">Още проекти се добавят редовно.</p>
                             <Link
@@ -74,7 +74,7 @@ export default function GalleryPage() {
                 </div>
             </section>
 
-            <GalleryLightbox
+            <ProjectsLightbox
                 image={selectedImage}
                 onClose={() => setSelectedImage(null)}
             />

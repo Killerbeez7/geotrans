@@ -1,14 +1,14 @@
 "use client";
 
 import Image from "next/image";
-import { GalleryImageProps } from "../../config/GalleryConfig";
+import { ProjectImageProps } from "../../config/ProjectsConfig";
 
-interface GalleryLightboxProps {
-    image: GalleryImageProps | null;
+interface ProjectsLightboxProps {
+    image: ProjectImageProps | null;
     onClose: () => void;
 }
 
-export function GalleryLightbox({ image, onClose }: GalleryLightboxProps) {
+export function ProjectsLightbox({ image, onClose }: ProjectsLightboxProps) {
     if (!image) return null;
 
     return (

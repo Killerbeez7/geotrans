@@ -1,15 +1,15 @@
-"use client"; // for hover states
+"use client";
 
 import Image from "next/image";
-import { GalleryImageProps } from "../config/GalleryConfig";
+import { ProjectImageProps } from "@/config/ProjectsConfig";
 import { useState } from "react";
 
-interface GalleryCardProps {
-    image: GalleryImageProps;
-    onClick?: () => void; // optional for lightbox trigger
+interface ProjectCardProps {
+    image: ProjectImageProps;
+    onClick?: () => void;
 }
 
-export function GalleryCard({ image, onClick }: GalleryCardProps) {
+export function ProjectDisplayCard({ image, onClick }: ProjectCardProps) {
     const [isHovered, setIsHovered] = useState(false);
 
     return (
