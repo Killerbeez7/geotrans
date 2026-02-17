@@ -12,64 +12,86 @@ type HeroSectionProps = {
 };
 
 export function HeroSection({ title, desc, image, ctaLabel, ctaHref }: HeroSectionProps) {
-    const [title1, title2] = title.split("||");
+    const [t1 = "", t2 = ""] = title.split("||").map((s) => s.trim());
 
     return (
         <section
             id="hero-section"
-            className="relative overflow-hidden px-4 sm:px-6 lg:px-12 bg-(--bg-page)"
+            className={clsx(
+                "relative overflow-hidden",
+                "bg-bg-page hero-gradient",
+                "px-4 sm:px-6 lg:px-12",
+
+                "pt-10 sm:pt-12 lg:pt-14",
+                "pb-12 sm:pb-14 lg:pb-16",
+            )}
         >
-            <div
-                className={clsx(
-                    "mx-auto max-w-7xl ",
-                    "flex flex-col-reverse items-center gap-12 py-12",
-                    "sm:py-16 lg:flex-row lg:gap-20 justify-between lg:py-24",
-                )}
-            >
-                {/* Text */}
-                <div className="w-full max-w-xl text-center lg:text-left">
-                    <h1 className="font-semibold tracking-tight text-2xl sm:text-3xl xl:text-4xl">
-                        {title1}
-                        <br />
-                        <span className="text-(--accent) text-shadow-2xs">{title2}</span>
-                    </h1>
-
-                    {desc && (
-                        <p className="mt-5 text-base xl:text-lg text-(--tx-secondary)">
-                            {desc}
-                        </p>
+            <div className="mx-auto max-w-7xl ">
+                <div
+                    className={clsx(
+                        "grid items-center gap-10 lg:gap-14",
+                        "lg:grid-cols-12",
                     )}
+                >
+                    {/* Text */}
+                    <div className="lg:col-span-6 max-w-xl">
+                        <p className="typo-kicker">
+                            Лицензирани геодезисти • София и област • Точни срокове
+                        </p>
 
-                    {ctaLabel && ctaHref && (
-                        <div className="mt-8 flex justify-center lg:justify-start">
-                            <CtaButton href={ctaHref}>
-                                <FaPhone className="text-lg opacity-90" />
-                                {ctaLabel}
-                            </CtaButton>
+                        <h1 className="mt-4 typo-hero">
+                            Геодезия с точност,
+                            <br />
+                            на която{" "}
+                            <span className="text-accent">можеш да разчиташ.</span>
+                        </h1>
+                        {/* <h1 className="mt-4 typo-hero">
+                            <span>{t1}</span>{" "}
+                            <span
+                                className={clsx(
+                                    "text-accent text-shadow-2xs",
+                                    "sm:whitespace-nowrap",
+                                )}
+                            >
+                                {t2}
+                            </span>
+                        </h1> */}
+
+                        {desc && <p className="mt-5 typo-lead max-w-prose">{desc}</p>}
+
+                        {ctaLabel && ctaHref && (
+                            <div className="mt-8 flex items-center gap-3">
+                                <CtaButton href={ctaHref}>
+                                    <FaPhone className="text-lg opacity-90" />
+                                    {ctaLabel}
+                                </CtaButton>
+                                <CtaButton variant="glassAccent">Виж услуги →</CtaButton>
+                            </div>
+                        )}
+                    </div>
+
+                    {/* Image */}
+                    {image && (
+                        <div className="lg:col-span-6">
+                            <div
+                                className={clsx(
+                                    "relative overflow-hidden rounded-3xl shadow-xl",
+                                    "border border-br-light/20",
+                                    "aspect-16/10 sm:aspect-4/3",
+                                )}
+                            >
+                                <Image
+                                    src={image}
+                                    alt="Геодезическо заснемане на терен"
+                                    fill
+                                    priority
+                                    className="object-cover saturate-90 contrast-95"
+                                />
+                                <div className="absolute inset-0 bg-linear-to-t from-black/10 via-transparent to-transparent" />
+                            </div>{" "}
                         </div>
                     )}
                 </div>
-
-                {/* Image */}
-                {image && (
-                    <div
-                        className={clsx(
-                            "relative aspect-4/3",
-                            "w-full max-w-md sm:max-w-lg lg:max-w-xl",
-                            "overflow-hidden rounded-3xl",
-                            "shadow-xl",
-                        )}
-                    >
-                        <Image
-                            src={image}
-                            alt="Геодезическо заснемане на терен"
-                            fill
-                            priority
-                            className="object-cover saturate-90 contrast-95"
-                        />
-                        <div className="absolute inset-0 bg-linear-to-t from-black/10 via-transparent to-transparent" />
-                    </div>
-                )}
             </div>
         </section>
     );
