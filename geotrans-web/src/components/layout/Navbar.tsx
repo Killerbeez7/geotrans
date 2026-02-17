@@ -12,7 +12,7 @@ import { NavSrvList } from "./NavSrvList";
 // Styles
 const navLinkCls = (active: boolean) =>
     clsx(
-        "nav-link",
+        "nav-link text-tx-inverse",
         "relative group gap-1 px-2 py-1",
         // Underline on hover
         "after:absolute after:left-1/2 after:bottom-0",
@@ -26,7 +26,7 @@ const navLinkCls = (active: boolean) =>
 const dropdownSrvCls = (active: boolean) =>
     clsx(
         "nav-link gap-2 px-4 py-2 whitespace-nowrap transition",
-        active ? "bg-bg-muted/40" : "hover:bg-bg-muted/20",
+        active ? "bg-bg-muted/30" : "hover:bg-bg-muted/20",
     );
 
 // Component
@@ -79,11 +79,10 @@ export const Navbar = () => {
                 {item.hasDropdown && (
                     <div
                         className={clsx(
-                            "absolute left-[-10] mt-5 min-w-60 rounded-b-xl",
+                            "absolute -left-2 mt-5 min-w-60 rounded-b-xl",
                             "bg-bg-nav/95 backdrop-blur-xl text-tx-inverse",
-                            "shadow-lg border border-br-strong/40",
+                            "shadow-lg border border-br-light/20 border-t-0",
                             "transition-all duration-200 origin-top-left",
-                            // "border-t-br-light/20",
                             isOpen
                                 ? "opacity-100 scale-100 pointer-events-auto"
                                 : "opacity-0 scale-95 pointer-events-none",
@@ -160,7 +159,7 @@ export const Navbar = () => {
                 "no-drag",
             )}
         >
-            <nav className="mx-auto max-w-7xl px-5 h-full">
+            <nav className="container-page h-full">
                 <div className="flex h-full items-center justify-between">
                     <Link
                         href="/"
