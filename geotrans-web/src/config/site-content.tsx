@@ -174,7 +174,7 @@ export const getServiceBySlug = (slug: string) =>
 // ========== WORKFLOW ==========
 export interface WorkflowStep {
   title: string;
-  subtitle: string;
+  description: string;
 }
 
 export interface WorkflowContent {
@@ -189,20 +189,20 @@ const workflow: WorkflowContent = {
   steps: [
     {
       title: "Консултация",
-      subtitle:
+      description:
         "Анализ на казуса и уточняване на необходимата документация и обхват на услугата.",
     },
     {
       title: "Оглед и измерване",
-      subtitle: "Точно геодезическо заснемане с професионална апаратура.",
+      description: "Точно геодезическо заснемане с професионална апаратура.",
     },
     {
       title: "Обработка на данни",
-      subtitle: "Прецизна обработка и изготвяне на необходимите планове и документи.",
+      description: "Прецизна обработка и изготвяне на необходимите планове и документи.",
     },
     {
       title: "Предаване на документация",
-      subtitle:
+      description:
         "Предоставяне на готовите материали, съобразени с нормативните изисквания.",
     },
   ],
