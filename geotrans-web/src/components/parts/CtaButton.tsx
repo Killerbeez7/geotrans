@@ -2,7 +2,8 @@ import Link from "next/link";
 import clsx from "clsx";
 import { ReactNode } from "react";
 
-type Variant = "primary" | "outline" | "glass" | "glassAccent";
+type Variant = "primary" | "outline" | "glass" | "glassInverse" | "glassAccent";
+
 type Size = "sm" | "md" | "lg";
 
 type ButtonProps = {
@@ -39,27 +40,31 @@ export function CtaButton({
     };
 
     const variants: Record<Variant, string> = {
-        primary: clsx("bg-accent", "text-(--tx-inverse)", "hover:bg-accent-hover"),
+        primary: clsx("bg-accent", "text-tx-inverse", "hover:bg-accent-hover"),
 
         outline: clsx(
-            "border border-[var(--accent)]",
-            "text-[var(--accent)]",
-            "hover:bg-[var(--accent)] hover:text-[var(--tx-inverse)]",
+            "border border-accent",
+            "text-accent",
+            "hover:bg-accent hover:text-tx-inverse",
         ),
 
         glass: clsx(
-            "bg-white/10 backdrop-blur-md",
-            "border border-white/20",
+            "bg-(--surface-overlay-sm) backdrop-blur-md",
+            "border border-(--surface-overlay-lg)",
             "text-white",
-            "hover:bg-white/20",
+            "hover:bg-(--surface-overlay-lg)",
+        ),
+        glassInverse: clsx(
+            "bg-(--surface-overlay-lg) backdrop-blur-md",
+            "border border-br-strong",
+            "text-tx-muted",
+            "hover:bg-(--surface-overlay-lg)",
         ),
         glassAccent: clsx(
-            "bg-[var(--accent)]/15",
             "backdrop-blur-md",
-            "border border-[var(--accent)]/30",
-            "text-[var(--accent)]",
-            "hover:bg-[var(--accent)]",
-            "hover:text-[var(--gray-900)]",
+            "border border-accent/30",
+            "text-accent",
+            "hover:bg-accent/10",
         ),
     };
 
