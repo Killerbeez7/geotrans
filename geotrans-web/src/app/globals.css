@@ -1,106 +1,113 @@
 @import "tailwindcss";
 
-@theme {
-    /* =====================================================
-        PRIMITIVES
-    ===================================================== */
-    --color-white: #fff;
-    --color-black: #000;
+/* ==================== RAW PALETTE ==================== */
 
-    --color-gray-25: #fcfcfc;
-    --color-gray-50: #f8f9f9;
-    --color-gray-100: #f3f4f4;
-    --color-gray-200: #e8e9e9;
-    --color-gray-300: #d8dcdc;
-    --color-gray-400: #b8b8b8;
-    --color-gray-500: #7a8282;
-    --color-gray-600: #5c6363;
-    --color-gray-700: #3e4444;
-    --color-gray-800: #222626;
-    --color-gray-900: #0f0f0f;
-
-    --color-amber-400: #f0a83a;
-    --color-amber-500: #e2952c;
-    --color-amber-600: #c87f1f;
-
-    --color-green-25: #f4f6f5;
-    --color-green-50: #eef2f0;
-    --color-green-300: #788d83;
-    --color-green-500: #6a7d74;
-    --color-green-600: #5a6a62;
-    --color-green-700: #48554e;
-    --color-green-800: #38443e;
-
-    /* =====================================================
-        SEMANTIC TOKENS
-    ===================================================== */
-    /* Background */
-    --color-bg-page: var(--color-white);
-    --color-bg-section: var(--color-gray-25);
-    --color-bg-surface: var(--color-gray-50);
-    --color-bg-muted: var(--color-gray-100);
-    --color-bg-nav: var(--color-green-700);
-    --color-bg-inverse: var(--color-gray-900);
+:root {
+    /* Grayscale */
+    --gray-0: #ffffff;
+    --gray-25: #fcfcfc;
+    --gray-50: #f8f9f9;
+    --gray-100: #f3f4f4;
+    --gray-200: #e8e9e9;
+    --gray-300: #d8dcdc;
+    --gray-400: #b8b8b8;
+    --gray-500: #7a8282;
+    --gray-600: #5c6363;
+    --gray-700: #3e4444;
+    --gray-800: #222626;
+    --gray-900: #0f0f0f;
 
     /* Brand */
-    --color-accent: var(--color-amber-400);
-    --color-accent-hover: var(--color-amber-500);
-    --color-accent-strong: var(--color-amber-600);
+    --amber-400: #f0a83a;
+    --amber-500: #e2952c;
+    --amber-600: #c87f1f;
+
+    --green-25: #f4f6f5;
+    --green-50: #eef2f0;
+    --green-300: #788d83;
+    --green-500: #6a7d74;
+    --green-600: #5a6a62;
+    --green-700: #48554e;
+    --green-800: #38443e;
+
+    /* Layout */
+    --nav-h: 72px;
+
+    /* Overlays */
+    --surface-overlay-sm: color-mix(in srgb, var(--gray-0) 8%, transparent);
+    --surface-overlay-md: color-mix(in srgb, var(--gray-0) 12%, transparent);
+    --surface-overlay-lg: color-mix(in srgb, var(--gray-0) 18%, transparent);
+}
+
+/* ==================== SEMANTIC TOKENS ==================== */
+
+@theme inline {
+    /* Accent */
+    --color-accent: var(--amber-400);
+    --color-accent-hover: var(--amber-500);
+    --color-accent-strong: var(--amber-600);
+
+    /* Backgrounds */
+    --color-bg-page: var(--gray-0);
+    --color-bg-section: var(--gray-25);
+    --color-bg-surface: var(--gray-50);
+    --color-bg-muted: var(--gray-100);
+    --color-bg-nav: var(--green-700);
+    --color-bg-inverse: var(--gray-900);
 
     /* Text */
-    --color-tx-primary: var(--color-gray-900);
-    --color-tx-secondary: var(--color-gray-700);
-    --color-tx-muted: var(--color-gray-500);
-    --color-tx-inverse: var(--color-white);
-    --color-tx-inverse-secondary: var(--color-gray-200);
-    --color-tx-inverse-muted: var(--color-gray-400);
+    --color-tx-primary: var(--gray-900);
+    --color-tx-secondary: var(--gray-700);
+    --color-tx-muted: var(--gray-500);
+    --color-tx-inverse: var(--gray-0);
 
     /* Borders */
-    --color-br-subtle: var(--color-gray-100);
-    --color-br-muted: var(--color-gray-200);
-    --color-br-light: var(--color-gray-300);
-    --color-br-default: var(--color-gray-400);
-    --color-br-strong: var(--color-gray-600);
-
-    /* Fonts*/
-    --font-mont: var(--font-mont);
-    --font-inter: var(--font-inter);
-    --font-sofia: var(--font-sofia);
-    --font-exo: var(--font-exo);
-    --font-noto: var(--font-noto);
+    --color-br-light: var(--gray-100);
+    --color-br-default: var(--gray-300);
+    --color-br-strong: var(--gray-600);
 
     /* Radius */
     --radius-card: 1.5rem;
 }
 
-:root {
-    --nav-h: 80px;
-
-    /* overlays on dark surfaces */
-    --surface-overlay-sm: color-mix(in srgb, var(--color-white) 8%, transparent);
-    --surface-overlay-md: color-mix(in srgb, var(--color-white) 12%, transparent);
-    --surface-overlay-lg: color-mix(in srgb, var(--color-white) 18%, transparent);
-
-    --accent-soft: rgba(240, 168, 58, 0.12);
+/* Fonts */
+@theme {
+    --font-mont: var(--font-mont);
+    --font-inter: var(--font-inter);
+    --font-sofia: var(--font-sofia);
 }
 
-/* =====================================================
-    BASE RESET + BASE TYPOGRAPHY 
-===================================================== */
+/* ==================== RESET ==================== */
+
+html {
+    box-sizing: border-box;
+    overflow-y: scroll;
+    /* overflow-x: clip; */
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: inherit;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* ==================== BASE TYPOGRAPHY ==================== */
+
 @layer base {
-    html {
-        @apply box-border overflow-y-scroll;
-    }
-
-    *,
-    *::before,
-    *::after {
-        box-sizing: inherit;
-    }
-
     body {
-        @apply m-0 p-0 bg-bg-page text-tx-primary font-sofia text-base antialiased;
+        @apply bg-bg-page text-tx-primary font-inter text-base;
         line-height: 1.55;
+    }
+
+    p {
+        @apply text-tx-secondary;
     }
 
     h1,
@@ -109,11 +116,7 @@
     h4,
     h5,
     h6 {
-        @apply text-tx-primary font-mont text-balance;
-    }
-
-    p {
-        @apply text-tx-secondary;
+        @apply font-mont text-tx-primary text-balance;
     }
 
     small {
@@ -122,77 +125,110 @@
 }
 
 @layer components {
-    .card {
-        @apply bg-bg-surface border border-br-subtle rounded-card;
+    /* ==================== TYPOGRAPHY ==================== */
+
+    /* Small uppercase label */
+    .typo-kicker {
+        @apply font-inter text-xs uppercase tracking-[0.16em] text-tx-muted;
     }
 
-    .navbar-glass {
-        @apply bg-bg-nav/85 backdrop-blur-xl border-b border-br-strong/40;
-    }
-
-    .hero-gradient {
-        background: linear-gradient(
-            135deg,
-            var(--color-green-50) 0%,
-            color-mix(in srgb, var(--color-green-50) 70%, var(--color-white)) 100%
-        );
-    }
-
-    /* Swiper Overrides */
-    .swiper-button-prev,
-    .swiper-button-next {
-        color: var(--color-accent) !important;
-    }
-
-    .swiper-pagination-bullet {
-        background-color: var(--color-accent) !important;
-    }
-
-    .swiper-pagination-bullet-active {
-        background-color: var(--color-accent) !important;
-    }
-}
-
-@layer utilities {
-    /* Typography utilities */
+    /* Hero Title */
     .typo-hero {
-        @apply font-bold uppercase tracking-tight;
-        font-size: clamp(1.6rem, 1.6vw + 1rem, 2.35rem);
-        line-height: 1.12;
+        @apply font-mont font-semibold tracking-tight text-balance text-tx-primary;
+        font-size: clamp(2rem, 2.4vw + 1rem, 2.6rem);
+        line-height: 1.08;
     }
 
+    /* Section Title */
     .typo-h2 {
-        @apply font-semibold uppercase tracking-wide;
-        font-size: clamp(1.5rem, 1.4vw + 1rem, 2rem);
-        line-height: 1.2;
+        @apply font-mont font-semibold tracking-tight text-balance text-tx-primary;
+        font-size: clamp(1.4rem, 1.1vw + 1rem, 2rem);
+        line-height: 1.18;
     }
 
+    /* Card Title */
     .typo-h3 {
-        @apply font-semibold uppercase tracking-wide;
-        font-size: clamp(1.25rem, 1vw + 1rem, 1.5rem);
+        @apply font-mont font-semibold tracking-tight text-balance text-tx-primary;
+        font-size: clamp(1.15rem, 0.7vw + 1rem, 1.5rem);
         line-height: 1.25;
     }
 
+    /* Hero Lead / Important Intro */
     .typo-lead {
-        @apply text-tx-secondary;
-        font-size: clamp(1rem, 0.35vw + 0.95rem, 1.125rem);
+        @apply font-inter text-tx-secondary;
+        font-size: clamp(1.05rem, 0.45vw + 0.95rem, 1.2rem);
+        line-height: 1.65;
+        font-weight: 500;
+    }
+
+    /* Section Intro */
+    .typo-subtitle {
+        @apply font-inter text-tx-secondary;
+        font-size: 1rem;
+        line-height: 1.65;
+        font-weight: 500;
+    }
+
+    /* Default Body Text */
+    .typo-body {
+        @apply font-inter text-tx-secondary;
+        font-size: 0.95rem;
+        line-height: 1.7;
+    }
+
+    /* Small Meta Text */
+    .typo-meta {
+        @apply font-inter text-tx-muted;
+        font-size: 0.85rem;
         line-height: 1.6;
     }
 
-    .typo-muted {
-        @apply text-tx-muted;
+    .nav-link {
+        @apply flex items-center font-inter;
     }
 
-    .typo-body {
-        @apply font-inter text-tx-secondary;
-        line-height: 1.65;
+    /* ==================== CONTAINERS ==================== */
+    .container-page {
+        @apply mx-auto max-w-7xl px-4 sm:px-6 lg:px-12;
     }
+}
 
-    /* */
-    .no-drag,
-    img {
-        user-select: none;
-        -webkit-user-drag: none;
-        -webkit-user-select: none;
-    }
+/* ==================== UI UTILITIES ==================== */
+
+.card {
+    background: var(--color-bg-surface);
+    border: 1px solid var(--color-border-light);
+    border-radius: var(--radius-card);
+}
+
+.hero-gradient {
+    background: linear-gradient(
+        135deg,
+        var(--green-50) 0%,
+        color-mix(in srgb, var(--green-50) 70%, var(--gray-0)) 100%
+    );
+}
+
+/* ==================== INTERACTION ==================== */
+
+.no-drag,
+img {
+    user-select: none;
+    -webkit-user-drag: none;
+    -webkit-user-select: none;
+}
+
+/* ==================== SWIPER OVERRIDES ==================== */
+
+.swiper-button-prev,
+.swiper-button-next {
+    color: var(--color-accent) !important;
+}
+
+.swiper-pagination-bullet {
+    background-color: var(--color-accent) !important;
+}
+
+.swiper-pagination-bullet-active {
+    background-color: var(--color-accent) !important;
 }
