@@ -3,21 +3,31 @@ import clsx from "clsx";
 type SectionProps = {
   id?: string;
   className?: string;
+  containerClassName?: string;
+  variant?: "default" | "hero";
   children: React.ReactNode;
 };
 
-export function Section({ id, className, children }: SectionProps) {
+export function Section({
+  id,
+  className,
+  containerClassName,
+  variant = "default",
+  children,
+}: SectionProps) {
   return (
     <section
       id={id}
       className={clsx(
-        "relative overflow-x-hidden",
+        "relative",
         "px-4 sm:px-6 lg:px-12",
-        "py-18 sm:py-20 lg:py-24",
+        variant === "hero"
+          ? "pt-10 sm:pt-12 lg:pt-14 pb-12 sm:pb-14 lg:pb-16"
+          : "py-18 sm:py-20 lg:py-24",
         className
       )}
     >
-      <div className="mx-auto max-w-7xl w-full">{children}</div>
+      <div className={clsx("mx-auto max-w-7xl", containerClassName)}>{children}</div>
     </section>
   );
 }
