@@ -23,7 +23,7 @@ const navLinkCls = (active: boolean) =>
     "after:origin-center after:scale-x-0 after:bg-accent",
     "after:transition-transform after:duration-300",
     "group-hover:after:scale-x-100",
-    active && "after:scale-x-100"
+    active && "bg-bg-muted/10 rounded-xl md:after:scale-x-100 md:bg-transparent"
   );
 
 const dropdownSrvCls = (active: boolean) =>
@@ -133,13 +133,13 @@ export const Navbar = () => {
         </button>
 
         {isOpen && (
-          <ul className="ml-4 mt-1 flex flex-col gap-1">
+          <ul className="mt-1 flex flex-col gap-1">
             <NavSrvList
               onClick={closeAll}
               itemClass={(active) =>
                 clsx(
-                  "px-4 py-2 rounded-md text-sm transition",
-                  active ? "bg-bg-muted/40 font-medium" : "hover:bg-bg-muted/25"
+                  "px-4 py-2 rounded-md text-tx-inverse/95 text-sm transition",
+                  active ? " flex bg-bg-muted/10 font-medium" : "hover:bg-bg-muted/25"
                 )
               }
             />
@@ -154,7 +154,7 @@ export const Navbar = () => {
       id="navbar"
       className={clsx(
         "sticky top-0 z-50 w-full h-(--nav-h)",
-        "bg-bg-nav/90",
+        "bg-bg-nav/95",
         "backdrop-blur-xl shadow-lg",
         "border-b border-br-light/20",
         "no-drag"
@@ -208,17 +208,34 @@ export const Navbar = () => {
 
         {/* Mobile menu */}
         {mobileOpen && (
-          <div className="md:hidden pb-6 mt-2 text-tx-inverse">
-            <div className="p-4 flex flex-col gap-3">
-              {NAV_LINKS.map(renderMobileItem)}
+          <div className="md:hidden">
+            {/* Backdrop */}
+            <button
+              aria-label="Close menu"
+              onClick={closeAll}
+              className="fixed inset-0 top-(--nav-h) z-40 bg-black/40"
+            />
 
-              <Link
-                href="/contacts"
-                onClick={closeAll}
-                className="mt-3 px-4 py-3 rounded-lg bg-accent text-center text-sm font-semibold"
-              >
-                Запитване
-              </Link>
+            {/* Panel */}
+            <div
+              className={clsx(
+                "fixed left-0 right-0 top-(--nav-h) z-50",
+                "bg-bg-nav/98 backdrop-blur-xl shadow-xl"
+              )}
+            >
+              <div className="container-page py-4">
+                <div className="flex flex-col gap-3">
+                  {NAV_LINKS.map(renderMobileItem)}
+
+                  <Link
+                    href="/contacts"
+                    onClick={closeAll}
+                    className="mt-3 px-4 py-3 rounded-lg bg-accent text-center text-sm font-semibold text-tx-inverse"
+                  >
+                    Запитване
+                  </Link>
+                </div>
+              </div>
             </div>
           </div>
         )}
