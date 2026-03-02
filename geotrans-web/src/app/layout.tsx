@@ -70,7 +70,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="bg">
       <body
-        className={`${inter.variable} ${montserrat.variable} ${sofia.variable} antialiased flex flex-col`}
+        className={`${inter.variable} ${montserrat.variable} ${sofia.variable} antialiased flex flex-col relative`}
       >
         <script
           type="application/ld+json"
@@ -82,7 +82,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         {/* Navbar overlay */}
         <div className="absolute top-0 left-0 w-full h-(--nav-h) bg-bg-nav -z-10" />
         <Navbar />
-        <main className="grow bg-(--bg-page)">{children}</main>
+        <main className="grow bg-bg-page">{children}</main>
         <Footer />
       </body>
     </html>
