@@ -1,24 +1,23 @@
 import SwiperCarousel from "../features/SwiperCarousel";
+import { ServicesContent } from "@/config/site-content";
+import { Section } from "@/components/layout/Section";
 
-type ServiceSectionProps = {
-    title: string;
-    subtitle: string;
-};
+export const ServiceSection = ({ id, title, subtitle, items }: ServicesContent) => {
+  return (
+    <Section id={id} className="bg-bg-muted ">
+      {/* <div className="grid grid-cols-12 gap-6 "> */}
+      <div className="grid grid-cols-12">
+        {/* Header */}
+        <header className="col-span-12 lg:col-span-8 lg:col-start-3 text-center">
+          <h2 className="typo-h2">{title}</h2>
+          <p className="mt-4 typo-subtitle mx-auto max-w-2xl">{subtitle}</p>
+        </header>
 
-export const ServiceSection = ({ title, subtitle }: ServiceSectionProps) => {
-    return (
-        <section className="py-14 sm:py-20  bg-(--bg-page)">
-            <div className="container mx-auto px-6">
-                <h2 className="font-semibold text-center tracking-tight text-2xl lg:text-3xl xl:text-4xl">
-                    {title}
-                </h2>
-
-                <p className="mx-auto mt-2 max-w-2xl text-center text-base xl:text-lg text-(--text-secondary)">
-                    {subtitle}
-                </p>
-
-                <SwiperCarousel />
-            </div>
-        </section>
-    );
+        {/* Carousel */}
+        <div className="col-span-12 mt-4">
+          <SwiperCarousel items={items} />
+        </div>
+      </div>
+    </Section>
+  );
 };
