@@ -1,7 +1,7 @@
 import { MetadataRoute } from "next";
 import { siteContent } from "@/config/site-content";
 
-const SERVICE_LINKS = siteContent.serviceLinks;
+const SERVICE_LINKS = siteContent.services.items;
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = "http://localhost:3000/";
