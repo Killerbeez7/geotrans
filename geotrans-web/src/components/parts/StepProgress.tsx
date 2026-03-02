@@ -45,7 +45,7 @@ export default function StepProgress({ steps }: StepProgressProps) {
               >
                 <div className="text-sm font-semibold leading-snug">{step.title}</div>
 
-                <div className="mt-1 text-xs leading-relaxed opacity-80">
+                <div className="mt-1 text-sm leading-relaxed opacity-80">
                   {step.description}
                 </div>
               </div>
