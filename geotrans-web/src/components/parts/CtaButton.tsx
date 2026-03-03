@@ -36,7 +36,7 @@ export function CtaButton({
   const sizes: Record<Size, string> = {
     sm: "px-4 py-2 text-sm",
     md: "px-5 py-3 text-sm md:text-base",
-    lg: "px-5 py-3 text-sm md:px-8 sm:py-4 md:text-lg",
+    lg: "px-5 py-3 text-sm md:px-4.5 sm:py-3.5 md:text-lg",
   };
 
   const variants: Record<Variant, string> = {
