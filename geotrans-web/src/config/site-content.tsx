@@ -140,7 +140,7 @@ const services: ServicesContent = {
       slug: "kadastar",
       title: "Кадастрални услуги",
       cardTitle: "Кадастър",
-      cardMeta: "Кадастър • Промени • Процедури",
+      cardMeta: "Вписване • Промени",
       thumbnail: "/images/services/kadastyr-thumb.jpg",
       ogImage: "/images/services/kadastyr-og.png",
       description:

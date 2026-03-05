@@ -4,13 +4,13 @@ import { ServiceCard, MoreCard } from "@/components/parts/ServiceCards";
 import type { ServicesContent } from "@/config/site-content";
 
 export const ServiceSection = ({ id, title, subtitle, items }: ServicesContent) => {
-  const main = items.slice(0, 7);
+  const main = items.slice(0, 5);
   const extra = Math.max(0, items.length - main.length);
 
   return (
     <Section
       id={id}
-      className="relative bg-bg-page py-16 sm:py-20"
+      className="relative bg-bg-brand-soft py-16 sm:py-20"
       containerClassName="container-page"
     >
       {/* Background Pattern */}
