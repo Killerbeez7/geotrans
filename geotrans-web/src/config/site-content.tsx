@@ -419,7 +419,7 @@ export interface WorkflowContent {
 
 const workflow: WorkflowContent = {
   id: "workflow",
-  title: "Как протича процесът",
+  title: "Как работим",
   subtitle:
     "От първия разговор до готовата документация - ясно, организирано и без излишни усложнения.",
   steps: [
