@@ -42,7 +42,6 @@ export const ServiceCard = ({ item }: { item: ServiceItem }) => {
         "shadow-[0_18px_55px_-48px_rgba(0,0,0,0.30)]",
         "transition duration-200",
         "hover:-translate-y-[2px] hover:shadow-[0_28px_80px_-58px_rgba(0,0,0,0.40)]",
-        "hover:border-accent/25 hover:ring-2 hover:ring-accent/10",
         "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/20"
       )}
     >
@@ -147,13 +146,13 @@ export const MoreCard = ({ extraCount }: { extraCount: number }) => {
         "group relative flex h-full flex-col overflow-hidden",
         "rounded-[--radius-card]",
         "bg-bg-nav text-white",
-        "border border-white/10",
+        // "border border-white/10",
         "py-5 pl-5 pr-12 sm:p-6 lg:p-7",
         "shadow-[0_26px_70px_-55px_rgba(0,0,0,0.50)]",
         "transition duration-200",
         "hover:-translate-y-[2px]",
-        "hover:border-accent/30",
-        "hover:ring-2 hover:ring-accent/20",
+        // "hover:border-accent/30",
+        // "hover:ring-2 hover:ring-accent/20",
         "hover:shadow-[0_34px_92px_-70px_rgba(0,0,0,0.70)]",
         "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/30"
       )}
