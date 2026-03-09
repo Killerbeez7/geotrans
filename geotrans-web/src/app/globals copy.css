@@ -74,58 +74,39 @@
 /* ==================== SEMANTIC TOKENS ==================== */
 
 @theme inline {
-  /* ================= ACCENT ================= */
-
+  /* Accent */
   --color-accent: var(--muted-ochre);
+
   --color-accent-hover: var(--amber-500);
   --color-accent-strong: var(--amber-600);
 
-  /* ================= BACKGROUNDS ================= */
-
-  /* main page background */
-  --color-bg-page: var(--off-white);
-
-  /* default section */
-  --color-bg-section: var(--gray-0);
-
-  /* alternating sections */
+  /* Backgrounds */
+  --color-bg-page: linear-gradient(to bottom, var(--gray-0), var(--green-25));
+  --color-bg-section: var(--green-25);
   --color-bg-muted: var(--gray-50);
+  --color-bg-surface: var(--gray-0);
+  --color-bg-brand-soft: color-mix(in srgb, var(--green-50) 60%, var(--gray-0));
+  --color-bg-inverse: var(--green-800);
 
-  /* soft olive tint (used rarely) */
-  --color-bg-soft: var(--green-25);
-
-  /* light brand tint */
-  --color-bg-brand-soft: color-mix(in srgb, var(--green-50) 35%, var(--gray-0));
-
-  /* dark surfaces */
-  --color-bg-inverse: #16221c;
-
-  /* ================= NAV ================= */
-
-  /* main navigation */
+  /* Nav */
   --color-bg-nav: var(--deep-olive);
+  /* --color-bg-nav: var(--green-700); */
 
-  /* top info bar */
-  --color-bg-top-nav: color-mix(in srgb, var(--deep-olive) 78%, var(--gray-0));
+  --color-bg-top-nav: var(--green-700);
+  /* --color-bg-top-nav: var(--deep-olive); */
 
-  /* footer (slightly darker than nav) */
-  --color-bg-footer: #122019;
-
-  /* ================= TEXT ================= */
-
+  /* Text */
   --color-tx-primary: var(--gray-900);
   --color-tx-secondary: var(--gray-700);
   --color-tx-muted: var(--gray-500);
   --color-tx-inverse: var(--gray-0);
 
-  /* ================= BORDERS ================= */
-
+  /* Borders */
   --color-br-light: var(--gray-100);
   --color-br-default: var(--gray-300);
   --color-br-strong: var(--gray-600);
 
-  /* ================= RADIUS ================= */
-
+  /* Radius */
   --radius-card: 1.5rem;
 }
 
@@ -261,10 +242,11 @@ body {
 /* ==================== UI UTILITIES ==================== */
 
 .card {
-  background: var(--gray-0);
+  background: linear-gradient(to bottom, var(--gray-0), var(--gray-25));
+  /* background: var(--gray-0); */
   border: 1px solid var(--color-br-light);
   border-radius: var(--radius-card);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.04);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.03);
 }
 
 .hero-gradient {
@@ -322,3 +304,31 @@ img {
   animation: scrollHintPulse 1.8s ease-in-out infinite;
   will-change: transform, opacity;
 }
+
+/* @theme inline {
+  --color-accent: var(--muted-ochre);
+  --color-accent-hover: var(--amber-500);
+  --color-accent-strong: var(--amber-600);
+
+  --color-bg-page: var(--off-white);
+  --color-bg-section: var(--gray-0);
+  --color-bg-muted: var(--gray-50);
+  --color-bg-soft: var(--green-25);
+  --color-bg-brand-soft: color-mix(in srgb, var(--green-50) 35%, var(--gray-0));
+  --color-bg-inverse: #14211b;
+
+  --color-bg-nav: var(--deep-olive);
+  --color-bg-top-nav: color-mix(in srgb, var(--deep-olive) 78%, var(--gray-0));
+  --color-bg-footer: #122019;
+
+  --color-tx-primary: var(--gray-900);
+  --color-tx-secondary: var(--gray-700);
+  --color-tx-muted: var(--gray-500);
+  --color-tx-inverse: var(--gray-0);
+
+  --color-br-light: var(--gray-100);
+  --color-br-default: var(--gray-300);
+  --color-br-strong: var(--gray-600);
+
+  --radius-card: 1.5rem;
+} */
