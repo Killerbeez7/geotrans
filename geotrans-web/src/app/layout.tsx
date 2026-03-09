@@ -78,7 +78,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         />
 
         {/* Navbar overlay */}
-        <div className="absolute top-0 left-0 w-full h-(--nav-h) bg-bg-nav -z-10" />
+        <div
+          className="absolute top-0 left-0 w-full bg-bg-nav -z-10"
+          style={{ height: "calc(var(--nav-h) + var(--top-bar-h))" }}
+        />
         <Navbar />
         <main className="grow bg-bg-page">{children}</main>
         {/* Analytics */}
