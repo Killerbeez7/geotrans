@@ -72,7 +72,7 @@ export interface ServicesContent {
 
 const services: ServicesContent = {
   id: "services",
-  title: "Услуги",
+  title: "Какво предлагаме",
   subtitle:
     "Геодезически и кадастрални дейности, необходими за проектиране, строителство и регулация на имоти.",
 
@@ -222,14 +222,13 @@ const services: ServicesContent = {
       featured: true,
     },
 
-    // ✅ NEW (marketing card 1) — to make 7 cards total
     {
       id: "consulting",
       slug: "konsultacia",
       title: "Консултация и оценка",
       cardTitle: "Консултация",
       cardMeta: "Оценка • План • Срокове",
-      thumbnail: "/images/services/consulting-thumb.jpg", // сложи си подходяща
+      thumbnail: "/images/services/consulting-thumb.jpg",
       ogImage: "/images/services/consulting-og.jpg",
       description:
         "Кратка консултация за случая ти: какво е нужно, кои документи трябват и как най-бързо да стигнеш до резултат.",
@@ -408,6 +407,7 @@ const about: AboutContent = {
 export interface WorkflowStep {
   title: string;
   description: string;
+  meta?: string;
 }
 
 export interface WorkflowContent {
@@ -419,29 +419,33 @@ export interface WorkflowContent {
 
 const workflow: WorkflowContent = {
   id: "workflow",
-  title: "Как работим",
+  title: "Работен процес",
   subtitle:
     "От първия разговор до готовата документация - ясно, организирано и без излишни усложнения.",
   steps: [
     {
       title: "Консултация",
+      meta: "Същия ден",
       description:
-        "Разглеждаме случая, уточняваме необходимите документи и определяме точния обхват на услугата.",
+        "Разглеждаме случая, уточняваме нужните документи и определяме точния обхват на услугата.",
     },
     {
       title: "Оглед и измерване",
+      meta: "30–90 мин",
       description:
-        "Извършваме прецизно геодезическо заснемане на място със съвременна апаратура.",
+        "Извършваме прецизно заснемане на място със съвременна апаратура (GNSS/тотална станция).",
     },
     {
       title: "Обработка и изготвяне",
+      meta: "1–2 работни дни",
       description:
-        "Обработваме данните и подготвяме необходимите планове, чертежи и документация.",
+        "Обработваме данните и подготвяме планове, чертежи и необходимата документация според случая.",
     },
     {
-      title: "Предаване на документация",
+      title: "Предаване и съдействие",
+      meta: "След финал",
       description:
-        "Предоставяме готовите материали и оставаме на разположение при последващи въпроси.",
+        "Предоставяме готовите материали и оставаме на разположение при въпроси/следващи стъпки.",
     },
   ],
 };
