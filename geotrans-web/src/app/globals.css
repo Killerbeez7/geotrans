@@ -90,6 +90,10 @@
 
   /* Nav */
   --color-bg-nav: var(--deep-olive);
+  /* --color-bg-nav: var(--green-700); */
+
+  --color-bg-top-nav: var(--green-700);
+  /* --color-bg-top-nav: var(--deep-olive); */
 
   /* Text */
   --color-tx-primary: var(--gray-900);

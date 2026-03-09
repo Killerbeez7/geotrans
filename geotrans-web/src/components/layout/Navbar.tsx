@@ -152,7 +152,7 @@ export const Navbar = () => {
   // Render
   return (
     <>
-      <div className="bg-gray-300/20 backdrop-blur-md text-white/90 text-xs md:text-sm tracking-wider">
+      <div className="bg-bg-top-nav backdrop-blur-md text-white/90 text-xs md:text-sm tracking-wider">
         <div
           className={clsx(
             "container-page h-(--top-bar-h) flex justify-center md:justify-between items-center",
