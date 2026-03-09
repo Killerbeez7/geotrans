@@ -8,25 +8,7 @@ export const ServiceSection = ({ id, title, subtitle, items }: ServicesContent) 
   const extra = Math.max(0, items.length - main.length);
 
   return (
-    <Section
-      id={id}
-      className="relative bg-bg-brand-soft py-16 sm:py-20"
-      containerClassName="container-page"
-    >
-      {/* Background Pattern */}
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-0 -z-10 opacity-[0.18]"
-        style={{
-          backgroundImage: "url('/patterns/vector.avif')",
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-          WebkitMaskImage:
-            "radial-gradient(circle at center, black 38%, transparent 80%)",
-          maskImage: "radial-gradient(circle at center, black 38%, transparent 80%)",
-        }}
-      />
-
+    <Section id={id} className="bg-bg-brand-soft">
       <header className="text-center">
         <h2 className="typo-h2">{title}</h2>
         <p className="mx-auto mt-4 max-w-2xl typo-subtitle">{subtitle}</p>
@@ -34,10 +16,8 @@ export const ServiceSection = ({ id, title, subtitle, items }: ServicesContent) 
 
       <div
         className={clsx(
-          "mt-12 grid gap-6 lg:gap-7",
-          "grid-cols-1",
-          "min-[780px]:grid-cols-2",
-          "min-[1240px]:grid-cols-3"
+          "mt-12 grid gap-6 sm:gap-7 lg:gap-8 xl:gap-10",
+          "grid-cols-1 gap-0 min-[840px]:grid-cols-2  min-[1280px]:grid-cols-3"
         )}
       >
         {main.map((item) => (
