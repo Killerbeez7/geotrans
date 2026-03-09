@@ -16,7 +16,7 @@ export const HorizontalDivider = ({ margin = 0, extend = 0 }: Props) => {
         width: widthStyle,
         transform: transformStyle,
         background:
-          "linear-gradient(to right, rgba(156, 163, 175, 0.1), rgba(156, 163, 175, 0.8), rgba(156, 163, 175, 0.1))",
+          "linear-gradient(to right, rgba(156, 163, 175, 0.1), rgba(156, 163, 175, 0.3), rgba(156, 163, 175, 0.1))",
         boxSizing: "border-box",
       }}
     />
