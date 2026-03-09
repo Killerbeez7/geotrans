@@ -32,6 +32,7 @@
 
   /* Layout */
   --nav-h: 72px;
+  --top-bar-h: 40px;
 
   /* Overlays */
   --surface-overlay-sm: color-mix(in srgb, var(--gray-0) 8%, transparent);
@@ -50,10 +51,13 @@
 :root {
   /* Font scale */
   --fs-hero: clamp(1.8rem, 3vw + 1rem, 3.5rem);
+  /* --fs-hero: clamp(1.6rem, 2.5vw + 1rem, 3rem); */
   --fs-h2: clamp(1.5rem, 2vw + 1rem, 2.5rem);
+  /* --fs-h2: clamp(1.4rem, 1.8vw + 1rem, 2.2rem); */
   --fs-h3: clamp(1.2rem, 0.8vw + 1rem, 1.6rem);
   --fs-lead: clamp(0.9rem, 0.5vw + 0.8rem, 1.25rem);
-  /* --fs-body: 0.95rem; */
+  /* --fs-lead: clamp(1rem, 0.5vw + 0.9rem, 1.3rem); */
+
   --fs-body: 1.0625rem;
   --fs-meta: 0.85rem;
 
@@ -72,14 +76,13 @@
 @theme inline {
   /* Accent */
   --color-accent: var(--muted-ochre);
-  /* --color-accent: var(--amber-400); */
 
   --color-accent-hover: var(--amber-500);
   --color-accent-strong: var(--amber-600);
 
   /* Backgrounds */
-  --color-bg-page: var(--gray-0);
-  --color-bg-section: var(--gray-25);
+  --color-bg-page: linear-gradient(to bottom, var(--gray-0), var(--green-25));
+  --color-bg-section: var(--green-25);
   --color-bg-muted: var(--gray-50);
   --color-bg-surface: var(--gray-0);
   --color-bg-brand-soft: color-mix(in srgb, var(--green-50) 60%, var(--gray-0));
@@ -87,7 +90,6 @@
 
   /* Nav */
   --color-bg-nav: var(--deep-olive);
-  /* --color-bg-nav: var(--green-700); */
 
   /* Text */
   --color-tx-primary: var(--gray-900);
@@ -107,7 +109,6 @@
 /* Fonts */
 @theme {
   --font-mont: var(--font-mont);
-  --font-inter: var(--font-inter);
   --font-sofia: var(--font-sofia);
 }
 
@@ -116,7 +117,6 @@
 html {
   box-sizing: border-box;
   overflow-y: scroll;
-  /* overflow-x: clip; */
 }
 
 *,
@@ -220,13 +220,13 @@ body {
 
   /* Small Meta Text */
   .typo-meta {
-    @apply font-inter text-tx-muted;
+    @apply text-tx-muted;
     font-size: var(--fs-meta);
     line-height: 1.6;
   }
 
   .nav-link {
-    @apply flex items-center font-inter;
+    @apply flex items-center font-medium;
   }
 
   /* ==================== CONTAINERS ==================== */
@@ -238,7 +238,8 @@ body {
 /* ==================== UI UTILITIES ==================== */
 
 .card {
-  background: var(--gray-0);
+  background: linear-gradient(to bottom, var(--gray-0), var(--gray-25));
+  /* background: var(--gray-0); */
   border: 1px solid var(--color-br-light);
   border-radius: var(--radius-card);
   box-shadow: 0 6px 18px rgba(0, 0, 0, 0.03);
