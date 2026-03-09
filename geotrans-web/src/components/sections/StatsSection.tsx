@@ -2,31 +2,28 @@ import { siteContent } from "@/config/site-content";
 
 export function Stats() {
   const stats = siteContent.stats;
-  const brand = siteContent.brand.name;
 
   return (
-    <section className="relative overflow-hidden border-y border-br-light bg-bg-section py-20 md:py-28">
-      {/* overlay */}
-      <div
+    <section className="relative overflow-hidden bg-bg-section py-20 md:py-28">
+      {/* pattern overlay */}
+      {/* <div
         aria-hidden
-        className="pointer-events-none absolute inset-0 z-0 opacity-[0.35]"
+        className="pointer-events-none absolute inset-0 z-0 opacity-[0.16]"
       >
         <div
-          className="absolute left-1/2 top-1/2 h-[140%] w-[140%] -translate-x-1/2 -translate-y-1/2"
+          className="absolute left-1/2 top-1/2 h-[92%] w-[88%] -translate-x-1/2 -translate-y-1/2"
           style={{
             backgroundImage: "url('/patterns/vector.avif')",
             backgroundRepeat: "repeat",
-            backgroundSize: "1100px auto", // контролираш плътността (по-голям = по-рядко)
-            backgroundPosition: "55% 45%", // местиш pattern-а (x y)
-
-            // ✅ center visible -> fades outwards
+            backgroundSize: "900px auto",
+            backgroundPosition: "center",
             maskImage:
-              "radial-gradient(circle at center, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 35%, rgba(0,0,0,0) 78%)",
+              "radial-gradient(circle at center, rgba(0,0,0,1) 0%, rgba(0,0,0,0.9) 38%, rgba(0,0,0,0) 78%)",
             WebkitMaskImage:
-              "radial-gradient(circle at center, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 35%, rgba(0,0,0,0) 78%)",
+              "radial-gradient(circle at center, rgba(0,0,0,1) 0%, rgba(0,0,0,0.9) 38%, rgba(0,0,0,0) 78%)",
           }}
         />
-      </div>
+      </div> */}
 
       <div className="relative z-10 container-page">
         <div className="grid gap-y-12 sm:grid-cols-2 lg:grid-cols-4">

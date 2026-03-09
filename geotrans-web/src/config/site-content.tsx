@@ -72,7 +72,7 @@ export interface ServicesContent {
 
 const services: ServicesContent = {
   id: "services",
-  title: "Какво предлагаме",
+  title: "Услуги",
   subtitle:
     "Геодезически и кадастрални дейности, необходими за проектиране, строителство и регулация на имоти.",
 

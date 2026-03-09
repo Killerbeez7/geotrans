@@ -8,7 +8,8 @@ export const ServiceSection = ({ id, title, subtitle, items }: ServicesContent) 
   const extra = Math.max(0, items.length - main.length);
 
   return (
-    <Section id={id} className="bg-bg-brand-soft">
+    // <Section id={id} className="bg-bg-brand-soft">
+    <Section id={id} className="bg-bg-section">
       <header className="text-center">
         <h2 className="typo-h2">{title}</h2>
         <p className="mx-auto mt-4 max-w-2xl typo-subtitle">{subtitle}</p>

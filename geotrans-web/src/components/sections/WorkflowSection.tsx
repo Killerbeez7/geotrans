@@ -6,7 +6,8 @@ export const WorkflowSection = ({ id, title, subtitle, steps }: WorkflowContent)
   return (
     <Section
       id={id}
-      className="relative bg-bg-section py-20 sm:py-24 lg:py-28 overflow-hidden border-y border-br-light"
+      className="relative bg-bg-muted py-20 sm:py-24 lg:py-28 overflow-hidden border-y border-br-light"
+      // className="relative bg-bg-section py-20 sm:py-24 lg:py-28 overflow-hidden border-y border-br-light"
       containerClassName="container-page"
     >
       {/* Soft accent glow */}

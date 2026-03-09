@@ -3,99 +3,141 @@ import clsx from "clsx";
 export interface Step {
   title: string;
   description: string;
+  meta?: string; // ✅ “Същия ден” / “1–2 работни дни”
 }
 
 interface StepProgressProps {
   steps: Step[];
+  className?: string;
 }
 
-export default function StepProgress({ steps }: StepProgressProps) {
+export default function StepProgress({ steps, className }: StepProgressProps) {
   return (
-    <div className="relative mx-auto w-full max-w-6xl">
-      {/* MOBILE: vertical timeline */}
-      <div className="relative md:hidden">
-        {/* left rail */}
-        <span
+    <div className={clsx("mx-auto w-full max-w-6xl", className)}>
+      {/* ============ MOBILE / TABLET (stacked) ============ */}
+      <div className="relative grid gap-5 md:hidden">
+        {/* left connector */}
+        <div
           aria-hidden
-          className="absolute left-[20px] top-2 bottom-2 w-px bg-br-default"
+          className="pointer-events-none absolute left-[18px] top-3 bottom-3 w-px bg-br-default"
         />
 
-        <div className="space-y-6">
-          {steps.map((step, index) => {
-            const n = index + 1;
+        {steps.map((step, index) => {
+          const n = index + 1;
 
-            return (
-              <div key={n} className="relative flex gap-4">
-                {/* node */}
+          return (
+            <div
+              key={index}
+              className={clsx(
+                "relative rounded-[--radius-card] bg-white",
+                "border border-black/10",
+                "shadow-[0_14px_44px_-42px_rgba(0,0,0,0.22)]",
+                "px-5 py-4"
+              )}
+            >
+              {/* node */}
+              <div className="absolute left-2.5 top-5">
                 <div
                   className={clsx(
-                    "relative z-10 mt-0.5 flex h-10 w-10 shrink-0 items-center justify-center rounded-full",
-                    "bg-white border border-black/10",
-                    "shadow-[0_14px_40px_-32px_rgba(0,0,0,0.35)]"
+                    "grid h-9 w-9 place-items-center rounded-full",
+                    "bg-white border border-br-default",
+                    "text-[12px] font-semibold text-tx-muted"
                   )}
                 >
-                  <span className="text-sm font-semibold text-tx-primary">{n}</span>
+                  {n}
                 </div>
+              </div>
 
-                {/* content */}
-                <div
-                  className={clsx(
-                    "flex-1 rounded-[--radius-card] bg-white",
-                    "border border-black/10",
-                    "px-5 py-4",
-                    "shadow-[0_18px_55px_-48px_rgba(0,0,0,0.22)]"
-                  )}
-                >
-                  <div className="text-[15px] font-semibold leading-snug text-tx-primary">
+              <div className="pl-10">
+                {/* meta pill */}
+                {!!step.meta && (
+                  <div
+                    className={clsx(
+                      "inline-flex items-center rounded-full px-2.5 py-1",
+                      "border border-black/10 bg-bg-muted/60",
+                      "text-[11px] font-semibold uppercase tracking-[0.18em]",
+                      "text-tx-muted"
+                    )}
+                  >
+                    {step.meta}
+                  </div>
+                )}
+
+                <div className={clsx("mt-2", !step.meta && "mt-1")}>
+                  <div className="text-[15px] font-semibold text-tx-primary leading-snug">
                     {step.title}
                   </div>
-                  <div className="mt-1.5 text-[14px] leading-relaxed text-tx-secondary">
+
+                  <div className="mt-1.5 text-[13px] leading-relaxed text-tx-secondary/80">
                     {step.description}
                   </div>
                 </div>
               </div>
-            );
-          })}
-        </div>
+            </div>
+          );
+        })}
       </div>
 
-      {/* DESKTOP: horizontal timeline */}
+      {/* ============ DESKTOP (timeline) ============ */}
       <div className="relative hidden md:block">
-        {/* background line */}
-        <div className="absolute left-[10%] right-[10%] top-[22px] h-px bg-br-default" />
+        {/* timeline line */}
+        <div
+          aria-hidden
+          className="absolute left-[7%] right-[7%] top-[22px] h-px bg-br-default"
+        />
 
-        <div className="grid grid-cols-4 gap-6 lg:gap-8">
+        <div className="grid grid-cols-4 gap-8 lg:gap-10">
           {steps.map((step, index) => {
             const n = index + 1;
 
             return (
-              <div key={n} className="relative flex flex-col items-center">
+              <div key={index} className="relative text-center">
                 {/* node */}
-                <div
-                  className={clsx(
-                    "relative z-10 flex h-11 w-11 items-center justify-center rounded-full",
-                    "bg-white border border-black/10",
-                    "shadow-[0_14px_40px_-32px_rgba(0,0,0,0.35)]"
-                  )}
-                >
-                  <span className="text-sm font-semibold text-tx-primary">{n}</span>
+                <div className="mx-auto">
+                  <div
+                    className={clsx(
+                      "relative z-10 mx-auto grid h-11 w-11 place-items-center rounded-full",
+                      "bg-white border border-br-default",
+                      "shadow-[0_12px_32px_-26px_rgba(0,0,0,0.35)]",
+                      "text-[12px] font-semibold text-tx-muted"
+                    )}
+                  >
+                    {n}
+                  </div>
                 </div>
 
-                {/* card */}
-                <div
-                  className={clsx(
-                    "mt-5 w-full rounded-[--radius-card] bg-white",
-                    "border border-black/10",
-                    "px-6 py-5",
-                    "shadow-[0_18px_55px_-48px_rgba(0,0,0,0.24)]",
-                    "transition duration-200 hover:-translate-y-[2px] hover:shadow-[0_26px_80px_-58px_rgba(0,0,0,0.34)]",
-                    "hover:border-accent/25 hover:ring-2 hover:ring-accent/10"
-                  )}
-                >
-                  <div className="text-[15px] font-semibold leading-snug text-tx-primary">
+                {/* meta */}
+                {!!step.meta && (
+                  <div className="mt-3">
+                    <span
+                      className={clsx(
+                        "inline-flex items-center rounded-full px-2.5 py-1",
+                        "border border-black/10 bg-bg-muted/60",
+                        "text-[11px] font-semibold uppercase tracking-[0.18em]",
+                        "text-tx-muted"
+                      )}
+                    >
+                      {step.meta}
+                    </span>
+                  </div>
+                )}
+
+                {/* content */}
+                <div className={clsx("mt-3", !step.meta && "mt-4")}>
+                  <div className="text-[15px] lg:text-[16px] font-semibold text-tx-primary leading-snug">
                     {step.title}
                   </div>
-                  <div className="mt-2 text-[14px] leading-relaxed text-tx-secondary">
+
+                  {/* subtle divider (desktop only) */}
+                  <div className="mx-auto mt-3 h-px w-10 bg-br-default/80" />
+
+                  <div
+                    className={clsx(
+                      "mx-auto mt-3 max-w-[28ch]",
+                      "text-[13px] lg:text-[14px] leading-relaxed text-tx-secondary/80",
+                      "line-clamp-4 lg:line-clamp-5"
+                    )}
+                  >
                     {step.description}
                   </div>
                 </div>
