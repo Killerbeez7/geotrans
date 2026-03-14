@@ -32,7 +32,7 @@ export default function Home() {
         items={services.items}
       />
 
-      <TrustBar />
+      <TrustBar className="border-y border-br-default/30" />
 
       <WhyChooseUs />
       <Stats />
