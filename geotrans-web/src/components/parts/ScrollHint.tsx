@@ -4,9 +4,10 @@ import { useEffect, useState } from "react";
 
 interface ScrollHintProps {
   hintText?: boolean;
+  className?: string;
 }
 
-export function ScrollHint({ hintText = false }: ScrollHintProps) {
+export function ScrollHint({ hintText = false, className = "" }: ScrollHintProps) {
   const [hide, setHide] = useState(false);
 
   useEffect(() => {
@@ -21,7 +22,8 @@ export function ScrollHint({ hintText = false }: ScrollHintProps) {
       className={[
         "absolute left-1/2 bottom-8 -translate-x-1/2 hidden md:flex flex-col items-center gap-2",
         "pointer-events-none transition-opacity duration-300",
-        hide ? "opacity-0" : "opacity-70",
+        className,
+        hide ? "opacity-0" : "opacity-90",
       ].join(" ")}
     >
       {/* Text */}
