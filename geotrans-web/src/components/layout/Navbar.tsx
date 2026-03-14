@@ -11,8 +11,6 @@ import { NavSrvList } from "./NavSrvList";
 import { NAV_LINKS, NavLink } from "@/config/NavConfig";
 import { siteContent } from "@/config/site-content";
 
-const brandName = siteContent.brand.name;
-
 // Styles
 const navLinkCls = (active: boolean) =>
   clsx(
@@ -152,23 +150,27 @@ export const Navbar = () => {
   // Render
   return (
     <>
-      <div className="bg-bg-top-nav backdrop-blur-md text-white/90 text-xs md:text-sm tracking-wider">
+      {/* Top bar */}
+      <div className="hidden md:block bg-bg-top-nav backdrop-blur-md text-white/90 text-xs md:text-sm tracking-wider">
         <div
           className={clsx(
             "container-page h-(--top-bar-h) flex justify-center md:justify-between items-center",
             "px-6 sm:px-8 lg:px-12 xl:px-8 2xl:px-4"
           )}
         >
-          <span className="hidden md:block">Пон-Пет 8:30-17:30</span>
+          {/* <span className="hidden md:block"> */}
+          <span className="hidden md:block text-[#d4af37]">Всеки ден 8:30-17:30</span>
           <a
             href="tel:+359888123456"
-            className="flex items-center gap-2.5 hover:text-[#d4af37]"
+            // className="flex items-center gap-2.5 hover:text-[#d4af37]"
+            className="flex items-center gap-2.5 text-[#d4af37]"
           >
             <FaPhone />
             {siteContent.contacts.phone}
           </a>
         </div>
       </div>
+      {/* Navbar */}
       <header
         id="navbar"
         className={clsx(
