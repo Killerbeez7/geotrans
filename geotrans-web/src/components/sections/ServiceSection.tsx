@@ -1,11 +1,13 @@
 import clsx from "clsx";
 import { Section } from "@/components/layout/Section";
-import { ServiceCard, MoreCard } from "@/components/parts/ServiceCards";
+import { ServiceCard } from "@/components/parts/ServiceCards";
+
 import type { ServicesContent } from "@/config/site-content";
 
 export const ServiceSection = ({ id, title, subtitle, items }: ServicesContent) => {
-  const main = items.slice(0, 5);
-  const extra = Math.max(0, items.length - main.length);
+  const displayItems = items.filter((item) => item.id !== "more").slice(0, 5);
+  const moreItem = items.find((item) => item.id === "more");
+  const extraItems = Math.max(0, items.length - 1 - displayItems.length);
 
   return (
     // <Section id={id} className="bg-bg-brand-soft">
@@ -21,10 +23,10 @@ export const ServiceSection = ({ id, title, subtitle, items }: ServicesContent) 
           "grid-cols-1 gap-0 min-[840px]:grid-cols-2  min-[1280px]:grid-cols-3"
         )}
       >
-        {main.map((item) => (
+        {displayItems.map((item) => (
           <ServiceCard key={item.id} item={item} />
         ))}
-        <MoreCard extraCount={extra} />
+        {moreItem && <ServiceCard item={moreItem} extraCount={extraItems} />}
       </div>
     </Section>
   );

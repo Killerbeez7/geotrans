@@ -58,9 +58,9 @@ export type ServiceItem = {
   thumbnail: string;
   ogImage?: string;
   description: string;
-  neededWhen: string[];
-  requiredDocs: string[];
-  deliverables: string[];
+  neededWhen?: string[];
+  requiredDocs?: string[];
+  deliverables?: string[];
   icon?: string;
   featured?: boolean;
 };
@@ -251,7 +251,6 @@ const services: ServicesContent = {
       featured: false,
     },
 
-    // ✅ NEW (marketing card 2)
     {
       id: "docs",
       slug: "dokumenti-proceduri",
@@ -274,6 +273,16 @@ const services: ServicesContent = {
       deliverables: ["Подготвени материали според случая", "Ясни указания какво следва"],
       featured: false,
     },
+    {
+      id: "more",
+      slug: "more-services",
+      title: "Всички услуги",
+      cardTitle: "Всички услуги",
+      cardMeta: "Виж още",
+      description:
+        "Разгледайте пълния списък с геодезически услуги, процедури и документи.",
+      thumbnail: "/images/projects/project-4.webp",
+    } satisfies ServiceItem,
   ],
 };
 
