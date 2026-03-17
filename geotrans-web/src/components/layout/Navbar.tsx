@@ -7,16 +7,17 @@ import { usePathname } from "next/navigation";
 import clsx from "clsx";
 import { IoIosArrowDown } from "react-icons/io";
 import { FaPhone } from "react-icons/fa6";
+
 import { NavSrvList } from "./NavSrvList";
 import { NAV_LINKS, NavLink } from "@/config/NavConfig";
 import { siteContent } from "@/config/site-content";
+import { MobileMenuToggle } from "../parts/mobileMenuToggle";
 
-// Styles
+// Desktop styles
 const navLinkCls = (active: boolean) =>
   clsx(
     "nav-link text-tx-inverse",
     "relative group gap-1 px-2 py-1",
-    // Underline on hover
     "after:absolute after:left-1/2 after:bottom-0",
     "after:h-[2px] after:w-full after:-translate-x-1/2",
     "after:origin-center after:scale-x-0 after:bg-accent",
@@ -31,9 +32,16 @@ const dropdownSrvCls = (active: boolean) =>
     active ? "bg-bg-muted/30" : "hover:bg-bg-muted/20"
   );
 
-// Component
+// Mobile styles
+const mobileRowCls = (active: boolean) =>
+  clsx(
+    "flex w-full min-h-[56px] items-center justify-between px-6 text-base leading-none transition-all",
+    active ? "font-medium text-tx-inverse" : "text-tx-inverse/75 hover:text-tx-inverse"
+  );
+
 export const Navbar = () => {
   const pathname = usePathname();
+
   const [mobileOpen, setMobileOpen] = useState(false);
   const [mobileDropdown, setMobileDropdown] = useState<string | null>(null);
   const [desktopDropdown, setDesktopDropdown] = useState<string | null>(null);
@@ -49,7 +57,6 @@ export const Navbar = () => {
     return pathname === href || pathname.startsWith(`${href}/`);
   };
 
-  // Desktop render
   const renderDesktopItem = (item: NavLink) => {
     const isActive = isActivePath(item.href);
     const isOpen = desktopDropdown === item.label;
@@ -68,6 +75,7 @@ export const Navbar = () => {
           aria-haspopup={item.hasDropdown ? "menu" : undefined}
         >
           {item.label}
+
           {item.hasDropdown && (
             <IoIosArrowDown
               className={clsx(
@@ -84,10 +92,10 @@ export const Navbar = () => {
               "absolute -left-2 mt-5 min-w-60 rounded-b-xl",
               "bg-bg-nav/95 backdrop-blur-xl text-tx-inverse",
               "shadow-lg border border-br-light/20 border-t-0",
-              "transition-all duration-200 origin-top-left",
+              "origin-top-left transition-all duration-200",
               isOpen
-                ? "opacity-100 scale-100 pointer-events-auto"
-                : "opacity-0 scale-95 pointer-events-none",
+                ? "pointer-events-auto scale-100 opacity-100"
+                : "pointer-events-none scale-95 opacity-0",
               "before:absolute before:-top-5 before:h-5 before:w-full"
             )}
           >
@@ -100,83 +108,99 @@ export const Navbar = () => {
     );
   };
 
-  // Mobile render
   const renderMobileItem = (item: NavLink) => {
     const isActive = isActivePath(item.href);
     const isOpen = mobileDropdown === item.label;
 
     if (!item.hasDropdown) {
       return (
-        <Link
-          key={item.label}
-          href={item.href}
-          onClick={closeAll}
-          className={navLinkCls(isActive)}
-        >
-          {item.label}
-        </Link>
+        <div key={item.label} className="flex flex-col">
+          <div className="relative border-b border-white/5">
+            {isActive && (
+              <div className="absolute left-0 top-1/2 h-8 w-1 -translate-y-1/2 rounded-r-full bg-accent" />
+            )}
+
+            <Link href={item.href} onClick={closeAll} className={mobileRowCls(isActive)}>
+              <span className="leading-none">{item.label}</span>
+            </Link>
+          </div>
+        </div>
       );
     }
 
     return (
       <div key={item.label} className="flex flex-col">
-        <button
-          className={clsx(navLinkCls(isActive), "flex w-full justify-between")}
-          onClick={() => setMobileDropdown(isOpen ? null : item.label)}
-          aria-expanded={isOpen}
-        >
-          {item.label}
-          <IoIosArrowDown
-            className={clsx("transition-transform", isOpen && "rotate-180")}
-          />
-        </button>
+        <div className="relative border-b border-white/5">
+          {isActive && (
+            <div className="absolute left-0 top-1/2 h-8 w-1 -translate-y-1/2 rounded-r-full bg-accent" />
+          )}
 
-        {isOpen && (
-          <ul className="mt-1 flex flex-col gap-1">
+          <button
+            type="button"
+            className={clsx(mobileRowCls(isActive), isOpen && "bg-white/5")}
+            onClick={() => setMobileDropdown(isOpen ? null : item.label)}
+            aria-expanded={isOpen}
+            aria-label={`Toggle ${item.label}`}
+          >
+            <span className="leading-none">{item.label}</span>
+
+            <IoIosArrowDown
+              className={clsx(
+                "shrink-0 text-[18px] transition-transform duration-300",
+                isOpen && "rotate-180"
+              )}
+            />
+          </button>
+        </div>
+
+        <div
+          className={clsx(
+            "grid transition-all duration-300 ease-in-out",
+            isOpen ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
+          )}
+        >
+          <ul className="overflow-hidden pt-1">
             <NavSrvList
               onClick={closeAll}
               itemClass={(active) =>
                 clsx(
-                  "px-4 py-2 rounded-md text-tx-inverse/95 text-sm transition",
-                  active ? " flex bg-bg-muted/10 font-medium" : "hover:bg-bg-muted/25"
+                  "mx-3 flex rounded-xl px-5 py-2 text-[15px] transition-all",
+                  active
+                    ? "bg-white/8 font-medium text-accent"
+                    : "text-tx-inverse/75 hover:bg-white/5 hover:text-tx-inverse"
                 )
               }
             />
           </ul>
-        )}
+        </div>
       </div>
     );
   };
-  // Render
+
   return (
     <>
-      {/* Top bar */}
-      <div className="hidden md:block bg-bg-top-nav backdrop-blur-md text-white/90 text-xs md:text-sm tracking-wider">
-        <div
-          className={clsx(
-            "container-page h-(--top-bar-h) flex justify-center md:justify-between items-center",
-            "px-6 sm:px-8 lg:px-12 xl:px-8 2xl:px-4"
-          )}
-        >
-          {/* <span className="hidden md:block"> */}
-          <span className="hidden md:block text-[#d4af37]">Всеки ден 8:30-17:30</span>
+      {/* Top Bar */}
+      <div className="hidden border-b border-white/5 bg-[#0f172a] py-2 text-xs text-white/70 md:block">
+        <div className="container-page flex items-center justify-between px-4">
+          <span className="font-medium tracking-wide">Пон - Пет: 08:30 - 17:30</span>
           <a
-            href="tel:+359888123456"
-            // className="flex items-center gap-2.5 hover:text-[#d4af37]"
-            className="flex items-center gap-2.5 text-[#d4af37]"
+            href={`tel:${siteContent.contacts.phone}`}
+            className="flex items-center gap-2 text-accent transition-all hover:brightness-110"
           >
-            <FaPhone />
-            {siteContent.contacts.phone}
+            <FaPhone className="text-[10px]" />
+            <span className="font-semibold tracking-tighter">
+              {siteContent.contacts.phone}
+            </span>
           </a>
         </div>
       </div>
+
       {/* Navbar */}
       <header
         id="navbar"
         className={clsx(
-          "sticky top-0 z-50 w-full h-(--nav-h)",
-          "bg-bg-nav/95",
-          "backdrop-blur-xl shadow-lg",
+          "sticky top-0 z-50 h-(--nav-h) w-full",
+          "bg-bg-nav/95 backdrop-blur-xl shadow-lg",
           "border-b border-br-light/20",
           "no-drag"
         )}
@@ -188,24 +212,26 @@ export const Navbar = () => {
               draggable={false}
               className="flex items-center gap-2 px-2 py-1 text-lg tracking-wide text-tx-inverse"
             >
-              <div className="text-3xl font-semibold text-white tracking-tight drop-shadow-md">
+              <div className="text-3xl font-semibold tracking-tight text-white drop-shadow-md">
                 GeoMetric
               </div>
             </Link>
 
-            {/* Desktop Links*/}
+            {/* Desktop links */}
             <ul className="hidden items-center gap-6 md:flex">
               {NAV_LINKS.map(renderDesktopItem)}
             </ul>
 
             {/* Mobile toggle */}
-            <button
-              className="md:hidden p-2 text-2xl text-tx-inverse"
-              onClick={() => setMobileOpen((o) => !o)}
-              aria-expanded={mobileOpen}
-            >
-              {mobileOpen ? "✕" : "☰"}
-            </button>
+            <MobileMenuToggle
+              isOpen={mobileOpen}
+              onToggle={() => {
+                if (mobileOpen) {
+                  setMobileDropdown(null);
+                }
+                setMobileOpen((prev) => !prev);
+              }}
+            />
           </div>
 
           {/* Mobile menu */}
@@ -213,26 +239,29 @@ export const Navbar = () => {
             <div className="md:hidden">
               {/* Backdrop */}
               <button
+                type="button"
                 aria-label="Close menu"
                 onClick={closeAll}
                 className="fixed inset-0 top-(--nav-h) z-40 bg-black/40"
               />
 
-              {/* Panel */}
+              {/* Mobile panel */}
               <div
                 className={clsx(
-                  "fixed left-0 right-0 top-(--nav-h) z-50",
-                  "bg-bg-nav/98 backdrop-blur-xl shadow-xl"
+                  "fixed inset-x-0 top-(--nav-h) z-50 transition-all duration-300 ease-in-out",
+                  mobileOpen
+                    ? "translate-y-0 opacity-100"
+                    : "pointer-events-none -translate-y-2 opacity-0"
                 )}
               >
-                <div className="container-page py-4">
-                  <div className="flex flex-col gap-3">
+                <div className="h-[calc(100dvh-var(--nav-h))] overflow-y-auto border-b border-br-light/10 bg-bg-nav/98 shadow-2xl backdrop-blur-xl">
+                  <div className="container-page flex flex-col pb-8 pt-2">
                     {NAV_LINKS.map(renderMobileItem)}
 
                     <Link
                       href="/contacts"
                       onClick={closeAll}
-                      className="mt-3 px-4 py-3 rounded-lg bg-accent text-center text-sm font-semibold text-tx-inverse"
+                      className="mt-3 rounded-lg bg-accent px-4 py-3 text-center text-sm font-semibold text-tx-inverse"
                     >
                       Запитване
                     </Link>
