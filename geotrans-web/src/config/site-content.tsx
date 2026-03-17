@@ -63,6 +63,7 @@ export type ServiceItem = {
   deliverables?: string[];
   icon?: string;
   featured?: boolean;
+  showInNav?: boolean;
 };
 
 export interface ServicesContent {
@@ -107,6 +108,7 @@ const services: ServicesContent = {
         "Материали, готови за използване при проектиране и съгласуване",
       ],
       featured: true,
+      showInNav: true,
     },
 
     {
@@ -135,6 +137,7 @@ const services: ServicesContent = {
         "Протокол/отчет за извършеното трасиране (по договорка)",
       ],
       featured: true,
+      showInNav: true,
     },
 
     {
@@ -164,6 +167,7 @@ const services: ServicesContent = {
         "Ясни указания какво следва, ако има допълнителни изисквания",
       ],
       featured: true,
+      showInNav: true,
     },
 
     {
@@ -193,6 +197,7 @@ const services: ServicesContent = {
         "Кратки пояснения/детайли според договорения обхват",
       ],
       featured: true,
+      showInNav: true,
     },
 
     {
@@ -222,6 +227,7 @@ const services: ServicesContent = {
         "Ясно описание на следващите стъпки, ако има съгласуване",
       ],
       featured: true,
+      showInNav: true,
     },
 
     {
@@ -249,6 +255,7 @@ const services: ServicesContent = {
         "Ориентир за срок и следващи стъпки",
       ],
       featured: false,
+      showInNav: true,
     },
 
     {
@@ -272,6 +279,7 @@ const services: ServicesContent = {
       ],
       deliverables: ["Подготвени материали според случая", "Ясни указания какво следва"],
       featured: false,
+      showInNav: true,
     },
     {
       id: "more",
