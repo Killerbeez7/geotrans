@@ -4,12 +4,12 @@ import { FaPhone, FaEnvelope, FaLocationDot } from "react-icons/fa6";
 import { SiViber, SiWhatsapp } from "react-icons/si";
 import { CtaButton } from "../parts/CtaButton";
 
-import { FOOTER } from "@/config/FooterConfig";
+import { FOOTER } from "@/config/footer";
 
 export const Footer = () => {
   const { brand, sections, contact, ctas } = FOOTER;
 
-  const [quickLinksSection, servicesSection] = sections;
+  const [quickLinksSection, serviceLinksSection] = sections;
 
   const phone = contact.phone;
   const email = contact.email;
@@ -73,11 +73,11 @@ export const Footer = () => {
 
           {/* Services */}
           <div>
-            <p className={sectionTitle}>{servicesSection.title}</p>
+            <p className={sectionTitle}>{serviceLinksSection.title}</p>
             <ul className="mt-4 space-y-1">
-              {servicesSection.links.map((link) => (
+              {serviceLinksSection.links.map((link) => (
                 <li key={link.href}>
-                  <Link href={link.href} className={`${linkCls} ${dot}`}>
+                  <Link href={`${link.href}`} className={`${linkCls} ${dot}`}>
                     {link.label}
                   </Link>
                 </li>
