@@ -9,7 +9,7 @@ import { IoIosArrowDown } from "react-icons/io";
 import { FaPhone } from "react-icons/fa6";
 
 import { NavSrvList } from "./NavSrvList";
-import { NAV_LINKS, NavLink } from "@/config/NavConfig";
+import { NAV_LINKS, NavLink } from "@/config/nav";
 import { siteContent } from "@/config/site-content";
 import { MobileMenuToggle } from "../parts/mobileMenuToggle";
 
