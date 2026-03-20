@@ -80,13 +80,18 @@ export function HeroSection({ id, title, subtitle, kicker, image, cta }: HeroCon
 
             {cta && (
               <div className="mt-8 flex flex-wrap items-center gap-4 justify-center md:justify-start">
-                <CtaButton href={cta.href} size="lg">
+                <CtaButton href={cta.primary.href} size="lg">
                   <FaPhone className="mr-2" />
-                  {cta.label}
+                  {cta.primary.label}
                 </CtaButton>
 
-                <CtaButton variant="glassAccent" href="/services" size="lg" className="">
-                  {cta.content} <MdArrowRightAlt />
+                <CtaButton
+                  variant="glassAccent"
+                  href={cta.secondary.href}
+                  size="lg"
+                  className=""
+                >
+                  {cta.secondary.label} <MdArrowRightAlt />
                 </CtaButton>
               </div>
             )}
