@@ -3,7 +3,7 @@
 import Link from "next/link";
 import clsx from "clsx";
 import { usePathname } from "next/navigation";
-import { siteContent } from "@/config/site-content";
+import { serviceCategories } from "@/config/services/categories";
 import { FaAngleRight } from "react-icons/fa6";
 
 type NavSrvListProps = {
@@ -14,9 +14,7 @@ type NavSrvListProps = {
 export const NavSrvList = ({ onClick, itemClass }: NavSrvListProps) => {
   const pathname = usePathname();
 
-  const dropdownLinks = siteContent.services.items.filter(
-    (service) => service.showInNav === true
-  );
+  const dropdownLinks = serviceCategories.filter((service) => service.slug !== "more");
 
   const isExact = (href: string) => pathname === href;
 
@@ -27,7 +25,7 @@ export const NavSrvList = ({ onClick, itemClass }: NavSrvListProps) => {
         const active = isExact(href);
 
         return (
-          <li key={service.id}>
+          <li key={service.slug}>
             <Link href={href} onClick={onClick} className={itemClass(active)}>
               {service.title}
             </Link>
