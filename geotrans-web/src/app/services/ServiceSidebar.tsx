@@ -1,13 +1,13 @@
 import Link from "next/link";
 import clsx from "clsx";
-import type { ServiceCategory } from "./config/service-categories";
+import type { ServiceCategory } from "@/config/services/categories";
 
 export default function ServiceSidebar({
   category,
   activeServiceSlug,
 }: {
   category: ServiceCategory;
-  activeServiceSlug: string;
+  activeServiceSlug?: string;
 }) {
   return (
     <aside className="self-start lg:sticky lg:top-28">
@@ -17,7 +17,7 @@ export default function ServiceSidebar({
         </div>
 
         <nav className="space-y-2">
-          {category.items.map((item) => {
+          {category.services.map((item) => {
             const href = `/services/${category.slug}/${item.slug}`;
             const isActive = item.slug === activeServiceSlug;
 
@@ -32,7 +32,7 @@ export default function ServiceSidebar({
                     : "text-tx-secondary hover:bg-bg-muted hover:text-tx-primary"
                 )}
               >
-                {item.shortTitle}
+                {item.title}
               </Link>
             );
           })}

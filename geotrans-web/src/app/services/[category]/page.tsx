@@ -1,125 +1,117 @@
+import { notFound } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
-import { notFound } from "next/navigation";
 
-import { serviceCategories } from "../config/service-categories";
-import { CtaButton } from "@/components/parts/CtaButton";
+import { serviceCategories } from "@/config/services/categories";
 
-type PageProps = {
-  params: {
+type Props = {
+  params: Promise<{
     category: string;
-    service: string;
-  };
+  }>;
 };
 
-export default function ServiceDetailPage({ params }: PageProps) {
-  const category = serviceCategories.find((c) => c.slug === params.category);
-  if (!category) notFound();
+export default async function CategoryPage({ params }: Props) {
+  const resolvedParams = await params;
+  const categorySlug = resolvedParams.category;
+  console.log("Category slug from URL:", categorySlug);
+  const category = serviceCategories.find((cat) => cat.slug === categorySlug);
 
-  const service = category.items.find((i) => i.slug === params.service);
-  if (!service) notFound();
+  if (!category) {
+    console.log("Category not found for slug:", categorySlug);
+    return notFound();
+  }
 
   return (
-    <main className="bg-bg-page">
-      <section className="border-b border-br-light bg-bg-section pt-28 pb-10 md:pt-36">
-        <div className="container-page">
-          <p className="typo-kicker">Услуги</p>
-          <h1 className="mt-3 typo-h2">{category.title}</h1>
-          <p className="mt-4 max-w-2xl typo-body">{category.intro}</p>
+    <main className="bg-bg-page pb-16 pt-28">
+      {/* HERO */}
+      <section className="relative isolate overflow-hidden bg-black">
+        <div className="relative min-h-[40dvh] flex items-end">
+          {/* Image */}
+          <Image
+            src={category.heroImage ?? category.thumbnail}
+            alt={category.title}
+            fill
+            priority
+            className="object-cover"
+          />
 
-          {/* top tabs */}
-          <div className="mt-8 flex flex-wrap gap-3">
-            {serviceCategories.map((tab) => {
-              const firstItem = tab.items[0];
-              const href = `/services/${tab.slug}/${firstItem.slug}`;
+          {/* Overlay */}
+          <div className="absolute inset-0 bg-black/60" />
 
-              const isActive = tab.slug === category.slug;
+          {/* Content */}
+          <div className="container-page relative py-12 text-white">
+            <p className="typo-kicker">{category.meta}</p>
 
-              return (
-                <Link
-                  key={tab.slug}
-                  href={href}
-                  className={
-                    isActive
-                      ? "rounded-full bg-accent px-5 py-2.5 text-sm font-semibold text-white"
-                      : "rounded-full border border-br-default bg-bg-section px-5 py-2.5 text-sm font-medium text-tx-primary transition hover:border-accent/30 hover:text-accent"
-                  }
-                >
-                  {tab.title}
-                </Link>
-              );
-            })}
+            <h1 className="mt-3 typo-h2">{category.title}</h1>
+
+            <p className="mt-4 max-w-2xl text-white/80">
+              {category.longDescription ?? category.description}
+            </p>
           </div>
         </div>
       </section>
 
-      <section className="py-12 md:py-16">
-        <div className="container-page grid gap-8 lg:grid-cols-[280px_minmax(0,1fr)] lg:gap-12">
-          {/* sidebar */}
-          <aside className="lg:sticky lg:top-28 self-start">
-            <div className="rounded-[--radius-card] border border-br-light bg-bg-section p-3">
-              <div className="mb-3 px-3 pt-2 text-sm font-semibold uppercase tracking-[0.16em] text-accent">
-                {category.title}
-              </div>
+      {/* SERVICES GRID */}
+      <section className="py-10 md:py-14">
+        <div className="container-page grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+          {category.services.map((service) => (
+            <Link
+              key={service.slug}
+              href={`/services/${category.slug}/${service.slug}`}
+              className="group relative overflow-hidden rounded-2xl bg-black"
+            >
+              {/* Image */}
+              <Image
+                src={service.thumbnail}
+                alt={service.title}
+                width={600}
+                height={400}
+                className="h-full w-full object-cover transition duration-500 group-hover:scale-105"
+              />
 
-              <nav className="space-y-2">
-                {category.items.map((item) => {
-                  const href = `/services/${category.slug}/${item.slug}`;
-                  const isActive = item.slug === service.slug;
+              {/* Overlay */}
+              <div className="absolute inset-0 bg-black/65" />
 
-                  return (
-                    <Link
-                      key={item.slug}
-                      href={href}
-                      className={
-                        isActive
-                          ? "block rounded-2xl bg-bg-brand-soft px-4 py-3 text-sm font-semibold text-tx-primary"
-                          : "block rounded-2xl px-4 py-3 text-sm text-tx-secondary transition hover:bg-bg-muted hover:text-tx-primary"
-                      }
-                    >
-                      {item.shortTitle}
-                    </Link>
-                  );
-                })}
-              </nav>
-            </div>
-          </aside>
+              {/* Content */}
+              <div className="absolute inset-0 flex flex-col justify-end p-5 text-white">
+                <p className="text-xs uppercase tracking-wider text-white/60">
+                  {service.meta}
+                </p>
 
-          {/* content */}
-          <div className="min-w-0">
-            <div className="overflow-hidden rounded-[28px] border border-br-light bg-bg-section shadow-sm">
-              <div className="relative aspect-[16/7]">
-                <Image
-                  src={service.image}
-                  alt={service.title}
-                  fill
-                  className="object-cover"
-                />
-              </div>
+                <h3 className="mt-1 text-lg font-semibold">{service.title}</h3>
 
-              <div className="p-6 md:p-8 lg:p-10">
-                <h2 className="typo-h2">{service.title}</h2>
-                <p className="mt-4 typo-subtitle">{service.excerpt}</p>
+                <p className="mt-2 text-sm text-white/80 line-clamp-2">
+                  {service.description}
+                </p>
 
-                <div className="mt-6 space-y-5">
-                  {service.content.map((paragraph, index) => (
-                    <p key={index} className="typo-body">
-                      {paragraph}
-                    </p>
-                  ))}
-                </div>
-
-                <div className="mt-8 flex flex-wrap gap-4">
-                  <CtaButton href="/contacts" size="lg">
-                    Изпратете запитване
-                  </CtaButton>
-
-                  <CtaButton href="/projects" size="lg">
-                    Вижте проекти
-                  </CtaButton>
+                <div className="mt-3 text-xs font-semibold uppercase tracking-wide text-accent">
+                  Детайли →
                 </div>
               </div>
-            </div>
+            </Link>
+          ))}
+        </div>
+      </section>
+
+      {/* CTA BLOCK */}
+      <section className="pb-10 md:pb-14">
+        <div className="container-page">
+          <div className="rounded-3xl border border-br-light bg-bg-surface p-8 md:p-10">
+            <h2 className="text-2xl font-semibold text-tx-primary">
+              Не сте сигурни кое е подходящо?
+            </h2>
+
+            <p className="mt-3 max-w-2xl text-tx-secondary">
+              Опишете накратко случая и ще получите насоки за правилната услуга и
+              необходимите документи.
+            </p>
+
+            <Link
+              href="/contacts"
+              className="mt-6 inline-flex rounded-xl bg-accent px-6 py-3 text-sm font-semibold text-tx-inverse"
+            >
+              Изпратете запитване
+            </Link>
           </div>
         </div>
       </section>
