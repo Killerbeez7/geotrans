@@ -5,61 +5,81 @@ import {
   FaRegCircleCheck,
   FaShieldHalved,
 } from "react-icons/fa6";
+import type { ComponentType } from "react";
 
 type TrustItem = {
   title: string;
   subtitle: string;
-  Icon: React.ComponentType<{ className?: string }>;
+  Icon: ComponentType<{ className?: string }>;
 };
 
 const TRUST: TrustItem[] = [
-  { title: "Ясни срокове", subtitle: "без изненади", Icon: FaRegClock },
-  { title: "Готови документи", subtitle: "за институции", Icon: FaRegFileLines },
-  { title: "Прецизност", subtitle: "всяко измерване", Icon: FaRegCircleCheck },
-  { title: "Коректност", subtitle: "в комуникацията", Icon: FaShieldHalved },
+  {
+    title: "Ясни срокове",
+    subtitle: "Реалистични очаквания и предварително уточнени етапи.",
+    Icon: FaRegClock,
+  },
+  {
+    title: "Подредени документи",
+    subtitle: "Съдействие при подготовка за институции и последващи действия.",
+    Icon: FaRegFileLines,
+  },
+  {
+    title: "Прецизна работа",
+    subtitle: "Внимание към всяко измерване и сигурност в крайния резултат.",
+    Icon: FaRegCircleCheck,
+  },
+  {
+    title: "Коректна комуникация",
+    subtitle: "Ясно обяснение на процеса, нужните материали и следващите стъпки.",
+    Icon: FaShieldHalved,
+  },
 ];
 
 export default function TrustBar({ className }: { className?: string }) {
   return (
     <section
-      className={clsx(
-        "bg-bg-section bg-linear-to-r from-accent/5 to-bg-brand-soft py-16",
-        className
-      )}
+      className={clsx("relative overflow-hidden bg-bg-page py-14 md:py-16", className)}
     >
       <div className="container-page">
+        <div className="mb-7 max-w-3xl md:mb-8">
+          <p className="typo-kicker text-accent">Как работим</p>
+          <h2 className="mt-3 typo-h3 text-tx-primary">
+            Ясен процес и надежден подход във всяка стъпка
+          </h2>
+          <p className="mt-3 typo-body text-tx-secondary">
+            Работим с внимание към точността, документацията и комуникацията, така че да
+            получите не само измерване, а и яснота какво следва.
+          </p>
+        </div>
+
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          {TRUST.map((t, i) => (
-            <div
-              key={i}
+          {TRUST.map((t) => (
+            <article
+              key={t.title}
               className={clsx(
-                "flex items-start gap-4 p-5",
-                "rounded-2xl",
-                "bg-white/30 border border-br-default",
-                "transition-all duration-200"
+                "group rounded-[24px] border border-br-light",
+                "bg-bg-section p-5 transition-all duration-300",
+                "hover:-translate-y-0.5 hover:border-white/15"
               )}
             >
               <div
                 className={clsx(
-                  "flex h-11 w-11 shrink-0 items-center justify-center",
-                  "rounded-xl",
-                  "bg-accent/10 text-accent",
-                  "ring-1 ring-accent/15"
+                  "flex h-11 w-11 items-center justify-center rounded-xl",
+                  "bg-accent/10 text-accent ring-1 ring-accent/15"
                 )}
               >
                 <t.Icon className="h-[18px] w-[18px]" />
               </div>
 
-              <div>
-                <div className="text-[15px] font-semibold text-tx-primary leading-tight">
+              <div className="mt-4">
+                <h3 className="text-[15px] font-semibold leading-tight text-tx-primary">
                   {t.title}
-                </div>
+                </h3>
 
-                <div className="mt-1 text-[13px] text-tx-muted leading-snug">
-                  {t.subtitle}
-                </div>
+                <p className="mt-2 text-[13px] leading-6 text-tx-muted">{t.subtitle}</p>
               </div>
-            </div>
+            </article>
           ))}
         </div>
       </div>

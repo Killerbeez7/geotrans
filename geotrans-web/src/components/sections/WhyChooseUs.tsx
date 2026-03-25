@@ -1,16 +1,33 @@
-import { siteContent } from "@/config/site-content";
+"use client";
+import { useEffect } from "react";
 import Image from "next/image";
+import clsx from "clsx";
+import { siteContent } from "@/config/site-content";
 
 export default function WhyChooseUs() {
+  // Intersection Observer
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("opacity-100", "translate-y-0", "scale-100");
+            entry.target.classList.remove("opacity-0", "translate-y-10", "scale-95");
+          }
+        });
+      },
+      { threshold: 0.2 }
+    );
+
+    document.querySelectorAll(".reveal-img").forEach((el) => observer.observe(el));
+    return () => observer.disconnect();
+  }, []);
+
   return (
-    <section className="bg-bg-section py-24">
+    <section className="bg-bg-section py-24 overflow-hidden">
       <div className="container-page grid items-center gap-14 lg:grid-cols-2 lg:gap-20">
         {/* Content */}
-        <div className="max-w-xl text-center md:text-left">
-          {/* <p className="mb-3 text-sm font-semibold uppercase tracking-[0.18em] text-accent">
-            НАШИЯТ ПОДХОД
-          </p> */}
-
+        <div className="reveal-img opacity-0 translate-y-10 transition-all duration-700 max-w-xl text-center md:text-left">
           <h2 className="typo-h2 mb-6 text-balance">
             Защо да изберете <span className="text-accent">{siteContent.brand.name}</span>
           </h2>
@@ -37,8 +54,13 @@ export default function WhyChooseUs() {
         {/* Images */}
         <div className="relative mx-auto w-full max-w-2xl">
           {/* Main image */}
-          <div className="relative overflow-hidden rounded-[28px] shadow-[0_20px_50px_rgba(0,0,0,0.08)]">
-            <div className="relative aspect-[4/3] ">
+          <div
+            className={clsx(
+              "reveal-img opacity-0 translate-y-10 scale-95 transition-all duration-1000 ease-out-expo",
+              "relative overflow-hidden rounded-[28px] shadow-[0_20px_50px_rgba(0,0,0,0.08)]"
+            )}
+          >
+            <div className="relative aspect-4/3">
               <Image
                 src="/images/9.jpeg"
                 alt="Геодезическо измерване"
@@ -49,8 +71,13 @@ export default function WhyChooseUs() {
           </div>
 
           {/* Secondary image */}
-          <div className="absolute -bottom-14 -left-10 hidden w-[220px] overflow-hidden rounded-[22px] shadow-[0_16px_40px_rgba(0,0,0,0.10)] lg:block xl:w-[250px]">
-            <div className="relative aspect-[4/5]">
+          <div
+            className={clsx(
+              "reveal-img opacity-0 translate-y-10 scale-95 transition-all duration-1000 delay-300 ease-out-expo",
+              "absolute -bottom-14 -left-10 hidden w-[220px] overflow-hidden rounded-[22px] shadow-[0_16px_40px_rgba(0,0,0,0.10)] lg:block xl:w-[250px]"
+            )}
+          >
+            <div className="relative aspect-4/5">
               <Image
                 src="/images/image.webp"
                 alt="Детайл от геодезическа работа"

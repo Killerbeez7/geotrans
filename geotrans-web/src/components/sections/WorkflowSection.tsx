@@ -1,6 +1,6 @@
 import StepProgress from "@/components/parts/StepProgress";
 import { Section } from "@/components/layout/Section";
-import type { WorkflowContent } from "@/config/site-content";
+import type { WorkflowContent } from "@/config/content/workflow";
 
 export const WorkflowSection = ({ id, title, subtitle, steps }: WorkflowContent) => {
   return (
