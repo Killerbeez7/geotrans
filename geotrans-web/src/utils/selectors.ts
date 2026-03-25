@@ -7,16 +7,16 @@ export const getServiceBySlugs = (categorySlug: string, serviceSlug: string) => 
   const category = getCategoryBySlug(categorySlug);
   if (!category) return undefined;
 
-  const service = category.items.find((item) => item.slug === serviceSlug);
+  const service = category.services.find((item) => item.slug === serviceSlug);
   if (!service) return undefined;
 
   return { category, service };
 };
 
 export const getServiceRouteParams = () =>
-  serviceCategories.flatMap((category) =>
-    category.items.map((service) => ({
-      category: category.slug,
-      service: service.slug,
+  serviceCategories.flatMap((cat) =>
+    cat.services.map((srv) => ({
+      category: cat.slug,
+      service: srv.slug,
     }))
   );
