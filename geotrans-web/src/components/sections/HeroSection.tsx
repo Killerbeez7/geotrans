@@ -2,7 +2,7 @@ import Image from "next/image";
 import clsx from "clsx";
 import { FaPhone } from "react-icons/fa6";
 import { CtaButton } from "../parts/CtaButton";
-import type { HeroContent } from "@/config/site-content";
+import type { HeroContent } from "@/config/content/hero";
 import { ScrollHint } from "../parts/ScrollHint";
 import { MdArrowRightAlt } from "react-icons/md";
 
@@ -33,13 +33,13 @@ export function HeroSection({ id, title, subtitle, kicker, image, cta }: HeroCon
         </div>
 
         {/* Tone layer */}
-        <div className="absolute inset-0 -z-10 bg-black/30" />
+        <div className="absolute inset-0 -z-10 bg-black/20" />
 
         {/* Gradient + blur layer */}
         <div
           className={clsx(
             "absolute inset-0 -z-10",
-            "bg-linear-to-r from-black/70 via-black/45 to-transparent",
+            "bg-linear-to-r from-black/70 via-black/50 to-transparent",
             "backdrop-blur-[1px] md:backdrop-blur-none"
           )}
         />
@@ -48,7 +48,7 @@ export function HeroSection({ id, title, subtitle, kicker, image, cta }: HeroCon
           <div className="max-w-3xl mx-auto md:mx-0 text-center md:text-left md:translate-x-6 lg:translate-x-10">
             {/* Kicker */}
             {kicker && (
-              <div className="mb-6 flex justify-center md:justify-start">
+              <div className="mb-4 flex justify-center md:justify-start">
                 <span
                   className="
                     typo-kicker
