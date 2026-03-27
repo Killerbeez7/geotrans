@@ -12,16 +12,16 @@ import { ProjectsLightbox } from "./ProjectsLightbox";
 import { Section } from "@/components/layout/Section";
 
 export default function ProjectsPage() {
-  const [selectedImage, setSelectedImage] = useState<ProjectsContent["items"][number] | null>(
-    null
-  );
+  const [selectedImage, setSelectedImage] = useState<
+    ProjectsContent["items"][number] | null
+  >(null);
 
   const { title, subtitle, items } = siteContent.projects;
 
   const hasFew = useMemo(() => items.length < 6, [items.length]);
 
   return (
-    <main className="relative min-h-screen bg-(--bg-page)">
+    <main className="relative min-h-screen bg-(--bg-page) pt-[calc(var(--header-h)+24px)]">
       {/* Background pattern */}
       <div
         className="absolute inset-0 -z-10 opacity-[0.04] pointer-events-none"
