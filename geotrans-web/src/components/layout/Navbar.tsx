@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useState } from "react";
 import { usePathname } from "next/navigation";
+import { brand } from "@/config/content/brand";
 
 import clsx from "clsx";
 import { IoIosArrowDown } from "react-icons/io";
@@ -12,8 +13,13 @@ import { NavSrvList } from "./NavSrvList";
 import { NAV_LINKS, NavLink } from "@/config/nav";
 import { siteContent } from "@/config/site-content";
 import { MobileMenuToggle } from "../parts/mobileMenuToggle";
+import { useScrollShrink } from "@/hooks/use-scroll-shrink";
 
-// Desktop styles
+/* ==================== STYLES ==================== */
+
+const navbarGlass = "bg-bg-nav/95 md:bg-bg-nav/85 backdrop-blur-xl border-white/10";
+const dropdownGlass = "bg-bg-nav/95 border border-white/10 shadow-xl";
+
 const navLinkCls = (active: boolean) =>
   clsx(
     "nav-link text-tx-inverse",
@@ -23,24 +29,32 @@ const navLinkCls = (active: boolean) =>
     "after:origin-center after:scale-x-0 after:bg-accent",
     "after:transition-transform after:duration-300",
     "group-hover:after:scale-x-100",
-    active && "bg-bg-muted/10 rounded-xl md:after:scale-x-100 md:bg-transparent"
+    active && "md:after:scale-x-100"
   );
 
 const dropdownSrvCls = (active: boolean) =>
   clsx(
     "nav-link gap-2 px-4 py-2 whitespace-nowrap transition",
-    active ? "bg-bg-muted/30" : "hover:bg-bg-muted/20"
+    active ? "text-accent hover:bg-bg-muted/10" : "hover:bg-bg-muted/10"
+    // active ? "bg-bg-muted/20" : "hover:bg-bg-muted/10"
   );
 
-// Mobile styles
 const mobileRowCls = (active: boolean) =>
   clsx(
     "flex w-full min-h-[56px] items-center justify-between px-6 text-base leading-none transition-all",
     active ? "font-medium text-tx-inverse" : "text-tx-inverse/75 hover:text-tx-inverse"
   );
 
+/* ==================== COMPONENT ==================== */
+
 export const Navbar = () => {
   const pathname = usePathname();
+
+  const DEFAULT_NAV_H_PX = "72px";
+  const SHRUNK_NAV_H_PX = "60px";
+  const SHRINK_SCROLL_Y = 16;
+
+  const isShrunk = useScrollShrink(SHRINK_SCROLL_Y);
 
   const [mobileOpen, setMobileOpen] = useState(false);
   const [mobileDropdown, setMobileDropdown] = useState<string | null>(null);
@@ -52,10 +66,14 @@ export const Navbar = () => {
     setDesktopDropdown(null);
   };
 
+  const navHeight = isShrunk ? SHRUNK_NAV_H_PX : DEFAULT_NAV_H_PX;
+
   const isActivePath = (href?: string): boolean => {
     if (!href || !pathname) return false;
     return pathname === href || pathname.startsWith(`${href}/`);
   };
+
+  /* ==================== DESKTOP ==================== */
 
   const renderDesktopItem = (item: NavLink) => {
     const isActive = isActivePath(item.href);
@@ -79,7 +97,7 @@ export const Navbar = () => {
           {item.hasDropdown && (
             <IoIosArrowDown
               className={clsx(
-                "mt-px text-xs opacity-70 transition-transform",
+                "mt-px text-xs opacity-70 transition-transform duration-300",
                 isOpen && "rotate-180"
               )}
             />
@@ -89,14 +107,16 @@ export const Navbar = () => {
         {item.hasDropdown && (
           <div
             className={clsx(
-              "absolute -left-2 mt-5 min-w-60 rounded-b-xl",
-              "bg-bg-nav/95 backdrop-blur-xl text-tx-inverse",
-              "shadow-lg border border-br-light/20 border-t-0",
-              "origin-top-left transition-all duration-200",
+              "absolute -left-2 top-full min-w-60 rounded-b-xl",
+              dropdownGlass,
+              "z-50 border border-t-0 text-tx-inverse ",
+              "origin-top-left transition-all duration-300 ease-in-out",
+              isShrunk ? "mt-[14px]" : "mt-5",
               isOpen
                 ? "pointer-events-auto scale-100 opacity-100"
                 : "pointer-events-none scale-95 opacity-0",
-              "before:absolute before:-top-5 before:h-5 before:w-full"
+              "before:absolute before:-top-5 before:h-5 before:w-full",
+              "will-change-[transform,margin-top]"
             )}
           >
             <ul className="py-2">
@@ -108,6 +128,8 @@ export const Navbar = () => {
     );
   };
 
+  /* ==================== MOBILE ==================== */
+
   const renderMobileItem = (item: NavLink) => {
     const isActive = isActivePath(item.href);
     const isOpen = mobileDropdown === item.label;
@@ -115,7 +137,7 @@ export const Navbar = () => {
     if (!item.hasDropdown) {
       return (
         <div key={item.label} className="flex flex-col">
-          <div className="relative border-b border-white/5">
+          <div className="relative border-b border-white/10">
             {isActive && (
               <div className="absolute left-0 top-1/2 h-8 w-1 -translate-y-1/2 rounded-r-full bg-accent" />
             )}
@@ -130,14 +152,14 @@ export const Navbar = () => {
 
     return (
       <div key={item.label} className="flex flex-col">
-        <div className="relative border-b border-white/5">
+        <div className="relative border-b border-white/10">
           {isActive && (
             <div className="absolute left-0 top-1/2 h-8 w-1 -translate-y-1/2 rounded-r-full bg-accent" />
           )}
 
           <button
             type="button"
-            className={clsx(mobileRowCls(isActive), isOpen && "bg-white/5")}
+            className={clsx(mobileRowCls(isActive))}
             onClick={() => setMobileDropdown(isOpen ? null : item.label)}
             aria-expanded={isOpen}
             aria-label={`Toggle ${item.label}`}
@@ -162,11 +184,22 @@ export const Navbar = () => {
           <ul className="overflow-hidden pt-1">
             <NavSrvList
               onClick={closeAll}
+              // itemClass={(active) =>
+              //   clsx(
+              //     "relative mx-3 flex items-center rounded-xl py-2 px-9 text-[15px] transition-all duration-300",
+              //     "before:absolute before:left-5 before:h-1 before:w-1 before:rounded-full before:bg-accent before:content-['']",
+              //     "before:transition-all before:duration-300 before:ease-out",
+
+              //     active
+              //       ? "text-accent font-medium before:opacity-100 before:scale-100"
+              //       : "text-tx-inverse/75 hover:bg-white/5 before:opacity-0 before:scale-0"
+              //   )
+              // }
               itemClass={(active) =>
                 clsx(
-                  "mx-3 flex rounded-xl px-5 py-2 text-[15px] transition-all",
+                  "mx-3 flex rounded-xl px-9 py-2 text-[15px] transition-all",
                   active
-                    ? "bg-white/8 font-medium text-accent"
+                    ? "font-medium text-accent"
                     : "text-tx-inverse/75 hover:bg-white/5 hover:text-tx-inverse"
                 )
               }
@@ -177,18 +210,29 @@ export const Navbar = () => {
     );
   };
 
+  const mobilePanelTop = `calc(${navHeight} + var(--top-bar-h))`;
+
   return (
     <>
       {/* Top Bar */}
-      <div className="hidden border-b border-white/5 bg-bg-top-nav content-center h-(--top-bar-h) text-xs text-tx-inverse/70 md:block">
-        <div className="container-page flex items-center justify-between px-4">
-          <span className="font-medium tracking-wide">Пон - Пет: 08:30 - 17:30</span>
+      <div
+        className={clsx(
+          "fixed inset-x-0 top-0 z-60 hidden overflow-hidden border-b border-white/6 bg-(--green-700) text-xs backdrop-blur-xl md:block",
+          "transition-[height] duration-300 ease-in-out",
+          isShrunk ? "pointer-events-none h-0 border-b-0" : "h-(--top-bar-h)"
+        )}
+      >
+        <div className="container-page flex h-(--top-bar-h) items-center justify-between px-4">
+          <span className="text-tx-inverse/65 tracking-wide">
+            Пон - Пет: 08:30 - 17:30
+          </span>
+
           <a
             href={`tel:${siteContent.contacts.phone}`}
             className="flex items-center gap-2 text-accent transition-all hover:brightness-110"
           >
             <FaPhone />
-            <span className="font-semibold tracking-wider">
+            <span className="font-medium tracking-wider">
               {siteContent.contacts.phone}
             </span>
           </a>
@@ -199,11 +243,16 @@ export const Navbar = () => {
       <header
         id="navbar"
         className={clsx(
-          "sticky top-0 z-50 h-(--nav-h) w-full",
-          "bg-bg-nav/95 backdrop-blur-xl shadow-lg",
-          "border-b border-br-light/20",
-          "no-drag"
+          "fixed inset-x-0 z-55",
+          navbarGlass,
+          "border-b",
+          "no-drag transition-[top,height] duration-300 ease-in-out",
+          "will-change-[top,height]"
         )}
+        style={{
+          top: isShrunk ? "0px" : "var(--top-bar-h)",
+          height: navHeight,
+        }}
       >
         <nav className="container-page h-full">
           <div className="flex h-full items-center justify-between">
@@ -212,17 +261,22 @@ export const Navbar = () => {
               draggable={false}
               className="flex items-center gap-2 px-2 py-1 text-lg tracking-wide text-tx-inverse"
             >
-              <div className="text-3xl font-semibold tracking-tight text-white drop-shadow-md">
-                GeoMetric
+              <div
+                className={clsx(
+                  "text-white transition-all duration-300 ease-in-out",
+                  isShrunk
+                    ? "text-2xl font-semibold tracking-tight"
+                    : "text-3xl font-semibold tracking-tight"
+                )}
+              >
+                {brand.name}
               </div>
             </Link>
 
-            {/* Desktop links */}
             <ul className="hidden items-center gap-6 md:flex">
               {NAV_LINKS.map(renderDesktopItem)}
             </ul>
 
-            {/* Mobile toggle */}
             <MobileMenuToggle
               isOpen={mobileOpen}
               onToggle={() => {
@@ -237,24 +291,28 @@ export const Navbar = () => {
           {/* Mobile menu */}
           {mobileOpen && (
             <div className="md:hidden">
-              {/* Backdrop */}
               <button
                 type="button"
                 aria-label="Close menu"
                 onClick={closeAll}
-                className="fixed inset-0 top-(--nav-h) z-40 bg-black/40"
+                className="fixed inset-x-0 bottom-0 z-40 bg-black/40"
+                style={{ top: mobilePanelTop }}
               />
 
-              {/* Mobile panel */}
               <div
                 className={clsx(
-                  "fixed inset-x-0 top-(--nav-h) z-50 transition-all duration-300 ease-in-out",
+                  "fixed inset-x-0 z-70 transition-all duration-300 ease-in-out",
+                  dropdownGlass,
                   mobileOpen
                     ? "translate-y-0 opacity-100"
                     : "pointer-events-none -translate-y-2 opacity-0"
                 )}
+                style={{ top: mobilePanelTop }}
               >
-                <div className="h-[calc(100dvh-var(--nav-h))] overflow-y-auto border-b border-br-light/10 bg-bg-nav/98 shadow-2xl backdrop-blur-xl">
+                <div
+                  className="overflow-y-auto border-b border-white/10"
+                  style={{ height: `calc(100dvh - ${mobilePanelTop})` }}
+                >
                   <div className="container-page flex flex-col pb-8 pt-2">
                     {NAV_LINKS.map(renderMobileItem)}
 

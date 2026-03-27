@@ -7,8 +7,9 @@ import { Footer } from "@/components/layout/Footer";
 import { getLocalBusinessSchema } from "@/utils/structured-data";
 import { SITE_URL } from "@/config/site";
 import { siteContent } from "@/config/site-content";
+import SquintTest from "@/utils/squintTest";
 
-const { name, slogan, tagline, metaLine } = siteContent.brand;
+const { name, tagline } = siteContent.brand;
 
 const montserrat = Montserrat({
   subsets: ["latin", "cyrillic", "cyrillic-ext"],
@@ -77,21 +78,16 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           }}
         />
 
-        {/* Navbar overlay */}
-        <div
-          className="absolute top-0 left-0 w-full bg-bg-nav -z-10"
-          style={{ height: "calc(var(--nav-h) + var(--top-bar-h))" }}
-        />
         <Navbar />
+
+        {/* <main className="grow bg-bg-page page-offset">{children}</main> */}
         <main className="grow bg-bg-page">{children}</main>
-        {/* Analytics */}
-        <Analytics />
+
         <Footer />
-        {/* SQUINT TEST - uncomment to use */}
-        {/* <div
-          className="fixed inset-0 z-9999 pointer-events-none backdrop-blur-[6px] bg-black/10 grayscale-[0.2]"
-          aria-hidden="true"
-        /> */}
+
+        {/* Utility / Helper */}
+        <Analytics />
+        <SquintTest isEnabled={false} />
       </body>
     </html>
   );
