@@ -3,7 +3,6 @@
 import { useEffect, useRef, useState } from "react";
 import { animate, motion, useInView, useMotionValue } from "framer-motion";
 import clsx from "clsx";
-import { Section } from "@/components/layout/Section";
 import { siteContent } from "@/config/site-content";
 
 function extractNumber(value: string | number) {
@@ -65,40 +64,42 @@ export function Stats() {
   const stats = siteContent.stats;
 
   return (
-    <Section tone="muted" className="pt-6 sm:pt-8 lg:pt-10 pb-16 sm:pb-20 lg:pb-24">
-      <div className="mx-auto max-w-3xl text-center">
-        <p className="typo-kicker">Доказани резултати</p>
-        <h2 className="mt-3 typo-h3">Прецизност във всеки детайл</h2>
-      </div>
+    <section className="relative overflow-hidden bg-bg-muted py-16 md:py-20 lg:py-24">
+      <div
+        aria-hidden="true"
+        className={clsx(
+          "pointer-events-none absolute inset-0",
+          "bg-[radial-gradient(circle_at_top_left,rgba(255,255,255,0.05),transparent_34%),radial-gradient(circle_at_bottom_right,rgba(255,255,255,0.04),transparent_30%)]"
+        )}
+      />
 
-      <div className="relative mt-10 md:mt-12">
+      <div className="container-page relative">
+        <div className="mb-8 text-center md:mb-10">
+          <p className="typo-kicker text-accent">Доказани резултати</p>
+          <h2 className="mt-3 typo-h3 text-tx-primary">Прецизност във всеки детайл</h2>
+        </div>
+
         <div
           className={clsx(
-            "relative overflow-hidden rounded-[30px] border border-white/45 bg-white/65",
-            "px-6 py-8 shadow-[0_18px_40px_-28px_rgba(15,23,42,0.14)] backdrop-blur-sm",
-            "sm:px-8 sm:py-10 lg:px-10 lg:py-12"
+            "rounded-[28px] border border-br-light",
+            "bg-bg-page/70 p-6 backdrop-blur-sm md:p-8"
           )}
         >
-          <div
-            aria-hidden
-            className="pointer-events-none absolute inset-x-0 top-0 h-px bg-linear-to-r from-transparent via-accent/45 to-transparent"
-          />
-
-          <div className="relative grid gap-y-10 sm:grid-cols-2 sm:gap-x-8 lg:grid-cols-4 lg:gap-x-6">
+          <div className="grid gap-y-10 sm:grid-cols-2 lg:grid-cols-4 lg:gap-x-6">
             {stats.map((s, i) => (
               <motion.div
                 key={`${s.label}-${i}`}
-                initial={{ opacity: 0, y: 16 }}
+                initial={{ opacity: 0, y: 18 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.35 }}
                 transition={{ duration: 0.45, delay: i * 0.08 }}
-                className="text-center"
+                className="px-2 text-center lg:px-4"
               >
-                <div className="text-[2.4rem] font-semibold leading-none tracking-tight text-tx-primary sm:text-5xl lg:text-6xl">
+                <div className="text-4xl font-semibold tracking-tight text-tx-primary md:text-5xl lg:text-6xl">
                   <CountUpNumber value={s.number} />
                 </div>
 
-                <div className="mt-4 text-[11px] font-medium uppercase tracking-[0.16em] text-tx-muted sm:text-xs">
+                <div className="mt-3 text-sm font-semibold uppercase tracking-[0.18em] text-tx-muted">
                   {s.label}
                 </div>
               </motion.div>
@@ -106,6 +107,6 @@ export function Stats() {
           </div>
         </div>
       </div>
-    </Section>
+    </section>
   );
 }

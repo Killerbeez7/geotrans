@@ -41,10 +41,11 @@ export const CategoryCard = ({ category }: CategoryCardProps) => {
       href={href}
       aria-label={`Детайли за ${title}`}
       className={clsx(
-        "group relative flex h-[220px] flex-col justify-end overflow-hidden rounded-4xl bg-black sm:h-80",
-        "shadow-lg",
-        "hover:shadow-[0_30px_60px_-15px_rgba(0,0,0,0.2)]",
-        "transition-all duration-300"
+        "group relative flex flex-col justify-end overflow-hidden rounded-4xl bg-black",
+        "h-[260px] md:h-[300px]",
+        "border border-br-default shadow-lg",
+        "transition-all duration-300",
+        "hover:-translate-y-1 hover:shadow-[0_30px_60px_-15px_rgba(0,0,0,0.2)]"
       )}
     >
       <Image
@@ -57,8 +58,6 @@ export const CategoryCard = ({ category }: CategoryCardProps) => {
       <div
         className={clsx(
           "absolute inset-0 rounded-3xl bg-linear-to-t",
-          // "from-black via-black/55 to-black/10",
-          // "md:via-black/35 md:to-black/5"
           "from-black/90 via-black/40 to-black/0",
           "md:from-black/90 md:via-black/28 md:to-black/0"
         )}

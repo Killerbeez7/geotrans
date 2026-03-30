@@ -28,7 +28,7 @@ export default function ServiceSidebar({
                 className={clsx(
                   "block rounded-2xl px-4 py-3 text-sm transition",
                   isActive
-                    ? "bg-bg-brand-soft font-semibold text-tx-primary"
+                    ? "bg-bg-soft font-semibold text-tx-primary"
                     : "text-tx-secondary hover:bg-bg-muted hover:text-tx-primary"
                 )}
               >

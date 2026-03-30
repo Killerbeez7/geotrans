@@ -15,7 +15,7 @@ export function ProjectsSection({ id, title, subtitle, items, cta }: ProjectsCon
   const visible = useMemo(() => items.slice(0, maxItems), [items, maxItems]);
 
   return (
-    <Section id={id} className="overflow-hidden bg-bg-section">
+    <Section id={id} className="overflow-hidden bg-bg-page">
       {/* <Section id={id} className="overflow-hidden"> */}
       <div className="grid grid-cols-12 gap-6 sm:gap-8 lg:gap-14 items-end">
         <div className="col-span-12 lg:col-span-8">

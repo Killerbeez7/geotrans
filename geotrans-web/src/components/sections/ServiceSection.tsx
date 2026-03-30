@@ -6,18 +6,19 @@ import type { ServiceCategory } from "@/config/services/categories";
 
 type Props = {
   id: string;
+  kicker: string;
   title: string;
   subtitle: string;
   items: ServiceCategory[];
 };
 
-export const ServiceSection = ({ id, title, subtitle, items }: Props) => {
+export const ServiceSection = ({ id, kicker, title, subtitle, items }: Props) => {
   const displayItems = items.slice(0, 6);
 
   return (
     <Section id={id} tone="section">
       <header className="mx-auto max-w-3xl text-center">
-        <p className="typo-kicker">Услуги</p>
+        <p className="typo-kicker">{kicker}</p>
 
         <h2 className="mt-3 typo-h2">{title}</h2>
 

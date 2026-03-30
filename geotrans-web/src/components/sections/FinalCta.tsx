@@ -1,27 +1,31 @@
 import { CtaButton } from "@/components/parts/CtaButton";
 import { siteContent } from "@/config/site-content";
 import { FaPhone } from "react-icons/fa";
+import clsx from "clsx";
 
 export default function FinalCTA() {
   const { phone } = siteContent.contacts;
 
   return (
-    <section className="py-20 bg-bg-section ">
-      <div className="container-page grid gap-10 lg:grid-cols-2 items-center">
-        {/* Text */}
-        <div>
-          <h2 className="typo-h2 mb-6">
+    <section
+      className={clsx(
+        "relative border-y border-br-default/70 bg-bg-soft py-18 sm:py-20 lg:py-24"
+      )}
+    >
+      <div className="container-page grid items-center gap-10 lg:grid-cols-[1.2fr_0.8fr]">
+        <div className="max-w-2xl">
+          <p className="typo-kicker text-accent">Контакт</p>
+          <h2 className="mt-3 typo-h2">
             Имате нужда от <span className="text-accent">геодезическа услуга?</span>
           </h2>
 
-          <p className="typo-body text-tx-secondary max-w-xl">
+          <p className="mt-5 max-w-xl typo-body text-tx-secondary">
             Свържете се с нас за консултация. Ще разгледаме вашия случай и ще предложим
             най-подходящото решение за вашия имот или проект.
           </p>
         </div>
 
-        {/* Actions */}
-        <div className="flex flex-col sm:flex-row gap-6 lg:justify-end items-start sm:items-center">
+        <div className="flex flex-col items-start gap-5 lg:items-end">
           <CtaButton href="/contacts" size="lg">
             Свържете се с нас
           </CtaButton>

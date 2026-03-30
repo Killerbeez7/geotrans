@@ -1,4 +1,5 @@
 import clsx from "clsx";
+import { Section } from "@/components/layout/Section";
 import {
   FaRegClock,
   FaRegFileLines,
@@ -15,74 +16,92 @@ type TrustItem = {
 
 const TRUST: TrustItem[] = [
   {
-    title: "Ясни срокове",
-    subtitle: "Реалистични очаквания и предварително уточнени етапи.",
+    title: "Точни срокове",
+    subtitle: "Реалистични срокове и ясно разписани етапи.",
     Icon: FaRegClock,
   },
   {
     title: "Подредени документи",
-    subtitle: "Съдействие при подготовка за институции и последващи действия.",
+    subtitle: "Съдействие за нужните документи и следващи стъпки.",
     Icon: FaRegFileLines,
   },
   {
     title: "Прецизна работа",
-    subtitle: "Внимание към всяко измерване и сигурност в крайния резултат.",
+    subtitle: "Прецизност във всяко измерване и сигурност в резултата.",
     Icon: FaRegCircleCheck,
   },
   {
-    title: "Коректна комуникация",
-    subtitle: "Ясно обяснение на процеса, нужните материали и следващите стъпки.",
+    title: "Ясна комуникация",
+    subtitle: "Ясно обяснение на процеса без излишно объркване.",
     Icon: FaShieldHalved,
   },
 ];
 
 export default function TrustBar({ className }: { className?: string }) {
   return (
-    <section
-      className={clsx("relative overflow-hidden bg-bg-page py-14 md:py-16", className)}
+    <Section
+      tone="muted"
+      className={clsx("relative overflow-hidden border-y border-br-light/80", className)}
     >
-      <div className="container-page">
-        <div className="mb-7 max-w-3xl md:mb-8">
-          <p className="typo-kicker text-accent">Как работим</p>
-          <h2 className="mt-3 typo-h3 text-tx-primary">
-            Ясен процес и надежден подход във всяка стъпка
-          </h2>
-          <p className="mt-3 typo-body text-tx-secondary">
-            Работим с внимание към точността, документацията и комуникацията, така че да
-            получите не само измерване, а и яснота какво следва.
-          </p>
-        </div>
+      {/* atmosphere */}
+      <div
+        aria-hidden
+        className={clsx(
+          "pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(215,175,69,0.08),transparent_26%)",
+          "radial-gradient(circle_at_bottom_right,rgba(215,175,69,0.05),transparent_30%)]"
+        )}
+      />
 
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          {TRUST.map((t) => (
-            <article
-              key={t.title}
-              className={clsx(
-                "group rounded-[24px] border border-br-light",
-                "bg-bg-section p-5 transition-all duration-300",
-                "hover:-translate-y-0.5 hover:border-white/15"
-              )}
-            >
-              <div
-                className={clsx(
-                  "flex h-11 w-11 items-center justify-center rounded-xl",
-                  "bg-accent/10 text-accent ring-1 ring-accent/15"
-                )}
-              >
+      <div
+        aria-hidden
+        className={clsx(
+          "pointer-events-none absolute inset-0 opacity-[0.03] [background-image:linear-gradient(to_right,var(--color-br-light)_1px,transparent_1px)",
+          "linear-gradient(to_bottom,var(--color-br-light)_1px,transparent_1px)] [background-size:38px_38px]"
+        )}
+      />
+
+      {/* HEADER */}
+      <header className="mx-auto mb-8 max-w-3xl text-center md:mb-10">
+        <p className="typo-kicker">Подход</p>
+
+        <h2 className="mt-3 typo-h2">Яснота и сигурност още от първата стъпка</h2>
+
+        <p className="mx-auto mt-4 max-w-2xl typo-subtitle">
+          Работим с внимание към точността, документацията и комуникацията, така че да
+          получите не само измерване, а и спокойствие какво следва.
+        </p>
+      </header>
+
+      {/* GRID */}
+      <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
+        {TRUST.map((t) => (
+          <article
+            key={t.title}
+            className={clsx(
+              "group relative h-full rounded-[26px] border",
+              "border-br-light bg-white/75 backdrop-blur-[6px]",
+              "p-5",
+              "shadow-[0_10px_24px_-18px_rgba(15,23,42,0.14)]",
+              "transition-all duration-300",
+              "hover:-translate-y-0.5 hover:border-br-default hover:bg-white/88"
+            )}
+          >
+            <div className="flex items-start gap-4">
+              <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl border border-br-accent-soft bg-accent/10 text-accent">
                 <t.Icon className="h-[18px] w-[18px]" />
               </div>
 
-              <div className="mt-4">
-                <h3 className="text-[15px] font-semibold leading-tight text-tx-primary">
-                  {t.title}
-                </h3>
+              <div>
+                <h3 className="text-[15px] font-semibold text-tx-primary">{t.title}</h3>
 
-                <p className="mt-2 text-[13px] leading-6 text-tx-muted">{t.subtitle}</p>
+                <p className="mt-2 text-[13px] leading-6 text-tx-secondary">
+                  {t.subtitle}
+                </p>
               </div>
-            </article>
-          ))}
-        </div>
+            </div>
+          </article>
+        ))}
       </div>
-    </section>
+    </Section>
   );
 }
