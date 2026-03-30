@@ -20,7 +20,7 @@ export default function About() {
       <Section className="relative isolate h-150 overflow-hidden" variant="hero">
         <div className="absolute inset-0 -z-20">
           <Image
-            src="/images/plamen.png"
+            src="/images/toni.jpg"
             alt=""
             fill
             priority
