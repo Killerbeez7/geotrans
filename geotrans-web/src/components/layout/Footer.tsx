@@ -39,7 +39,8 @@ export const Footer = () => {
   );
 
   return (
-    <footer className="relative bg-bg-nav">
+    <footer className="relative bg-bg-footer">
+      {/* <footer className="relative bg-bg-nav"> */}
       <div className="pointer-events-none absolute inset-0 bg-linear-to-t from-black/45 to-black/25" />
 
       <div className="relative mx-auto max-w-7xl px-6 py-12 sm:px-8 lg:px-12 lg:py-16">
