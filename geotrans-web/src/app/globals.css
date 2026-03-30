@@ -178,7 +178,7 @@ body {
 
   /* Hero Title */
   .typo-hero {
-    @apply font-bold text-tx-inverse tracking-tight;
+    @apply font-semibold text-tx-inverse tracking-tight;
     font-size: var(--fs-hero);
     line-height: var(--lh-tight);
   }
@@ -196,29 +196,40 @@ body {
     @apply text-tx-primary;
     font-size: var(--fs-h2);
     line-height: var(--lh-heading);
-    font-weight: 600;
+    letter-spacing: -0.01em;
+    font-weight: 500;
   }
 
   /* Card Title */
   .typo-h3 {
     @apply text-tx-primary;
     font-size: var(--fs-h3);
+    letter-spacing: -0.01em;
     line-height: 1.25;
+    font-weight: 500;
   }
 
   /* Important Intro */
-  .typo-lead {
+  /* .typo-lead {
     @apply text-tx-inverse/85 leading-relaxed;
     font-size: var(--fs-lead);
     font-weight: 500;
+  } */
+
+  .typo-lead {
+    @apply text-tx-inverse/80;
+    font-size: var(--fs-lead);
+    font-weight: 400;
+    line-height: 1.6;
+    letter-spacing: 0.01em;
   }
 
   /* Section Intro */
   .typo-subtitle {
     @apply text-tx-secondary;
     font-size: 1rem;
+    font-weight: 400;
     line-height: var(--lh-body);
-    font-weight: 500;
   }
 
   /* Default Body Text */
@@ -246,21 +257,6 @@ body {
 }
 
 /* ==================== UI UTILITIES ==================== */
-
-.card {
-  background: var(--gray-0);
-  border: 1px solid var(--color-br-light);
-  border-radius: var(--radius-card);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.04);
-}
-
-.hero-gradient {
-  background: linear-gradient(
-    135deg,
-    var(--green-50) 0%,
-    color-mix(in srgb, var(--green-50) 70%, var(--gray-0)) 100%
-  );
-}
 
 /* ==================== INTERACTION ==================== */
 
