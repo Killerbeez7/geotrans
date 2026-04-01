@@ -1,8 +1,9 @@
 import { MetadataRoute } from "next";
 import { serviceCategories } from "@/config/services/categories";
+import { SITE_URL } from "@/config/site";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = "http://localhost:3000/";
+  const baseUrl = SITE_URL
 
   const lastModified = new Date();
 
@@ -22,6 +23,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
   return [
     { url: baseUrl, lastModified },
     { url: `${baseUrl}/services`, lastModified },
+    { url: `${baseUrl}/projects`, lastModified },
+    { url: `${baseUrl}/about`, lastModified },
     { url: `${baseUrl}/contacts`, lastModified },
     ...serviceUrls,
   ];
