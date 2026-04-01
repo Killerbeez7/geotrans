@@ -1,9 +1,20 @@
-import { FaHome, FaPhone, FaEnvelope } from "react-icons/fa";
-import { siteContent } from "@/config/site-content";
-import { CtaButton } from "@/components/parts/CtaButton";
-import Image from "next/image";
-import { Section } from "@/components/layout/Section";
 import clsx from "clsx";
+import Image from "next/image";
+import { FaHome, FaPhone, FaEnvelope } from "react-icons/fa";
+// Components
+import { CtaButton } from "@/components/parts/CtaButton";
+import { Section } from "@/components/layout/Section";
+// Data
+import { siteContent } from "@/config/site-content";
+// SEO
+import { createSeo } from "@/lib/seo";
+
+export const metadata = createSeo({
+  title: "Контакти",
+  description:
+    "Свържете се с GeoAxis за геодезически услуги в София и Софийска област. Изпратете запитване за заснемане, трасиране, кадастър, проектиране и градоустройство.",
+  path: "/contacts",
+});
 
 type Item = {
   icon: React.ReactNode;

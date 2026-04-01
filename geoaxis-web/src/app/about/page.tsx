@@ -1,9 +1,20 @@
 import Image from "next/image";
 import { FaCheckCircle, FaMapMarkedAlt, FaUsers } from "react-icons/fa";
-import { Stats } from "@/components/sections/StatsSection";
-import { CtaButton } from "@/components/parts/CtaButton";
-import { siteContent } from "@/config/site-content";
+// Components
 import { Section } from "@/components/layout/Section";
+import { CtaButton } from "@/components/parts/CtaButton";
+import { Stats } from "@/components/sections/StatsSection";
+// Data
+import { siteContent } from "@/config/site-content";
+// SEO
+import { createSeo } from "@/lib/seo";
+
+export const metadata = createSeo({
+  title: "За нас",
+  description:
+    "Научете повече за GeoAxis, нашия подход към геодезическите услуги в София и Софийска област, и как помагаме с точност, яснота и професионално съдействие.",
+  path: "/about",
+});
 
 const valueIcon = {
   precision: <FaCheckCircle className="h-10 w-10 text-accent" />,
