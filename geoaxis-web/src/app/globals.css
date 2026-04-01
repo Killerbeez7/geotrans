@@ -78,9 +78,9 @@
 
 @theme inline {
   /* accent */
-  --color-accent: var(--brand-ochre-400);
-  --color-accent-hover: var(--brand-ochre-300);
-  --color-accent-strong: var(--brand-ochre-500);
+  --color-accent: var(--brand-ochre-500);
+  --color-accent-hover: var(--brand-ochre-400);
+  --color-accent-strong: var(--brand-ochre-600);
 
   /* backgrounds */
   --color-bg-page: #f3f5f4;
@@ -170,7 +170,7 @@ body {
 
   /* Hero Kicker */
   .typo-kicker {
-    @apply uppercase font-semibold text-accent/90;
+    @apply uppercase font-semibold text-accent;
     font-size: var(--fs-meta);
     letter-spacing: var(--tracking-widest-xl);
     line-height: var(--lh-heading);
@@ -217,7 +217,7 @@ body {
   } */
 
   .typo-lead {
-    @apply text-tx-inverse/80;
+    @apply text-tx-inverse;
     font-size: var(--fs-lead);
     font-weight: 400;
     line-height: 1.6;

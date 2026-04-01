@@ -34,7 +34,7 @@ export default function About() {
 
         <div className="h-full container-page flex flex-col items-center justify-center text-center">
           <h1 className="typo-hero text-tx-inverse">{title}</h1>
-          <p className="typo-lead mt-4 text-tx-inverse/90 text-balance">{hero.intro}</p>
+          <p className="typo-lead mt-4 text-balance">{hero.intro}</p>
         </div>
       </Section>
       {/* <Section className="relative isolate h-150 overflow-hidden" variant="hero">
@@ -86,9 +86,7 @@ export default function About() {
         <div className="container-page">
           <div className="text-center">
             <h2 className="typo-h2">{values.title}</h2>
-            <p className="mt-4 typo-lead mx-auto max-w-3xl text-tx-secondary">
-              {values.intro}
-            </p>
+            <p className="mt-4 typo-lead mx-auto max-w-3xl">{values.intro}</p>
           </div>
 
           <div className="mt-16 grid md:grid-cols-3 gap-8">
