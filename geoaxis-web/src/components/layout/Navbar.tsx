@@ -17,56 +17,20 @@ import { TopBar } from "../navigation/TopBar";
 import { MobileMenuToggle } from "../parts/mobileMenuToggle";
 import { useScrollShrink } from "@/hooks/use-scroll-shrink";
 
-/* ==================== STYLES ==================== */
-
-const glassEffect = "bg-bg-nav/95 md:bg-bg-nav/80 backdrop-blur-xl border-white/10";
-
-const navLinkCls = (active: boolean) =>
-  clsx(
-    "nav-link text-tx-inverse",
-    "relative group gap-1 px-2 py-1",
-    "after:absolute after:left-1/2 after:bottom-0",
-    "after:h-[2px] after:w-full after:-translate-x-1/2",
-    "after:origin-center after:scale-x-0 after:bg-accent",
-    "after:transition-transform after:duration-300",
-    "group-hover:after:scale-x-100",
-    active && "md:after:scale-x-100"
-  );
-
-const dropdownLinkCls = (active: boolean) =>
-  clsx(
-    "nav-link group gap-2 px-4 py-2 whitespace-nowrap transition",
-    active ? "text-accent hover:bg-bg-muted/10" : "hover:bg-bg-muted/10"
-  );
-
-const mobileDropdownCls = (active: boolean) =>
-  clsx(
-    "mx-3 flex rounded-xl px-9 py-2 text-[15px] transition-all",
-    active
-      ? "font-medium text-accent"
-      : "text-tx-inverse/75 hover:bg-white/5 hover:text-tx-inverse"
-  );
-
-const mobileRowCls = (active: boolean) =>
-  clsx(
-    "flex w-full min-h-[56px] items-center justify-between px-6 text-base leading-none transition-all",
-    active ? "font-medium text-tx-inverse" : "text-tx-inverse/75 hover:text-tx-inverse"
-  );
-
-type DesktopDropdownType = "services" | "helpful" | null;
-
-type DropdownPosition = {
-  top: number;
-  left: number;
-};
-
-/* ==================== COMPONENT ==================== */
+import {
+  glassEffect,
+  navLinkCls,
+  dropdownLinkCls,
+  mobileDropdownCls,
+  mobileRowCls,
+} from "../navigation/navbar.constants";
+import type { DesktopDropdownType, DropdownPosition } from "../navigation/navbar.types";
 
 export const Navbar = () => {
   const pathname = usePathname();
 
-  const DEFAULT_NAV_H_PX = "72px";
-  const SHRUNK_NAV_H_PX = "60px";
+  const NAV_H = { DEFAULT: 72, SHRUNK: 60, DEFAULT_PX: "72px", SHRUNK_PX: "60px" };
+
   const SHRINK_SCROLL_Y = 16;
   const NAV_TRANSITION_MS = 300;
 
@@ -88,7 +52,7 @@ export const Navbar = () => {
   const closeTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const headerRef = useRef<HTMLElement | null>(null);
 
-  const navHeight = isShrunk ? SHRUNK_NAV_H_PX : DEFAULT_NAV_H_PX;
+  const navHeight = isShrunk ? NAV_H.SHRUNK_PX : NAV_H.DEFAULT_PX;
 
   const isActivePath = (href?: string): boolean => {
     if (!href || !pathname) return false;
@@ -116,9 +80,7 @@ export const Navbar = () => {
 
     const triggerRect = triggerRef.current.getBoundingClientRect();
     const headerRect = headerEl.getBoundingClientRect();
-    const currentNavHeight = isShrunk
-      ? Number.parseInt(SHRUNK_NAV_H_PX, 10)
-      : Number.parseInt(DEFAULT_NAV_H_PX, 10);
+    const currentNavHeight = isShrunk ? NAV_H.SHRUNK : NAV_H.DEFAULT;
 
     setDesktopDropdownPos({
       top: headerRect.top + currentNavHeight,
@@ -334,11 +296,9 @@ export const Navbar = () => {
   return (
     <>
       {/* Top Bar */}
-
       <TopBar isShrunk={isShrunk} />
 
       {/* Navbar */}
-
       <header
         ref={headerRef}
         id="navbar"
