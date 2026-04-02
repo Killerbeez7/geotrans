@@ -210,7 +210,7 @@ export const Navbar = () => {
       <li
         key={item.label}
         ref={ref}
-        className="relative group"
+        className="relative group flex h-full items-center after:absolute after:left-0 after:right-0 after:top-full after:h-4 after:content-['']"
         onMouseEnter={() => {
           if (!item.dropdownType || isTransitioning) return;
           openDesktopDropdown(item.dropdownType);
@@ -431,9 +431,7 @@ export const Navbar = () => {
                 glassEffect,
                 "origin-top-left transition-all duration-300 ease-in-out",
                 "scale-100 opacity-100",
-                "will-change-[transform,opacity]",
-                "before:absolute before:-top-5 before:h-5 before:w-full",
-                "will-change-[transform,margin-top]"
+                "will-change-[transform,opacity]"
               )}
             >
               <ul className="py-2">{renderDesktopDropdownContent()}</ul>
