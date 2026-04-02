@@ -1,34 +1,30 @@
 "use client";
 
-import clsx from "clsx";
 import Link from "next/link";
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { usePathname } from "next/navigation";
-import { useScrollShrink } from "@/hooks/use-scroll-shrink";
-
-// Content
 import { brand } from "@/config/content/brand";
-import { siteContent } from "@/config/site-content";
-import { NAV_LINKS, type NavLink } from "@/config/nav";
 
-// Components
+import clsx from "clsx";
+import { IoIosArrowDown } from "react-icons/io";
+
 import { NavSrvList } from "../navigation/NavSrvList";
 import { NavHelpList } from "../navigation/NavHelpList";
-import { MobileMenuToggle } from "../parts/mobileMenuToggle";
 
-// Icons
-import { IoIosArrowDown } from "react-icons/io";
-import { FaPhone } from "react-icons/fa6";
+import { NAV_LINKS, type NavLink } from "@/config/nav";
+
+import { TopBar } from "../navigation/TopBar";
+import { MobileMenuToggle } from "../parts/mobileMenuToggle";
+import { useScrollShrink } from "@/hooks/use-scroll-shrink";
 
 /* ==================== STYLES ==================== */
-const navbarGlass = "bg-bg-nav/95 md:bg-bg-nav/85 backdrop-blur-xl border-white/10";
-const dropdownGlass = "bg-bg-nav/95 border border-white/10 shadow-xl";
+
+const glassEffect = "bg-bg-nav/95 md:bg-bg-nav/80 backdrop-blur-xl border-white/10";
 
 const navLinkCls = (active: boolean) =>
   clsx(
     "nav-link text-tx-inverse",
     "relative group gap-1 px-2 py-1",
-    // "relative group gap-1 px-1.5 py-1",
     "after:absolute after:left-1/2 after:bottom-0",
     "after:h-[2px] after:w-full after:-translate-x-1/2",
     "after:origin-center after:scale-x-0 after:bg-accent",
@@ -37,10 +33,18 @@ const navLinkCls = (active: boolean) =>
     active && "md:after:scale-x-100"
   );
 
-const dropdownSrvCls = (active: boolean) =>
+const dropdownLinkCls = (active: boolean) =>
   clsx(
-    "nav-link gap-2 px-4 py-2 whitespace-nowrap transition",
+    "nav-link group gap-2 px-4 py-2 whitespace-nowrap transition",
     active ? "text-accent hover:bg-bg-muted/10" : "hover:bg-bg-muted/10"
+  );
+
+const mobileDropdownCls = (active: boolean) =>
+  clsx(
+    "mx-3 flex rounded-xl px-9 py-2 text-[15px] transition-all",
+    active
+      ? "font-medium text-accent"
+      : "text-tx-inverse/75 hover:bg-white/5 hover:text-tx-inverse"
   );
 
 const mobileRowCls = (active: boolean) =>
@@ -49,26 +53,40 @@ const mobileRowCls = (active: boolean) =>
     active ? "font-medium text-tx-inverse" : "text-tx-inverse/75 hover:text-tx-inverse"
   );
 
+type DesktopDropdownType = "services" | "helpful" | null;
+
+type DropdownPosition = {
+  top: number;
+  left: number;
+};
+
 /* ==================== COMPONENT ==================== */
+
 export const Navbar = () => {
   const pathname = usePathname();
 
-  // Navbar const
   const DEFAULT_NAV_H_PX = "72px";
   const SHRUNK_NAV_H_PX = "60px";
   const SHRINK_SCROLL_Y = 16;
+  const NAV_TRANSITION_MS = 300;
 
-  const isShrunk = useScrollShrink(SHRINK_SCROLL_Y);
+  const { isShrunk, isTransitioning } = useScrollShrink(
+    SHRINK_SCROLL_Y,
+    NAV_TRANSITION_MS
+  );
 
   const [mobileOpen, setMobileOpen] = useState(false);
   const [mobileDropdown, setMobileDropdown] = useState<string | null>(null);
-  const [desktopDropdown, setDesktopDropdown] = useState<string | null>(null);
 
-  const closeAll = () => {
-    setMobileOpen(false);
-    setMobileDropdown(null);
-    setDesktopDropdown(null);
-  };
+  const [desktopDropdown, setDesktopDropdown] = useState<DesktopDropdownType>(null);
+  const [desktopDropdownPos, setDesktopDropdownPos] = useState<DropdownPosition | null>(
+    null
+  );
+
+  const servicesTriggerRef = useRef<HTMLLIElement | null>(null);
+  const helpfulTriggerRef = useRef<HTMLLIElement | null>(null);
+  const closeTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const headerRef = useRef<HTMLElement | null>(null);
 
   const navHeight = isShrunk ? SHRUNK_NAV_H_PX : DEFAULT_NAV_H_PX;
 
@@ -77,63 +95,162 @@ export const Navbar = () => {
     return pathname === href || pathname.startsWith(`${href}/`);
   };
 
-  /* ==================== Dropdown Component ==================== */
-  const renderDropdownContent = (item: NavLink, mode: "desktop" | "mobile") => {
-    if (item.dropdownType === "helpful") {
-      return (
-        <NavHelpList
-          onClick={closeAll}
-          itemClass={(active) =>
-            mode === "desktop"
-              ? clsx(
-                  "nav-link group flex gap-2 px-4 py-3 transition",
-                  active ? "text-accent hover:bg-bg-muted/10" : "hover:bg-bg-muted/10"
-                )
-              : clsx(
-                  "mx-3 flex rounded-xl px-9 py-2 text-[15px] transition-all",
-                  active
-                    ? "font-medium text-accent"
-                    : "text-tx-inverse/75 hover:bg-white/5 hover:text-tx-inverse"
-                )
-          }
-        />
-      );
+  const clearCloseTimeout = () => {
+    if (closeTimeoutRef.current) {
+      clearTimeout(closeTimeoutRef.current);
+      closeTimeoutRef.current = null;
     }
-
-    return (
-      <NavSrvList
-        onClick={closeAll}
-        itemClass={(active) =>
-          mode === "desktop"
-            ? dropdownSrvCls(active)
-            : clsx(
-                "mx-3 flex rounded-xl px-9 py-2 text-[15px] transition-all",
-                active
-                  ? "font-medium text-accent"
-                  : "text-tx-inverse/75 hover:bg-white/5 hover:text-tx-inverse"
-              )
-        }
-      />
-    );
   };
 
-  /* ==================== Render Desktop ==================== */
+  const getTriggerRef = (type: DesktopDropdownType) => {
+    if (type === "services") return servicesTriggerRef;
+    if (type === "helpful") return helpfulTriggerRef;
+    return null;
+  };
+
+  const updateDesktopDropdownPosition = (type: Exclude<DesktopDropdownType, null>) => {
+    const triggerRef = getTriggerRef(type);
+    const headerEl = headerRef.current;
+
+    if (!triggerRef?.current || !headerEl) return;
+
+    const triggerRect = triggerRef.current.getBoundingClientRect();
+    const headerRect = headerEl.getBoundingClientRect();
+    const currentNavHeight = isShrunk
+      ? Number.parseInt(SHRUNK_NAV_H_PX, 10)
+      : Number.parseInt(DEFAULT_NAV_H_PX, 10);
+
+    setDesktopDropdownPos({
+      top: headerRect.top + currentNavHeight,
+      left: triggerRect.left - 8,
+    });
+  };
+
+  const openDesktopDropdown = (type: Exclude<DesktopDropdownType, null>) => {
+    if (isTransitioning) return;
+
+    clearCloseTimeout();
+    updateDesktopDropdownPosition(type);
+    setDesktopDropdown(type);
+  };
+
+  const cancelDesktopClose = () => {
+    clearCloseTimeout();
+  };
+
+  const scheduleDesktopClose = () => {
+    clearCloseTimeout();
+
+    closeTimeoutRef.current = setTimeout(() => {
+      setDesktopDropdown(null);
+      setDesktopDropdownPos(null);
+      closeTimeoutRef.current = null;
+    }, 120);
+  };
+
+  const closeAll = () => {
+    clearCloseTimeout();
+    setMobileOpen(false);
+    setMobileDropdown(null);
+    setDesktopDropdown(null);
+    setDesktopDropdownPos(null);
+  };
+
+  useEffect(() => {
+    if (!desktopDropdown) return;
+
+    const handleResize = () => {
+      updateDesktopDropdownPosition(desktopDropdown);
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, [desktopDropdown, isShrunk]);
+
+  useEffect(() => {
+    if (!desktopDropdown) return;
+
+    updateDesktopDropdownPosition(desktopDropdown);
+  }, [desktopDropdown, isShrunk]);
+
+  useEffect(() => {
+    if (!isTransitioning) return;
+
+    const rafId = window.requestAnimationFrame(() => {
+      clearCloseTimeout();
+      setDesktopDropdown(null);
+      setDesktopDropdownPos(null);
+      setMobileDropdown(null);
+    });
+
+    return () => {
+      window.cancelAnimationFrame(rafId);
+    };
+  }, [isTransitioning]);
+
+  useEffect(() => {
+    return () => {
+      clearCloseTimeout();
+    };
+  }, []);
+
+  const renderDesktopDropdownContent = () => {
+    if (desktopDropdown === "helpful") {
+      return <NavHelpList itemClass={dropdownLinkCls} onClick={closeAll} />;
+    }
+
+    if (desktopDropdown === "services") {
+      return <NavSrvList itemClass={dropdownLinkCls} onClick={closeAll} />;
+    }
+
+    return null;
+  };
+
+  const renderMobileDropdownContent = (item: NavLink) => {
+    if (item.dropdownType === "helpful") {
+      return <NavHelpList onClick={closeAll} itemClass={mobileDropdownCls} />;
+    }
+
+    return <NavSrvList onClick={closeAll} itemClass={mobileDropdownCls} />;
+  };
+
+  /* ==================== DESKTOP ==================== */
+
   const renderDesktopItem = (item: NavLink) => {
     const isActive = isActivePath(item.href);
-    const isOpen = desktopDropdown === item.label;
+    const isOpen = desktopDropdown === item.dropdownType;
+
+    const ref =
+      item.dropdownType === "services"
+        ? servicesTriggerRef
+        : item.dropdownType === "helpful"
+          ? helpfulTriggerRef
+          : undefined;
 
     return (
       <li
         key={item.label}
+        ref={ref}
         className="relative group"
-        onMouseEnter={() => setDesktopDropdown(item.label)}
-        onMouseLeave={() => setDesktopDropdown(null)}
+        onMouseEnter={() => {
+          if (!item.dropdownType || isTransitioning) return;
+          openDesktopDropdown(item.dropdownType);
+        }}
+        onMouseLeave={() => {
+          if (item.dropdownType) {
+            scheduleDesktopClose();
+          }
+        }}
       >
         <Link
           href={item.href}
           draggable={false}
           className={navLinkCls(isActive)}
           aria-haspopup={item.hasDropdown ? "menu" : undefined}
+          aria-expanded={item.hasDropdown ? isOpen : undefined}
         >
           {item.label}
 
@@ -146,30 +263,12 @@ export const Navbar = () => {
             />
           )}
         </Link>
-
-        {item.hasDropdown && (
-          <div
-            className={clsx(
-              "absolute -left-2 top-full min-w-60 rounded-b-xl",
-              dropdownGlass,
-              "z-50 border border-t-0 text-tx-inverse ",
-              "origin-top-left transition-all duration-300 ease-in-out",
-              isShrunk ? "mt-[14px]" : "mt-5",
-              isOpen
-                ? "pointer-events-auto scale-100 opacity-100"
-                : "pointer-events-none scale-95 opacity-0",
-              "before:absolute before:-top-5 before:h-5 before:w-full",
-              "will-change-[transform,margin-top]"
-            )}
-          >
-            <ul className="py-2">{renderDropdownContent(item, "desktop")}</ul>
-          </div>
-        )}
       </li>
     );
   };
 
-  /* ==================== Render Mobile ==================== */
+  /* ==================== MOBILE ==================== */
+
   const renderMobileItem = (item: NavLink) => {
     const isActive = isActivePath(item.href);
     const isOpen = mobileDropdown === item.label;
@@ -200,7 +299,10 @@ export const Navbar = () => {
           <button
             type="button"
             className={clsx(mobileRowCls(isActive))}
-            onClick={() => setMobileDropdown(isOpen ? null : item.label)}
+            onClick={() => {
+              if (isTransitioning) return;
+              setMobileDropdown(isOpen ? null : item.label);
+            }}
             aria-expanded={isOpen}
             aria-label={`Toggle ${item.label}`}
           >
@@ -221,9 +323,7 @@ export const Navbar = () => {
             isOpen ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
           )}
         >
-          <ul className="overflow-hidden pt-1">
-            {renderDropdownContent(item, "mobile")}
-          </ul>
+          <ul className="overflow-hidden pt-1">{renderMobileDropdownContent(item)}</ul>
         </div>
       </div>
     );
@@ -234,37 +334,17 @@ export const Navbar = () => {
   return (
     <>
       {/* Top Bar */}
-      <div
-        className={clsx(
-          "fixed inset-x-0 top-0 z-60 hidden overflow-hidden border-b border-white/6 text-xs backdrop-blur-xl md:block",
-          "transition-[height] duration-300 ease-in-out",
-          "bg-bg-top-nav/95",
-          isShrunk ? "pointer-events-none h-0 border-b-0" : "h-(--top-bar-h)"
-        )}
-      >
-        <div className="container-page flex h-(--top-bar-h) items-center justify-between">
-          <span className="text-tx-inverse/65 tracking-wide pl-2">
-            Пон - Пет: 08:30 - 17:30
-          </span>
 
-          <a
-            href={`tel:${siteContent.contacts.phone}`}
-            className="flex items-center gap-2 text-accent transition-all hover:brightness-110"
-          >
-            <FaPhone />
-            <span className="font-medium tracking-wider pr-2">
-              {siteContent.contacts.phone}
-            </span>
-          </a>
-        </div>
-      </div>
+      <TopBar isShrunk={isShrunk} />
 
       {/* Navbar */}
+
       <header
+        ref={headerRef}
         id="navbar"
         className={clsx(
           "fixed inset-x-0 z-55",
-          navbarGlass,
+          glassEffect,
           "border-b",
           "no-drag transition-[top,height] duration-300 ease-in-out",
           "will-change-[top,height]"
@@ -286,29 +366,38 @@ export const Navbar = () => {
                   "text-white transition-all duration-300 ease-in-out",
                   isShrunk
                     ? "text-2xl font-semibold tracking-tight"
-                    : "text-[28px] lg:text-3xl font-semibold tracking-tight"
+                    : "text-[28px] font-semibold tracking-tight lg:text-3xl"
                 )}
               >
                 {brand.name}
               </div>
             </Link>
 
-            <ul className="hidden items-center md:gap-3 lg:gap-6 md:flex">
+            <ul
+              className={clsx(
+                "hidden items-center md:flex md:gap-3 lg:gap-6",
+                isTransitioning && "pointer-events-none"
+              )}
+            >
               {NAV_LINKS.map(renderDesktopItem)}
             </ul>
 
             <MobileMenuToggle
               isOpen={mobileOpen}
               onToggle={() => {
+                if (isTransitioning) return;
+
                 if (mobileOpen) {
                   setMobileDropdown(null);
                 }
+
                 setMobileOpen((prev) => !prev);
               }}
             />
           </div>
 
           {/* Mobile menu */}
+
           {mobileOpen && (
             <div className="md:hidden">
               <button
@@ -322,7 +411,7 @@ export const Navbar = () => {
               <div
                 className={clsx(
                   "fixed inset-x-0 z-70 transition-all duration-300 ease-in-out",
-                  dropdownGlass,
+                  glassEffect,
                   mobileOpen
                     ? "translate-y-0 opacity-100"
                     : "pointer-events-none -translate-y-2 opacity-0"
@@ -350,6 +439,36 @@ export const Navbar = () => {
           )}
         </nav>
       </header>
+
+      {/* Desktop dropdown overlay - separate from navbar DOM */}
+
+      <div className="pointer-events-none fixed inset-0 z-70 hidden md:block">
+        {desktopDropdown && desktopDropdownPos && !isTransitioning && (
+          <div
+            className="pointer-events-auto absolute"
+            style={{
+              top: desktopDropdownPos.top,
+              left: desktopDropdownPos.left,
+            }}
+            onMouseEnter={cancelDesktopClose}
+            onMouseLeave={scheduleDesktopClose}
+          >
+            <div
+              className={clsx(
+                "min-w-60 rounded-b-xl border border-t-0 text-tx-inverse",
+                glassEffect,
+                "origin-top-left transition-all duration-300 ease-in-out",
+                "scale-100 opacity-100",
+                "will-change-[transform,opacity]",
+                "before:absolute before:-top-5 before:h-5 before:w-full",
+                "will-change-[transform,margin-top]"
+              )}
+            >
+              <ul className="py-2">{renderDesktopDropdownContent()}</ul>
+            </div>
+          </div>
+        )}
+      </div>
     </>
   );
 };
