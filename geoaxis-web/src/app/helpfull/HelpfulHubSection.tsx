@@ -30,7 +30,7 @@ const featuredArticles: HelpfulArticle[] = [
     description:
       "Кратко и ясно обяснение кога се налага, какво включва и защо е важно за имоти, строителство и кадастър.",
     category: "Геодезия",
-    href: "/polezno/kakvo-e-geodezichesko-zasnemane",
+    href: "/helpfull/kakvo-e-geodezichesko-zasnemane",
   },
   {
     slug: "kolko-struva-trasirane",
@@ -38,7 +38,7 @@ const featuredArticles: HelpfulArticle[] = [
     description:
       "Основните фактори, които влияят върху цената на трасирането и как да прецените каква услуга ви е нужна.",
     category: "Трасиране",
-    href: "/polezno/kolko-struva-trasirane",
+    href: "/helpfull/kolko-struva-trasirane",
   },
   {
     slug: "kakvi-dokumenti-za-kadastar",
@@ -46,7 +46,7 @@ const featuredArticles: HelpfulArticle[] = [
     description:
       "Практичен списък с най-често необходимите документи при нанасяне, промени и процедури в кадастъра.",
     category: "Кадастър",
-    href: "/polezno/kakvi-dokumenti-za-kadastar",
+    href: "/helpfull/kakvi-dokumenti-za-kadastar",
   },
 ];
 
@@ -57,7 +57,7 @@ const latestArticles: HelpfulArticle[] = [
     description:
       "Най-честите ситуации, в които професионалната геодезическа помощ спестява време, грешки и разходи.",
     category: "Полезно",
-    href: "/polezno/koga-vi-tryabva-geodezist",
+    href: "/helpfull/koga-vi-tryabva-geodezist",
   },
   {
     slug: "razlika-mezhdu-kadastar-i-regulacia",
@@ -65,7 +65,7 @@ const latestArticles: HelpfulArticle[] = [
     description:
       "Две понятия, които често се бъркат. Вижте каква е разликата и кога всяко от тях има значение.",
     category: "Градоустройство",
-    href: "/polezno/razlika-mezhdu-kadastar-i-regulacia",
+    href: "/helpfull/razlika-mezhdu-kadastar-i-regulacia",
   },
   {
     slug: "kakvo-e-pup",
@@ -73,7 +73,7 @@ const latestArticles: HelpfulArticle[] = [
     description:
       "Кратко ръководство за подробния устройствен план, кога се изисква и каква е връзката му със строителството.",
     category: "ПУП",
-    href: "/polezno/kakvo-e-pup",
+    href: "/helpfull/kakvo-e-pup",
   },
 ];
 
@@ -81,25 +81,25 @@ const categories: HelpfulCategory[] = [
   {
     title: "Геодезия",
     description: "Заснемане, измервания, имоти и основни геодезически услуги.",
-    href: "/polezno/kategoria/geodezia",
+    href: "/helpfull/kategoria/geodezia",
     icon: <FaMapMarkedAlt className="h-5 w-5" />,
   },
   {
     title: "Кадастър",
     description: "Документи, процедури, нанасяне и често задавани въпроси.",
-    href: "/polezno/kategoria/kadastar",
+    href: "/helpfull/kategoria/kadastar",
     icon: <FaBuilding className="h-5 w-5" />,
   },
   {
     title: "Трасиране",
     description: "Какво представлява, кога е нужно и как протича на терен.",
-    href: "/polezno/kategoria/trasirane",
+    href: "/helpfull/kategoria/trasirane",
     icon: <FaRulerCombined className="h-5 w-5" />,
   },
   {
     title: "Често задавани въпроси",
     description: "Кратки и ясни отговори на най-търсените теми.",
-    href: "/polezno/faq",
+    href: "/helpfull/faq",
     icon: <FaQuestionCircle className="h-5 w-5" />,
   },
 ];
@@ -203,7 +203,7 @@ export function HelpfulHubSection() {
             </div>
 
             <Link
-              href="/polezno"
+              href="/helpfull"
               className="hidden items-center gap-2 text-sm font-medium text-[#f3c64d] md:inline-flex"
             >
               Виж всички
