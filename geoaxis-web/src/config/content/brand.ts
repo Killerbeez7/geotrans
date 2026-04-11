@@ -9,6 +9,10 @@ export interface BrandContent {
 }
 
 const BRAND_NAME = "GeoAxis";
+
+export const BRAND_WORDMARK_PRIMARY = "Geo";
+export const BRAND_WORDMARK_SECONDARY = "Axis";
+
 export const BRAND_LOCATION = "София и Софийска област";
 
 export const brand: BrandContent = {
