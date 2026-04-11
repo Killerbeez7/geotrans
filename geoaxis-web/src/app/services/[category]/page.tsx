@@ -52,7 +52,7 @@ export default async function CategoryPage({ params }: Props) {
 
   return (
     <ServicePageLayout category={category}>
-      <article className="mx-auto max-w-5xl">
+      <article>
         {/* SERVICES LIST */}
         <section className="mt-12 space-y-16 md:space-y-20">
           {category.services.map((service, index) => {

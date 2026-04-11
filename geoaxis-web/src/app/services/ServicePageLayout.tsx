@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import clsx from "clsx";
+import { SERVICES_HERO_MIN_HEIGHT } from "./services-hero.constants";
 import { ServiceCategory } from "@/config/services/categories";
 
 type Props = {
@@ -16,7 +17,12 @@ export function ServicePageLayout({ category, activeServiceSlug, children }: Pro
   return (
     <main className="bg-bg-page">
       {/* HERO */}
-      <section className="relative isolate overflow-hidden border-b border-br-light bg-white">
+      <section
+        className={clsx(
+          "relative isolate overflow-hidden border-b border-br-light bg-white",
+          SERVICES_HERO_MIN_HEIGHT
+        )}
+      >
         <div className="absolute inset-0">
           <Image
             src={heroImage}
@@ -27,34 +33,39 @@ export function ServicePageLayout({ category, activeServiceSlug, children }: Pro
           />
         </div>
 
-        <div className="absolute inset-0 bg-black/55" />
-        <div className="absolute inset-0 bg-linear-to-t from-black/55 via-black/35 to-black/15" />
+        <div className="absolute inset-0 bg-black/40" />
+        <div className="absolute inset-0 bg-linear-to-t from-black/40 via-black/20 to-transparent" />
+        {/* <div className="absolute inset-0 bg-black/55" /> */}
+        {/* <div className="absolute inset-0 bg-linear-to-t from-black/55 via-black/35 to-black/15" /> */}
 
         <div className="container-page relative pt-[calc(var(--header-h,96px)+2.5rem)] pb-14 md:pt-[calc(var(--header-h,96px)+3rem)] md:pb-16">
-          <nav aria-label="Breadcrumb" className="text-sm text-white/70">
-            <ol className="flex flex-wrap items-center gap-2">
-              <li>
-                <Link href="/" className="transition hover:text-white">
-                  Начало
-                </Link>
-              </li>
+          {activeServiceSlug && (
+            <nav aria-label="Breadcrumb" className="text-sm text-white/70">
+              <ol className="flex flex-wrap items-center gap-2">
+                <li>
+                  <Link href="/" className="transition hover:text-white">
+                    Начало
+                  </Link>
+                </li>
 
-              <li className="text-white/35">/</li>
+                <li className="text-white/35">/</li>
 
-              <li>
-                <Link href="/services" className="transition hover:text-white">
-                  Услуги
-                </Link>
-              </li>
+                <li>
+                  <Link href="/services" className="transition hover:text-white">
+                    Услуги
+                  </Link>
+                </li>
 
-              <li className="text-white/35">/</li>
+                <li className="text-white/35">/</li>
 
-              <li className="text-white">{category.title}</li>
-            </ol>
-          </nav>
+                <li className="text-white">{category.title}</li>
+              </ol>
+            </nav>
+          )}
 
           {category.meta ? (
-            <p className="mt-6 typo-kicker text-accent">{category.meta}</p>
+            // <p className="mt-6 typo-kicker text-accent">{category.meta}</p>
+            <p className="mt-6 typo-kicker text-white/65">{category.meta}</p>
           ) : null}
 
           <h1 className="mt-3 max-w-4xl text-4xl font-semibold tracking-tight text-white md:text-5xl">
@@ -77,7 +88,7 @@ export function ServicePageLayout({ category, activeServiceSlug, children }: Pro
               <SubnavLink
                 key={service.slug}
                 href={`/services/${category.slug}/${service.slug}`}
-                label={service.title}
+                label={service.shortTitle ?? service.title}
                 active={activeServiceSlug === service.slug}
               />
             ))}
@@ -109,7 +120,7 @@ function SubnavLink({ href, label, active = false }: SubnavLinkProps) {
         "inline-flex items-center rounded-full px-4 py-2 text-sm transition",
         active
           ? "bg-white text-tx-primary"
-          : "border border-white/20 bg-white/10 text-white/85 backdrop-blur-sm hover:bg-white/15 hover:text-white"
+          : "border border-white/10 bg-white/5 text-white/85 backdrop-blur-sm hover:bg-white/15 hover:text-white"
       )}
     >
       {label}

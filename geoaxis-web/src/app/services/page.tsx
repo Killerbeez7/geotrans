@@ -1,7 +1,13 @@
+import Image from "next/image";
 import Link from "next/link";
 import clsx from "clsx";
 
 import { serviceCategories } from "@/config/services/categories";
+import {
+  SERVICES_HERO_CONTENT_CLASS,
+  SERVICES_HERO_MIN_HEIGHT,
+} from "./services-hero.constants";
+
 import { CategoryCard } from "@/components/parts/CategoryCard";
 import { Section } from "@/components/layout/Section";
 
@@ -9,24 +15,38 @@ export default function ServicesPage() {
   return (
     <main className="bg-bg-page">
       {/* Hero / intro */}
-      <Section
-        tone="section"
-        className={clsx("relative overflow-hidden border-b border-br-light")}
+      <section
+        className={clsx(
+          "relative isolate overflow-hidden border-b border-br-light bg-black",
+          SERVICES_HERO_MIN_HEIGHT
+        )}
       >
+        <div className="absolute inset-0">
+          <Image
+            src="/images/5.jpeg"
+            alt="Геодезически и кадастрални услуги"
+            fill
+            priority
+            className="object-cover object-[50%_42%]"
+            sizes="100vw"
+          />
+        </div>
+
+        <div className="pointer-events-none absolute inset-0 bg-black/42" />
         <div
           className={clsx(
             "pointer-events-none absolute inset-0",
-            "bg-[radial-gradient(circle_at_top_left,rgba(255,255,255,0.06),transparent_38%),radial-gradient(circle_at_top_right,rgba(255,255,255,0.04),transparent_32%)]"
+            "bg-linear-to-t from-black/45 via-black/22 to-transparent"
           )}
         />
 
-        <div className="container-page relative pt-12 md:pt-16 lg:pt-20">
+        <div className={SERVICES_HERO_CONTENT_CLASS}>
           <div className="max-w-4xl">
-            <h1 className="mt-3 typo-h2 text-tx-primary">
+            <h1 className="typo-h2 text-white drop-shadow-sm md:text-[2.25rem] md:leading-tight lg:text-[2.5rem]">
               Геодезически и кадастрални услуги
             </h1>
 
-            <p className="mt-4 max-w-3xl typo-body text-tx-secondary">
+            <p className="mt-4 max-w-3xl typo-body text-white/88">
               Изберете категория според конкретната нужда - заснемане, трасиране,
               кадастър, проектиране или градоустройство. Всяка услуга е представена с
               кратко описание, за да откриете по-лесно най-подходящата следваща стъпка.
@@ -47,9 +67,9 @@ export default function ServicesPage() {
               <Link
                 href="#categories"
                 className={clsx(
-                  "inline-flex items-center justify-center rounded-xl border border-br-light",
-                  "bg-bg-page/70 px-6 py-3 text-sm font-semibold text-tx-primary",
-                  "transition-colors duration-300 hover:border-br-strong hover:bg-bg-surface"
+                  "inline-flex items-center justify-center rounded-xl border border-white/25",
+                  "bg-white/8 px-6 py-3 text-sm font-semibold text-white backdrop-blur-sm",
+                  "transition-colors duration-300 hover:border-white/40 hover:bg-white/14"
                 )}
               >
                 Разгледайте категориите
@@ -57,7 +77,7 @@ export default function ServicesPage() {
             </div>
           </div>
         </div>
-      </Section>
+      </section>
 
       {/* Categories grid */}
       <section id="categories" className="py-10 md:py-14 lg:py-16">
@@ -150,7 +170,7 @@ export default function ServicesPage() {
                   className={clsx(
                     "inline-flex items-center justify-center rounded-xl",
                     "bg-accent px-6 py-3 text-sm font-semibold text-tx-inverse",
-                    "transition-all duration-300 hover:translate-y-1px hover:opacity-95"
+                    "transition-all duration-300 hover:translate-y-px hover:opacity-95"
                   )}
                 >
                   Изпратете запитване
