@@ -40,7 +40,8 @@ export const serviceCategories: ServiceCategory[] = [
     title: "Геодезическо заснемане",
     shortTitle: "Заснемане",
     meta: "Терен • Сгради • Инфраструктура",
-    thumbnail: "/images/category/zasnemane-thumb.jpg",
+    thumbnail: "/images/category/zasnemane.jpg",
+    // thumbnail: "/images/category/zasnemane-thumb.jpg",
     heroImage: "/images/category/zasnemane-og.jpg",
     description: "Прецизно заснемане на терени и обекти за проектиране и строителство.",
     longDescription:
@@ -84,8 +85,9 @@ export const serviceCategories: ServiceCategory[] = [
       {
         slug: "na-sgrada",
         title: "Геодезическо заснемане на сграда",
+        shortTitle: "Заснемане на сграда",
         meta: "Сграда • Документация",
-        thumbnail: "/images/services/geodezichesko-zasnemane-thumb.jpg",
+        thumbnail: "/images/category/zasnemane.jpg",
         description: "Заснемане на сгради за документация и последващо проектиране.",
         longDescription:
           "Заснемането на сграда осигурява точни данни за съществуващото състояние. Използва се при реконструкции, узаконяване, архитектурни проекти и техническа документация.",
@@ -113,6 +115,7 @@ export const serviceCategories: ServiceCategory[] = [
       {
         slug: "na-fasadi",
         title: "Геодезическо заснемане на фасади",
+        shortTitle: "Заснемане на фасади",
         meta: "Фасади • Архитектура",
         thumbnail: "/images/services/geodezichesko-zasnemane-thumb.jpg",
         description:
@@ -131,6 +134,7 @@ export const serviceCategories: ServiceCategory[] = [
       {
         slug: "na-tehnicheska-infrastruktura",
         title: "Геодезическо заснемане на техническа инфраструктура",
+        shortTitle: "Заснемане на техн. инфраструктура",
         meta: "Мрежи • Съоръжения",
         thumbnail: "/images/plamen.jpg",
         description: "Заснемане на мрежи и съоръжения за координация и проектиране.",
@@ -152,6 +156,7 @@ export const serviceCategories: ServiceCategory[] = [
       {
         slug: "na-darvesna-rastitelnost",
         title: "Геодезическо заснемане на дървесна растителност",
+        shortTitle: "Заснемане на дървестна растителност",
         meta: "Дървета • Терен",
         thumbnail: "/images/services/durvestna.jpeg",
         description: "Заснемане на дървета и зелени площи за проектиране и регулация.",

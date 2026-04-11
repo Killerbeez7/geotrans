@@ -32,7 +32,8 @@ export default function About() {
       <Section className="relative isolate h-150 overflow-hidden" variant="hero">
         <div className="absolute inset-0 -z-20">
           <Image
-            src="/images/t2.jpeg"
+            src="/toni-left.jpg"
+            // src="/images/t2.jpeg"
             alt=""
             fill
             priority
