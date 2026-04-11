@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useState, useRef, useEffect } from "react";
 import { usePathname } from "next/navigation";
-import { brand } from "@/config/content/brand";
+import { BRAND_WORDMARK_PRIMARY, BRAND_WORDMARK_SECONDARY } from "@/config/content/brand";
 
 import clsx from "clsx";
 import { IoIosArrowDown } from "react-icons/io";
@@ -337,13 +337,16 @@ export const Navbar = () => {
             >
               <div
                 className={clsx(
-                  "text-white transition-all duration-300 ease-in-out",
+                  "transition-all duration-300 ease-in-out",
                   isShrunk
                     ? "text-2xl font-semibold tracking-tight"
                     : "text-[28px] font-semibold tracking-tight lg:text-3xl"
                 )}
               >
-                {brand.name}
+                <>
+                  <span className="text-white">{BRAND_WORDMARK_PRIMARY}</span>
+                  <span className="text-accent">{BRAND_WORDMARK_SECONDARY}</span>
+                </>
               </div>
             </Link>
 
