@@ -14,13 +14,11 @@ type NavSrvListProps = {
 export const NavSrvList = ({ onClick, itemClass }: NavSrvListProps) => {
   const pathname = usePathname();
 
-  const dropdownLinks = serviceCategories.filter((service) => service.slug !== "more");
-
   const isExact = (href: string) => pathname === href;
 
   return (
     <>
-      {dropdownLinks.map((service) => {
+      {serviceCategories.map((service) => {
         const href = `/services/${service.slug}`;
         const active = isExact(href);
 
@@ -33,16 +31,7 @@ export const NavSrvList = ({ onClick, itemClass }: NavSrvListProps) => {
         );
       })}
 
-      {/* Decorative Divider */}
-      <li
-        aria-hidden="true"
-        className={clsx(
-          "my-2 mx-4 h-px",
-          "bg-linear-to-r from-transparent via-white/10 to-transparent"
-        )}
-      />
-      {/* View All Services Link */}
-      <li>
+      <li className="list-none border-t border-white/10">
         <Link
           href="/services"
           onClick={onClick}

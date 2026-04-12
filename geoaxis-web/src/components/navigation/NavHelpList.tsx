@@ -32,15 +32,7 @@ export const NavHelpList = ({ onClick, itemClass }: NavHelpListProps) => {
         );
       })}
 
-      <li
-        aria-hidden="true"
-        className={clsx(
-          "mx-4 my-2 h-px",
-          "bg-linear-to-r from-transparent via-white/10 to-transparent"
-        )}
-      />
-
-      <li>
+      <li className="list-none border-t border-white/10">
         <Link
           href="/polezno"
           onClick={onClick}

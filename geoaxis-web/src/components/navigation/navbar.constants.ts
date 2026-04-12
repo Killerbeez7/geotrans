@@ -34,10 +34,10 @@ export const dropdownLinkCls = (active: boolean) =>
 
 export const mobileDropdownCls = (active: boolean) =>
   clsx(
-    "mx-3 flex rounded-xl px-9 py-2 text-[15px] transition-all",
+    "flex min-h-[48px] items-center px-4 py-2.5 pl-5 text-[14px] leading-snug transition-colors",
     active
-      ? "font-medium text-accent"
-      : "text-tx-inverse/75 hover:bg-white/5 hover:text-tx-inverse"
+      ? "border-l-accent/80 bg-white/10 font-medium text-tx-inverse"
+      : "text-tx-inverse/78 hover:bg-white/8 hover:text-tx-inverse"
   );
 
 export const mobileRowCls = (active: boolean) =>

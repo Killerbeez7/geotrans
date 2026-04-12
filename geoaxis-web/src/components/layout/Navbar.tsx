@@ -298,7 +298,13 @@ export const Navbar = () => {
             isOpen ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
           )}
         >
-          <ul className="overflow-hidden pt-1">{renderMobileDropdownContent(item)}</ul>
+          <div className="min-h-0 overflow-hidden">
+            <div className="border-b border-white/10 bg-black/10">
+              <ul className="m-0 list-none overflow-hidden p-0">
+                {renderMobileDropdownContent(item)}
+              </ul>
+            </div>
+          </div>
         </div>
       </div>
     );
@@ -400,7 +406,7 @@ export const Navbar = () => {
               className="overflow-y-auto border-b border-white/10"
               style={{ height: `calc(100dvh - ${mobilePanelTop})` }}
             >
-              <div className="container-page flex flex-col pb-8 pt-2">
+              <div className="container-page flex flex-col pb-8">
                 {NAV_LINKS.map(renderMobileItem)}
 
                 <Link
