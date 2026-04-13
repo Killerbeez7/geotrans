@@ -3,11 +3,28 @@ import { HELPFUL_NAV_ITEMS } from "@/config/polezno/helpful-nav";
 import { Section } from "@/components/layout/Section";
 import { createSeo } from "@/lib/seo-builder";
 
-export const metadata = createSeo({
-  title: "Полезни материали",
-  description: "Полезни статии, въпроси и отговори, ръководства, ресурси",
-  path: "/polezno",
-});
+export async function generateMetadata({ params }: Props) {
+  const { slug } = await params;
+
+  const currentItem = HELPFUL_NAV_ITEMS.find((item) => item.slug === slug);
+
+  if (!currentItem) {
+    return createSeo({
+      title: "Полезни материали",
+      description: "Полезни статии, въпроси и отговори, ръководства и ресурси.",
+      canonical: "/polezno",
+      noIndex: true,
+    });
+  }
+
+  return createSeo({
+    title: currentItem.label,
+    description:
+      currentItem.description ?? `Полезни материали от GeoAxis: ${currentItem.label}.`,
+    canonical: `/polezno/${currentItem.slug}`,
+    noIndex: true,
+  });
+}
 
 type Props = {
   params: Promise<{

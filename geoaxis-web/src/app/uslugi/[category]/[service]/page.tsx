@@ -5,8 +5,7 @@ import { notFound } from "next/navigation";
 import { serviceCategories } from "@/config/services/categories";
 import { ServicePageLayout } from "../../ServicePageLayout";
 
-import { createSeo } from "@/lib/seo-builder";
-import { brand } from "@/config/content/brand";
+import { createSeo, createServiceSeo } from "@/lib/seo-builder";
 
 export async function generateMetadata({ params }: Props) {
   const { category: categorySlug, service: serviceSlug } = await params;
@@ -17,17 +16,12 @@ export async function generateMetadata({ params }: Props) {
   if (!category || !service) {
     return createSeo({
       title: "Услуга",
-      description: `Подробности за услугата на ${brand.name}.`,
-      path: `/uslugi/${categorySlug}/${serviceSlug}`,
+      description: "Подробности за услугата.",
+      canonical: `/uslugi/${categorySlug}/${serviceSlug}`,
     });
   }
 
-  return createSeo({
-    title: service.title,
-    description: service.longDescription ?? service.description,
-    path: `/uslugi/${categorySlug}/${serviceSlug}`,
-    image: service.heroImage ?? service.thumbnail,
-  });
+  return createServiceSeo(category, service);
 }
 
 type Props = {

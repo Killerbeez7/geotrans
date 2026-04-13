@@ -4,9 +4,8 @@ import { notFound } from "next/navigation";
 import { serviceCategories } from "@/config/services/categories";
 import { ServicePageLayout } from "../ServicePageLayout";
 
-import { brand } from "@/config/content/brand";
-import { createSeo } from "@/lib/seo-builder";
 import { getCategoryBySlug } from "@/lib/selectors";
+import { createCategorySeo } from "@/lib/seo-builder";
 
 export async function generateMetadata({
   params,
@@ -17,25 +16,12 @@ export async function generateMetadata({
   const categoryData = getCategoryBySlug(category);
 
   if (!categoryData) {
-    return createSeo({
-      title: "Услуги",
-      description: `Разгледайте геодезическите услуги на ${brand.name}.`,
-      path: "/uslugi",
-    });
+    return {
+      title: "Услуги - GeoAxis",
+      description: "Разгледайте геодезическите услуги на GeoAxis.",
+    };
   }
-
-  return createSeo({
-    title: categoryData.title,
-    description: categoryData.longDescription ?? categoryData.description,
-    path: `/uslugi/${categoryData.slug}`,
-    image: categoryData.heroImage ?? categoryData.thumbnail,
-  });
-
-  // export const metadata = createSeo({
-  //   title: `${category.title} в София`,
-  //   description: category.description,
-  //   path: `/services/${category.slug}`,
-  // })
+  return createCategorySeo(categoryData);
 }
 
 type Props = {
