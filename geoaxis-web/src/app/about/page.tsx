@@ -8,7 +8,7 @@ import { Stats } from "@/components/sections/StatsSection";
 // Data
 import { siteContent } from "@/config/site-content";
 // SEO
-import { createSeo } from "@/lib/seo";
+import { createSeo } from "@/lib/seo-builder";
 
 export const metadata = createSeo({
   title: "За нас",

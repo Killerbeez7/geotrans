@@ -53,7 +53,7 @@ export function ServicePageLayout({ category, activeServiceSlug, children }: Pro
                 <li className="text-white/35">/</li>
 
                 <li>
-                  <Link href="/services" className="transition hover:text-white">
+                  <Link href="/uslugi" className="transition hover:text-white">
                     Услуги
                   </Link>
                 </li>
@@ -81,7 +81,7 @@ export function ServicePageLayout({ category, activeServiceSlug, children }: Pro
           {/* LIGHT TOP NAV INSTEAD OF SIDEBAR */}
           <div className="mt-8 flex flex-wrap gap-3">
             <SubnavLink
-              href={`/services/${category.slug}`}
+              href={`/uslugi/${category.slug}`}
               label="Общ преглед"
               active={!activeServiceSlug}
             />
@@ -89,7 +89,7 @@ export function ServicePageLayout({ category, activeServiceSlug, children }: Pro
             {category.services.map((service) => (
               <SubnavLink
                 key={service.slug}
-                href={`/services/${category.slug}/${service.slug}`}
+                href={`/uslugi/${category.slug}/${service.slug}`}
                 label={service.shortTitle ?? service.title}
                 active={activeServiceSlug === service.slug}
               />

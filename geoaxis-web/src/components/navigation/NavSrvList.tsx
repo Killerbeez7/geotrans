@@ -19,7 +19,7 @@ export const NavSrvList = ({ onClick, itemClass }: NavSrvListProps) => {
   return (
     <>
       {serviceCategories.map((service) => {
-        const href = `/services/${service.slug}`;
+        const href = `/uslugi/${service.slug}`;
         const active = isExact(href);
 
         return (
@@ -33,9 +33,9 @@ export const NavSrvList = ({ onClick, itemClass }: NavSrvListProps) => {
 
       <li className="list-none border-t border-white/10">
         <Link
-          href="/services"
+          href="/uslugi"
           onClick={onClick}
-          className={clsx(itemClass(isExact("/services")))}
+          className={clsx(itemClass(isExact("/uslugi")))}
         >
           <span>Всички услуги</span>
           <FaAngleRight

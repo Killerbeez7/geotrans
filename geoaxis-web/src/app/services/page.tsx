@@ -8,7 +8,7 @@ import {
   SERVICES_HERO_MIN_HEIGHT,
 } from "./services-hero.constants";
 
-import { createSeo } from "@/lib/seo";
+import { createSeo } from "@/lib/seo-builder";
 
 import { CategoryCard } from "@/components/parts/CategoryCard";
 import { Section } from "@/components/layout/Section";
@@ -186,7 +186,7 @@ export default function ServicesPage() {
                 </Link>
 
                 <Link
-                  href="/services/konsultacia"
+                  href="/uslugi/konsultacia"
                   className={clsx(
                     "inline-flex items-center justify-center rounded-xl border border-br-light",
                     "bg-transparent px-6 py-3 text-sm font-semibold text-tx-primary",

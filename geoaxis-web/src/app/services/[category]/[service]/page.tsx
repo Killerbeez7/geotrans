@@ -5,7 +5,7 @@ import { notFound } from "next/navigation";
 import { serviceCategories } from "@/config/services/categories";
 import { ServicePageLayout } from "../../ServicePageLayout";
 
-import { createSeo } from "@/lib/seo";
+import { createSeo } from "@/lib/seo-builder";
 import { brand } from "@/config/content/brand";
 
 export async function generateMetadata({ params }: Props) {
@@ -18,14 +18,14 @@ export async function generateMetadata({ params }: Props) {
     return createSeo({
       title: "Услуга",
       description: `Подробности за услугата на ${brand.name}.`,
-      path: `/services/${categorySlug}/${serviceSlug}`,
+      path: `/uslugi/${categorySlug}/${serviceSlug}`,
     });
   }
 
   return createSeo({
     title: service.title,
     description: service.longDescription ?? service.description,
-    path: `/services/${categorySlug}/${serviceSlug}`,
+    path: `/uslugi/${categorySlug}/${serviceSlug}`,
     image: service.heroImage ?? service.thumbnail,
   });
 }
@@ -114,7 +114,7 @@ export default async function ServicePage({ params }: Props) {
               </Link>
 
               <Link
-                href={`/services/${category.slug}`}
+                href={`/uslugi/${category.slug}`}
                 className="inline-flex items-center justify-center rounded-xl px-4 py-3 text-sm font-medium text-tx-secondary transition-colors duration-300 hover:text-tx-primary"
               >
                 Назад към категорията
@@ -203,7 +203,7 @@ export default async function ServicePage({ params }: Props) {
               </Link>
 
               <Link
-                href="/services"
+                href="/uslugi"
                 className="inline-flex items-center justify-center rounded-xl px-4 py-3 text-sm font-medium text-tx-secondary transition-colors duration-300 hover:text-tx-primary"
               >
                 Всички услуги

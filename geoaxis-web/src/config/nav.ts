@@ -11,7 +11,7 @@ export const NAV_LINKS: readonly NavLink[] = [
   {
     id: "services",
     label: "Услуги",
-    href: "/services",
+    href: "/uslugi",
     hasDropdown: true,
     dropdownType: "services",
   },

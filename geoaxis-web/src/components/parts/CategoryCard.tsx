@@ -32,7 +32,7 @@ type CategoryCardProps = {
 
 export const CategoryCard = ({ category }: CategoryCardProps) => {
   const Icon = ICON_BY_SLUG[category.slug] ?? FaCompassDrafting;
-  const href = `/services/${category.slug}`;
+  const href = `/uslugi/${category.slug}`;
   const title = category.shortTitle ?? category.title;
   const imageSrc = category.thumbnail ?? "/images/utility/placeholder.png";
 

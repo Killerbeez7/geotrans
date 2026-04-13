@@ -1,7 +1,7 @@
 import { notFound } from "next/navigation";
 import { HELPFUL_NAV_ITEMS } from "@/config/polezno/helpful-nav";
 import { Section } from "@/components/layout/Section";
-import { createSeo } from "@/lib/seo";
+import { createSeo } from "@/lib/seo-builder";
 
 export const metadata = createSeo({
   title: "Полезни материали",

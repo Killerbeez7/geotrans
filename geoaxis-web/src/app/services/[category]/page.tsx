@@ -5,7 +5,7 @@ import { serviceCategories } from "@/config/services/categories";
 import { ServicePageLayout } from "../ServicePageLayout";
 
 import { brand } from "@/config/content/brand";
-import { createSeo } from "@/lib/seo";
+import { createSeo } from "@/lib/seo-builder";
 import { getCategoryBySlug } from "@/lib/selectors";
 
 export async function generateMetadata({
@@ -20,16 +20,22 @@ export async function generateMetadata({
     return createSeo({
       title: "Услуги",
       description: `Разгледайте геодезическите услуги на ${brand.name}.`,
-      path: "/services",
+      path: "/uslugi",
     });
   }
 
   return createSeo({
     title: categoryData.title,
     description: categoryData.longDescription ?? categoryData.description,
-    path: `/services/${categoryData.slug}`,
+    path: `/uslugi/${categoryData.slug}`,
     image: categoryData.heroImage ?? categoryData.thumbnail,
   });
+
+  // export const metadata = createSeo({
+  //   title: `${category.title} в София`,
+  //   description: category.description,
+  //   path: `/services/${category.slug}`,
+  // })
 }
 
 type Props = {

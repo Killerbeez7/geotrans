@@ -7,7 +7,7 @@ import { Section } from "@/components/layout/Section";
 // Data
 import { siteContent } from "@/config/site-content";
 // SEO
-import { createSeo } from "@/lib/seo";
+import { createSeo } from "@/lib/seo-builder";
 
 export const metadata = createSeo({
   title: "Контакти",

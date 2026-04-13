@@ -19,6 +19,6 @@ export const hero: HeroContent = {
   image: "/images/sections/hero-img.jpeg",
   cta: {
     primary: { label: "Свържи се", href: "/contacts" },
-    secondary: { label: "Виж услуги", href: "/services" },
+    secondary: { label: "Виж услуги", href: "/uslugi" },
   },
 } as const;
