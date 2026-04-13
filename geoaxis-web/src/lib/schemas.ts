@@ -6,48 +6,39 @@ const stripSpaces = (s: string) => s.replace(/\s+/g, "");
 export function getLocalBusinessSchema(siteUrl: string) {
   const { brand, contacts } = siteContent;
 
-  const [streetRaw = "", cityRaw = ""] = contacts.address
-    .split("||")
-    .map((s) => s.trim());
-
-  const telephone = stripSpaces(contacts.phone);
-
   return {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
     name: brand.name,
     url: siteUrl,
-    telephone,
+    logo: `${siteUrl}${brand.logo}`,
+    image: `${siteUrl}/og-image.jpg`,
+    telephone: stripSpaces(contacts.phone),
     email: contacts.email,
+    address: {
+      "@type": "PostalAddress",
+      streetAddress: "бул. България",
+      postalCode: "1618",
+      addressLocality: "София",
+      addressCountry: "BG",
+    },
     areaServed: [
       { "@type": "City", name: "София" },
       { "@type": "AdministrativeArea", name: "Софийска област" },
     ],
-    address: {
-      "@type": "PostalAddress",
-      streetAddress: streetRaw || undefined,
-      addressLocality: cityRaw || "София",
-      addressCountry: "BG",
-    },
-    geo: {
-      "@type": "GeoCoordinates",
-      latitude: "42.6977",
-      longitude: "23.3219",
-    },
-    sameAs: ["https://www.facebook.com/GeoTrans"],
   };
 }
 
-export function getServiceSchema(siteUrl: string, service: Service) {
+export function getServiceSchema(siteUrl: string, path: string, service: Service) {
   const { brand, contacts } = siteContent;
 
   return {
     "@context": "https://schema.org",
     "@type": "Service",
-    name: `${service.title} в София`,
+    name: service.title,
     description: service.description,
     serviceType: service.title,
-    url: `${siteUrl}/services/${service.slug}`,
+    url: `${siteUrl}${path}`,
     areaServed: [
       { "@type": "City", name: "София" },
       { "@type": "AdministrativeArea", name: "Софийска област" },
@@ -60,6 +51,8 @@ export function getServiceSchema(siteUrl: string, service: Service) {
       email: contacts.email,
       address: {
         "@type": "PostalAddress",
+        streetAddress: "бул. България",
+        postalCode: "1618",
         addressLocality: "София",
         addressCountry: "BG",
       },
