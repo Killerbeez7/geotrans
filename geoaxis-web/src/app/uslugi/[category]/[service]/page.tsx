@@ -7,6 +7,13 @@ import { ServicePageLayout } from "../../ServicePageLayout";
 
 import { createSeo, createServiceSeo } from "@/lib/seo-builder";
 
+type Props = {
+  params: Promise<{
+    category: string;
+    service: string;
+  }>;
+};
+
 export async function generateMetadata({ params }: Props) {
   const { category: categorySlug, service: serviceSlug } = await params;
 
@@ -23,13 +30,6 @@ export async function generateMetadata({ params }: Props) {
 
   return createServiceSeo(category, service);
 }
-
-type Props = {
-  params: Promise<{
-    category: string;
-    service: string;
-  }>;
-};
 
 export async function generateStaticParams() {
   return serviceCategories.flatMap((category) =>
@@ -72,7 +72,6 @@ export default async function ServicePage({ params }: Props) {
   return (
     <ServicePageLayout category={category} activeServiceSlug={service.slug}>
       <article className="mx-auto max-w-4xl">
-        {/* TOP */}
         <section className="grid items-start gap-8 md:grid-cols-[1.05fr_0.95fr] md:gap-10">
           <div className="relative overflow-hidden rounded-[24px] bg-bg-surface">
             <div className="relative aspect-[4/3] min-h-[260px]">
@@ -117,7 +116,6 @@ export default async function ServicePage({ params }: Props) {
           </div>
         </section>
 
-        {/* MAIN LIST */}
         {primaryList ? (
           <section className="mt-12 border-t border-br-light pt-10">
             <h2 className="text-2xl font-semibold text-tx-primary">
@@ -138,7 +136,6 @@ export default async function ServicePage({ params }: Props) {
           </section>
         ) : null}
 
-        {/* OPTIONAL SECONDARY INFO */}
         {service.processSteps?.length ? (
           <section className="mt-12 border-t border-br-light pt-10">
             <h2 className="text-2xl font-semibold text-tx-primary">Как протича</h2>
@@ -176,7 +173,6 @@ export default async function ServicePage({ params }: Props) {
           </section>
         ) : null}
 
-        {/* CTA */}
         <section className="mt-14 border-t border-br-light pt-10">
           <div className="max-w-2xl">
             <h2 className="text-2xl font-semibold text-tx-primary md:text-3xl">

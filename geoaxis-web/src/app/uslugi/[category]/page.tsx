@@ -4,31 +4,29 @@ import { notFound } from "next/navigation";
 import { serviceCategories } from "@/config/services/categories";
 import { ServicePageLayout } from "../ServicePageLayout";
 
+import { createCategorySeo, createSeo } from "@/lib/seo-builder";
 import { getCategoryBySlug } from "@/lib/selectors";
-import { createCategorySeo } from "@/lib/seo-builder";
-
-export async function generateMetadata({
-  params,
-}: {
-  params: Promise<{ category: string }>;
-}) {
-  const { category } = await params;
-  const categoryData = getCategoryBySlug(category);
-
-  if (!categoryData) {
-    return {
-      title: "Услуги - GeoAxis",
-      description: "Разгледайте геодезическите услуги на GeoAxis.",
-    };
-  }
-  return createCategorySeo(categoryData);
-}
 
 type Props = {
   params: Promise<{
     category: string;
   }>;
 };
+
+export async function generateMetadata({ params }: Props) {
+  const { category } = await params;
+  const categoryData = getCategoryBySlug(category);
+
+  if (!categoryData) {
+    return createSeo({
+      title: "Услуги",
+      description: "Разгледайте геодезическите услуги на GeoAxis.",
+      canonical: "/uslugi",
+    });
+  }
+
+  return createCategorySeo(categoryData);
+}
 
 export async function generateStaticParams() {
   return serviceCategories.map((category) => ({
@@ -45,7 +43,6 @@ export default async function CategoryPage({ params }: Props) {
   return (
     <ServicePageLayout category={category}>
       <article>
-        {/* SERVICES LIST */}
         <section className="mt-12 space-y-16 md:space-y-20">
           {category.services.map((service, index) => {
             const imageLeft = index % 2 === 0;
@@ -63,7 +60,6 @@ export default async function CategoryPage({ params }: Props) {
                         src={imageSrc}
                         alt={service.title}
                         fill
-                        // className="object-cover scale-75"
                         className="object-cover scale-90"
                       />
                     </div>
