@@ -1,7 +1,7 @@
 export interface HeroContent {
   id: "hero";
   title: string;
-  subtitle: string;
+  subtitle?: string;
   kicker?: string;
   image: string;
   imageAlt: string;
@@ -14,9 +14,11 @@ export interface HeroContent {
 export const hero: HeroContent = {
   id: "hero",
   title: " Точни измервания. || Сигурен резултат.",
+  // title: "Геодезически услуги София, || Заснемане, Трасиране, Кадастър.",
+  // title: "Геодезически услуги в София, || от заснемане до кадастър.",
   subtitle:
-    // "Геодезически услуги в София и Софийска област – заснемане, трасиране и кадастър от лицензирани специалисти.",
     "Геодезически услуги в София и област – от заснемане на парцел до нанасяне в кадастър.",
+  // "Геодезически услуги в София и област – от заснемане до кадастър.",
   kicker: "Геодезия • Кадастър • Градоустройство",
   image: "/images/sections/hero-img.jpeg",
   imageAlt:

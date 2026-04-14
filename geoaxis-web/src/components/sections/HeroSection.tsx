@@ -25,24 +25,21 @@ export function HeroSection({
 
         {/* Content */}
         <div className="container-page relative w-full pt-(--header-h)">
-          <div className="max-w-3xl mx-auto md:mx-0 text-center md:text-left md:translate-x-6 lg:translate-x-10">
+          <div className="max-w-4xl mx-auto md:mx-0 text-center md:text-left md:translate-x-6 lg:translate-x-10">
             {/* Kicker */}
             {kicker && (
               <div className="mb-4 flex justify-center md:justify-start">
                 <span
-                  className="
-                    typo-kicker
-                    px-5 py-2
-                    rounded-full
-                    bg-white/10
-                    backdrop-blur-md
-                    tracking-wider
-                    text-[11px] md:text-sm
-                    text-tx-inverse/70
-                    md:bg-transparent md:rounded-none
-                    md:px-0 md:py-0
-                    md:border-l-2 md:border-white/30 md:pl-4
-                  "
+                  className={clsx(
+                    "rounded-full   px-5 py-2 bg-white/10",
+                    "typo-kicker",
+                    "text-[11px] md:text-[13px]",
+                    "text-tx-inverse/45",
+                    "tracking-widest",
+                    "md:border-l-2 md:border-accent/40 md:pl-4 md:py-1",
+
+                    "md:bg-transparent md:rounded-none"
+                  )}
                 >
                   {kicker}
                 </span>
@@ -51,33 +48,44 @@ export function HeroSection({
 
             {/* Title */}
             <h1 className="typo-hero">
-              <span className="block text-tx-inverse/92">{line1}</span>
+              {/* <span className="block text-tx-inverse/92">{line1}</span> */}
+              <span className="block text-tx-inverse/87">{line1}</span>
               {accent && (
-                <span className="block font-bold text-accent drop-shadow-[0_1px_0_rgba(0,0,0,0.35)]">
+                // <span className="block font-bold text-accent drop-shadow-[0_1px_0_rgba(0,0,0,0.35)]">
+                <span
+                  className={clsx(
+                    "block mt-0.5",
+                    "font-medium text-accent",
+                    "drop-shadow-[0_1px_2px_rgba(0,0,0,0.25)]"
+                  )}
+                >
                   {accent}
                 </span>
               )}
             </h1>
 
-            {/* Subtitle */}
-            <p className="typo-hero-sub mt-8 max-w-xl mx-auto md:mx-0 text-tx-inverse/87">
-              {subtitle}
-            </p>
+            {/* Subtitle - optional */}
+            {subtitle && (
+              <p className="typo-hero-sub mt-7 md:mt-8 max-w-lg mx-auto md:mx-0">
+                {subtitle}
+              </p>
+            )}
 
             {/* CTA */}
             {cta && (
-              <div className="mt-8 flex flex-wrap items-center gap-4 justify-center md:justify-start">
+              <div
+                className={clsx(
+                  "flex flex-wrap items-center gap-4",
+                  "justify-center md:justify-start",
+                  subtitle ? "mt-8" : "mt-10 md:mt-12"
+                )}
+              >
                 <CtaButton href={cta.primary.href} size="lg">
                   <FaPhone className="mr-2" />
                   {cta.primary.label}
                 </CtaButton>
 
-                <CtaButton
-                  variant="glassAccent"
-                  href={cta.secondary.href}
-                  size="lg"
-                  className=""
-                >
+                <CtaButton variant="glassAccent" href={cta.secondary.href} size="lg">
                   {cta.secondary.label} <MdArrowRightAlt />
                 </CtaButton>
               </div>

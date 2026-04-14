@@ -61,7 +61,7 @@
 
   /* ==================== TYPE SCALE ==================== */
 
-  --fs-hero: clamp(1.8rem, 3vw + 1rem, 3.5rem);
+  --fs-hero: clamp(1.85rem, 3.2vw + 0.9rem, 3.5rem);
   --fs-h2: clamp(1.5rem, 2vw + 1rem, 2.5rem);
   --fs-h3: clamp(1.2rem, 0.8vw + 1rem, 2rem);
   --fs-lead: clamp(0.9rem, 0.5vw + 0.8rem, 1.25rem);
@@ -178,14 +178,18 @@ body {
 
   /* Hero Title */
   .typo-hero {
-    @apply font-semibold text-tx-inverse tracking-tight;
+    /* @apply font-semibold text-tx-inverse tracking-tight; */
+    @apply text-tx-inverse tracking-tight;
     font-size: var(--fs-hero);
     line-height: var(--lh-tight);
+    font-weight: 500;
   }
 
+  /* @apply text-tx-inverse/60; */
+  /* font-size: clamp(0.88rem, 0.35vw + 0.82rem, 1.05rem); */
   /* Hero Subtitle */
   .typo-hero-sub {
-    @apply text-tx-inverse/85;
+    @apply text-tx-inverse/67;
     font-size: clamp(0.95rem, 0.4vw + 0.9rem, 1.15rem);
     line-height: 1.55;
     font-weight: 400;
