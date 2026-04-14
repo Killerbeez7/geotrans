@@ -1,5 +1,7 @@
 import Image from "next/image";
+import Link from "next/link";
 import { notFound } from "next/navigation";
+import clsx from "clsx";
 
 import { serviceCategories } from "@/config/services/categories";
 import { ServicePageLayout } from "../ServicePageLayout";
@@ -43,52 +45,193 @@ export default async function CategoryPage({ params }: Props) {
   return (
     <ServicePageLayout category={category}>
       <article>
-        <section className="mt-12 space-y-16 md:space-y-20">
+        {/* Services list */}
+        <section className="mt-10 sm:mt-12 space-y-16 sm:space-y-20 md:space-y-24">
           {category.services.map((service, index) => {
             const imageLeft = index % 2 === 0;
             const imageSrc = service.thumbnail;
+            const serviceHref = `/uslugi/${category.slug}/${service.slug}`;
 
             return (
               <section
                 key={service.slug}
-                className="grid items-start gap-8 md:grid-cols-2 md:gap-10"
+                className={clsx(
+                  "grid items-center gap-6 sm:gap-8",
+                  "md:grid-cols-2 md:gap-10 lg:gap-14"
+                )}
               >
+                {/* Image */}
                 <div className={imageLeft ? "" : "md:order-2"}>
-                  <div className="relative overflow-hidden rounded-[20px] bg-bg-surface">
-                    <div className="relative aspect-4/3 min-h-[260px]">
+                  <Link
+                    href={serviceHref}
+                    className={clsx(
+                      "block relative group",
+                      /* Full bleed on mobile */
+                      "-mx-4 sm:-mx-6 md:mx-0",
+                      "md:rounded-[20px] md:overflow-hidden",
+                      "shadow-[0_8px_30px_-12px_rgba(0,0,0,0.1)]",
+                      "transition-shadow duration-300",
+                      "hover:shadow-[0_12px_40px_-12px_rgba(0,0,0,0.15)]"
+                    )}
+                  >
+                    <div className="relative aspect-[4/3] md:aspect-[4/3.2] overflow-hidden">
                       <Image
                         src={imageSrc}
                         alt={service.title}
                         fill
-                        className="object-cover scale-90"
+                        className={clsx(
+                          "object-cover",
+                          "transition-transform duration-500",
+                          "group-hover:scale-[1.03]"
+                        )}
                       />
                     </div>
-                  </div>
+                  </Link>
                 </div>
 
-                <div className={imageLeft ? "" : "md:order-1"}>
-                  <h3 className="mt-3 text-2xl font-semibold leading-tight text-tx-primary md:text-3xl">
-                    {service.title}
+                {/* Content */}
+                <div className={clsx("px-1 md:px-0", imageLeft ? "" : "md:order-1")}>
+                  {/* Meta */}
+                  {service.meta && (
+                    <p
+                      className={clsx(
+                        "text-[11px] sm:text-xs",
+                        "uppercase tracking-[0.16em]",
+                        "text-accent/95 font-semibold"
+                      )}
+                    >
+                      {service.meta}
+                    </p>
+                  )}
+
+                  {/* Title */}
+                  <h3
+                    className={clsx(
+                      service.meta ? "mt-2" : "",
+                      "text-xl sm:text-2xl md:text-[1.7rem]",
+
+                      "font-semibold leading-[1.2] tracking-tight",
+                      "text-tx-primary"
+                    )}
+                  >
+                    <Link
+                      href={serviceHref}
+                      className="hover:text-accent transition-colors duration-200"
+                    >
+                      {service.title}
+                    </Link>
                   </h3>
 
-                  <div className="mt-5 space-y-4 text-base leading-8 text-tx-secondary">
-                    <p>{service.longDescription ?? service.description}</p>
+                  {/* Description */}
+                  <p
+                    className={clsx(
+                      "mt-3 sm:mt-4",
+                      "text-[15px] md:text-base leading-[1.75] text-tx-secondary"
+                    )}
+                  >
+                    {service.longDescription ?? service.description}
+                  </p>
 
-                    {service.neededWhen?.length ? (
-                      <ul className="space-y-2 pt-1">
-                        {service.neededWhen.slice(0, 5).map((item) => (
-                          <li key={item} className="flex gap-3">
-                            <span className="mt-[11px] h-1.5 w-1.5 shrink-0 rounded-full bg-accent" />
-                            <span>{item}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    ) : null}
+                  {/* Needed when list */}
+                  {service.neededWhen?.length ? (
+                    <ul className="mt-4 space-y-2">
+                      {service.neededWhen.slice(0, 4).map((item) => (
+                        <li key={item} className="flex gap-3">
+                          <span
+                            className={clsx(
+                              "mt-[8px] shrink-0",
+                              "h-1.5 w-1.5 rounded-full bg-accent/70"
+                            )}
+                          />
+                          <span className="text-[14px] leading-[1.6] text-tx-secondary">
+                            {item}
+                          </span>
+                        </li>
+                      ))}
+                    </ul>
+                  ) : null}
+
+                  {/* CTA */}
+                  <div className="mt-5 sm:mt-6">
+                    <Link
+                      href={serviceHref}
+                      className={clsx(
+                        "inline-flex items-center gap-2",
+                        "text-sm font-semibold text-accent",
+                        "transition-all duration-200",
+                        "hover:gap-3"
+                      )}
+                    >
+                      Научете повече
+                      <span className="text-[13px]">→</span>
+                    </Link>
                   </div>
                 </div>
               </section>
             );
           })}
+        </section>
+
+        {/* Bottom CTA */}
+        <section
+          className={clsx("mt-16 sm:mt-20 pt-10 sm:pt-12", "border-t border-br-light")}
+        >
+          <div className="max-w-xl">
+            <p
+              className={clsx(
+                "text-[11px] uppercase tracking-[0.14em]",
+                "text-accent font-semibold"
+              )}
+            >
+              Не сте сигурни коя услуга ви трябва?
+            </p>
+
+            <h2
+              className={clsx(
+                "mt-2",
+                "text-xl sm:text-2xl",
+                "font-semibold leading-tight text-tx-primary"
+              )}
+            >
+              Ще ви помогнем да изберете
+            </h2>
+
+            <p className={clsx("mt-3", "text-[15px] leading-[1.65] text-tx-secondary")}>
+              Опишете накратко Вашия случай и ще получите насоки за подходящата услуга и
+              следващите стъпки.
+            </p>
+
+            <div className="mt-6 flex flex-wrap items-center gap-3">
+              <Link
+                href="/contacts"
+                className={clsx(
+                  "inline-flex items-center justify-center",
+                  "rounded-xl bg-accent",
+                  "px-5 py-3",
+                  "text-sm font-semibold text-tx-inverse",
+                  "shadow-md shadow-accent/20",
+                  "transition-all duration-200",
+                  "hover:-translate-y-0.5 hover:shadow-lg hover:shadow-accent/25"
+                )}
+              >
+                Направете запитване
+              </Link>
+
+              <Link
+                href="/uslugi"
+                className={clsx(
+                  "inline-flex items-center justify-center",
+                  "rounded-xl",
+                  "px-4 py-3",
+                  "text-sm font-medium text-tx-muted",
+                  "transition-colors duration-200",
+                  "hover:text-tx-primary"
+                )}
+              >
+                Всички категории
+              </Link>
+            </div>
+          </div>
         </section>
       </article>
     </ServicePageLayout>
