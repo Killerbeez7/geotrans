@@ -28,7 +28,7 @@ function FloatingInput({
           "text-white placeholder-transparent",
           "backdrop-blur-md",
           "focus:outline-none",
-          "focus:border-color-accent",
+          "focus:border-accent",
           "focus:ring-2 focus:ring-accent/20",
           "transition-all duration-200"
         )}
@@ -59,6 +59,7 @@ function FloatingTextarea({ label }: { label: string }) {
   return (
     <div className="relative">
       <textarea
+        name="message"
         required
         rows={4}
         placeholder=" "
@@ -98,27 +99,47 @@ function FloatingTextarea({ label }: { label: string }) {
 export function ContactForm() {
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
+  const [error, setError] = useState("");
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     setLoading(true);
+    setError("");
+    setSuccess(false);
 
     const formData = new FormData(e.currentTarget);
 
-    const res = await fetch("/api/contact", {
-      method: "POST",
-      body: JSON.stringify({
-        name: formData.get("name"),
-        email: formData.get("email"),
-        message: formData.get("message"),
-      }),
-    });
+    const payload = {
+      name: formData.get("name"),
+      email: formData.get("email"),
+      message: formData.get("message"),
+    };
 
-    setLoading(false);
+    console.log("SENDING:", payload);
 
-    if (res.ok) {
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(payload),
+      });
+
+      const data = await res.json();
+      console.log("RESPONSE:", data);
+
+      if (!res.ok) {
+        throw new Error(data.error || "Something went wrong");
+      }
+
       setSuccess(true);
       e.currentTarget.reset();
+    } catch (err) {
+      console.error("FORM ERROR:", err);
+      setError("Грешка при изпращане. Опитайте отново.");
+    } finally {
+      setLoading(false);
     }
   }
 
@@ -155,6 +176,8 @@ export function ContactForm() {
             Успешно изпратено! Ще се свържем с вас.
           </p>
         )}
+
+        {error && <p className="text-sm text-red-400">{error}</p>}
       </form>
     </div>
   );
