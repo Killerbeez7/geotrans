@@ -40,7 +40,7 @@ export default function ProjectsPageClient() {
           </header>
         </div>
 
-        <div className="mt-16 columns-1 gap-6 space-y-6 sm:columns-2 lg:columns-3 xl:columns-4">
+        <div className="mt-16 columns-1 gap-6 space-y-6 sm:columns-2 lg:columns-3 xl:columns-3">
           {items.map((img) => (
             <button
               key={img.id}

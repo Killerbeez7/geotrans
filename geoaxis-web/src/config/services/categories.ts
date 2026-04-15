@@ -86,7 +86,7 @@ export const serviceCategories: ServiceCategory[] = [
         title: "Геодезическо заснемане на сграда",
         shortTitle: "Заснемане на сграда",
         meta: "Сграда • Документация",
-        thumbnail: "/images/category/zasnemane-thumb.jpg",
+        thumbnail: "/images/services/zasnemane-sgrada.webp",
         description: "Заснемане на сгради за документация и последващо проектиране.",
         longDescription:
           "Заснемането на сграда осигурява точни данни за съществуващото състояние. Използва се при реконструкции, узаконяване, архитектурни проекти и техническа документация.",
