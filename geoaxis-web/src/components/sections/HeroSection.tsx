@@ -103,7 +103,7 @@ function HeroBackground({ src, alt }: { src: string; alt: string }) {
   return (
     <>
       {/* Background Image */}
-      <div className="absolute inset-0 -z-20 overflow-hidden">
+      <div className="absolute inset-0 -z-20 overflow-hidden bg-[#6f8796]">
         <Image
           src={src}
           alt={alt}

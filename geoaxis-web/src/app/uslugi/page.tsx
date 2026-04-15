@@ -25,7 +25,7 @@ export default function ServicesPage() {
       {/* Hero / intro */}
       <section
         className={clsx(
-          "relative isolate overflow-hidden border-b border-br-light bg-black",
+          "relative isolate overflow-hidden border-b border-br-light",
           SERVICES_HERO_MIN_HEIGHT
         )}
       >

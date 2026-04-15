@@ -30,7 +30,7 @@ export default function About() {
     <main id={id} className="relative">
       {/* HERO */}
       <Section className="relative isolate h-150 overflow-hidden" variant="hero">
-        <div className="absolute inset-0 -z-20">
+        <div className="absolute inset-0 -z-20 bg-[#7e9fb5]">
           <Image
             src={hero.imageBg}
             alt=""

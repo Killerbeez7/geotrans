@@ -63,7 +63,7 @@ export default function Contacts() {
   return (
     <Section className="relative isolate min-h-[calc(103dvh)]" variant="hero">
       {/* Background Image */}
-      <div className="absolute inset-0 z-0 bg-(--brand-olive-900)">
+      <div className="absolute inset-0 z-0 bg-[#22221d]">
         <Image
           src="/images/sections/hero-contacts.webp"
           alt="Геодезически тахеометър / Robotic total station for precise surveying"
