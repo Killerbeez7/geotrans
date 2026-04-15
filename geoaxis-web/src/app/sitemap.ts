@@ -29,5 +29,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     return [categoryUrl, ...detailUrls];
   });
 
+  // PoleznoUrls: MetadataRoute.Sitemap = ...
+
   return [...staticPages, ...serviceUrls];
 }
