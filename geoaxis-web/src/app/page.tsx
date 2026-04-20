@@ -1,18 +1,15 @@
-import { HorizontalDivider } from "../components/parts/HorizontalDivider";
 import { siteContent } from "@/config/site-content";
 import { serviceCategories } from "@/config/services/categories";
 import { createSeo } from "@/lib/seo-builder";
 // Sections
 import { HeroSection } from "@/components/sections/HeroSection";
+import { WhatWeDoSection } from "@/components/sections/whatwedo";
 import { ServiceSection } from "@/components/sections/ServiceSection";
+import { WhyChooseUs } from "@/components/sections/WhyChooseUs";
 import { WorkflowSection } from "@/components/sections/WorkflowSection";
-import Testimonials from "@/components/sections/Testimonials";
-
 import { ProjectsSection } from "@/components/sections/ProjectsSection";
-import { Stats } from "@/components/sections/StatsSection";
-import TrustBar from "@/components/sections/TrustBar";
-import WhyChooseUs from "@/components/sections/WhyChooseUs";
-import FinalCta from "@/components/sections/FinalCta";
+import { Testimonials } from "@/components/sections/Testimonials";
+import { FinalCta } from "@/components/sections/FinalCta";
 
 export const metadata = createSeo({
   title: "Геодезически услуги в София",
@@ -22,10 +19,11 @@ export const metadata = createSeo({
 });
 
 export default function Home() {
-  const { hero, services, workflow, stats, projects } = siteContent;
+  const { hero, services, workflow, projects } = siteContent;
 
   return (
     <>
+      {/* Who we are? */}
       <HeroSection
         id={hero.id}
         title={hero.title}
@@ -36,8 +34,10 @@ export default function Home() {
         cta={hero.cta}
       />
 
-      <TrustBar />
+      {/* What we do? */}
+      <WhatWeDoSection />
 
+      {/* What we offer? */}
       <ServiceSection
         id={services.id}
         kicker={services.kicker}
@@ -46,35 +46,32 @@ export default function Home() {
         items={serviceCategories}
       />
 
-      {/* all above id done */}
-
+      {/* Why choose us? */}
       <WhyChooseUs />
 
-      <Stats />
-
+      {/* Our workflow */}
       <WorkflowSection
         id={workflow.id}
+        kicker={workflow.kicker}
         title={workflow.title}
         subtitle={workflow.subtitle}
         steps={workflow.steps}
       />
 
-      {/* <ContactHighlights /> */}
-
-      <HorizontalDivider></HorizontalDivider>
-
+      {/* Finished projects */}
       <ProjectsSection
         id={projects.id}
+        kicker={projects.kicker}
         title={projects.title}
         subtitle={projects.subtitle}
         items={projects.items}
         cta={projects.cta}
       />
 
+      {/* Our clients reviews */}
       <Testimonials />
 
-      <HorizontalDivider></HorizontalDivider>
-
+      {/* Contact us */}
       <FinalCta />
     </>
   );
