@@ -10,7 +10,6 @@ import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 // Data
 import { SITE_URL } from "@/config/site";
-import { brand } from "@/config/content/brand";
 // SEO
 import { createSeo } from "@/lib/seo-builder";
 import { getLocalBusinessSchema } from "@/lib/schemas";
