@@ -109,7 +109,8 @@ export default function About() {
         <div className="container-page">
           <div className="text-center">
             <h2 className="typo-h2">{values.title}</h2>
-            <p className="mt-4 typo-lead mx-auto max-w-3xl">{values.intro}</p>
+            {/* <p className="mt-4 typo-lead mx-auto max-w-3xl text-tx-secondary"> */}
+            <p className="mt-4 typo-body mx-auto max-w-3xl">{values.intro}</p>
           </div>
 
           <div className="mt-16 grid md:grid-cols-3 gap-8">
