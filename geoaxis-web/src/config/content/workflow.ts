@@ -6,6 +6,7 @@ export interface WorkflowStep {
 
 export interface WorkflowContent {
   id: "workflow";
+  kicker?: string;
   title: string;
   subtitle: string;
   steps: WorkflowStep[];
@@ -13,7 +14,8 @@ export interface WorkflowContent {
 
 export const workflow: WorkflowContent = {
   id: "workflow",
-  title: "Работен процес",
+  kicker: "Как работим",
+  title: "Без губене на време",
   subtitle:
     "От първия разговор до готовата документация - ясно, организирано и без излишни усложнения.",
   steps: [

@@ -9,6 +9,7 @@ export type ProjectItem = {
 
 export type ProjectsContent = {
   id: "projects";
+  kicker?: string;
   title: string;
   subtitle: string;
   cta: {
@@ -21,8 +22,9 @@ export type ProjectsContent = {
 
 export const projects: ProjectsContent = {
   id: "projects",
-  title: "Проекти",
-  subtitle: "Част от успешно завърпените ни проекти",
+  kicker: "Проекти",
+  title: "Изпълнени обекти",
+  subtitle: "Подбрани примери от реализирани геодезически и кадастрални дейности.",
   cta: {
     label: "Всички проекти",
     href: "/projects",
