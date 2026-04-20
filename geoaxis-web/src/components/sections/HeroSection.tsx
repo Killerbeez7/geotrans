@@ -15,28 +15,30 @@ export function HeroSection({
   imageAlt,
   cta,
 }: HeroContent) {
-  const [line1, accent] = title.split("||").map((s) => s.trim());
+  const [title_1, title_2] = title;
+  const [subtitle_1, subtitle_2] = subtitle ?? [];
 
   return (
     <header id={id} className="relative isolate overflow-hidden bg-bg-inverse">
-      <div className="relative min-h-[70dvh] md:min-h-[calc(103dvh)] flex items-center pb-0 md:pb-20">
+      <div className="relative min-h-[70dvh] md:min-h-dvh flex items-center pb-0 md:pb-16">
         {/* Background Image */}
         <HeroBackground src={image} alt={imageAlt} />
 
         {/* Content */}
         <div className="container-page relative w-full pt-(--header-h)">
-          <div className="max-w-4xl mx-auto md:mx-0 text-center md:text-left md:translate-x-6 lg:translate-x-10">
+          {/* <div className="max-w-3xl mx-auto md:mx-0 text-center md:text-left md:translate-x-6 lg:translate-x-10"> */}
+          <div className="max-w-3xl mx-auto md:mx-0 text-center md:text-left">
             {/* Kicker */}
             {kicker && (
               <div className="mb-4 flex justify-center md:justify-start">
                 <span
                   className={clsx(
-                    "rounded-full   px-5 py-2 bg-white/10",
+                    "rounded-full px-5 py-2 bg-white/10",
                     "typo-kicker",
                     "text-[11px] md:text-[13px]",
-                    "text-tx-inverse/45",
-                    "tracking-widest",
-                    "md:border-l-2 md:border-accent/40 md:pl-4 md:py-1",
+                    "text-tx-inverse/72",
+                    "tracking-[0.14em] md:tracking-[0.18em]",
+                    "md:border-l-2 md:border-accent/50 md:pl-4 md:py-1",
 
                     "md:bg-transparent md:rounded-none"
                   )}
@@ -48,26 +50,28 @@ export function HeroSection({
 
             {/* Title */}
             <h1 className="typo-hero">
-              {/* <span className="block text-tx-inverse/92">{line1}</span> */}
-              <span className="block text-tx-inverse/87">{line1}</span>
-              {accent && (
-                // <span className="block font-bold text-accent drop-shadow-[0_1px_0_rgba(0,0,0,0.35)]">
+              <span className="block text-tx-inverse/87">{title_1}</span>
+              {title_2 && (
                 <span
                   className={clsx(
                     "block mt-0.5",
-                    "font-medium text-accent",
-                    "drop-shadow-[0_1px_2px_rgba(0,0,0,0.25)]"
+                    // "font-semibold text-accent",
+                    // "font-bold text-accent ",
+                    "font-bold text-transparent bg-clip-text bg-linear-to-r from-accent to-accent/87",
+                    "drop-shadow-sm"
                   )}
                 >
-                  {accent}
+                  {title_2}
                 </span>
               )}
             </h1>
 
             {/* Subtitle - optional */}
             {subtitle && (
-              <p className="typo-hero-sub mt-7 md:mt-8 max-w-lg mx-auto md:mx-0">
-                {subtitle}
+              <p className="typo-hero-sub mt-7 md:mt-8 max-w-lg mx-auto md:mx-0 ">
+                {subtitle_1}
+                <br />
+                {subtitle_2}
               </p>
             )}
 
@@ -85,7 +89,7 @@ export function HeroSection({
                   {cta.primary.label}
                 </CtaButton>
 
-                <CtaButton variant="glassAccent" href={cta.secondary.href} size="lg">
+                <CtaButton variant="glass" href={cta.secondary.href} size="lg">
                   {cta.secondary.label} <MdArrowRightAlt />
                 </CtaButton>
               </div>
@@ -115,7 +119,7 @@ function HeroBackground({ src, alt }: { src: string; alt: string }) {
             object-[92%_75%]
             sm:object-[88%_72%]
             md:object-[82%_68%]
-            lg:object-[80%_62%]
+            lg:object-[80%_88%]
           "
         />
       </div>
