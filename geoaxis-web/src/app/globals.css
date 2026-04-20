@@ -297,11 +297,13 @@ img {
   }
 }
 
+/* TEST NOTCH COLOR */
 html,
 body {
-  background: #131a17;
+  /* background: #131a17; */
+  background: #1f3a2f;
 }
 
-/* .safe-top {
+.safe-top {
   padding-top: env(safe-area-inset-top);
-} */
+}
