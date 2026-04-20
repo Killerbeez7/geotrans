@@ -296,3 +296,8 @@ img {
     --header-h: var(--nav-h);
   }
 }
+
+html,
+body {
+  background: var(--color-bg-brand);
+}
