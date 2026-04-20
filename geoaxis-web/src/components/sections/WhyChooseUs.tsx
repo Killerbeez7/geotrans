@@ -84,7 +84,7 @@ export function WhyChooseUs() {
           viewport={{ once: true, amount: 0.28 }}
           transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
           variants={fadeUp}
-          className="max-w-xl text-center md:text-left"
+          className="max-w-xl text-center lg:text-left mx-auto"
         >
           <span className="typo-kicker">Кои сме ние</span>
 
@@ -143,7 +143,7 @@ export function WhyChooseUs() {
       </div>
 
       {/* ---- Stats row ---- */}
-      <div className="mt-16 pt-10 border-t border-white/10">
+      <div className="mt-10 pt-8 border-t border-white/10">
         <div className="grid grid-cols-2 gap-8 sm:gap-10 lg:grid-cols-4 lg:gap-6">
           {stats.map((s, i) => (
             <motion.div

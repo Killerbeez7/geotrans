@@ -44,7 +44,7 @@ export const Footer = () => {
       <div className="pointer-events-none absolute inset-0 bg-linear-to-t from-black/45 to-black/25" />
 
       <div className="relative mx-auto max-w-7xl px-6 py-12 sm:px-8 lg:px-12 lg:py-16">
-        <div className="grid grid-cols-1 gap-10 text-center md:grid-cols-4 md:text-left">
+        <div className="grid grid-cols-1 gap-10 text-center lg:grid-cols-4 lg:text-left">
           {/* Brand */}
           <div>
             <h3 className="text-lg font-semibold tracking-wide text-tx-inverse">
@@ -116,7 +116,7 @@ export const Footer = () => {
               </p>
             </div>
 
-            <div className="mt-5 flex justify-center gap-3 md:justify-start">
+            <div className="mt-5 flex justify-center gap-3 lg:justify-start">
               <a className={iconBtn} href={telHref} aria-label="Call">
                 <FaPhone />
               </a>
@@ -142,7 +142,7 @@ export const Footer = () => {
               </a>
             </div>
 
-            <div className="mt-6 flex flex-wrap justify-center gap-3 md:justify-start">
+            <div className="mt-6 flex flex-wrap justify-center gap-3 lg:justify-start">
               <Link href={ctas.inquiry.href}>
                 <CtaButton size="sm">{ctas.inquiry.label}</CtaButton>
               </Link>
