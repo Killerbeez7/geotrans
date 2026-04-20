@@ -90,7 +90,7 @@ export default function ServicesPage() {
       </Section>
 
       {/* Categories grid */}
-      <section id="categories" className="py-10 md:py-14 lg:py-16">
+      <section id="categories" className="py-10 md:py-14 lg:py-16 scroll-mt-10">
         <div className="container-page">
           <div className="mb-6 md:mb-8">
             <p className="typo-kicker text-accent">Категории</p>
