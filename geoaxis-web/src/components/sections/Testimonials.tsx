@@ -1,4 +1,5 @@
 import { FaStar } from "react-icons/fa";
+import { Section } from "@/components/layout/Section";
 
 const testimonials = [
   {
@@ -18,54 +19,41 @@ const testimonials = [
   },
 ];
 
-export default function Testimonials() {
+export function Testimonials() {
   return (
-    <section className="bg-bg-section py-24">
-      {/* <section className="bg-bg-secondary py-24"> */}
-
-      <div className="container-page">
-        {/* Heading */}
-        <div className="max-w-2xl mx-auto text-center mb-16">
-          {/* <p className="text-sm font-semibold uppercase tracking-[0.2em] text-accent mb-3">
-            Отзиви
-          </p> */}
-
-          <h2 className="typo-h2">Какво казват нашите клиенти</h2>
-
-          <p className="typo-body text-tx-secondary mt-4">
-            Доверието на нашите клиенти е най-доброто доказателство за качеството на
-            нашата работа.
-          </p>
-        </div>
-
-        {/* Cards */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {testimonials.map((item) => (
-            <div
-              key={item.name}
-              className="rounded-2xl bg-bg-page p-8 shadow-[0_10px_30px_rgba(0,0,0,0.06)]"
-            >
-              {/* stars */}
-              <div className="flex gap-1 text-accent mb-4">
-                <FaStar />
-                <FaStar />
-                <FaStar />
-                <FaStar />
-                <FaStar />
-              </div>
-
-              {/* text */}
-              <p className="text-tx-secondary leading-relaxed mb-6">“{item.text}”</p>
-
-              {/* author */}
-              <div>
-                <p className="font-semibold text-tx-primary">{item.name}</p>
-                <p className="text-sm text-tx-secondary">{item.role}</p>
-              </div>
-            </div>
-          ))}
-        </div>
+    <Section tone="muted">
+      <div className="max-w-2xl mx-auto text-center mb-12 sm:mb-14">
+        <span className="typo-kicker">Отзиви</span>
+        <h2 className="typo-h2">Какво казват нашите клиентите</h2>
+        <p className="typo-subtitle mt-3">
+          Доверието на нашите клиенти е най-доброто доказателство за качеството на нашата
+          работа.
+        </p>
       </div>
-    </section>
+
+      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {testimonials.map((item) => (
+          <div
+            key={item.name}
+            className="rounded-2xl bg-bg-page border border-br-light/80 p-7"
+          >
+            <div className="flex gap-0.5 text-accent mb-4">
+              {[...Array(5)].map((_, i) => (
+                <FaStar key={i} className="h-3.5 w-3.5" />
+              ))}
+            </div>
+
+            <p className="text-[15px] leading-relaxed text-tx-secondary mb-6">
+              &ldquo;{item.text}&rdquo;
+            </p>
+
+            <div>
+              <p className="text-[15px] font-semibold text-tx-primary">{item.name}</p>
+              <p className="text-[13px] text-tx-muted">{item.role}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </Section>
   );
 }
