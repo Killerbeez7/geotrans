@@ -3,7 +3,7 @@ import clsx from "clsx";
 export interface Step {
   title: string;
   description: string;
-  meta?: string; // ✅ “Същия ден” / “1–2 работни дни”
+  meta?: string;
 }
 
 interface StepProgressProps {
