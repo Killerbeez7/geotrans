@@ -83,6 +83,7 @@ export function WhyChooseUs({
   brandName,
   image,
   imageAlt,
+  stats,
 }: WhyUsContent) {
   return (
     <Section id={id} tone="brand" className="overflow-hidden">
@@ -97,27 +98,24 @@ export function WhyChooseUs({
           className="text-center lg:text-left"
         >
           {kicker && (
-            <span className="typo-kicker text-accent/90 brightness-110">
-              {kicker}{" "}
-              {/* <span className="absolute -bottom-1.5 left-0 h-[2px] w-full bg-accent/30 rounded-full" /> */}
-            </span>
+            <span className="typo-kicker text-accent/90 brightness-110">{kicker}</span>
           )}
 
-          <h2 className="mt-3 typo-h2 text-tx-inverse lg:text-4xl lg:leading-[1.15] text-left">
+          <h2 className="mt-3 typo-h2 text-tx-inverse lg:text-5xl lg:leading-[1.15]">
             {title}{" "}
             <span className="relative inline-block text-accent">
               {brandName}
-              {/* <span className="absolute -bottom-1.5 left-0 h-[2px] w-full bg-accent/30 rounded-full" /> */}
+              <span className="absolute -bottom-1.5 left-0 h-[2px] w-full bg-accent/30 rounded-full" />
             </span>
           </h2>
 
-          {/* {subtitle && (
-            <p className="mt-6 text-lg font-medium leading-relaxed text-tx-inverse/90 text-left">
+          {subtitle && (
+            <p className="mt-6 text-lg font-medium leading-relaxed text-tx-inverse">
               {subtitle}
             </p>
-          )} */}
+          )}
 
-          <div className={clsx("space-y-5 text-left", subtitle ? "mt-4" : "mt-8")}>
+          <div className={clsx("space-y-5", subtitle ? "mt-4" : "mt-8")}>
             {paragraphs.map((paragraph, i) => (
               <p
                 key={i}
@@ -151,12 +149,40 @@ export function WhyChooseUs({
                 className="object-cover transition-transform duration-1000 hover:scale-105"
               />
               {/* Градиент за дълбочина вместо плосък цвят */}
-              <div className="absolute inset-0 bg-linear-to-tr from-brand-olive-900/40 via-transparent to-accent/5" />
+              <div className="absolute inset-0 bg-gradient-to-tr from-brand-olive-900/40 via-transparent to-accent/5" />
             </div>
           </motion.div>
 
           {/* Декоративно сияние зад снимката */}
           <div className="absolute -bottom-10 -left-10 -z-10 h-64 w-64 rounded-full bg-accent/10 blur-[100px]" />
+        </div>
+      </div>
+
+      {/* Секция със статистики */}
+      <div className="mt-16 border-t border-white/10 pt-12 lg:mt-24">
+        <div className="grid grid-cols-2 gap-y-12 gap-x-4 sm:gap-10 lg:grid-cols-4 lg:gap-0">
+          {stats.map((s, i) => (
+            <motion.div
+              key={`${s.label}-${i}`}
+              initial={{ opacity: 0, y: 15 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: i * 0.1 }}
+              className={clsx(
+                "relative text-center px-4",
+                // Вертикални разделители за десктоп
+                i !== stats.length - 1 && "lg:border-r lg:border-white/10"
+              )}
+            >
+              <div className="text-4xl font-bold tracking-tighter text-white sm:text-5xl lg:text-6xl">
+                <CountUpNumber value={s.number} />
+              </div>
+
+              <div className="mt-3 text-[11px] uppercase tracking-[0.2em] font-semibold text-accent/80 sm:text-[12px]">
+                {s.label}
+              </div>
+            </motion.div>
+          ))}
         </div>
       </div>
     </Section>

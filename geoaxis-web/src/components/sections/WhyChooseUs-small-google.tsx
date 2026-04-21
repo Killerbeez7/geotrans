@@ -72,8 +72,6 @@ function CountUpNumber({ value }: { value: string | number }) {
 
 /* ============ MAIN ============ */
 
-/* ============ ОБНОВЕН MAIN КОМПОНЕНТ ============ */
-
 export function WhyChooseUs({
   id,
   title,
@@ -83,82 +81,88 @@ export function WhyChooseUs({
   brandName,
   image,
   imageAlt,
+  stats,
 }: WhyUsContent) {
   return (
     <Section id={id} tone="brand" className="overflow-hidden">
-      <div className="grid gap-12 lg:grid-cols-2 lg:items-center lg:gap-20">
-        {/* Текстова колона */}
+      <div className="grid gap-12 lg:grid-cols-2 lg:gap-16">
         <motion.div
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, amount: 0.2 }}
-          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+          viewport={{ once: true, amount: 0.28 }}
+          transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
           variants={fadeUp}
-          className="text-center lg:text-left"
+          className="mx-auto max-w-xl text-center lg:text-left"
         >
-          {kicker && (
-            <span className="typo-kicker text-accent/90 brightness-110">
-              {kicker}{" "}
-              {/* <span className="absolute -bottom-1.5 left-0 h-[2px] w-full bg-accent/30 rounded-full" /> */}
-            </span>
-          )}
+          {kicker && <span className="typo-kicker">{kicker}</span>}
 
-          <h2 className="mt-3 typo-h2 text-tx-inverse lg:text-4xl lg:leading-[1.15] text-left">
-            {title}{" "}
-            <span className="relative inline-block text-accent">
-              {brandName}
-              {/* <span className="absolute -bottom-1.5 left-0 h-[2px] w-full bg-accent/30 rounded-full" /> */}
-            </span>
+          <h2 className="mt-2 typo-h2 text-tx-inverse">
+            {title + " "}
+            <span className="text-accent">{brandName}</span>
           </h2>
 
-          {/* {subtitle && (
-            <p className="mt-6 text-lg font-medium leading-relaxed text-tx-inverse/90 text-left">
-              {subtitle}
-            </p>
-          )} */}
+          <p className="mt-4 typo-body text-tx-inverse/85">{subtitle}</p>
 
-          <div className={clsx("space-y-5 text-left", subtitle ? "mt-4" : "mt-8")}>
-            {paragraphs.map((paragraph, i) => (
-              <p
-                key={i}
-                className="typo-body text-tx-inverse/80 leading-relaxed font-light lg:text-[17px]"
-              >
+          <div className="mt-4 space-y-6">
+            {paragraphs.map((paragraph) => (
+              <p key={paragraph} className="typo-body text-tx-inverse/85">
                 {paragraph}
               </p>
             ))}
           </div>
         </motion.div>
 
-        {/* Колона с изображение */}
-        <div className="relative mx-auto w-full max-w-2xl lg:max-w-none">
+        <div className="relative mx-auto w-full max-w-2xl self-start">
           <motion.div
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true, amount: 0.2 }}
-            transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+            viewport={{ once: true, amount: 0.28 }}
+            transition={{ duration: 0.75, ease: [0.22, 1, 0.36, 1] }}
             variants={scaleUp}
             className={clsx(
-              "relative ml-auto w-full overflow-hidden rounded-[2.5rem] lg:w-[95%]",
-              "shadow-[0_32px_64px_-16px_rgba(0,0,0,0.5)] border border-white/10"
+              "relative ml-auto w-full overflow-hidden rounded-3xl lg:w-[90%]",
+              "shadow-[0_18px_50px_-24px_rgba(0,0,0,0.25)]"
             )}
           >
-            <div className="relative aspect-[4/3] lg:aspect-[5/4]">
+            <div className="relative aspect-4/3">
               <Image
                 src={image}
                 alt={imageAlt}
                 fill
-                sizes="(max-width: 1024px) 100vw, 50vw"
-                className="object-cover transition-transform duration-1000 hover:scale-105"
+                sizes="(max-width: 1024px) 100vw, 40vw"
+                className="object-cover"
               />
-              {/* Градиент за дълбочина вместо плосък цвят */}
-              <div className="absolute inset-0 bg-linear-to-tr from-brand-olive-900/40 via-transparent to-accent/5" />
             </div>
+
+            <div className="absolute inset-0 bg-black/30 mix-blend-color" />
           </motion.div>
 
-          {/* Декоративно сияние зад снимката */}
-          <div className="absolute -bottom-10 -left-10 -z-10 h-64 w-64 rounded-full bg-accent/10 blur-[100px]" />
+          <div className="hidden h-8 lg:block" />
         </div>
       </div>
+
+      {/* <div className="mt-10 border-t border-white/10 pt-8">
+        <div className="grid grid-cols-2 gap-8 sm:gap-10 lg:grid-cols-4 lg:gap-6">
+          {stats.map((s, i) => (
+            <motion.div
+              key={`${s.label}-${i}`}
+              initial={{ opacity: 0, y: 12 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.5 }}
+              transition={{ duration: 0.4, delay: i * 0.06 }}
+              className="text-center"
+            >
+              <div className="text-3xl font-semibold tracking-tight text-tx-inverse sm:text-4xl">
+                <CountUpNumber value={s.number} />
+              </div>
+
+              <div className="mt-2 text-[12px] font-medium text-tx-inverse/85 sm:text-[13px]">
+                {s.label}
+              </div>
+            </motion.div>
+          ))}
+        </div>
+      </div> */}
     </Section>
   );
 }
