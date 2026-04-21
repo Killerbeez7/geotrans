@@ -10,6 +10,7 @@ import { WorkflowSection } from "@/components/sections/WorkflowSection";
 import { ProjectsSection } from "@/components/sections/ProjectsSection";
 import { Testimonials } from "@/components/sections/Testimonials";
 import { FinalCta } from "@/components/sections/FinalCta";
+import { Stats } from "@/components/sections/StatsSection copy 2";
 
 export const metadata = createSeo({
   title: "Геодезически услуги в София",
@@ -19,44 +20,25 @@ export const metadata = createSeo({
 });
 
 export default function Home() {
-  const { hero, services, workflow, projects } = siteContent;
+  const { brand, hero, trust, services, whyUs, workflow, projects, stats } = siteContent;
 
   return (
     <>
       {/* Who we are? */}
-      <HeroSection
-        id={hero.id}
-        title={hero.title}
-        subtitle={hero.subtitle}
-        kicker={hero.kicker}
-        image={hero.image}
-        imageAlt={hero.imageAlt}
-        cta={hero.cta}
-      />
+      <HeroSection {...hero} />
 
       {/* What we do? */}
-      <TrustSection />
+      <TrustSection {...trust} />
 
       {/* What we offer? */}
-      <ServiceSection
-        id={services.id}
-        kicker={services.kicker}
-        title={services.title}
-        subtitle={services.subtitle}
-        items={serviceCategories}
-      />
+      <ServiceSection {...services} items={serviceCategories} />
+      <Stats></Stats>
 
       {/* Why choose us? */}
-      <WhyChooseUs />
+      <WhyChooseUs {...whyUs} stats={stats} brandName={brand.name} />
 
       {/* Our workflow */}
-      <WorkflowSection
-        id={workflow.id}
-        kicker={workflow.kicker}
-        title={workflow.title}
-        subtitle={workflow.subtitle}
-        steps={workflow.steps}
-      />
+      <WorkflowSection {...workflow} />
 
       {/* Finished projects */}
       <ProjectsSection
