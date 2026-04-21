@@ -24,9 +24,11 @@ export function ProjectsSection({
   return (
     <Section id={id} tone="page">
       <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
-        <div className="max-w-2xl text-center md:text-left">
-          <span className="typo-kicker">{kicker}</span>
-          <h2 className="typo-h2">{title}</h2>
+        <div className="max-w-2xl text-left">
+          <span className="typo-kicker inline-block border-b border-accent/40 pb-2">
+            {kicker}
+          </span>
+          <h2 className="typo-h2 mt-2">{title}</h2>
           <p className="mt-2 typo-subtitle">{subtitle}</p>
         </div>
 

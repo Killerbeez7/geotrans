@@ -6,8 +6,10 @@ export function TrustSection({ id, kicker, title, subtitle, trustCards }: TrustC
   return (
     <Section id={id} tone="muted">
       {/* Title */}
-      <div className="mx-auto mb-12 lg:mb-16 max-w-3xl text-center">
-        <p className="typo-kicker tracking-[0.25em]">{kicker}</p>
+      <div className="mx-auto mb-12 lg:mb-16 max-w-3xl text-left md:text-center">
+        <p className="typo-kicker tracking-[0.25em] inline-block border-b border-accent/40 pb-2">
+          {kicker}
+        </p>
 
         <h2 className="typo-h2 mt-3 lg:text-4xl">{title}</h2>
 
@@ -22,7 +24,7 @@ export function TrustSection({ id, kicker, title, subtitle, trustCards }: TrustC
           <div
             key={title}
             className={clsx(
-              "group flex items-start gap-4 rounded-2xl border border-br-light bg-bg-page p-6",
+              "group flex items-start gap-4 rounded-2xl border border-br-light bg-bg-page p-5",
               "transition-all duration-300 hover:-translate-y-1 hover:border-br-accent hover:shadow-lg no-drag"
             )}
           >

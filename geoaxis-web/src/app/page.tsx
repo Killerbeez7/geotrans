@@ -35,7 +35,7 @@ export default function Home() {
       <Stats></Stats>
 
       {/* Why choose us? */}
-      <WhyChooseUs {...whyUs} stats={stats} brandName={brand.name} />
+      <WhyChooseUs {...whyUs} brandName={brand.name} />
 
       {/* Our workflow */}
       <WorkflowSection {...workflow} />

@@ -97,7 +97,7 @@ export function WhyChooseUs({
           className="text-left"
         >
           {kicker && (
-            <span className="typo-kicker text-accent/90 brightness-110">
+            <span className="typo-kicker text-accent/90 brightness-110 inline-block border-b border-accent/40 pb-2">
               {kicker}{" "}
               {/* <span className="absolute -bottom-1.5 left-0 h-[2px] w-full bg-accent/30 rounded-full" /> */}
             </span>

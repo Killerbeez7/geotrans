@@ -22,9 +22,11 @@ const testimonials = [
 export function Testimonials() {
   return (
     <Section tone="muted">
-      <div className="max-w-2xl mx-auto text-center mb-12 sm:mb-14">
-        <span className="typo-kicker">Отзиви</span>
-        <h2 className="typo-h2">Какво казват нашите клиентите</h2>
+      <div className="max-w-2xl mx-auto text-left md:text-center mb-12 sm:mb-14">
+        <span className="typo-kicker inline-block border-b border-accent/40 pb-2">
+          Отзиви
+        </span>
+        <h2 className="typo-h2 mt-2">Какво казват нашите клиентите</h2>
         <p className="typo-subtitle mt-3">
           Доверието на нашите клиенти е най-доброто доказателство за качеството на нашата
           работа.

@@ -11,8 +11,12 @@ export const WorkflowSection = ({
 }: WorkflowContent) => {
   return (
     <Section id={id} tone="muted">
-      <header className="mx-auto max-w-3xl text-center">
-        {kicker && <p className="typo-kicker text-accent">{kicker}</p>}
+      <header className="mx-auto max-w-3xl text-left md:text-center">
+        {kicker && (
+          <p className="typo-kicker text-accent typo-kicker inline-block border-b border-accent/40 pb-2">
+            {kicker}
+          </p>
+        )}
         <h2 className="typo-h2 mt-2">{title}</h2>
         <p className="mx-auto mt-4 max-w-2xl typo-subtitle">{subtitle}</p>
       </header>

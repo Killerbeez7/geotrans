@@ -75,7 +75,9 @@ export function Stats() {
 
       <div className="container-page relative">
         <div className="mb-8 text-center md:mb-10">
-          <p className="typo-kicker text-accent">Доказани резултати</p>
+          <p className="typo-kicker text-accent typo-kicker inline-block border-b border-accent/40 pb-2">
+            Доказани резултати
+          </p>
           <h2 className="mt-3 typo-h3 text-tx-primary">Прецизност във всеки детайл</h2>
         </div>
 

@@ -110,7 +110,9 @@ export function FinalCta() {
       <div className="grid items-start gap-12 lg:grid-cols-2 lg:gap-16">
         {/* Left — text */}
         <div className="max-w-lg">
-          <p className="typo-kicker">Контакт</p>
+          <p className="typo-kicker inline-block border-b border-accent/40 pb-2">
+            Контакт
+          </p>
           <h2 className="typo-h2 mt-3 text-tx-inverse!">
             Имате нужда от <span className="text-accent">геодезическа услуга?</span>
           </h2>
