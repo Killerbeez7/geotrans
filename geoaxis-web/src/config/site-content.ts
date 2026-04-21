@@ -1,5 +1,6 @@
 import { brand } from "./content/brand";
 import { hero } from "./content/hero";
+import { trust } from "./content/trust";
 import { services } from "./content/services";
 import { contacts } from "./content/contacts";
 import { about } from "./content/about";
@@ -12,6 +13,7 @@ import { stats } from "./content/stats";
 export const siteContent = {
   brand,
   hero,
+  trust,
   services,
   contacts,
   about,

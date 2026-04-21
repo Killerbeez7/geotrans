@@ -17,7 +17,7 @@ export function TrustSection({ id, kicker, title, subtitle, trustCards }: TrustC
       </div>
 
       {/* Cards */}
-      <div className="grid gap-6 sm:grid-cols-2 xl:grid-cols-4">
+      <div className="grid gap-6 sm:grid-cols-2 xl:grid-cols-4 text-balance">
         {trustCards.map(({ icon: Icon, title, text }) => (
           <div
             key={title}
@@ -36,12 +36,10 @@ export function TrustSection({ id, kicker, title, subtitle, trustCards }: TrustC
             </div>
 
             <div>
-              {/* <h3 className="text-[15px] font-semibold text-tx-primary">{title}</h3> */}
               <h3 className="text-[15px] font-semibold tracking-tight text-tx-/90">
                 {title}
               </h3>
 
-              {/* <p className="mt-1 text-[13px] leading-relaxed text-tx-muted">{text}</p> */}
               <p className="mt-2 text-[13px] leading-relaxed text-tx-muted">{text}</p>
             </div>
           </div>
