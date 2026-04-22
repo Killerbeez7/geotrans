@@ -84,7 +84,7 @@ export default function Contacts() {
         <div className="absolute inset-0 z-1 bg-[rgba(63,76,69,0.18)]" />
       </div>
 
-      <div className="mx-auto max-w-7xl relative">
+      <div className="mx-auto max-w-7xl relative pb-25">
         {/* Header */}
         <div className="mb-16 text-center">
           <h2 className="typo-h2 text-tx-inverse">{title}</h2>
