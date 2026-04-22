@@ -43,7 +43,7 @@ export const Footer = () => {
       {/* <footer className="relative bg-bg-nav"> */}
       <div className="pointer-events-none absolute inset-0 bg-linear-to-t from-black/45 to-black/25" />
 
-      <div className="relative mx-auto max-w-7xl px-6 py-12 sm:px-8 lg:px-12 lg:py-16">
+      <div className="relative mx-auto max-w-7xl py-12 pl-4 lg:py-16">
         <div className="grid grid-cols-1 gap-10 text-center lg:grid-cols-4 lg:text-left">
           {/* Brand */}
           <div>
@@ -90,23 +90,23 @@ export const Footer = () => {
           <div>
             <p className={sectionTitle}>Контакти</p>
 
-            <div className="mt-4 space-y-2">
+            <div className="mt-4 space-y-2 just">
               <p className={metaCls}>
-                <span className="text-tx-inverse/60">Email:</span>{" "}
+                <span className="text-tx-inverse/60">Имейл:</span>{" "}
                 <a className={linkCls} href={mailHref}>
                   {email}
                 </a>
               </p>
 
               <p className={metaCls}>
-                <span className="text-tx-inverse/60">Phone:</span>{" "}
+                <span className="text-tx-inverse/60">Телефон:</span>{" "}
                 <a className={linkCls} href={telHref}>
                   {phone}
                 </a>
               </p>
 
               <p className={metaCls}>
-                <span className="text-tx-inverse/60">Address:</span>{" "}
+                <span className="text-tx-inverse/60">Адрес:</span>{" "}
                 {addressLines.map((line, i) => (
                   <span key={i}>
                     {line}
@@ -116,7 +116,8 @@ export const Footer = () => {
               </p>
             </div>
 
-            <div className="mt-5 flex justify-center gap-3 lg:justify-start">
+            {/* Icons */}
+            <div className="mt-5 flex flex-wrap justify-center gap-3 lg:justify-start">
               <a className={iconBtn} href={telHref} aria-label="Call">
                 <FaPhone />
               </a>
@@ -133,7 +134,6 @@ export const Footer = () => {
                 <FaLocationDot />
               </a>
 
-              {/* If you later add whatsapp/viber urls to config, wire them here */}
               <a className={iconBtn} href={telHref} aria-label="WhatsApp">
                 <SiWhatsapp />
               </a>
@@ -142,6 +142,7 @@ export const Footer = () => {
               </a>
             </div>
 
+            {/* CTAs */}
             <div className="mt-6 flex flex-wrap justify-center gap-3 lg:justify-start">
               <Link href={ctas.inquiry.href}>
                 <CtaButton size="sm">{ctas.inquiry.label}</CtaButton>
@@ -157,9 +158,10 @@ export const Footer = () => {
         </div>
       </div>
 
-      <div className="relative mt-12 border-t border-br-strong/40 bg-black/20">
-        <div className="mx-auto flex h-16 max-w-7xl items-center justify-center px-6 sm:px-8 lg:px-12">
-          <p className="text-center text-sm tracking-wide text-tx-inverse/80">
+      {/* Bottom Bar */}
+      <div className="relative border-t border-br-strong/40 bg-black/20">
+        <div className="mx-auto flex min-h-16 max-w-7xl items-center justify-center px-6 py-4 text-center sm:px-8 lg:px-12">
+          <p className="text-sm tracking-wide text-tx-inverse/80">
             © {new Date().getFullYear()} {brand.name} - Bulgaria. Всички права запазени.
           </p>
         </div>

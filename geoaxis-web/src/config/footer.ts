@@ -12,7 +12,7 @@ const mainLinks = NAV_LINKS.filter((navLink) => navLink.id !== "services").map(
 );
 
 const quickLinks = serviceCategories.map((cat) => ({
-  label: cat.title,
+  label: cat.shortTitle,
   href: `/uslugi/${cat.slug}`,
 }));
 
