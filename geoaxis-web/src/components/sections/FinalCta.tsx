@@ -63,10 +63,13 @@ function Field({
   textarea?: boolean;
 }) {
   const base = clsx(
-    "w-full rounded-xl border border-white/15 bg-white/8 px-4 text-white",
+    "w-full rounded-xl px-4 text-white",
+    "bg-white/12 hover:bg-white/18",
+    "border border-white/20 hover:border-white/40",
+    "transition-all duration-300 ease-in-out",
+    "caret-accent",
     "placeholder:text-white/40 backdrop-blur-md",
-    "transition-all duration-200",
-    "focus:border-accent focus:ring-2 focus:ring-accent/20 focus:outline-none"
+    "focus:border-white/40 focus:ring-2 focus:ring-white/30 focus:outline-none"
   );
 
   return (
@@ -140,7 +143,7 @@ export function FinalCta() {
         </div>
 
         {/* Right — form */}
-        <div className="rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur-md sm:p-8 max-w-full lg:max-w-[500px] mx-auto lg:ml-auto">
+        <div className="rounded-2xl border border-white/10 bg-white/10 p-6 backdrop-blur-md sm:p-8 w-full max-w-[500px] lg:justify-self-end">
           {state.success ? (
             <div className="flex flex-col items-center justify-center gap-4 py-8 text-center">
               <div className="flex h-14 w-14 items-center justify-center rounded-full bg-accent/20 text-2xl text-accent">
