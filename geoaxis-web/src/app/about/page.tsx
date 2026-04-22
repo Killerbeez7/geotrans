@@ -107,7 +107,7 @@ export default function About() {
       </Section>
 
       {/* VALUES */}
-      <Section className="py-20 md:py-28 bg-bg-muted">
+      <Section tone="page" className="py-20 md:py-28">
         <div className="container-page">
           <div className="text-center">
             <h2 className="typo-h2">{values.title}</h2>

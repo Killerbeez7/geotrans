@@ -10,7 +10,7 @@ import { WorkflowSection } from "@/components/sections/WorkflowSection";
 import { ProjectsSection } from "@/components/sections/ProjectsSection";
 import { Testimonials } from "@/components/sections/Testimonials";
 import { FinalCta } from "@/components/sections/FinalCta";
-import { Stats } from "@/components/sections/StatsSection copy 2";
+import { Stats } from "@/components/sections/StatsSection";
 
 export const metadata = createSeo({
   title: "Геодезически услуги в София",
