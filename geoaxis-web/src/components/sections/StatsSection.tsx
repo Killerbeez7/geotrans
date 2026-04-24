@@ -101,7 +101,7 @@ export function Stats() {
                 transition={{ duration: 0.45, delay: i * 0.08 }}
                 className="px-2 text-center lg:px-4"
               >
-                <div className="text-4xl font-semibold tracking-tight text-tx-primary md:text-5xl lg:text-6xl">
+                <div className="text-4xl font-semibold tracking-normal text-tx-primary md:text-5xl lg:text-6xl">
                   <CountUpNumber value={s.number} />
                 </div>
 
