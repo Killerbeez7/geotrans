@@ -16,21 +16,25 @@ export function HeroSection({
   cta,
 }: HeroContent) {
   const [title_1, title_2] = title;
-  const [subtitle_1, subtitle_2] = subtitle ?? [];
+  // const [subtitle_1, subtitle_2] = subtitle ?? [];
+  const subtitleText = subtitle?.filter(Boolean).join(" ");
 
   return (
     <header id={id} className="relative isolate overflow-hidden bg-bg-inverse">
-      <div className="relative min-h-[70dvh] md:min-h-dvh flex items-center pb-0 md:pb-16">
+      {/* <div className="relative min-h-[70dvh] md:min-h-dvh flex items-center pb-0 md:pb-16"> */}
+      <div className="relative flex min-h-[82dvh] items-center pb-12 pt-(--header-h) md:min-h-dvh md:pb-16">
         {/* Background Image */}
         <HeroBackground src={image} alt={imageAlt} />
 
         {/* Content */}
-        <div className="container-page relative w-full pt-(--header-h)">
-          {/* <div className="max-w-3xl mx-auto md:mx-0 text-center md:text-left md:translate-x-6 lg:translate-x-10"> */}
-          <div className="max-w-3xl mx-auto md:mx-0 text-center md:text-left ">
+        <div className="container-page relative w-full">
+          <div className="mx-auto max-w-3xl text-center md:mx-0 md:text-left">
+            {/* <div className="container-page relative w-full pt-(--header-h)">
+          <div className="max-w-3xl mx-auto md:mx-0 text-center md:text-left "> */}
             {/* Kicker */}
             {kicker && (
-              <div className="mb-4 flex justify-center md:justify-start">
+              <div className="mb-4 flex justify-center md:justify-start md:mb-5">
+                {/* <div className="mb-4 flex justify-center md:justify-start"> */}
                 <span
                   className={clsx(
                     "typo-kicker text-tx-inverse/72",
@@ -66,29 +70,42 @@ export function HeroSection({
             </h1>
 
             {/* Subtitle - optional */}
-            {subtitle && (
+            {subtitleText && (
+              <p className="typo-lead mx-auto mt-6 max-w-xl text-balance text-tx-inverse/78 md:mx-0 md:mt-7">
+                {subtitleText}
+              </p>
+            )}
+            {/* {subtitle && (
               <p className="typo-lead mt-7 md:mt-8 max-w-lg mx-auto md:mx-0 ">
                 {subtitle_1}
                 <br />
                 {subtitle_2}
               </p>
-            )}
+            )} */}
 
             {/* CTA */}
             {cta && (
               <div
                 className={clsx(
+                  // "flex flex-col items-stretch gap-3 sm:flex-row sm:items-center sm:gap-4",
                   "flex flex-wrap items-center gap-4",
                   "justify-center md:justify-start",
                   subtitle ? "mt-8" : "mt-10 md:mt-12"
                 )}
               >
                 <CtaButton href={cta.primary.href} size="lg">
+                  {/* <CtaButton href={cta.primary.href} size="lg" className="min-h-[52px]"> */}
                   <FaPhone className="mr-2" />
                   {cta.primary.label}
                 </CtaButton>
 
                 <CtaButton variant="glass" href={cta.secondary.href} size="lg">
+                  {/* <CtaButton
+                  variant="glass"
+                  href={cta.secondary.href}
+                  size="lg"
+                  className="min-h-[52px]"
+                > */}
                   {cta.secondary.label} <MdArrowRightAlt />
                 </CtaButton>
               </div>
@@ -125,6 +142,7 @@ function HeroBackground({ src, alt }: { src: string; alt: string }) {
 
       {/* Tone layer */}
       <div className="absolute inset-0 -z-10 bg-black/20" />
+      {/* <div className="absolute inset-0 -z-10 bg-bg-inverse/15" /> */}
 
       {/* Gradient + blur layer */}
       <div
