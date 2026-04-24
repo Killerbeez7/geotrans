@@ -6,17 +6,16 @@ export function TrustSection({ id, kicker, title, subtitle, trustCards }: TrustC
   return (
     <Section id={id} tone="muted">
       {/* Title */}
-      {/* <div className="mx-auto mb-12 lg:mb-16 max-w-3xl text-left md:text-center"> */}
-      <div className="mx-auto max-w-3xl text-left md:text-center">
-        {/* <p className="typo-kicker inline-block border-b border-accent/40 pb-2"> */}
+      {/* <div className="mx-auto max-w-3xl text-left md:text-center"> */}
+      <div className="max-w-full text-left">
         <p className="typo-kicker inline-block border-b border-accent/40 pb-2 md:px-2">
           {kicker}
         </p>
 
-        {/* <h2 className="typo-h2 mt-3">{title}</h2> */}
         <h2 className="typo-h2 mt-1 md:mt-2">{title}</h2>
 
-        <p className="typo-subtitle mt-2 md:mt-4 max-w-2xl mx-0 md:mx-auto whitespace-normal md:whitespace-pre-line">
+        {/* <p className="typo-subtitle mt-2 md:mt-4 max-w-2xl mx-0 md:mx-auto whitespace-normal md:whitespace-pre-line"> */}
+        <p className="typo-subtitle mt-2 md:mt-4 whitespace-normal md:whitespace-pre-line">
           {subtitle}
         </p>
       </div>
