@@ -29,17 +29,18 @@ function FloatingInput({
         required={required}
         placeholder=" "
         className={clsx(
-          "peer w-full rounded-xl border border-white/10 bg-white/5 px-4 pt-6 pb-2",
-          "text-white placeholder-transparent backdrop-blur-md",
+          "peer w-full rounded-xl border border-br-light bg-bg-page px-4 pt-6 pb-2",
+          "text-tx-primary placeholder-transparent",
           "transition-all duration-200",
-          "focus:border-white/40 focus:ring-2 focus:ring-white/15 focus:outline-none"
+          "focus:border-br-accent focus:ring-2 focus:ring-accent/20 focus:outline-none"
         )}
       />
       <label
         className={clsx(
           "pointer-events-none absolute left-4 top-1/2 -translate-y-1/2",
-          "text-base text-white/50 transition-all duration-200",
+          "text-base text-tx-muted transition-all duration-200",
           "peer-focus:top-2 peer-focus:translate-y-0 peer-focus:text-sm",
+          "peer-focus:text-accent-strong",
           "peer-not-placeholder-shown:top-2 peer-not-placeholder-shown:translate-y-0",
           "peer-not-placeholder-shown:text-sm"
         )}
@@ -67,17 +68,18 @@ function FloatingTextarea({
         rows={rows}
         placeholder=" "
         className={clsx(
-          "peer w-full resize-none rounded-xl border border-white/10 bg-white/5 px-4 pt-6 pb-2",
-          "text-white placeholder-transparent backdrop-blur-md",
+          "peer w-full resize-none rounded-xl border border-br-light bg-bg-page px-4 pt-6 pb-2",
+          "text-tx-primary placeholder-transparent",
           "transition-all duration-200",
-          "focus:border-white/40 focus:ring-2 focus:ring-white/15 focus:outline-none"
+          "focus:border-br-accent focus:ring-2 focus:ring-accent/20 focus:outline-none"
         )}
       />
       <label
         className={clsx(
           "pointer-events-none absolute left-4 top-5 -translate-y-1/2",
-          "text-base text-white/50 transition-all duration-200",
+          "text-base text-tx-muted transition-all duration-200",
           "peer-focus:top-2 peer-focus:translate-y-0 peer-focus:text-sm",
+          "peer-focus:text-accent-strong",
           "peer-not-placeholder-shown:top-2 peer-not-placeholder-shown:translate-y-0",
           "peer-not-placeholder-shown:text-sm"
         )}
@@ -93,29 +95,32 @@ function FloatingSelect({
   name,
   options,
   defaultValue = "",
+  onChange,
 }: {
   label: string;
   name: string;
   options: { value: string; label: string }[];
   defaultValue?: string;
+  onChange?: (value: string) => void;
 }) {
   return (
     <div className="relative">
-      <label className="pointer-events-none absolute left-4 top-2 z-10 text-xs text-white/50">
+      <label className="pointer-events-none absolute left-4 top-2 z-10 text-xs text-tx-muted">
         {label}
       </label>
       <select
         name={name}
         defaultValue={defaultValue}
+        onChange={(event) => onChange?.(event.target.value)}
         className={clsx(
-          "w-full rounded-xl border border-white/10 bg-white/5 px-4 pt-7 pb-2",
-          "text-sm text-white backdrop-blur-md appearance-none",
+          "w-full rounded-xl border border-br-light bg-bg-page px-4 pt-7 pb-2",
+          "appearance-none text-sm text-tx-primary",
           "transition-all duration-200",
-          "focus:border-white/40 focus:ring-2 focus:ring-white/15 focus:outline-none",
-          "[&>option]:bg-[#1c2823] [&>option]:text-white"
+          "focus:border-br-accent focus:ring-2 focus:ring-accent/20 focus:outline-none",
+          "[&>option]:bg-white [&>option]:text-tx-primary"
         )}
       >
-        <option value="" disabled={Boolean(defaultValue)} className="text-white/30">
+        <option value="" disabled={Boolean(defaultValue)}>
           —
         </option>
         {options.map((o) => (
@@ -124,7 +129,7 @@ function FloatingSelect({
           </option>
         ))}
       </select>
-      <div className="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 text-white/40">
+      <div className="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 text-tx-muted">
         <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
           <path
             d="M2 4l4 4 4-4"
@@ -161,6 +166,12 @@ function FileUpload({
 
   return (
     <div>
+      <div className="mb-2">
+        <p className="text-sm font-medium text-tx-primary">Документи или снимки</p>
+        <p className="mt-0.5 text-xs leading-5 text-tx-muted">
+          По желание. Ако нямате файл, изпратете само описанието.
+        </p>
+      </div>
       <div
         onClick={() => inputRef.current?.click()}
         onDragOver={(e) => e.preventDefault()}
@@ -170,16 +181,16 @@ function FileUpload({
         }}
         className={clsx(
           "flex cursor-pointer items-center gap-3 px-4 py-3",
-          "rounded-xl border border-dashed border-white/20 bg-white/4",
-          "transition hover:border-white/40 hover:bg-white/8"
+          "rounded-xl border border-dashed border-br-default bg-bg-section",
+          "transition hover:border-accent/60 hover:bg-white"
         )}
       >
-        <LuUpload className="h-4 w-4 shrink-0 text-white/40" />
+        <LuUpload className="h-4 w-4 shrink-0 text-accent-strong" />
         <div>
-          <p className="text-sm text-white/50">
-            Прикачи файлове — <span className="text-accent">избери или плъзни</span>
+          <p className="text-sm text-tx-secondary">
+            Прикачи файл <span className="text-accent-strong">или го плъзни тук</span>
           </p>
-          <p className="text-xs text-white/30">JPG, PNG, WebP, PDF · до 10MB</p>
+          <p className="text-xs text-tx-muted">JPG, PNG, WebP, PDF · до 10MB</p>
         </div>
       </div>
 
@@ -197,21 +208,21 @@ function FileUpload({
           {files.map((f) => (
             <li
               key={f.name}
-              className="flex items-center gap-3 rounded-lg border border-white/10 bg-white/5 px-3 py-2"
+              className="flex items-center gap-3 rounded-lg border border-br-light bg-bg-section px-3 py-2"
             >
               {isImage(f) ? (
-                <LuImage className="h-4 w-4 shrink-0 text-accent" />
+                <LuImage className="h-4 w-4 shrink-0 text-accent-strong" />
               ) : (
-                <LuFile className="h-4 w-4 shrink-0 text-accent" />
+                <LuFile className="h-4 w-4 shrink-0 text-accent-strong" />
               )}
-              <span className="flex-1 truncate text-sm text-white/70">{f.name}</span>
-              <span className="text-xs text-white/30">
+              <span className="flex-1 truncate text-sm text-tx-primary">{f.name}</span>
+              <span className="text-xs text-tx-muted">
                 {(f.size / 1024).toFixed(0)}KB
               </span>
               <button
                 type="button"
                 onClick={() => remove(f.name)}
-                className="text-white/30 transition hover:text-red-400"
+                className="text-tx-muted transition hover:text-red-600"
               >
                 <LuX className="h-4 w-4" />
               </button>
@@ -226,6 +237,7 @@ function FileUpload({
 export function ContactForm() {
   const formRef = useRef<HTMLFormElement>(null);
   const [files, setFiles] = useState<File[]>([]);
+  const [preferredContact, setPreferredContact] = useState("phone");
 
   const [state, setState] = useState<FormState>({ error: null, success: false });
   const [isPending, startTransition] = useTransition();
@@ -236,6 +248,18 @@ export function ContactForm() {
     if (!form) return;
 
     const formData = new FormData(form);
+    const contactValue = String(formData.get("contactValue") || "").trim();
+
+    if (preferredContact === "email") {
+      formData.set("email", contactValue);
+      formData.delete("phone");
+    } else {
+      formData.set("phone", contactValue);
+      formData.delete("email");
+    }
+
+    formData.set("preferredContact", preferredContact);
+    formData.delete("contactValue");
     files.forEach((f) => formData.append("files", f));
 
     startTransition(async () => {
@@ -260,7 +284,7 @@ export function ContactForm() {
         setState({ error: null, success: true });
         form.reset();
         setFiles([]);
-        // setWantsAttachments(false);
+        setPreferredContact("phone");
       } catch {
         setState({ error: "Грешка при изпращане. Опитайте отново.", success: false });
       }
@@ -269,17 +293,17 @@ export function ContactForm() {
 
   if (state.success) {
     return (
-      <div className="rounded-3xl border border-white/8 bg-white/4 p-8 text-center backdrop-blur-2xl">
-        <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-accent/20 text-accent text-3xl">
+      <div className="rounded-2xl border border-br-light bg-bg-page p-8 text-center shadow-xl shadow-black/10">
+        <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-accent/20 text-3xl text-accent-strong">
           ✓
         </div>
-        <h3 className="text-xl font-semibold text-white">Запитването е изпратено!</h3>
-        <p className="mt-2 text-sm text-white/60">
+        <h3 className="text-xl font-semibold text-tx-primary">Запитването е изпратено!</h3>
+        <p className="mt-2 text-sm text-tx-muted">
           Ще се свържем с вас възможно най-скоро.
         </p>
         <button
           onClick={() => setState({ error: null, success: false })}
-          className="mt-6 text-sm text-accent underline-offset-2 hover:underline"
+          className="mt-6 text-sm font-medium text-accent-strong underline-offset-2 hover:underline"
         >
           Изпрати ново запитване
         </button>
@@ -288,18 +312,39 @@ export function ContactForm() {
   }
 
   return (
-    <div className="rounded-3xl border border-white/8 bg-white/4 p-6 shadow-2xl backdrop-blur-2xl sm:p-8">
-      <h3 className="typo-h3 text-tx-inverse mb-6">Изпратете запитване</h3>
+    <div className="relative overflow-hidden rounded-2xl border border-br-light bg-bg-page p-5 shadow-xl shadow-black/10 sm:p-6 lg:p-7">
+      <div className="absolute inset-x-0 top-0 h-1 bg-accent" />
+      <div className="mb-5">
+        <h3 className="text-2xl font-semibold text-tx-primary">
+          Разкажете ни накратко
+        </h3>
+        <p className="mt-2 text-sm leading-6 text-tx-muted">
+          Попълнете само основното. Ще се свържем с вас, за да уточним детайлите.
+        </p>
+      </div>
 
-      <form ref={formRef} onSubmit={handleSubmit} className="space-y-4">
-        <div className="grid gap-4 sm:grid-cols-2">
+      <form ref={formRef} onSubmit={handleSubmit} className="space-y-3.5">
+        <div className="grid gap-3.5 sm:grid-cols-2">
           <FloatingInput name="name" label="Вашето име *" />
-          <FloatingInput name="phone" label="Телефон" type="tel" required={false} />
-          <FloatingInput name="email" label="Имейл адрес" type="email" required={false} />
-          <FloatingInput name="location" label="Населено място" required={false} />
+          <FloatingSelect
+            name="contactMethod"
+            label="Да отговорим по"
+            defaultValue="phone"
+            onChange={setPreferredContact}
+            options={[
+              { value: "phone", label: "Телефон" },
+              { value: "email", label: "Имейл" },
+            ]}
+          />
         </div>
 
-        <div className="grid gap-4 sm:grid-cols-2">
+        <div className="grid gap-3.5 sm:grid-cols-2">
+          <FloatingInput
+            key={preferredContact}
+            name="contactValue"
+            label={preferredContact === "email" ? "Имейл адрес *" : "Телефон *"}
+            type={preferredContact === "email" ? "email" : "tel"}
+          />
           <FloatingSelect
             name="service"
             label="Тип услуга"
@@ -312,18 +357,11 @@ export function ContactForm() {
               { value: "other", label: "Друго" },
             ]}
           />
-          <FloatingSelect
-            name="preferredContact"
-            label="Предпочитан контакт"
-            defaultValue="phone"
-            options={[
-              { value: "phone", label: "По телефон" },
-              { value: "email", label: "По имейл" },
-            ]}
-          />
         </div>
 
-        <FloatingTextarea name="message" label="Опишете случая или услугата *" rows={3} />
+        <FloatingInput name="location" label="Населено място / имот" required={false} />
+
+        <FloatingTextarea name="message" label="Какво ви е необходимо? *" rows={4} />
 
         <FileUpload files={files} onChange={setFiles} />
 
@@ -332,8 +370,8 @@ export function ContactForm() {
         </CtaButton>
 
         {state.error && (
-          <div className="rounded-xl border border-red-400/20 bg-red-400/10 px-4 py-3">
-            <p className="text-sm text-red-300">{state.error}</p>
+          <div className="rounded-xl border border-red-600/20 bg-red-600/10 px-4 py-3">
+            <p className="text-sm text-red-700">{state.error}</p>
           </div>
         )}
       </form>
