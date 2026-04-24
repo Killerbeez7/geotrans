@@ -4,8 +4,74 @@ import { Resend } from "resend";
 const MAX_FILE_SIZE = 10 * 1024 * 1024; // 10MB
 const ALLOWED_TYPES = ["image/jpeg", "image/png", "image/webp", "application/pdf"];
 
+type ContactPayload = {
+  name: string;
+  email: string;
+  phone: string;
+  service: string;
+  location: string;
+  preferredContact: string;
+  message: string;
+  files: File[];
+};
+
 function escapeHtml(str: string) {
   return str.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+}
+
+function asString(value: FormDataEntryValue | null) {
+  return typeof value === "string" ? value.trim() : "";
+}
+
+async function parseContactRequest(req: Request): Promise<ContactPayload> {
+  const contentType = req.headers.get("content-type") || "";
+
+  if (contentType.includes("application/json")) {
+    const body = (await req.json()) as Record<string, unknown>;
+
+    return {
+      name: typeof body.name === "string" ? body.name.trim() : "",
+      email: typeof body.email === "string" ? body.email.trim() : "",
+      phone: typeof body.phone === "string" ? body.phone.trim() : "",
+      service: typeof body.service === "string" ? body.service.trim() : "",
+      location: typeof body.location === "string" ? body.location.trim() : "",
+      preferredContact:
+        typeof body.preferredContact === "string" ? body.preferredContact.trim() : "",
+      message: typeof body.message === "string" ? body.message.trim() : "",
+      files: [],
+    };
+  }
+
+  const formData = await req.formData();
+
+  return {
+    name: asString(formData.get("name")),
+    email: asString(formData.get("email")),
+    phone: asString(formData.get("phone")),
+    service: asString(formData.get("service")),
+    location: asString(formData.get("location")),
+    preferredContact: asString(formData.get("preferredContact")),
+    message: asString(formData.get("message")),
+    files: formData.getAll("files").filter((file): file is File => file instanceof File),
+  };
+}
+
+function validatePayload({ name, email, message, files }: ContactPayload) {
+  if (!name || !email || !message) {
+    return "Моля, попълнете име, имейл и съобщение.";
+  }
+
+  for (const file of files) {
+    if (file.size > MAX_FILE_SIZE) {
+      return `Файлът "${file.name}" надвишава 10MB.`;
+    }
+
+    if (!ALLOWED_TYPES.includes(file.type)) {
+      return `Невалиден тип файл: "${file.name}". Позволени са JPG, PNG, WebP и PDF.`;
+    }
+  }
+
+  return null;
 }
 
 export async function POST(req: Request) {
@@ -18,37 +84,16 @@ export async function POST(req: Request) {
     if (!toEmail)
       return NextResponse.json({ error: "CONTACT_EMAIL is not set" }, { status: 500 });
 
-    const formData = await req.formData();
+    const payload = await parseContactRequest(req);
+    const validationError = validatePayload(payload);
 
-    const name = formData.get("name") as string;
-    const email = formData.get("email") as string;
-    const phone = formData.get("phone") as string;
-    const service = formData.get("service") as string;
-    const location = formData.get("location") as string;
-    const preferredContact = formData.get("preferredContact") as string;
-    const message = formData.get("message") as string;
-    const files = formData.getAll("files") as File[];
-
-    if (!name || !message)
-      return NextResponse.json({ error: "Missing required fields" }, { status: 400 });
-
-    // Validate files
-    for (const file of files) {
-      if (file.size > MAX_FILE_SIZE)
-        return NextResponse.json(
-          { error: `Файлът "${file.name}" надвишава 10MB.` },
-          { status: 400 }
-        );
-      if (!ALLOWED_TYPES.includes(file.type))
-        return NextResponse.json(
-          {
-            error: `Невалиден тип файл: "${file.name}". Позволени: JPG, PNG, WebP, PDF.`,
-          },
-          { status: 400 }
-        );
+    if (validationError) {
+      return NextResponse.json({ error: validationError }, { status: 400 });
     }
 
-    // Convert files to base64 for Resend
+    const { name, email, phone, service, location, preferredContact, message, files } =
+      payload;
+
     const attachments = await Promise.all(
       files.map(async (file) => {
         const buffer = await file.arrayBuffer();
@@ -79,7 +124,7 @@ export async function POST(req: Request) {
     const result = await resend.emails.send({
       from: "GeoAxis <onboarding@resend.dev>",
       to: toEmail,
-      subject: `Ново запитване от ${escapeHtml(name)}`,
+      subject: `Ново запитване от ${name}`,
       html: `
         <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto;">
           <h2 style="color: #2a3a33; border-bottom: 2px solid #c79d32; padding-bottom: 8px;">
@@ -93,27 +138,27 @@ export async function POST(req: Request) {
             </tr>
             <tr>
               <td style="padding: 8px 0; color: #666;">Имейл:</td>
-              <td style="padding: 8px 0;">${escapeHtml(email || "—")}</td>
+              <td style="padding: 8px 0;">${escapeHtml(email)}</td>
             </tr>
             <tr>
               <td style="padding: 8px 0; color: #666;">Телефон:</td>
-              <td style="padding: 8px 0;">${escapeHtml(phone || "—")}</td>
+              <td style="padding: 8px 0;">${escapeHtml(phone || "-")}</td>
             </tr>
             <tr>
               <td style="padding: 8px 0; color: #666;">Услуга:</td>
-              <td style="padding: 8px 0;">${escapeHtml(serviceMap[service] || service || "—")}</td>
+              <td style="padding: 8px 0;">${escapeHtml(serviceMap[service] || service || "-")}</td>
             </tr>
             <tr>
               <td style="padding: 8px 0; color: #666;">Населено място:</td>
-              <td style="padding: 8px 0;">${escapeHtml(location || "—")}</td>
+              <td style="padding: 8px 0;">${escapeHtml(location || "-")}</td>
             </tr>
             <tr>
               <td style="padding: 8px 0; color: #666;">Предпочитан контакт:</td>
-              <td style="padding: 8px 0;">${escapeHtml(contactMap[preferredContact] || "—")}</td>
+              <td style="padding: 8px 0;">${escapeHtml(contactMap[preferredContact] || "-")}</td>
             </tr>
             <tr>
               <td style="padding: 8px 0; color: #666;">Прикачени файлове:</td>
-              <td style="padding: 8px 0;">${files.length > 0 ? files.map((f) => escapeHtml(f.name)).join(", ") : "—"}</td>
+              <td style="padding: 8px 0;">${files.length > 0 ? files.map((file) => escapeHtml(file.name)).join(", ") : "-"}</td>
             </tr>
           </table>
 

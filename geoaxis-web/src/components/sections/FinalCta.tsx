@@ -131,7 +131,7 @@ export function FinalCta() {
               {phone}
             </span>
           </a>
-          <a href={`tel:${email}`} className="mt-8 flex w-fit items-center gap-3 group">
+          <a href={`mailto:${email}`} className="mt-8 flex w-fit items-center gap-3 group">
             <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-white/10 text-accent transition">
               <FaEnvelope className="h-4 w-4 group-hover:text-accent-hover" />
             </div>
