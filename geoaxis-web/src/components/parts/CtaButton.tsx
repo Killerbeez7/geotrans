@@ -2,7 +2,7 @@ import Link from "next/link";
 import clsx from "clsx";
 import { ReactNode } from "react";
 
-type Variant = "primary" | "outline" | "glass" | "glassInverse" | "glassAccent";
+type Variant = "primary" | "outline" | "glass" | "glassInverse" | "glassAccent" | "soft";
 
 type Size = "sm" | "md" | "lg";
 
@@ -28,7 +28,6 @@ export function CtaButton({
     "rounded-2xl",
     "transition-all duration-200",
     "shadow-lg hover:shadow-xl",
-    "hover:scale-101",
     "active:scale-100",
     "leading-none"
   );
@@ -40,7 +39,7 @@ export function CtaButton({
   };
 
   const variants: Record<Variant, string> = {
-    primary: clsx("bg-accent/90", "text-tx-inverse", "hover:bg-accent-hover"),
+    primary: clsx("bg-accent/90", "text-tx-inverse", "hover:bg-accent-hover/90"),
 
     outline: clsx(
       "border border-br-light/50",
@@ -65,6 +64,15 @@ export function CtaButton({
       "border border-white/20",
       "text-white",
       "hover:bg-(--surface-overlay-lg)"
+    ),
+    soft: clsx(
+      "inline-flex items-center justify-center rounded-full",
+      "px-5 py-2.5 text-sm font-semibold",
+      "border border-accent/25",
+      "bg-accent/10 text-accent-strong",
+      "shadow-none",
+      "transition-all duration-200",
+      "hover:bg-accent/15 hover:border-accent/40"
     ),
   };
 
