@@ -24,7 +24,7 @@ export function ProjectsSection({
   return (
     <Section id={id} tone="page">
       <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
-        <div className="max-w-3xl text-left px-4 md:px-0">
+        <div className="max-w-3xl text-left">
           <p className="typo-kicker inline-block border-b border-accent/40 pb-2 md:px-2">
             {kicker}
           </p>

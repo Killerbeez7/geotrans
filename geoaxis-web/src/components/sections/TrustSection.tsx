@@ -7,7 +7,7 @@ export function TrustSection({ id, kicker, title, subtitle, trustCards }: TrustC
     <Section id={id} tone="muted">
       {/* Title */}
       {/* <div className="mx-auto mb-12 lg:mb-16 max-w-3xl text-left md:text-center"> */}
-      <div className="mx-auto max-w-3xl text-left md:text-center px-4 md:px-0">
+      <div className="mx-auto max-w-3xl text-left md:text-center">
         {/* <p className="typo-kicker inline-block border-b border-accent/40 pb-2"> */}
         <p className="typo-kicker inline-block border-b border-accent/40 pb-2 md:px-2">
           {kicker}

@@ -17,7 +17,7 @@ export const ServiceSection = ({ id, kicker, title, subtitle, items }: Props) =>
 
   return (
     <Section id={id} tone="page">
-      <div className="mx-auto max-w-3xl text-left md:text-center px-4 md:px-0">
+      <div className="mx-auto max-w-3xl text-left md:text-center">
         {kicker && (
           <p className="typo-kicker inline-block border-b border-accent/40 pb-2 md:px-2">
             {kicker}
