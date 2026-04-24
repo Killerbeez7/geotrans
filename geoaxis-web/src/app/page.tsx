@@ -8,7 +8,7 @@ import { ServiceSection } from "@/components/sections/ServiceSection";
 import { WhyChooseUs } from "@/components/sections/WhyChooseUs";
 import { WorkflowSection } from "@/components/sections/WorkflowSection";
 import { ProjectsSection } from "@/components/sections/ProjectsSection";
-import { Testimonials } from "@/components/sections/Testimonials";
+import { TestimonialsSection } from "@/components/sections/TestimonialsSection";
 import { FinalCta } from "@/components/sections/FinalCta";
 import { Stats } from "@/components/sections/StatsSection";
 
@@ -20,7 +20,8 @@ export const metadata = createSeo({
 });
 
 export default function Home() {
-  const { brand, hero, trust, services, whyUs, workflow, projects } = siteContent;
+  const { brand, hero, trust, services, whyUs, workflow, projects, testimonials } =
+    siteContent;
 
   return (
     <>
@@ -41,17 +42,10 @@ export default function Home() {
       <WorkflowSection {...workflow} />
 
       {/* Finished projects */}
-      <ProjectsSection
-        id={projects.id}
-        kicker={projects.kicker}
-        title={projects.title}
-        subtitle={projects.subtitle}
-        items={projects.items}
-        cta={projects.cta}
-      />
+      <ProjectsSection {...projects} />
 
       {/* Our clients reviews */}
-      <Testimonials />
+      <TestimonialsSection {...testimonials} />
 
       {/* Contact us */}
       <FinalCta />
