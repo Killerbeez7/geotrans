@@ -109,9 +109,9 @@ export function FinalCta() {
 
   return (
     <Section tone="brand" className="border-t border-white/10">
-      <div className="grid items-start gap-12 lg:grid-cols-2 lg:gap-16">
+      <div className="grid items-start gap-10 lg:grid-cols-[0.92fr_1.08fr] lg:gap-14">
         {/* Left — text */}
-        <div className="max-w-lg">
+        <div className="max-w-xl">
           <p className="typo-kicker inline-block border-b border-accent/40 pb-2">
             Контакт
           </p>
@@ -123,26 +123,28 @@ export function FinalCta() {
             най-подходящото решение за вашия имот или проект.
           </p>
 
-          <a href={`tel:${phone}`} className="mt-8 flex w-fit items-center gap-3 group">
-            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-white/10 text-accent transition">
-              <FaPhone className="h-4 w-4 text-accent/80 group-hover:text-accent-hover" />
-            </div>
-            <span className="typo-body font-medium text-tx-inverse/75 transition group-hover:text-accent-hover">
-              {phone}
-            </span>
-          </a>
-          <a href={`mailto:${email}`} className="mt-8 flex w-fit items-center gap-3 group">
-            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-white/10 text-accent transition">
-              <FaEnvelope className="h-4 w-4 group-hover:text-accent-hover" />
-            </div>
-            <span className="typo-body font-medium text-tx-inverse/75 transition group-hover:text-accent-hover">
-              {email}
-            </span>
-          </a>
+          <div className="mt-8 grid gap-3 sm:max-w-md">
+            <a href={`tel:${phone}`} className="group flex w-fit items-center gap-3">
+              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-white/10 text-accent transition">
+                <FaPhone className="h-4 w-4 text-accent/80 group-hover:text-accent-hover" />
+              </div>
+              <span className="typo-body font-medium text-tx-inverse/75 transition group-hover:text-accent-hover">
+                {phone}
+              </span>
+            </a>
+            <a href={`mailto:${email}`} className="group flex w-fit items-center gap-3">
+              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-white/10 text-accent transition">
+                <FaEnvelope className="h-4 w-4 group-hover:text-accent-hover" />
+              </div>
+              <span className="typo-body font-medium text-tx-inverse/75 transition group-hover:text-accent-hover">
+                {email}
+              </span>
+            </a>
+          </div>
         </div>
 
         {/* Right — form */}
-        <div className="rounded-2xl border border-white/10 bg-white/10 p-6 backdrop-blur-md sm:p-8 w-full max-w-[500px] lg:justify-self-end">
+        <div className="w-full rounded-card border border-white/10 bg-white/10 p-5 backdrop-blur-md sm:p-7 lg:justify-self-end">
           {state.success ? (
             <div className="flex flex-col items-center justify-center gap-4 py-8 text-center">
               <div className="flex h-14 w-14 items-center justify-center rounded-full bg-accent/20 text-2xl text-accent">
