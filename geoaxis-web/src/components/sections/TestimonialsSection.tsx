@@ -28,7 +28,7 @@ export function TestimonialsSection({
 }: TestimonialsContent) {
   return (
     <Section id={id} tone="muted">
-      <div className="max-w-4xl mb-12 sm:mb-14">
+      <div className="mb-10 max-w-3xl sm:mb-12">
         <span className="typo-kicker inline-block border-b border-accent/40 pb-2">
           {kicker}
         </span>
@@ -36,25 +36,25 @@ export function TestimonialsSection({
         <p className="typo-subtitle mt-3">{subtitle}</p>
       </div>
 
-      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
         {testimonials.map((item) => (
           <div
             key={item.name}
-            className="rounded-2xl bg-bg-page border border-br-light/80 p-7"
+            className="rounded-card border border-br-light bg-bg-page p-6 shadow-sm transition hover:border-br-accent-soft hover:shadow-md sm:p-7"
           >
-            <div className="flex gap-0.5 text-accent mb-4">
+            <div className="mb-4 flex gap-0.5 text-accent">
               {[...Array(5)].map((_, i) => (
                 <FaStar key={i} className="h-3.5 w-3.5" />
               ))}
             </div>
 
-            <p className="text-[15px] leading-relaxed text-tx-secondary mb-6">
+            <p className="mb-6 text-[15px] leading-7 text-tx-secondary">
               &ldquo;{item.text}&rdquo;
             </p>
 
             <div>
-              <p className="text-[15px] font-semibold text-tx-primary">{item.name}</p>
-              <p className="text-[13px] text-tx-muted">{item.role}</p>
+              <p className="text-base font-semibold text-tx-primary">{item.name}</p>
+              <p className="text-sm text-tx-muted">{item.role}</p>
             </div>
           </div>
         ))}
