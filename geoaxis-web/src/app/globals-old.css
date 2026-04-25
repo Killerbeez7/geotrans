@@ -5,17 +5,7 @@
   --canvas: #ececec;
 
   /* Brand Olive */
-  --brand-olive-50: #f4f7f4;
-  --brand-olive-100: #e5ece6;
-  --brand-olive-200: #cbd8cf;
-  --brand-olive-300: #acbeb3;
-  --brand-olive-400: #82998d;
-  --brand-olive-500: #637d70;
-  --brand-olive-600: #4d675a;
-  --brand-olive-700: #385145;
-  --brand-olive-800: #253a31;
-  --brand-olive-900: #14211b;
-  /* --brand-olive-50: #f2f5f3;
+  --brand-olive-50: #f2f5f3;
   --brand-olive-100: #e2e8e4;
   --brand-olive-200: #c5d0ca;
   --brand-olive-300: #a2b2aa;
@@ -24,19 +14,10 @@
   --brand-olive-600: #4b665a;
   --brand-olive-700: #3c5248;
   --brand-olive-800: #2a3a33;
-  --brand-olive-900: #1c2823; */
+  --brand-olive-900: #1c2823;
 
   /* Brand Ochre */
-  --brand-ochre-50: #fbf7ec;
-  --brand-ochre-100: #f4e7bf;
-  --brand-ochre-200: #ecd486;
-  --brand-ochre-300: #dfbd55;
-  --brand-ochre-400: #d2a73b;
-  --brand-ochre-500: #c5962d;
-  --brand-ochre-600: #a87d24;
-  --brand-ochre-700: #805f1c;
-  --brand-ochre-800: #604815;
-  /* --brand-ochre-50: #fbf7eb;
+  --brand-ochre-50: #fbf7eb;
   --brand-ochre-100: #f5e8bf;
   --brand-ochre-200: #edd58b;
   --brand-ochre-300: #e4c15f;
@@ -44,7 +25,7 @@
   --brand-ochre-500: #c79d32;
   --brand-ochre-600: #a88429;
   --brand-ochre-700: #86681f;
-  --brand-ochre-800: #624c16; */
+  --brand-ochre-800: #624c16;
 
   /* Grayscale */
   --gray-0: #ffffff;
@@ -61,18 +42,12 @@
   --gray-900: #0f0f0f;
 
   /* Neutral UI text / border support */
-  --neutral-100: #dfe5df;
-  --neutral-200: #cbd4cc;
-  --neutral-300: #aebbb2;
-  --neutral-700: #65716b;
-  --neutral-800: #3f4a45;
-  --neutral-900: #17211d;
-  /* --neutral-100: #dce0d8;
+  --neutral-100: #dce0d8;
   --neutral-200: #c8cec4;
   --neutral-300: #acb3af;
   --neutral-700: #6b7470;
   --neutral-800: #454d49;
-  --neutral-900: #1a1f1c; */
+  --neutral-900: #1a1f1c;
 
   /* Layout */
   --nav-h: 72px;
@@ -102,10 +77,7 @@
 
   /* nav */
   --color-bg-nav: var(--brand-olive-800);
-
-  --color-bg-top-nav: var(--brand-olive-900);
-  /* --color-bg-top-nav: #132018; */
-
+  --color-bg-top-nav: #132018;
   --color-bg-footer: var(--brand-olive-800);
 
   /* text */
@@ -126,8 +98,7 @@
   --color-br-accent-soft: color-mix(in srgb, var(--color-accent) 26%, transparent);
 
   /* radius */
-  --radius-card: 1.25rem;
-  /* --radius-card: 1.5rem; */
+  --radius-card: 1.5rem;
 }
 
 /* Fonts */
@@ -182,14 +153,12 @@ body {
 @layer components {
   /* ==================== TYPOGRAPHY ==================== */
   .typo-kicker {
-    @apply uppercase font-semibold text-accent text-[0.78rem] tracking-[0.16em] leading-[1.2];
-    /* @apply uppercase font-semibold text-accent text-sm tracking-[0.18em] leading-[1.18]; */
+    @apply uppercase font-semibold text-accent text-sm tracking-[0.18em] leading-[1.18];
   }
 
   .typo-hero {
     /* base */
-    @apply text-tx-inverse font-semibold tracking-normal text-3xl leading-[1.08];
-    /* @apply text-tx-inverse font-medium tracking-normal text-3xl leading-[1.08]; */
+    @apply text-tx-inverse font-medium tracking-normal text-3xl leading-[1.08];
     /* mobile -md */
     @apply min-[420px]:text-4xl md:text-5xl;
     /* desktop -lg */
@@ -205,8 +174,7 @@ body {
 
   .typo-h2 {
     /* base */
-    @apply text-tx-primary font-semibold text-2xl tracking-normal leading-[1.18];
-    /* @apply text-tx-primary font-medium text-2xl tracking-normal leading-[1.18]; */
+    @apply text-tx-primary font-medium text-2xl tracking-normal leading-[1.18];
     /* mobile -md */
     @apply md:text-3xl;
     /* desktop -lg */
@@ -217,9 +185,9 @@ body {
     /* base */
     @apply text-tx-primary font-medium text-[1.2rem] tracking-[0.01em] leading-tight;
     /* mobile -md */
-    @apply md:text-2xl;
+    @apply md:text-[1.1rem];
     /* desktop -lg */
-    @apply lg:text-3xl;
+    @apply lg:text-[2rem];
   }
 
   .typo-subtitle {
@@ -227,7 +195,7 @@ body {
   }
 
   .typo-body {
-    @apply text-tx-secondary text-base leading-[1.72];
+    @apply text-tx-secondary text-base leading-relaxed;
     @apply lg:text-[17px];
   }
 
@@ -302,11 +270,10 @@ img {
   }
 }
 
-/* NOTCH COLOR */
+/* TEST NOTCH COLOR */
 html,
 body {
-  background: var(--brand-olive-900);
-  /* background: #131a17; */
+  background: #131a17;
 }
 
 .safe-top {
