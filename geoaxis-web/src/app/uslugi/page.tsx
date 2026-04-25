@@ -6,6 +6,7 @@ import { CtaButton } from "@/components/parts/CtaButton";
 import { Section } from "@/components/layout/Section";
 // import { FinalCta } from "@/components/sections/FinalCta";
 import { serviceCategories } from "@/config/services/categories";
+import { servicesVisuals } from "@/config/services/visuals";
 import { createSeo } from "@/lib/seo-builder";
 import {
   CategoryOverviewCard,
@@ -19,7 +20,7 @@ export const metadata = createSeo({
   description:
     "Геодезически услуги в София и Софийска област: заснемане, трасиране, кадастър, проектиране, градоустройство и консултации.",
   canonical: "/uslugi",
-  image: "/images/sections/hero-home.webp",
+  image: servicesVisuals.heroImage,
 });
 
 const scenarios = [
@@ -52,19 +53,13 @@ export default function ServicesPage() {
         eyebrow="Геодезически услуги"
         title="Изберете услуга според вашия случай"
         description={`Подредихме ${serviceCategories.length} категории и ${serviceCount} конкретни услуги, за да намерите бързо правилната следваща стъпка за имот, проект или процедура.`}
-        image="/images/sections/hero-home.webp"
-        imageAlt="Геодезист работи с тотална станция на терен"
-        imagePosition="object-[78%_55%]"
+        image={servicesVisuals.heroImage}
+        imageAlt={servicesVisuals.heroAlt}
+        imagePosition={servicesVisuals.heroPosition}
+        tone="light"
       >
         <CtaButton href="/contacts" className="min-h-12 w-full sm:w-auto">
           Изпрати запитване
-        </CtaButton>
-        <CtaButton
-          href="#categories"
-          variant="glass"
-          className="min-h-12 w-full sm:w-auto"
-        >
-          Виж категориите
         </CtaButton>
       </ServicesHero>
 
@@ -75,13 +70,6 @@ export default function ServicesPage() {
             title="Всички услуги на едно място"
             description="Изберете категорията, която най-добре описва вашия казус. Вътре ще намерите конкретните услуги, необходими документи и последователност на работа."
           />
-          <CtaButton
-            href="/contacts"
-            variant="soft"
-            className="w-full shrink-0 md:w-auto"
-          >
-            Попитайте ни
-          </CtaButton>
         </div>
 
         <div className="mt-8 grid gap-5 md:mt-12 md:grid-cols-2 xl:grid-cols-3">
