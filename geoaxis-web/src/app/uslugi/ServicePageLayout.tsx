@@ -4,6 +4,7 @@ import { CtaButton } from "@/components/parts/CtaButton";
 import { Section } from "@/components/layout/Section";
 // import { FinalCta } from "@/components/sections/FinalCta";
 import type { Service, ServiceCategory } from "@/config/services/categories";
+import { servicesVisuals } from "@/config/services/visuals";
 import { ServiceSubnav, ServicesHero } from "./_components/ServicesUi";
 
 type Props = {
@@ -18,8 +19,6 @@ export function ServicePageLayout({ category, service, children }: Props) {
   const description = service
     ? service.description
     : (category.longDescription ?? category.description);
-  const image =
-    service?.heroImage ?? service?.thumbnail ?? category.heroImage ?? category.thumbnail;
   const eyebrow = service?.meta ?? category.meta ?? "Услуги";
 
   const breadcrumbs = [
@@ -42,8 +41,10 @@ export function ServicePageLayout({ category, service, children }: Props) {
         eyebrow={eyebrow}
         title={title}
         description={description}
-        image={image}
-        imageAlt={title}
+        image={servicesVisuals.heroImage}
+        imageAlt={servicesVisuals.heroAlt}
+        imagePosition={servicesVisuals.heroPosition}
+        tone="light"
         breadcrumbs={breadcrumbs}
       >
         <CtaButton href="/contacts" className="min-h-12 w-full sm:w-auto">
@@ -51,7 +52,7 @@ export function ServicePageLayout({ category, service, children }: Props) {
         </CtaButton>
         <CtaButton
           href={isServicePage ? `/uslugi/${category.slug}` : "#services"}
-          variant="glass"
+          variant="soft"
           className="min-h-12 w-full sm:w-auto"
         >
           {isServicePage ? "Към категорията" : "Виж услугите"}

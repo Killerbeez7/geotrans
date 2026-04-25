@@ -59,7 +59,7 @@ export default async function ServicePage({ params }: Props) {
 
       <article className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_22rem] lg:gap-10">
         <div className="space-y-6">
-          <section className="rounded-card border border-br-light bg-bg-muted p-5 sm:p-6">
+          <section className="rounded-card border border-br-light bg-bg-section p-5 shadow-sm sm:p-6">
             <p className="typo-kicker text-accent">Накратко</p>
             <h2 className="mt-2 text-2xl font-semibold leading-tight text-tx-primary">
               Какво решава тази услуга
@@ -74,7 +74,7 @@ export default async function ServicePage({ params }: Props) {
         </div>
 
         <aside className="lg:sticky lg:top-[calc(var(--header-h)+1.5rem)] lg:self-start">
-          <div className="rounded-card border border-br-light bg-bg-page p-5 shadow-sm sm:p-6">
+          <div className="rounded-card border border-br-light bg-bg-section p-5 shadow-sm sm:p-6">
             <p className="typo-kicker text-accent">Следваща стъпка</p>
             <h2 className="mt-2 text-xl font-semibold leading-tight text-tx-primary">
               Изпратете кратко запитване

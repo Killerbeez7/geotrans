@@ -19,6 +19,7 @@ type ServicesHeroProps = {
   image: string;
   imageAlt: string;
   imagePosition?: string;
+  tone?: "dark" | "light";
   breadcrumbs?: BreadcrumbItem[];
   children?: ReactNode;
 };
@@ -30,37 +31,94 @@ export function ServicesHero({
   image,
   imageAlt,
   imagePosition = "object-[72%_50%]",
+  tone = "light",
   breadcrumbs,
   children,
 }: ServicesHeroProps) {
+  const isLight = tone === "light";
+
   return (
-    <section className="relative isolate overflow-hidden bg-bg-inverse">
-      <div className="absolute inset-0 -z-20 bg-bg-inverse">
+    <section
+      className={clsx(
+        "relative isolate overflow-hidden",
+        isLight
+          ? "border-b border-br-default bg-bg-section shadow-[inset_0_-1px_0_rgba(20,33,27,0.08)]"
+          : "bg-bg-inverse"
+      )}
+    >
+      <div
+        className={clsx(
+          "absolute inset-0 -z-20",
+          isLight ? "bg-bg-section" : "bg-bg-inverse"
+        )}
+      >
         <Image
           src={image}
           alt={imageAlt}
           fill
           preload
           sizes="100vw"
-          className={clsx("object-cover", imagePosition)}
+          className={clsx(
+            "object-cover",
+            imagePosition,
+            isLight && "brightness-90 contrast-125 saturate-125"
+          )}
         />
       </div>
 
-      <div className="absolute inset-0 -z-10 bg-bg-inverse/58" />
-      <div className="absolute inset-0 -z-10 bg-linear-to-r from-bg-inverse/94 via-bg-inverse/76 to-bg-inverse/28" />
-      <div className="absolute inset-x-0 bottom-0 -z-10 h-32 bg-linear-to-t from-bg-inverse/72 to-transparent" />
+      <div
+        className={clsx(
+          "absolute inset-0 -z-10",
+          isLight ? "bg-bg-section/20" : "bg-bg-inverse/58"
+        )}
+      />
+      <div
+        className={clsx(
+          "absolute inset-0 -z-10 bg-linear-to-r",
+          isLight
+            ? "from-bg-page/98 via-bg-page/62 to-bg-section/8"
+            : "from-bg-inverse/94 via-bg-inverse/76 to-bg-inverse/28"
+        )}
+      />
+      <div
+        className={clsx(
+          "absolute inset-x-0 bottom-0 -z-10 h-32 bg-linear-to-t to-transparent",
+          isLight ? "from-bg-section/80" : "from-bg-inverse/72"
+        )}
+      />
 
       <div className="container-page relative flex min-h-[clamp(25rem,54dvh,34rem)] flex-col justify-end pb-10 pt-[calc(var(--header-h)+3rem)] sm:pb-12 lg:pb-14">
-        {breadcrumbs?.length ? <Breadcrumbs items={breadcrumbs} /> : null}
+        {breadcrumbs?.length ? (
+          <Breadcrumbs items={breadcrumbs} tone={tone} />
+        ) : null}
 
         <div className="max-w-3xl">
-          {eyebrow ? <p className="typo-kicker text-tx-inverse/72">{eyebrow}</p> : null}
+          {eyebrow ? (
+            <p
+              className={clsx(
+                "typo-kicker",
+                isLight ? "text-accent" : "text-tx-inverse/72"
+              )}
+            >
+              {eyebrow}
+            </p>
+          ) : null}
 
-          <h1 className="mt-3 text-3xl font-semibold leading-[1.1] text-tx-inverse sm:text-4xl lg:text-5xl">
+          <h1
+            className={clsx(
+              "mt-3 text-3xl font-semibold leading-[1.1] sm:text-4xl lg:text-5xl",
+              isLight ? "text-tx-primary" : "text-tx-inverse"
+            )}
+          >
             {title}
           </h1>
 
-          <p className="mt-5 max-w-2xl text-base leading-7 text-tx-inverse/82 sm:text-lg sm:leading-8">
+          <p
+            className={clsx(
+              "mt-5 max-w-2xl text-base leading-7 sm:text-lg sm:leading-8",
+              isLight ? "text-tx-secondary" : "text-tx-inverse/82"
+            )}
+          >
             {description}
           </p>
 
@@ -75,19 +133,45 @@ export function ServicesHero({
   );
 }
 
-export function Breadcrumbs({ items }: { items: BreadcrumbItem[] }) {
+export function Breadcrumbs({
+  items,
+  tone = "dark",
+}: {
+  items: BreadcrumbItem[];
+  tone?: "dark" | "light";
+}) {
+  const isLight = tone === "light";
+
   return (
-    <nav aria-label="Навигация" className="mb-5 text-sm text-tx-inverse/68">
+    <nav
+      aria-label="Навигация"
+      className={clsx(
+        "mb-5 text-sm",
+        isLight ? "text-tx-muted" : "text-tx-inverse/68"
+      )}
+    >
       <ol className="flex flex-wrap items-center gap-2">
         {items.map((item, index) => (
           <li key={`${item.label}-${index}`} className="flex items-center gap-2">
-            {index > 0 ? <span className="text-tx-inverse/34">/</span> : null}
+            {index > 0 ? (
+              <span className={isLight ? "text-tx-muted/45" : "text-tx-inverse/34"}>
+                /
+              </span>
+            ) : null}
             {item.href ? (
-              <Link href={item.href} className="transition hover:text-tx-inverse">
+              <Link
+                href={item.href}
+                className={clsx(
+                  "transition",
+                  isLight ? "hover:text-accent-strong" : "hover:text-tx-inverse"
+                )}
+              >
                 {item.label}
               </Link>
             ) : (
-              <span className="text-tx-inverse">{item.label}</span>
+              <span className={isLight ? "text-tx-primary" : "text-tx-inverse"}>
+                {item.label}
+              </span>
             )}
           </li>
         ))}
@@ -104,7 +188,7 @@ export function ServiceSubnav({
   activeServiceSlug?: string;
 }) {
   return (
-    <div className="border-b border-br-light bg-bg-page">
+    <div className="sticky top-[var(--header-h)] z-30 border-b border-br-light bg-bg-page/95 shadow-[0_8px_22px_rgba(20,33,27,0.05)] backdrop-blur">
       <div className="container-page overflow-x-auto py-3">
         <nav aria-label="Услуги в категорията" className="flex min-w-max gap-2">
           <SubnavLink
@@ -141,8 +225,8 @@ function SubnavLink({
       className={clsx(
         "inline-flex min-h-10 items-center rounded-full border px-4 text-sm font-medium transition",
         active
-          ? "border-accent/40 bg-accent/10 text-accent-strong"
-          : "border-br-light bg-bg-page text-tx-secondary hover:border-br-accent-soft hover:text-tx-primary"
+          ? "border-accent/45 bg-accent/10 text-accent-strong shadow-sm"
+          : "border-br-light bg-bg-page text-tx-secondary hover:border-br-accent-soft hover:bg-bg-section hover:text-tx-primary"
       )}
     >
       {label}
@@ -162,12 +246,10 @@ export function SectionIntro({
   return (
     <div className="max-w-3xl">
       {eyebrow ? (
-        <p className="typo-kicker inline-block border-b border-accent/40 pb-2">
-          {eyebrow}
-        </p>
+        <p className="typo-kicker text-accent">{eyebrow}</p>
       ) : null}
       <h2 className="typo-h2 mt-2">{title}</h2>
-      {description ? <p className="typo-subtitle mt-3 max-w-2xl">{description}</p> : null}
+      {description ? <p className="typo-subtitle mt-3 max-w-3xl">{description}</p> : null}
     </div>
   );
 }
@@ -183,7 +265,7 @@ export function CategoryOverviewCard({ category }: { category: ServiceCategory }
       href={href}
       className={clsx(
         "group flex h-full flex-col overflow-hidden rounded-card border border-br-light bg-bg-page",
-        "shadow-sm transition duration-300 hover:border-br-accent-soft hover:shadow-md"
+        "shadow-sm transition duration-300 hover:-translate-y-0.5 hover:border-br-accent-soft hover:shadow-md"
       )}
     >
       <div className="relative aspect-[16/10] overflow-hidden bg-bg-muted">
@@ -198,7 +280,7 @@ export function CategoryOverviewCard({ category }: { category: ServiceCategory }
 
       <div className="flex flex-1 flex-col p-5 sm:p-6">
         {category.meta ? (
-          <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-accent">
+          <p className="text-xs font-semibold uppercase tracking-[0.14em] text-accent">
             {category.meta}
           </p>
         ) : null}
@@ -207,7 +289,9 @@ export function CategoryOverviewCard({ category }: { category: ServiceCategory }
           {title}
         </h3>
 
-        <p className="mt-3 text-sm leading-6 text-tx-muted">{category.description}</p>
+        <p className="mt-3 text-[15px] leading-7 text-tx-muted">
+          {category.description}
+        </p>
 
         <div className="mt-5 flex flex-wrap gap-2">
           {visibleServices.map((service) => (
@@ -252,7 +336,7 @@ export function ServiceSummaryCard({
       href={href}
       className={clsx(
         "group grid overflow-hidden rounded-card border border-br-light bg-bg-page",
-        "shadow-sm transition duration-300 hover:border-br-accent-soft hover:shadow-md sm:grid-cols-[13rem_1fr]"
+        "shadow-sm transition duration-300 hover:border-br-accent-soft hover:shadow-md sm:grid-cols-[14rem_1fr]"
       )}
     >
       <div className="relative min-h-[190px] overflow-hidden bg-bg-muted sm:min-h-full">
@@ -260,23 +344,25 @@ export function ServiceSummaryCard({
           src={service.thumbnail}
           alt={service.title}
           fill
-          sizes="(max-width: 640px) 100vw, 13rem"
+          sizes="(max-width: 640px) 100vw, 14rem"
           className="object-cover transition duration-500 group-hover:scale-105"
         />
       </div>
 
       <div className="p-5 sm:p-6">
         {service.meta ? (
-          <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-accent">
+          <p className="text-xs font-semibold uppercase tracking-[0.14em] text-accent">
             {service.meta}
           </p>
         ) : null}
 
-        <h3 className="mt-2 text-xl font-semibold leading-tight text-tx-primary">
+        <h3 className="mt-2 text-xl font-semibold leading-tight text-tx-primary md:text-2xl">
           {service.title}
         </h3>
 
-        <p className="mt-3 line-clamp-3 text-sm leading-6 text-tx-muted">{description}</p>
+        <p className="mt-3 line-clamp-3 text-[15px] leading-7 text-tx-muted">
+          {description}
+        </p>
 
         {service.neededWhen?.length ? (
           <ul className="mt-4 grid gap-2">
@@ -361,7 +447,8 @@ export function HelpPanel({
   secondaryLabel?: string;
 }) {
   return (
-    <section className="rounded-card border border-br-light bg-bg-muted p-6 sm:p-8">
+    <section className="relative overflow-hidden rounded-card border border-br-light bg-bg-section p-6 shadow-sm sm:p-8">
+      <div className="absolute inset-y-0 left-0 w-1 bg-accent/70" />
       <div className="max-w-3xl">
         <p className="typo-kicker text-accent">Насоки</p>
         <h2 className="mt-2 text-2xl font-semibold leading-tight text-tx-primary">

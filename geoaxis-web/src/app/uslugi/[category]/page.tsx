@@ -42,14 +42,17 @@ export default async function CategoryPage({ params }: Props) {
 
   if (!category) notFound();
 
+  const serviceCount = category.services.length;
+  const categoryName = category.shortTitle ?? category.title;
+
   return (
     <ServicePageLayout category={category}>
       <article>
         <div className="flex flex-col gap-5 md:flex-row md:items-end md:justify-between">
           <SectionIntro
             eyebrow="Услуги в категорията"
-            title="Изберете конкретна услуга"
-            description="Изберете конкретната услуга, която отговаря на вашата ситуация. Всяка страница показва кога е нужна, какви документи са полезни и как протича работата."
+            title={`Услуги в „${categoryName}“`}
+            description={`В тази категория има ${serviceCount} конкретни услуги. Изберете най-близкия случай, а ако се колебаете, изпратете кратко описание и ще ви насочим.`}
           />
         </div>
 
