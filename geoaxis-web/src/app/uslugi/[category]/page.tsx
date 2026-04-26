@@ -9,7 +9,6 @@ import { ServicePageLayout } from "../ServicePageLayout";
 import {
   CategoryServiceIndex,
   CategoryServicePanel,
-  HelpPanel,
 } from "../_components/ServicesUi";
 
 type Props = {
@@ -66,20 +65,6 @@ export default async function CategoryPage({ params }: Props) {
           {category.services.map((service) => (
             <CategoryServicePanel key={service.slug} service={service} />
           ))}
-        </div>
-        {/* <div className="mt-8 grid gap-8 md:mt-10 md:gap-10 lg:gap-12">
-          {category.services.map((service) => (
-            <CategoryServicePanel key={service.slug} service={service} />
-          ))}
-        </div> */}
-
-        <div className="mt-10 md:mt-12">
-          <HelpPanel
-            title="Не сте сигурни коя от тези услуги ви трябва?"
-            description="Изпратете кратко описание на имота или процедурата. Ще ви насочим към правилната услуга и ще кажем кои документи да подготвите."
-            secondaryHref="/uslugi"
-            secondaryLabel="Всички категории"
-          />
         </div>
       </article>
     </ServicePageLayout>

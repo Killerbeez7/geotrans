@@ -381,7 +381,6 @@ export function CategoryServiceIndex({ category }: { category: ServiceCategory }
   return (
     <nav
       aria-label="Услуги в категорията"
-      // className="border-y border-br-light py-4 md:py-5"
       className="py-4 md:py-5"
     >
       <p className="text-sm font-bold leading-6 text-tx-primary md:text-base">

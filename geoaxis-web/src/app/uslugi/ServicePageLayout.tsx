@@ -2,7 +2,7 @@ import type { ReactNode } from "react";
 
 import { CtaButton } from "@/components/parts/CtaButton";
 import { Section } from "@/components/layout/Section";
-// import { FinalCta } from "@/components/sections/FinalCta";
+import { FinalCta } from "@/components/sections/FinalCta";
 import type { Service, ServiceCategory } from "@/config/services/categories";
 import { servicesVisuals } from "@/config/services/visuals";
 import { ServiceSubnav, ServicesHero } from "./_components/ServicesUi";
@@ -50,7 +50,7 @@ export function ServicePageLayout({ category, service, children }: Props) {
         {children}
       </Section>
 
-      {/* <FinalCta /> */}
+      <FinalCta />
     </main>
   );
 }

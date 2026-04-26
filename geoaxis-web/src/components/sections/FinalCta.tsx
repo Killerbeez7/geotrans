@@ -1,191 +1,84 @@
-"use client";
+import { FaEnvelope, FaPhone } from "react-icons/fa";
+import type { ReactNode } from "react";
 
-import { useActionState, useEffect, useRef } from "react";
-import clsx from "clsx";
-import { FaPhone } from "react-icons/fa";
-import { FaEnvelope } from "react-icons/fa";
+import { Section } from "@/components/layout/Section";
 import { CtaButton } from "@/components/parts/CtaButton";
-import { Section } from "../layout/Section";
 import { siteContent } from "@/config/site-content";
-import Link from "next/link";
 
-type FormState = {
-  error: string | null;
-  success: boolean;
-};
-
-async function quickContactAction(
-  _prevState: FormState,
-  formData: FormData
-): Promise<FormState> {
-  const payload = {
-    name: formData.get("name"),
-    email: formData.get("email"),
-    message: formData.get("message"),
-  };
-
-  try {
-    const res = await fetch("/api/contact", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(payload),
-    });
-
-    let data: { error?: string } | null = null;
-    try {
-      data = await res.json();
-    } catch {
-      return { error: "Сървърът върна невалиден отговор.", success: false };
-    }
-
-    if (!res.ok) {
-      return {
-        error: data?.error || "Грешка при изпращане. Опитайте отново.",
-        success: false,
-      };
-    }
-
-    return { error: null, success: true };
-  } catch {
-    return { error: "Грешка при изпращане. Опитайте отново.", success: false };
-  }
-}
-
-function Field({
+function ContactAction({
+  href,
+  icon,
   label,
-  name,
-  type = "text",
-  textarea = false,
+  value,
 }: {
+  href: string;
+  icon: ReactNode;
   label: string;
-  name: string;
-  type?: string;
-  textarea?: boolean;
+  value: string;
 }) {
-  const base = clsx(
-    "w-full rounded-xl px-4 text-white",
-    "bg-white/12 hover:bg-white/30",
-    "border border-white/20 hover:border-white/40",
-    "transition-all duration-300 ease-in-out",
-    "placeholder:text-white/40 backdrop-blur-md",
-    "focus:border-white/40 focus:ring-2 focus:ring-white/30 focus:outline-none"
-  );
-
   return (
-    <div>
-      {textarea ? (
-        <textarea
-          name={name}
-          required
-          rows={3}
-          placeholder={label}
-          className={clsx(base, "py-3 resize-none")}
-        />
-      ) : (
-        <input
-          name={name}
-          type={type}
-          required
-          placeholder={label}
-          className={clsx(base, "h-11")}
-        />
-      )}
-    </div>
+    <a
+      href={href}
+      className="group flex items-center gap-4 py-3 transition"
+    >
+      <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-white/10 text-accent transition group-hover:bg-white/14">
+        {icon}
+      </span>
+      <span className="min-w-0">
+        <span className="block text-xs font-semibold uppercase tracking-[0.14em] text-tx-inverse/45">
+          {label}
+        </span>
+        <span className="mt-1 block wrap-break-word text-base font-semibold text-tx-inverse/86 transition group-hover:text-accent md:text-lg">
+          {value}
+        </span>
+      </span>
+    </a>
   );
 }
 
 export function FinalCta() {
   const { phone, email } = siteContent.contacts;
-  const formRef = useRef<HTMLFormElement>(null);
-
-  const [state, formAction, isPending] = useActionState(quickContactAction, {
-    error: null,
-    success: false,
-  });
-
-  useEffect(() => {
-    if (state.success) formRef.current?.reset();
-  }, [state.success]);
 
   return (
     <Section tone="brand" className="border-t border-white/10">
-      <div className="grid items-start gap-10 lg:grid-cols-[0.92fr_1.08fr] lg:gap-14">
-        {/* Left — text */}
-        <div className="max-w-xl">
-          <p className="typo-kicker inline-block border-b border-accent/40 pb-2">
+      <div className="grid items-center gap-8 lg:grid-cols-[minmax(0,0.95fr)_minmax(22rem,0.72fr)] lg:gap-14">
+        <div className="max-w-2xl">
+          <p className="typo-kicker inline-block border-b border-accent/40 pb-2 text-accent">
             Контакт
           </p>
-          <h2 className="typo-h2 mt-3 text-tx-inverse!">
+          <h2 className="mt-4 text-3xl font-semibold leading-[1.12] text-tx-inverse md:text-4xl">
             Имате нужда от <span className="text-accent">геодезическа услуга?</span>
           </h2>
-          <p className="typo-body mt-4 text-tx-inverse/70!">
-            Свържете се с нас за консултация. Ще разгледаме вашия случай и ще предложим
-            най-подходящото решение за вашия имот или проект.
+          <p className="mt-4 max-w-xl text-base leading-8 text-tx-inverse/72 md:text-lg">
+            Свържете се с нас за консултация. Ще разгледаме случая и ще ви
+            насочим към правилната услуга, документи и следваща стъпка.
           </p>
-
-          <div className="mt-8 grid gap-3 sm:max-w-md">
-            <a href={`tel:${phone}`} className="group flex w-fit items-center gap-3">
-              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-white/10 text-accent transition">
-                <FaPhone className="h-4 w-4 text-accent/80 group-hover:text-accent-hover" />
-              </div>
-              <span className="typo-body font-medium text-tx-inverse/75 transition group-hover:text-accent-hover">
-                {phone}
-              </span>
-            </a>
-            <a href={`mailto:${email}`} className="group flex w-fit items-center gap-3">
-              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-white/10 text-accent transition">
-                <FaEnvelope className="h-4 w-4 group-hover:text-accent-hover" />
-              </div>
-              <span className="typo-body font-medium text-tx-inverse/75 transition group-hover:text-accent-hover">
-                {email}
-              </span>
-            </a>
-          </div>
         </div>
 
-        {/* Right — form */}
-        <div className="w-full rounded-card border border-white/10 bg-white/10 p-5 backdrop-blur-md sm:p-7 lg:justify-self-end">
-          {state.success ? (
-            <div className="flex flex-col items-center justify-center gap-4 py-8 text-center">
-              <div className="flex h-14 w-14 items-center justify-center rounded-full bg-accent/20 text-2xl text-accent">
-                ✓
-              </div>
-              <h3 className="text-lg font-semibold text-white">
-                Съобщението е изпратено!
-              </h3>
-              <p className="text-sm text-white/60">
-                Ще се свържем с вас възможно най-скоро.
-              </p>
-            </div>
-          ) : (
-            <form ref={formRef} action={formAction} className="space-y-4">
-              <Field name="name" label="Вашето име *" />
-              <Field name="email" label="Имейл адрес *" type="email" />
-              <Field name="message" label="Вашето съобщение *" textarea />
+        <div className="lg:justify-self-end lg:w-full lg:max-w-md">
+          <div className="grid gap-1">
+            <ContactAction
+              href={`tel:${phone}`}
+              icon={<FaPhone className="h-4 w-4" />}
+              label="Телефон"
+              value={phone}
+            />
+            <ContactAction
+              href={`mailto:${email}`}
+              icon={<FaEnvelope className="h-4 w-4" />}
+              label="Имейл"
+              value={email}
+            />
+          </div>
 
-              <CtaButton
-                type="submit"
-                size="lg"
-                className="mt-2 w-full"
-                disabled={isPending}
-              >
-                {isPending ? "Изпращане..." : "Изпрати запитване"}
-              </CtaButton>
-
-              <p className="text-center text-sm text-white/45">
-                Имате документи за прикачване или по-подробно запитване?{" "}
-                <Link
-                  href="/contacts"
-                  className="text-white/65 underline underline-offset-4 transition hover:text-accent"
-                >
-                  Използвайте пълната форма
-                </Link>
-                .
-              </p>
-
-              {state.error && <p className="text-sm text-red-400">{state.error}</p>}
-            </form>
-          )}
+          <div className="mt-5 border-t border-white/14 pt-5">
+            <CtaButton href="/contacts" size="lg" className="w-full sm:w-auto">
+              Изпрати запитване
+            </CtaButton>
+            <p className="mt-3 max-w-sm text-sm leading-6 text-tx-inverse/55">
+              Използвайте формата, ако искате да добавите повече детайли или файлове.
+            </p>
+          </div>
         </div>
       </div>
     </Section>

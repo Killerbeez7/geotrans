@@ -7,14 +7,13 @@ import { servicesVisuals } from "@/config/services/visuals";
 // Components
 import { CtaButton } from "@/components/parts/CtaButton";
 import { Section } from "@/components/layout/Section";
+import { FinalCta } from "@/components/sections/FinalCta";
 import { createSeo } from "@/lib/seo-builder";
 import {
   CategoryOverviewCard,
-  HelpPanel,
   SectionIntro,
   ServicesHero,
 } from "./_components/ServicesUi";
-// import { FinalCta } from "@/components/sections/FinalCta";
 
 export const metadata = createSeo({
   title: "Геодезически услуги в София",
@@ -108,13 +107,9 @@ export default function ServicesPage() {
             </Link>
           ))}
         </div>
-
-        <div className="mt-8 md:mt-10">
-          <HelpPanel />
-        </div>
       </Section>
 
-      {/* <FinalCta /> */}
+      <FinalCta />
     </>
   );
 }
