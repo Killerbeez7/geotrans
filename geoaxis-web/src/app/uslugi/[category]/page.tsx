@@ -4,11 +4,7 @@ import { serviceCategories } from "@/config/services/categories";
 import { createCategorySeo, createSeo } from "@/lib/seo-builder";
 import { getCategoryBySlug } from "@/lib/selectors";
 import { ServicePageLayout } from "../ServicePageLayout";
-import {
-  HelpPanel,
-  SectionIntro,
-  ServiceSummaryCard,
-} from "../_components/ServicesUi";
+import { HelpPanel, SectionIntro, ServiceSummaryCard } from "../_components/ServicesUi";
 
 type Props = {
   params: Promise<{ category: string }>;
@@ -50,8 +46,8 @@ export default async function CategoryPage({ params }: Props) {
       <article>
         <div className="flex flex-col gap-5 md:flex-row md:items-end md:justify-between">
           <SectionIntro
-            eyebrow="Услуги в категорията"
-            title={`Услуги в „${categoryName}“`}
+            eyebrow="Всички услуги"
+            title={`Списък с услуги в „${categoryName}“`}
             description={`В тази категория има ${serviceCount} конкретни услуги. Изберете най-близкия случай, а ако се колебаете, изпратете кратко описание и ще ви насочим.`}
           />
         </div>

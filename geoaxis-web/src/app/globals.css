@@ -305,8 +305,8 @@ img {
 /* NOTCH COLOR */
 html,
 body {
-  background: var(--brand-olive-900);
-  /* background: #131a17; */
+  /* background: var(--brand-olive-900); */
+  background: #131a17;
 }
 
 .safe-top {
