@@ -88,9 +88,7 @@ export function ServicesHero({
       />
 
       <div className="container-page relative flex min-h-[clamp(25rem,54dvh,34rem)] flex-col justify-end pb-10 pt-[calc(var(--header-h)+3rem)] sm:pb-12 lg:pb-14">
-        {breadcrumbs?.length ? (
-          <Breadcrumbs items={breadcrumbs} tone={tone} />
-        ) : null}
+        {breadcrumbs?.length ? <Breadcrumbs items={breadcrumbs} tone={tone} /> : null}
 
         <div className="max-w-3xl">
           {eyebrow ? (
@@ -145,10 +143,7 @@ export function Breadcrumbs({
   return (
     <nav
       aria-label="Навигация"
-      className={clsx(
-        "mb-5 text-sm",
-        isLight ? "text-tx-muted" : "text-tx-inverse/68"
-      )}
+      className={clsx("mb-5 text-sm", isLight ? "text-tx-muted" : "text-tx-inverse/68")}
     >
       <ol className="flex flex-wrap items-center gap-2">
         {items.map((item, index) => (
@@ -188,7 +183,7 @@ export function ServiceSubnav({
   activeServiceSlug?: string;
 }) {
   return (
-    <div className="sticky top-[var(--header-h)] z-30 border-b border-br-light bg-bg-page/95 shadow-[0_8px_22px_rgba(20,33,27,0.05)] backdrop-blur">
+    <div className="sticky top-(--header-h) z-30 border-b border-br-light bg-bg-page/95 shadow-[0_8px_22px_rgba(20,33,27,0.05)] backdrop-blur">
       <div className="container-page overflow-x-auto py-3">
         <nav aria-label="Услуги в категорията" className="flex min-w-max gap-2">
           <SubnavLink
@@ -245,9 +240,7 @@ export function SectionIntro({
 }) {
   return (
     <div className="max-w-3xl">
-      {eyebrow ? (
-        <p className="typo-kicker text-accent">{eyebrow}</p>
-      ) : null}
+      {eyebrow ? <p className="typo-kicker text-accent">{eyebrow}</p> : null}
       <h2 className="typo-h2 mt-2">{title}</h2>
       {description ? <p className="typo-subtitle mt-3 max-w-3xl">{description}</p> : null}
     </div>
@@ -257,8 +250,8 @@ export function SectionIntro({
 export function CategoryOverviewCard({ category }: { category: ServiceCategory }) {
   const href = `/uslugi/${category.slug}`;
   const title = category.shortTitle ?? category.title;
-  const visibleServices = category.services.slice(0, 3);
-  const hiddenCount = Math.max(category.services.length - visibleServices.length, 0);
+  // const visibleServices = category.services.slice(0, 3);
+  // const hiddenCount = Math.max(category.services.length - visibleServices.length, 0);
 
   return (
     <Link
@@ -268,7 +261,7 @@ export function CategoryOverviewCard({ category }: { category: ServiceCategory }
         "shadow-sm transition duration-300 hover:-translate-y-0.5 hover:border-br-accent-soft hover:shadow-md"
       )}
     >
-      <div className="relative aspect-[16/10] overflow-hidden bg-bg-muted">
+      <div className="relative aspect-16/10 overflow-hidden bg-bg-muted">
         <Image
           src={category.thumbnail}
           alt={category.title}
@@ -289,11 +282,9 @@ export function CategoryOverviewCard({ category }: { category: ServiceCategory }
           {title}
         </h3>
 
-        <p className="mt-3 text-[15px] leading-7 text-tx-muted">
-          {category.description}
-        </p>
+        <p className="mt-3 text-[15px] leading-7 text-tx-muted">{category.description}</p>
 
-        <div className="mt-5 flex flex-wrap gap-2">
+        {/* <div className="mt-5 flex flex-wrap gap-2">
           {visibleServices.map((service) => (
             <span
               key={service.slug}
@@ -307,10 +298,12 @@ export function CategoryOverviewCard({ category }: { category: ServiceCategory }
               +{hiddenCount}
             </span>
           ) : null}
-        </div>
+        </div> */}
 
         <div className="mt-auto flex items-center justify-between gap-4 pt-6">
-          <span className="text-sm text-tx-muted">{category.services.length} услуги</span>
+          <span className="text-sm font-semibold text-tx-muted">
+            {category.services.length} услуги
+          </span>
           <span className="inline-flex items-center gap-1 text-sm font-semibold text-accent-strong">
             Виж повече
             <MdArrowRightAlt className="text-lg transition group-hover:translate-x-0.5" />
