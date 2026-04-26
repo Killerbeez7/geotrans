@@ -114,7 +114,7 @@ export const HELPFUL_ARTICLES: readonly HelpfulArticle[] = [
       { label: "Кадастър", href: "/uslugi/kadastar" },
       {
         label: "Изменение на кадастрална карта",
-        href: "/uslugi/kadastar/izmenenie-na-kadastralna-karta",
+        href: "/uslugi/kadastar#proekt-za-izmenenie",
       },
     ],
     relatedArticles: [
@@ -262,7 +262,7 @@ export const HELPFUL_ARTICLES: readonly HelpfulArticle[] = [
       { label: "Геодезическо заснемане", href: "/uslugi/zasnemane" },
       {
         label: "Заснемане за проектиране",
-        href: "/uslugi/zasnemane/za-proektirane",
+        href: "/uslugi/zasnemane#za-proektirane",
       },
     ],
     relatedArticles: [
@@ -484,7 +484,7 @@ export const HELPFUL_ARTICLES: readonly HelpfulArticle[] = [
       },
       {
         label: "Геодезическо заснемане за проектиране",
-        href: "/uslugi/zasnemane/za-proektirane",
+        href: "/uslugi/zasnemane#za-proektirane",
       },
     ],
     relatedArticles: [
@@ -550,7 +550,7 @@ export const HELPFUL_ARTICLES: readonly HelpfulArticle[] = [
       },
       {
         label: "Трасиране на имотни граници",
-        href: "/uslugi/trasirane/na-imotni-granici",
+        href: "/uslugi/trasirane#na-imotni-granici",
       },
     ],
     relatedArticles: [

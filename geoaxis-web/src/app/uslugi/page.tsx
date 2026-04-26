@@ -28,7 +28,7 @@ const scenarios = [
   {
     title: "Започвате проект",
     text: "Най-често се започва със заснемане за проектиране и проверка на наличните данни.",
-    href: "/uslugi/zasnemane/za-proektirane",
+    href: "/uslugi/zasnemane#za-proektirane",
   },
   {
     title: "Ще строите или ограждате",

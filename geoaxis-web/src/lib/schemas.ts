@@ -1,5 +1,5 @@
 import { siteContent } from "@/config/site-content";
-import type { Service } from "@/config/services/categories";
+import type { Service, ServiceCategory } from "@/config/services/categories";
 import type { HelpfulArticle } from "@/config/polezno/articles";
 
 const stripSpaces = (s: string) => s.replace(/\s+/g, "");
@@ -58,6 +58,87 @@ export function getServiceSchema(siteUrl: string, path: string, service: Service
         addressCountry: "BG",
       },
     },
+  };
+}
+
+export function getCategoryServicesSchema(
+  siteUrl: string,
+  categoryPath: string,
+  category: ServiceCategory
+) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    name: `${category.title} - услуги`,
+    description: category.longDescription ?? category.description,
+    url: `${siteUrl}${categoryPath}`,
+    itemListElement: category.services.map((service, index) => ({
+      "@type": "ListItem",
+      position: index + 1,
+      url: `${siteUrl}${categoryPath}#${service.slug}`,
+      item: {
+        "@type": "Service",
+        name: service.title,
+        description: service.longDescription ?? service.description,
+        serviceType: service.title,
+        url: `${siteUrl}${categoryPath}#${service.slug}`,
+        areaServed: [
+          { "@type": "City", name: "София" },
+          { "@type": "AdministrativeArea", name: "Софийска област" },
+        ],
+        provider: {
+          "@type": "LocalBusiness",
+          name: siteContent.brand.name,
+          url: siteUrl,
+          telephone: stripSpaces(siteContent.contacts.phone),
+          email: siteContent.contacts.email,
+        },
+      },
+    })),
+  };
+}
+
+export function getCategoryFAQSchema(category: ServiceCategory) {
+  const mainEntity = category.services.flatMap((service) => {
+    const entries: { question: string; answer: string }[] = [];
+
+    if (service.neededWhen?.length) {
+      entries.push({
+        question: `Кога е необходима услугата "${service.title}"?`,
+        answer: service.neededWhen.join(". ") + ".",
+      });
+    }
+
+    if (service.deliverables?.length) {
+      entries.push({
+        question: `Какво получавам при "${service.title}"?`,
+        answer: service.deliverables.join(". ") + ".",
+      });
+    }
+
+    if (service.requiredDocs?.length) {
+      entries.push({
+        question: `Какви документи са необходими за "${service.title}"?`,
+        answer: service.requiredDocs.join(". ") + ".",
+      });
+    }
+
+    return entries;
+  });
+
+  if (!mainEntity.length) return null;
+
+  return {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: mainEntity.map((faq) => ({
+      "@type": "Question",
+      name: faq.question,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: faq.answer,
+      },
+    })),
   };
 }
 

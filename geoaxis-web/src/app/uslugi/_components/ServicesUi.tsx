@@ -194,7 +194,7 @@ export function ServiceSubnav({
           {category.services.map((service) => (
             <SubnavLink
               key={service.slug}
-              href={`/uslugi/${category.slug}/${service.slug}`}
+              href={`/uslugi/${category.slug}#${service.slug}`}
               label={service.shortTitle ?? service.title}
               active={activeServiceSlug === service.slug}
             />
@@ -321,7 +321,7 @@ export function ServiceSummaryCard({
   category: ServiceCategory;
   service: Service;
 }) {
-  const href = `/uslugi/${category.slug}/${service.slug}`;
+  const href = `/uslugi/${category.slug}#${service.slug}`;
   const description = service.longDescription ?? service.description;
 
   return (
@@ -375,6 +375,132 @@ export function ServiceSummaryCard({
       </div>
     </Link>
   );
+}
+
+export function CategoryServiceIndex({ category }: { category: ServiceCategory }) {
+  return (
+    <nav
+      aria-label="Услуги в категорията"
+      // className="border-y border-br-light py-4 md:py-5"
+      className="py-4 md:py-5"
+    >
+      <p className="text-sm font-bold leading-6 text-tx-primary md:text-base">
+        Изберете услуга от списъка:
+      </p>
+
+      <ol className="mt-2 grid gap-1 sm:grid-cols-2 sm:gap-x-6">
+        {category.services.map((service, index) => (
+          <li key={service.slug}>
+            <Link
+              href={`/uslugi/${category.slug}#${service.slug}`}
+              className="group flex min-h-11 items-center gap-3 rounded-lg py-2.5 text-left transition hover:bg-bg-section sm:px-2"
+            >
+              <span className="text-sm font-semibold tabular-nums text-accent-strong">
+                {String(index + 1).padStart(2, "0")}
+              </span>
+              <span className="min-w-0 flex-1 text-[15px] font-medium leading-6 text-tx-primary transition group-hover:text-accent-strong">
+                {service.shortTitle ?? service.title}
+              </span>
+              <MdArrowRightAlt className="shrink-0 text-xl text-tx-muted transition group-hover:translate-x-0.5 group-hover:text-accent-strong" />
+            </Link>
+          </li>
+        ))}
+      </ol>
+    </nav>
+  );
+}
+
+export function CategoryServicePanel({ service }: { service: Service }) {
+  const description = service.longDescription ?? service.description;
+
+  return (
+    <section
+      id={service.slug}
+      className="scroll-mt-[calc(var(--header-h)+2rem)] border-b border-br-light py-9 first:pt-0 last:border-b-0 last:pb-0 md:py-12"
+    >
+      <div className="grid gap-6 lg:grid-cols-[minmax(16rem,0.85fr)_minmax(0,1.45fr)] lg:gap-10">
+        <div className="lg:pt-1">
+          <div className="relative aspect-4/3 overflow-hidden rounded-card bg-bg-muted shadow-sm">
+            <Image
+              src={service.thumbnail}
+              alt={service.title}
+              fill
+              sizes="(max-width: 1024px) 100vw, 28vw"
+              className="object-cover"
+            />
+            <div className="absolute inset-0 bg-linear-to-t from-bg-inverse/20 via-transparent to-transparent" />
+          </div>
+        </div>
+
+        <div>
+          {service.meta ? (
+            <p className="text-xs font-semibold uppercase tracking-[0.14em] text-accent">
+              {service.meta}
+            </p>
+          ) : null}
+
+          <h3 className="mt-3 text-2xl font-semibold leading-tight text-tx-primary md:text-3xl">
+            {service.title}
+          </h3>
+          <p className="mt-4 max-w-3xl text-base leading-8 text-tx-secondary">
+            {description}
+          </p>
+
+          <ServiceNarrative service={service} />
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function ServiceNarrative({ service }: { service: Service }) {
+  const neededWhen = toTextList(service.neededWhen);
+  const requiredDocs = toTextList(service.requiredDocs);
+  const deliverables = toTextList(service.deliverables);
+  const processSteps = toTextList(service.processSteps);
+
+  if (!neededWhen && !requiredDocs && !deliverables && !processSteps) return null;
+
+  return (
+    <div className="mt-6 space-y-3 border-l border-br-accent-soft pl-4 text-[15px] leading-7 text-tx-secondary">
+      {neededWhen ? (
+        <p>
+          <strong className="font-semibold text-tx-primary">Подходящо при: </strong>
+          {neededWhen}.
+        </p>
+      ) : null}
+
+      {requiredDocs ? (
+        <p>
+          <strong className="font-semibold text-tx-primary">За начало: </strong>
+          {requiredDocs}.
+        </p>
+      ) : null}
+
+      {deliverables ? (
+        <p>
+          <strong className="font-semibold text-tx-primary">Получавате: </strong>
+          {deliverables}.
+        </p>
+      ) : null}
+
+      {processSteps ? (
+        <p>
+          <strong className="font-semibold text-tx-primary">Процес: </strong>
+          {processSteps}. При нужда уточняваме детайлите предварително.
+        </p>
+      ) : null}
+    </div>
+  );
+}
+
+function toTextList(items?: string[]) {
+  if (!items?.length) return "";
+
+  return items
+    .map((item) => item.trim())
+    .filter(Boolean)
+    .join(", ");
 }
 
 export function InfoList({

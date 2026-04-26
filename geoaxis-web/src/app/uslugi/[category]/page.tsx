@@ -1,10 +1,16 @@
 import { notFound } from "next/navigation";
 
+import { SITE_URL } from "@/config/site";
 import { serviceCategories } from "@/config/services/categories";
 import { createCategorySeo, createSeo } from "@/lib/seo-builder";
+import { getCategoryFAQSchema, getCategoryServicesSchema } from "@/lib/schemas";
 import { getCategoryBySlug } from "@/lib/selectors";
 import { ServicePageLayout } from "../ServicePageLayout";
-import { HelpPanel, SectionIntro, ServiceSummaryCard } from "../_components/ServicesUi";
+import {
+  CategoryServiceIndex,
+  CategoryServicePanel,
+  HelpPanel,
+} from "../_components/ServicesUi";
 
 type Props = {
   params: Promise<{ category: string }>;
@@ -38,29 +44,34 @@ export default async function CategoryPage({ params }: Props) {
 
   if (!category) notFound();
 
-  const serviceCount = category.services.length;
-  const categoryName = category.shortTitle ?? category.title;
+  const categoryPath = `/uslugi/${category.slug}`;
+  const jsonLd = [
+    getCategoryServicesSchema(SITE_URL, categoryPath, category),
+    getCategoryFAQSchema(category),
+  ].filter(Boolean);
 
   return (
     <ServicePageLayout category={category}>
-      <article>
-        <div className="flex flex-col gap-5 md:flex-row md:items-end md:justify-between">
-          <SectionIntro
-            eyebrow="Всички услуги"
-            title={`Списък с услуги в „${categoryName}“`}
-            description={`В тази категория има ${serviceCount} конкретни услуги. Изберете най-близкия случай, а ако се колебаете, изпратете кратко описание и ще ви насочим.`}
-          />
-        </div>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(jsonLd.length === 1 ? jsonLd[0] : jsonLd),
+        }}
+      />
 
-        <div className="mt-8 grid gap-5 md:mt-12">
+      <article>
+        <CategoryServiceIndex category={category} />
+
+        <div className="mt-8 md:mt-10">
           {category.services.map((service) => (
-            <ServiceSummaryCard
-              key={service.slug}
-              category={category}
-              service={service}
-            />
+            <CategoryServicePanel key={service.slug} service={service} />
           ))}
         </div>
+        {/* <div className="mt-8 grid gap-8 md:mt-10 md:gap-10 lg:gap-12">
+          {category.services.map((service) => (
+            <CategoryServicePanel key={service.slug} service={service} />
+          ))}
+        </div> */}
 
         <div className="mt-10 md:mt-12">
           <HelpPanel

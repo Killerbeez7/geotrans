@@ -16,7 +16,7 @@ const staticPages = [
   },
   {
     url: "/uslugi",
-    lastModified: "2026-04-20",
+    lastModified: "2026-04-27",
     priority: 0.9,
     changeFrequency: "weekly" as const,
   },
@@ -40,7 +40,7 @@ const staticPages = [
   },
   {
     url: "/contacts",
-    lastModified: "2026-03-28",
+    lastModified: "2026-04-27",
     priority: 0.7,
     changeFrequency: "monthly" as const,
   },
@@ -63,15 +63,5 @@ export default function sitemap(): MetadataRoute.Sitemap {
     changeFrequency: "weekly" as const,
   }));
 
-  // Service detail pages — falls back to category.updatedAt
-  const serviceUrls = serviceCategories.flatMap((category) =>
-    category.services.map((service) => ({
-      url: `${BASE_URL}/uslugi/${category.slug}/${service.slug}`,
-      lastModified: service.updatedAt ?? category.updatedAt,
-      priority: 0.7,
-      changeFrequency: "monthly" as const,
-    }))
-  );
-
-  return [...staticUrls, ...categoryUrls, ...serviceUrls];
+  return [...staticUrls, ...categoryUrls];
 }

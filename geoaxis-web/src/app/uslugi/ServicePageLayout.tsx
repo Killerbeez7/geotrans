@@ -46,7 +46,7 @@ export function ServicePageLayout({ category, service, children }: Props) {
         <ServiceSubnav category={category} activeServiceSlug={service?.slug} />
       ) : null}
 
-      <Section id="services" tone="page">
+      <Section id="services" tone="page" className="!pt-6 sm:!pt-8 lg:!pt-10">
         {children}
       </Section>
 
