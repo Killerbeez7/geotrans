@@ -438,9 +438,9 @@ export function CategoryServicePanel({ service }: { service: Service }) {
             </p>
           ) : null}
 
-          <h3 className="mt-3 text-2xl font-semibold leading-tight text-tx-primary md:text-3xl">
+          <h2 className="mt-3 text-2xl font-semibold leading-tight text-tx-primary md:text-3xl">
             {service.title}
-          </h3>
+          </h2>
           <p className="mt-4 max-w-3xl text-base leading-8 text-tx-secondary">
             {description}
           </p>

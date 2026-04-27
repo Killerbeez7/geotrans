@@ -14,11 +14,18 @@ type SeoInput = {
 
 function buildTitle(title?: string) {
   // EXAMPLE: "Геодезически услуги София - GeoAxis"
-  if (!title || title === seoConfig.defaultTitle) {
+  const normalizedTitle = title?.trim();
+
+  if (!normalizedTitle || normalizedTitle === seoConfig.defaultTitle) {
     return seoConfig.defaultTitle;
   }
 
-  return seoConfig.titleTemplate.replace("%s", title);
+  const brandSuffix = ` - ${seoConfig.siteName}`;
+  if (normalizedTitle.endsWith(brandSuffix)) {
+    return normalizedTitle;
+  }
+
+  return seoConfig.titleTemplate.replace("%s", normalizedTitle);
 }
 
 function buildAbsoluteUrl(path: string = "") {
@@ -108,8 +115,9 @@ export function createServiceSeo(category: ServiceCategory, service: Service): M
   return createSeo({
     title: `${service.title} в София и Софийска област`,
     description: addAreaContext(service.longDescription ?? service.description),
-    canonical: `/uslugi/${category.slug}/${service.slug}`,
+    canonical: `/uslugi/${category.slug}`,
     image:
       service.heroImage || service.thumbnail || category.heroImage || category.thumbnail,
+    noIndex: true,
   });
 }

@@ -1,6 +1,8 @@
 import { siteContent } from "@/config/site-content";
 import { serviceCategories } from "@/config/services/categories";
+import { SITE_URL } from "@/config/site";
 import { createSeo } from "@/lib/seo-builder";
+import { getWebSiteSchema } from "@/lib/schemas";
 // Sections
 import { HeroSection } from "@/components/sections/HeroSection";
 import { TrustSection } from "@/components/sections/TrustSection";
@@ -25,6 +27,13 @@ export default function Home() {
 
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(getWebSiteSchema(SITE_URL)),
+        }}
+      />
+
       {/* Who we are? */}
       <HeroSection {...hero} />
 

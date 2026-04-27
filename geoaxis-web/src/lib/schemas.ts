@@ -4,6 +4,16 @@ import type { HelpfulArticle } from "@/config/polezno/articles";
 
 const stripSpaces = (s: string) => s.replace(/\s+/g, "");
 
+export function getWebSiteSchema(siteUrl: string) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    name: "GeoAxis",
+    alternateName: "GeoAxis Bulgaria",
+    url: `${siteUrl}/`,
+  };
+}
+
 export function getLocalBusinessSchema(siteUrl: string) {
   const { brand, contacts } = siteContent;
 
