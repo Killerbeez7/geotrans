@@ -1,10 +1,14 @@
-export type ProjectItem = {
-  id: string | number;
+export type ProjectMedia = {
   src: string;
   alt: string;
   caption?: string;
+};
+
+export type ProjectItem = ProjectMedia & {
+  id: string | number;
   category?: string;
   blurDataURL?: string;
+  gallery?: readonly ProjectMedia[];
 };
 
 export type ProjectsContent = {
@@ -28,15 +32,61 @@ export const projects: ProjectsContent = {
   cta: {
     label: "Всички проекти",
     href: "/projects",
-    content: "Виж услуги →",
+    content: "Виж проекти →",
   },
   items: [
+    {
+      id: "trasirane-koloni-skladova-sgrada",
+      src: "/images/projects/trasirane-koloni-skladova-sgrada/cover.jpeg",
+      alt: "Трасиране на конструктивни оси и колони при промишлено строителство",
+      caption:
+        "Геодезическо трасиране на конструктивни оси и контролни точки за колони при изграждане на складова сграда.",
+      category: "Трасиране",
+      gallery: [
+        {
+          src: "/images/projects/trasirane-koloni-skladova-sgrada/cover.jpeg",
+          alt: "Трасиране на конструктивни оси и колони при промишлено строителство",
+          caption:
+            "Общ изглед към промишления обект, където са трасирани контролни точки за позициониране на колоните.",
+        },
+        {
+          src: "/images/projects/trasirane-koloni-skladova-sgrada/control-points-row.jpeg",
+          alt: "Маркирани контролни точки за колони върху бетонова основа",
+          caption:
+            "Контролни точки по редица фундаментни позиции, подготвени за ясно ориентиране на строителния екип.",
+        },
+        {
+          src: "/images/projects/trasirane-koloni-skladova-sgrada/column-row-and-foundations.jpeg",
+          alt: "Геодезическо трасиране на фундаментни точки за складова сграда",
+          caption:
+            "Трасиране на конструктивни оси и позиции на колони спрямо проектните данни.",
+        },
+        {
+          src: "/images/projects/trasirane-koloni-skladova-sgrada/total-station-setup.jpeg",
+          alt: "Тотална станция при трасиране на конструктивни оси",
+          caption:
+            "Геодезическа апаратура на терен при проверка и пренасяне на проектните точки.",
+        },
+        {
+          src: "/images/projects/trasirane-koloni-skladova-sgrada/marked-foundations-detail.jpeg",
+          alt: "Контролни точки за колона при промишлено строителство",
+          caption:
+            "Детайл от маркировките върху бетонова основа за правилно позициониране на конструктивен елемент.",
+        },
+        {
+          src: "/images/projects/trasirane-koloni-skladova-sgrada/foundation-row-construction.jpeg",
+          alt: "Ред фундаментни позиции при трасиране на складова сграда",
+          caption:
+            "Последователно трасиране по редица от фундаментни позиции в рамките на строителния обект.",
+        },
+      ],
+    },
     {
       id: 1,
       src: "/images/projects/project-1.webp",
       alt: "Геодезическо заснемане на земеделски терен с GNSS апаратура",
       caption:
-        "Прецизно определяне на граници и заснемане на 120 дка земеделска земя с GNSS технология.",
+        "Прецизно определяне на граници и заснемане на земеделски терен с GNSS технология.",
       category: "Геодезическо заснемане",
     },
     {

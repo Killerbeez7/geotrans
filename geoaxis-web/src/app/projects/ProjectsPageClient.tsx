@@ -31,10 +31,10 @@ export default function ProjectsPageClient() {
       >
         <div className="grid grid-cols-12 gap-6 sm:gap-8 lg:gap-14">
           <header className="col-span-12 text-center lg:col-span-8 lg:col-start-3">
-            <h1 className="text-4xl font-bold tracking-tight text-tx-primary sm:text-5xl">
-              {title}
-            </h1>
-            <p className="mt-5 text-lg text-tx-secondary sm:text-xl">{subtitle}</p>
+            <h1 className="typo-hero text-tx-primary">{title}</h1>
+            <p className="typo-lead mt-5 text-lg text-tx-secondary sm:text-xl">
+              {subtitle}
+            </p>
           </header>
         </div>
 
