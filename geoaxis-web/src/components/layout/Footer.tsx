@@ -44,7 +44,7 @@ export const Footer = () => {
       {/* <footer className="relative bg-bg-nav"> */}
       <div className="pointer-events-none absolute inset-0 bg-linear-to-t from-black/45 to-black/25" />
 
-      <div className="relative mx-auto max-w-7xl py-12 pl-4 lg:py-16">
+      <div className="relative mx-auto max-w-7xl py-12 pl-4 lg:py-20">
         <div className="grid grid-cols-1 gap-10 text-center lg:grid-cols-4 lg:text-left">
           {/* Brand */}
           <div>
