@@ -60,7 +60,7 @@ export function ProjectsLightbox({ image, onClose }: ProjectsLightboxProps) {
           <Image
             key={`${currentSrc}-${hasError ? "fallback" : "original"}`}
             src={currentSrc}
-            alt={hasError ? "Fallback placeholder" : image.alt}
+            alt={hasError ? "Резервно изображение" : image.alt}
             width={1600}
             height={1200}
             className={`max-w-full max-h-[80vh] object-contain rounded-xl transition-opacity duration-300 ${

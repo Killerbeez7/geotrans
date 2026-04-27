@@ -182,7 +182,7 @@ function ArticleCard({
 
       <h3
         className={clsx(
-          "leading-tight tracking-[-0.01em] transition-colors",
+          "leading-tight tracking-normal transition-colors",
           featured
             ? "text-[1.375rem] font-semibold text-tx-primary"
             : "text-xl font-semibold text-tx-primary",
@@ -202,7 +202,7 @@ function ArticleCard({
 function CategoryCard({ item }: { item: HelpfulCategory }) {
   return (
     <Link href={item.href} className={surfaceCardCls}>
-      <div className="mb-4 inline-flex h-11 w-11 items-center justify-center rounded-2xl bg-bg-soft text-accent transition-colors duration-300 group-hover:bg-accent/12">
+      <div className="mb-4 inline-flex h-11 w-11 items-center justify-center rounded-2xl bg-bg-section text-accent transition-colors duration-300 group-hover:bg-accent/12">
         {item.icon}
       </div>
 
@@ -251,7 +251,7 @@ export function HelpfulHubSection() {
           <div className="mt-20">
             <SectionHeader
               title="Категории"
-              description="Раздели съдържанието по теми, за да е лесно за потребителя и за Google."
+              description="Раздели съдържанието по теми, за да се ориентирате по-бързо."
             />
 
             <div className="grid gap-6 sm:grid-cols-2 xl:grid-cols-4">
