@@ -26,11 +26,14 @@ export async function generateMetadata({ params }: Props) {
     });
   }
 
+  const hasPublishedContent = slug === "statii" || slug === "rakovodstva";
+
   return createSeo({
     title: currentItem.label,
     description:
       currentItem.description ?? `Полезни материали от GeoAxis: ${currentItem.label}.`,
     canonical: `/polezno/${currentItem.slug}`,
+    noIndex: !hasPublishedContent,
   });
 }
 
