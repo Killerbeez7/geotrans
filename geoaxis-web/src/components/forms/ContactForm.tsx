@@ -21,12 +21,16 @@ function FloatingInput({
   type?: string;
   required?: boolean;
 }) {
+  const fieldId = `field-${name}`;
+
   return (
     <div className="relative">
       <input
+        id={fieldId}
         name={name}
         type={type}
         required={required}
+        aria-required={required}
         placeholder=" "
         className={clsx(
           "peer w-full rounded-xl border border-br-light bg-bg-page px-4 pt-6 pb-2",
@@ -36,6 +40,7 @@ function FloatingInput({
         )}
       />
       <label
+        htmlFor={fieldId}
         className={clsx(
           "pointer-events-none absolute left-4 top-1/2 -translate-y-1/2",
           "text-base text-tx-muted transition-all duration-200",
@@ -60,11 +65,15 @@ function FloatingTextarea({
   name: string;
   rows?: number;
 }) {
+  const fieldId = `field-${name}`;
+
   return (
     <div className="relative">
       <textarea
+        id={fieldId}
         name={name}
         required
+        aria-required="true"
         rows={rows}
         placeholder=" "
         className={clsx(
@@ -75,6 +84,7 @@ function FloatingTextarea({
         )}
       />
       <label
+        htmlFor={fieldId}
         className={clsx(
           "pointer-events-none absolute left-4 top-5 -translate-y-1/2",
           "text-base text-tx-muted transition-all duration-200",
@@ -103,12 +113,18 @@ function FloatingSelect({
   defaultValue?: string;
   onChange?: (value: string) => void;
 }) {
+  const fieldId = `field-${name}`;
+
   return (
     <div className="relative">
-      <label className="pointer-events-none absolute left-4 top-2 z-10 text-xs text-tx-muted">
+      <label
+        htmlFor={fieldId}
+        className="pointer-events-none absolute left-4 top-2 z-10 text-xs text-tx-muted"
+      >
         {label}
       </label>
       <select
+        id={fieldId}
         name={name}
         defaultValue={defaultValue}
         onChange={(event) => onChange?.(event.target.value)}
@@ -172,7 +188,8 @@ function FileUpload({
           По желание. Ако нямате файл, изпратете само описанието.
         </p>
       </div>
-      <div
+      <button
+        type="button"
         onClick={() => inputRef.current?.click()}
         onDragOver={(e) => e.preventDefault()}
         onDrop={(e) => {
@@ -180,9 +197,10 @@ function FileUpload({
           handleFiles(e.dataTransfer.files);
         }}
         className={clsx(
-          "flex cursor-pointer items-center gap-3 px-4 py-3",
+          "flex w-full cursor-pointer items-center gap-3 px-4 py-3 text-left",
           "rounded-xl border border-dashed border-br-default bg-bg-section",
-          "transition hover:border-accent/60 hover:bg-white"
+          "transition hover:border-accent/60 hover:bg-white",
+          "focus:border-br-accent focus:ring-2 focus:ring-accent/20 focus:outline-none"
         )}
       >
         <LuUpload className="h-4 w-4 shrink-0 text-accent-strong" />
@@ -192,7 +210,7 @@ function FileUpload({
           </p>
           <p className="text-xs text-tx-muted">JPG, PNG, WebP, PDF · до 10MB</p>
         </div>
-      </div>
+      </button>
 
       <input
         ref={inputRef}
@@ -200,6 +218,7 @@ function FileUpload({
         multiple
         accept=".jpg,.jpeg,.png,.webp,.pdf"
         className="hidden"
+        aria-label="Прикачване на документи или снимки"
         onChange={(e) => handleFiles(e.target.files)}
       />
 
@@ -222,6 +241,7 @@ function FileUpload({
               <button
                 type="button"
                 onClick={() => remove(f.name)}
+                aria-label={`Премахни файл ${f.name}`}
                 className="text-tx-muted transition hover:text-red-600"
               >
                 <LuX className="h-4 w-4" />

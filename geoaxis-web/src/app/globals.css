@@ -78,12 +78,20 @@
   --nav-h: 72px;
   --shrunk-nav-h: 60px;
   --top-bar-h: 32px;
-  --header-h: calc(var(--nav-h) + var(--top-bar-h));
+  --top-bar-offset: 0px;
+  --header-h: var(--nav-h);
 
   /* Overlays */
   --surface-overlay-sm: color-mix(in srgb, var(--gray-0) 8%, transparent);
   --surface-overlay-md: color-mix(in srgb, var(--gray-0) 12%, transparent);
   --surface-overlay-lg: color-mix(in srgb, var(--gray-0) 18%, transparent);
+}
+
+@media (min-width: 768px) {
+  :root {
+    --top-bar-offset: var(--top-bar-h);
+    --header-h: calc(var(--nav-h) + var(--top-bar-h));
+  }
 }
 
 @theme inline {
