@@ -26,7 +26,7 @@ export const pageSeo = {
     description:
       "Изберете услуга според вашия проект и се свържете с нас. Работим в София и Софийска област и предлагаме заснемане, трасиране, кадастър, проектиране, ПУП и консултации.",
     canonical: "/uslugi",
-    image: "/images/sections/services-hero-abstract-01.png",
+    image: "/images/sections/services-hero-abstract-01.webp",
   },
 
   about: {
