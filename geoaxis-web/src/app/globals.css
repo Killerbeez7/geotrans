@@ -134,8 +134,7 @@
   --color-br-accent-soft: color-mix(in srgb, var(--color-accent) 26%, transparent);
 
   /* radius */
-  --radius-card: 1.25rem;
-  /* --radius-card: 1.5rem; */
+  --radius-card: 1.5rem;
 }
 
 /* Fonts */
