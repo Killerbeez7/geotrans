@@ -1,88 +1,204 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import Image from "next/image";
-import type { ProjectItem } from "@/config/content/projects";
+import { LuChevronLeft, LuChevronRight, LuX } from "react-icons/lu";
+import type { ProjectItem, ProjectMedia } from "@/config/content/projects";
 
 interface ProjectsLightboxProps {
   image: ProjectItem | null;
   onClose: () => void;
 }
 
+interface ProjectsLightboxContentProps {
+  image: ProjectItem;
+  onClose: () => void;
+}
+
 const FALLBACK_SRC = "/images/utility/placeholder.png";
 
 export function ProjectsLightbox({ image, onClose }: ProjectsLightboxProps) {
-  const [hasError, setHasError] = useState(false);
-  const [isLoading, setIsLoading] = useState(true);
+  if (!image) return null;
+
+  return (
+    <ProjectsLightboxContent key={String(image.id)} image={image} onClose={onClose} />
+  );
+}
+
+function ProjectsLightboxContent({ image, onClose }: ProjectsLightboxContentProps) {
+  const gallery = useMemo(() => {
+    return image.gallery?.length
+      ? image.gallery
+      : [{ src: image.src, alt: image.alt, caption: image.caption }];
+  }, [image]);
+
+  const [activeIndex, setActiveIndex] = useState(0);
+  const touchStartX = useRef<number | null>(null);
+  const touchStartY = useRef<number | null>(null);
+  const activeImage = gallery[activeIndex] ?? gallery[0];
+  const hasGallery = gallery.length > 1;
+
+  const goPrevious = useCallback(() => {
+    if (!gallery.length) return;
+    setActiveIndex((current) => (current === 0 ? gallery.length - 1 : current - 1));
+  }, [gallery.length]);
+
+  const goNext = useCallback(() => {
+    if (!gallery.length) return;
+    setActiveIndex((current) => (current + 1) % gallery.length);
+  }, [gallery.length]);
+
+  const handleTouchStart = useCallback((event: React.TouchEvent<HTMLDivElement>) => {
+    const touch = event.changedTouches[0];
+    touchStartX.current = touch?.clientX ?? null;
+    touchStartY.current = touch?.clientY ?? null;
+  }, []);
+
+  const handleTouchEnd = useCallback(
+    (event: React.TouchEvent<HTMLDivElement>) => {
+      if (!hasGallery || touchStartX.current === null || touchStartY.current === null) {
+        return;
+      }
+
+      const touch = event.changedTouches[0];
+      if (!touch) return;
+
+      const deltaX = touch.clientX - touchStartX.current;
+      const deltaY = touch.clientY - touchStartY.current;
+      touchStartX.current = null;
+      touchStartY.current = null;
+
+      if (Math.abs(deltaX) < 35 || Math.abs(deltaX) < Math.abs(deltaY)) return;
+      if (deltaX > 0) {
+        goPrevious();
+      } else {
+        goNext();
+      }
+    },
+    [goNext, goPrevious, hasGallery]
+  );
 
   useEffect(() => {
-    if (!image) return;
-
     const onKeyDown = (e: KeyboardEvent) => {
       if (e.key === "Escape") onClose();
+      if (!hasGallery) return;
+      if (e.key === "ArrowLeft") goPrevious();
+      if (e.key === "ArrowRight") goNext();
     };
     window.addEventListener("keydown", onKeyDown);
     return () => window.removeEventListener("keydown", onKeyDown);
-  }, [image, onClose]);
+  }, [goNext, goPrevious, hasGallery, onClose]);
 
-  if (!image) return null;
-
-  const currentSrc = hasError ? FALLBACK_SRC : image.src;
+  if (!activeImage) return null;
 
   return (
     <div
-      className="fixed inset-0 z-[100] bg-black/90 backdrop-blur-sm flex items-center justify-center p-4"
+      className="fixed inset-0 z-[100] flex items-center justify-center bg-black/90 backdrop-blur-sm sm:p-4"
       onClick={onClose}
       role="dialog"
       aria-modal="true"
       aria-label="Преглед на снимка"
     >
       <div
-        className="relative max-w-[95vw] max-h-[90vh] w-auto h-auto bg-gray-950/40 rounded-2xl overflow-hidden shadow-2xl"
+        className="relative flex h-[100dvh] max-h-[100dvh] w-full max-w-6xl flex-col overflow-hidden border-white/10 bg-gray-950 shadow-2xl sm:h-auto sm:max-h-[92vh] sm:rounded-2xl sm:border"
         onClick={(e) => e.stopPropagation()}
       >
         <button
-          className="absolute top-4 right-4 z-10 text-white text-4xl hover:text-amber-400 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-amber-400 rounded-full p-1"
+          className="absolute right-3 top-3 z-30 flex h-10 w-10 items-center justify-center rounded-full bg-black/55 text-white transition-colors duration-200 hover:text-amber-300 focus:outline-none focus:ring-2 focus:ring-amber-400 sm:right-4 sm:top-4 sm:h-11 sm:w-11"
           onClick={onClose}
           aria-label="Затвори"
           type="button"
         >
-          ×
+          <LuX className="h-6 w-6" aria-hidden="true" />
         </button>
 
-        <div className="relative flex items-center justify-center p-4 sm:p-8 min-h-[50vh]">
-          {isLoading && (
-            <div className="absolute inset-0 flex items-center justify-center z-10">
-              <div className="w-12 h-12 border-4 border-gray-600 border-t-amber-400 rounded-full animate-spin" />
-            </div>
-          )}
+        <div
+          className="relative flex min-h-0 flex-1 touch-pan-y items-center justify-center bg-black sm:min-h-[50vh] sm:px-8 sm:py-6"
+          onTouchStart={handleTouchStart}
+          onTouchEnd={handleTouchEnd}
+          onTouchCancel={() => {
+            touchStartX.current = null;
+            touchStartY.current = null;
+          }}
+        >
+          <LightboxImage key={activeImage.src} image={activeImage} />
 
-          <Image
-            key={`${currentSrc}-${hasError ? "fallback" : "original"}`}
-            src={currentSrc}
-            alt={hasError ? "Резервно изображение" : image.alt}
-            width={1600}
-            height={1200}
-            className={`max-w-full max-h-[80vh] object-contain rounded-xl transition-opacity duration-300 ${
-              isLoading ? "opacity-0" : "opacity-100"
-            }`}
-            priority
-            onLoad={() => setIsLoading(false)}
-            onLoadingComplete={() => setIsLoading(false)}
-            onError={() => {
-              if (!hasError) {
-                setHasError(true);
-                setIsLoading(false);
-              }
-            }}
-          />
+          {hasGallery && (
+            <>
+              <button
+                type="button"
+                onClick={goPrevious}
+                className="absolute left-2 top-1/2 z-20 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full bg-black/55 text-white transition hover:bg-black/75 focus:outline-none focus:ring-2 focus:ring-white/60 sm:left-5 sm:h-12 sm:w-12"
+                aria-label="Предишна снимка"
+              >
+                <LuChevronLeft className="h-6 w-6 sm:h-7 sm:w-7" aria-hidden="true" />
+              </button>
+              <button
+                type="button"
+                onClick={goNext}
+                className="absolute right-2 top-1/2 z-20 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full bg-black/55 text-white transition hover:bg-black/75 focus:outline-none focus:ring-2 focus:ring-white/60 sm:right-5 sm:h-12 sm:w-12"
+                aria-label="Следваща снимка"
+              >
+                <LuChevronRight className="h-6 w-6 sm:h-7 sm:w-7" aria-hidden="true" />
+              </button>
+            </>
+          )}
         </div>
 
-        <div className="absolute bottom-0 left-0 right-0 p-6 bg-linear-to-t from-black/80 to-transparent text-white">
-          <p className="text-lg font-medium">{image.alt}</p>
-          {image.caption && <p className="mt-1 text-sm opacity-90">{image.caption}</p>}
+        <div className="max-h-[26dvh] overflow-y-auto border-t border-white/10 bg-gray-950 px-4 pb-[calc(env(safe-area-inset-bottom)+0.85rem)] pt-3 text-tx-inverse sm:max-h-none sm:px-6 sm:pb-4 sm:pt-4">
+          <div className="flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between">
+            <p className="max-w-4xl text-[15px] font-semibold leading-snug text-tx-inverse sm:text-lg">
+              {activeImage.alt}
+            </p>
+            {hasGallery && (
+              <p className="order-first shrink-0 text-xs font-semibold uppercase tracking-[0.18em] text-amber-300 sm:order-none sm:pt-1">
+                {activeIndex + 1} / {gallery.length}
+              </p>
+            )}
+          </div>
+          {activeImage.caption && (
+            <p className="mt-2 max-w-4xl text-[13px] leading-5 text-tx-inverse/82 sm:text-sm sm:leading-6">
+              {activeImage.caption}
+            </p>
+          )}
         </div>
       </div>
     </div>
+  );
+}
+
+function LightboxImage({ image }: { image: ProjectMedia }) {
+  const [hasError, setHasError] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
+  const currentSrc = hasError ? FALLBACK_SRC : image.src;
+
+  return (
+    <>
+      {isLoading && (
+        <div className="absolute inset-0 z-10 flex items-center justify-center">
+          <div className="h-12 w-12 animate-spin rounded-full border-4 border-gray-600 border-t-amber-400" />
+        </div>
+      )}
+
+      <Image
+        key={`${currentSrc}-${hasError ? "fallback" : "original"}`}
+        src={currentSrc}
+        alt={hasError ? "Резервно изображение" : image.alt}
+        width={1600}
+        height={1200}
+        className={`h-full w-full object-cover transition-opacity duration-300 sm:h-auto sm:max-h-[68vh] sm:max-w-full sm:rounded-xl sm:object-contain ${
+          isLoading ? "opacity-0" : "opacity-100"
+        }`}
+        priority
+        onLoad={() => setIsLoading(false)}
+        onLoadingComplete={() => setIsLoading(false)}
+        onError={() => {
+          if (!hasError) {
+            setHasError(true);
+            setIsLoading(false);
+          }
+        }}
+      />
+    </>
   );
 }

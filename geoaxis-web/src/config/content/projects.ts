@@ -62,12 +62,6 @@ export const projects: ProjectsContent = {
             "Трасиране на конструктивни оси и позиции на колони спрямо проектните данни.",
         },
         {
-          src: "/images/projects/trasirane-koloni-skladova-sgrada/total-station-setup.jpeg",
-          alt: "Тотална станция при трасиране на конструктивни оси",
-          caption:
-            "Геодезическа апаратура на терен при проверка и пренасяне на проектните точки.",
-        },
-        {
           src: "/images/projects/trasirane-koloni-skladova-sgrada/marked-foundations-detail.jpeg",
           alt: "Контролни точки за колона при промишлено строителство",
           caption:
