@@ -7,22 +7,25 @@ interface ProjectImageProps {
   src: string;
   alt: string;
   caption?: string;
+  category?: string;
 }
 
 interface ProjectCardProps {
   image: ProjectImageProps;
   onClick?: () => void;
+  className?: string;
 }
 
-export function ProjectDisplayCard({ image, onClick }: ProjectCardProps) {
+export function ProjectDisplayCard({ image, onClick, className }: ProjectCardProps) {
   return (
     <div
       className={clsx(
         "group relative mb-5 flex cursor-pointer flex-col justify-end overflow-hidden rounded-card bg-black",
         "h-[260px] md:h-[300px]",
-        "border border-br-default shadow-md",
+        "border border-br-default shadow-lg",
         "transition-all duration-300",
-        "hover:-translate-y-1 hover:shadow-xl"
+        "hover:-translate-y-1 hover:shadow-xl",
+        className
       )}
       onClick={onClick}
       onKeyDown={(event) => {
@@ -48,7 +51,7 @@ export function ProjectDisplayCard({ image, onClick }: ProjectCardProps) {
       <div
         className={clsx(
           "pointer-events-none absolute inset-0 flex items-end p-4 sm:p-6",
-          "bg-gradient-to-t from-black/80 via-black/22 to-transparent",
+          "bg-linear-to-t from-black/80 via-black/22 to-transparent",
           "opacity-100 transition-opacity duration-300"
         )}
       >

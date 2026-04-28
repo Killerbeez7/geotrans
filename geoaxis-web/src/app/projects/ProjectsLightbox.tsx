@@ -89,18 +89,36 @@ function ProjectsLightboxContent({ image, onClose }: ProjectsLightboxContentProp
     return () => window.removeEventListener("keydown", onKeyDown);
   }, [goNext, goPrevious, hasGallery, onClose]);
 
+  // new
+  useEffect(() => {
+    const originalOverflow = document.body.style.overflow;
+    const originalTouchAction = document.body.style.touchAction;
+
+    document.body.style.overflow = "hidden";
+    document.body.style.touchAction = "none";
+
+    return () => {
+      document.body.style.overflow = originalOverflow;
+      document.body.style.touchAction = originalTouchAction;
+    };
+  }, []);
+
   if (!activeImage) return null;
 
   return (
     <div
-      className="fixed inset-0 z-[100] flex items-center justify-center bg-black/90 backdrop-blur-sm sm:p-4"
+      //new
+      className="fixed inset-0 z-100 flex items-center justify-center bg-black/78 backdrop-blur-[2px] sm:p-4"
+      // className="fixed inset-0 z-100 flex items-center justify-center bg-black/90 backdrop-blur-sm sm:p-4"
       onClick={onClose}
       role="dialog"
       aria-modal="true"
       aria-label="Преглед на снимка"
     >
       <div
-        className="relative flex h-[100dvh] max-h-[100dvh] w-full max-w-6xl flex-col overflow-hidden border-white/10 bg-gray-950 shadow-2xl sm:h-auto sm:max-h-[92vh] sm:rounded-2xl sm:border"
+        // this is not working as i wanted, its creating image on left text on right i want image ot top and text below as the onew im using now, maybe just fix the text to take 2 or 3 lines and cap with overflow
+        //  className="relative grid h-[100dvh] max-h-[100dvh] w-full max-w-6xl grid-rows-[70dvh_30dvh] overflow-hidden border-white/10 bg-gray-950 shadow-2xl sm:flex sm:h-auto sm:max-h-[92vh] sm:rounded-2xl sm:border"
+        className="relative flex h-dvh max-h-dvh w-full max-w-6xl flex-col overflow-hidden border-white/10 bg-gray-950 shadow-2xl sm:h-auto sm:max-h-[92vh] sm:rounded-2xl sm:border"
         onClick={(e) => e.stopPropagation()}
       >
         <button
@@ -113,6 +131,8 @@ function ProjectsLightboxContent({ image, onClose }: ProjectsLightboxContentProp
         </button>
 
         <div
+          //new this is not working text area have to be 20vh max.. not half screen
+          // className="relative flex min-h-0 touch-pan-y items-center justify-center bg-black sm:min-h-[50vh] sm:px-8 sm:py-6"
           className="relative flex min-h-0 flex-1 touch-pan-y items-center justify-center bg-black sm:min-h-[50vh] sm:px-8 sm:py-6"
           onTouchStart={handleTouchStart}
           onTouchEnd={handleTouchEnd}
@@ -128,7 +148,7 @@ function ProjectsLightboxContent({ image, onClose }: ProjectsLightboxContentProp
               <button
                 type="button"
                 onClick={goPrevious}
-                className="absolute left-2 top-1/2 z-20 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full bg-black/55 text-white transition hover:bg-black/75 focus:outline-none focus:ring-2 focus:ring-white/60 sm:left-5 sm:h-12 sm:w-12"
+                className="absolute left-2 top-1/2 z-20 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full bg-black/55 text-white transition hover:bg-black/75 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/60 sm:left-5 sm:h-12 sm:w-12"
                 aria-label="Предишна снимка"
               >
                 <LuChevronLeft className="h-6 w-6 sm:h-7 sm:w-7" aria-hidden="true" />
@@ -136,7 +156,7 @@ function ProjectsLightboxContent({ image, onClose }: ProjectsLightboxContentProp
               <button
                 type="button"
                 onClick={goNext}
-                className="absolute right-2 top-1/2 z-20 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full bg-black/55 text-white transition hover:bg-black/75 focus:outline-none focus:ring-2 focus:ring-white/60 sm:right-5 sm:h-12 sm:w-12"
+                className="absolute right-2 top-1/2 z-20 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full bg-black/55 text-white transition hover:bg-black/75 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/60 sm:right-5 sm:h-12 sm:w-12"
                 aria-label="Следваща снимка"
               >
                 <LuChevronRight className="h-6 w-6 sm:h-7 sm:w-7" aria-hidden="true" />
@@ -144,20 +164,19 @@ function ProjectsLightboxContent({ image, onClose }: ProjectsLightboxContentProp
             </>
           )}
         </div>
-
-        <div className="max-h-[26dvh] overflow-y-auto border-t border-white/10 bg-gray-950 px-4 pb-[calc(env(safe-area-inset-bottom)+0.85rem)] pt-3 text-tx-inverse sm:max-h-none sm:px-6 sm:pb-4 sm:pt-4">
+        <div className="min-h-0 overflow-hidden border-t border-white/10 bg-gray-950 px-4 pb-[calc(env(safe-area-inset-bottom)+0.85rem)] pt-6  text-tx-inverse sm:max-h-none sm:px-6 sm:pb-4 sm:pt-4">
           <div className="flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between">
-            <p className="max-w-4xl text-[15px] font-semibold leading-snug text-tx-inverse sm:text-lg">
+            <p className="line-clamp-2 max-w-4xl text-[15px] font-semibold leading-snug text-tx-inverse sm:text-lg">
               {activeImage.alt}
             </p>
             {hasGallery && (
-              <p className="order-first shrink-0 text-xs font-semibold uppercase tracking-[0.18em] text-amber-300 sm:order-none sm:pt-1">
+              <p className="order-first shrink-0 text-xs font-semibold uppercase tracking-[0.18em] text-amber-300 sm:order-0 sm:pt-1">
                 {activeIndex + 1} / {gallery.length}
               </p>
             )}
           </div>
           {activeImage.caption && (
-            <p className="mt-2 max-w-4xl text-[13px] leading-5 text-tx-inverse/82 sm:text-sm sm:leading-6">
+            <p className="mt-2 line-clamp-3 max-w-4xl text-[13px] leading-5 text-tx-inverse/82 sm:text-sm sm:leading-6">
               {activeImage.caption}
             </p>
           )}

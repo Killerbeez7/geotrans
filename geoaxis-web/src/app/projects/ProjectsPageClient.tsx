@@ -1,9 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import Image from "next/image";
 import Link from "next/link";
-import clsx from "clsx";
 
 import { siteContent } from "@/config/site-content";
 import type { ProjectsContent } from "@/config/content/projects";
@@ -11,6 +9,7 @@ import type { ProjectsContent } from "@/config/content/projects";
 import { ProjectsLightbox } from "./ProjectsLightbox";
 import { Section } from "@/components/layout/Section";
 import { FinalCta } from "@/components/sections/FinalCta";
+import { ProjectDisplayCard } from "@/components/parts/ProjectDisplayCard";
 
 export default function ProjectsPageClient() {
   const [selectedImage, setSelectedImage] = useState<
@@ -38,36 +37,14 @@ export default function ProjectsPageClient() {
           </header>
         </div>
 
-        <div className="mt-16 columns-1 gap-6 space-y-6 sm:columns-2 lg:columns-3 xl:columns-3">
+        <div className="mt-12 grid gap-5 sm:mt-14 sm:grid-cols-2 lg:grid-cols-3">
           {items.map((img) => (
-            <button
+            <ProjectDisplayCard
               key={img.id}
-              type="button"
+              image={img}
               onClick={() => setSelectedImage(img)}
-              className={clsx(
-                "relative group break-inside-avoid w-full",
-                "cursor-pointer overflow-hidden rounded-2xl text-left",
-                "shadow-lg transition-all duration-300 hover:scale-[1.02] hover:shadow-2xl"
-              )}
-              aria-label={img.caption ?? img.alt}
-            >
-              <div className="pointer-events-none relative aspect-4/3 overflow-hidden sm:aspect-3/4 lg:aspect-4/5">
-                <Image
-                  src={img.src}
-                  alt={img.alt}
-                  fill
-                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                  className="object-cover transition-transform duration-700 ease-out group-hover:scale-110"
-                />
-              </div>
-
-              <div
-                className="absolute inset-0 flex items-end bg-linear-to-t from-black/70 via-transparent to-transparent
-                           p-6 opacity-0 transition-opacity duration-300 pointer-events-none group-hover:opacity-100"
-              >
-                <p className="text-sm font-medium text-white">{img.caption || img.alt}</p>
-              </div>
-            </button>
+              // className="mb-0!"
+            />
           ))}
         </div>
 
