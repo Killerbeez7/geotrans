@@ -17,6 +17,58 @@ interface ProjectsLightboxContentProps {
 
 const FALLBACK_SRC = "/images/utility/placeholder.png";
 
+function useLockBodyScroll() {
+  useEffect(() => {
+    const scrollY = window.scrollY;
+    const { body, documentElement } = document;
+    const originalBody = {
+      overflow: body.style.overflow,
+      position: body.style.position,
+      top: body.style.top,
+      left: body.style.left,
+      right: body.style.right,
+      width: body.style.width,
+      touchAction: body.style.touchAction,
+      overscrollBehavior: body.style.overscrollBehavior,
+    };
+    const originalHtml = {
+      overflow: documentElement.style.overflow,
+      overscrollBehavior: documentElement.style.overscrollBehavior,
+    };
+
+    const preventBackgroundScroll = (event: TouchEvent) => {
+      event.preventDefault();
+    };
+
+    body.style.overflow = "hidden";
+    body.style.position = "fixed";
+    body.style.top = `-${scrollY}px`;
+    body.style.left = "0";
+    body.style.right = "0";
+    body.style.width = "100%";
+    body.style.touchAction = "none";
+    body.style.overscrollBehavior = "none";
+    documentElement.style.overflow = "hidden";
+    documentElement.style.overscrollBehavior = "none";
+    document.addEventListener("touchmove", preventBackgroundScroll, { passive: false });
+
+    return () => {
+      document.removeEventListener("touchmove", preventBackgroundScroll);
+      body.style.overflow = originalBody.overflow;
+      body.style.position = originalBody.position;
+      body.style.top = originalBody.top;
+      body.style.left = originalBody.left;
+      body.style.right = originalBody.right;
+      body.style.width = originalBody.width;
+      body.style.touchAction = originalBody.touchAction;
+      body.style.overscrollBehavior = originalBody.overscrollBehavior;
+      documentElement.style.overflow = originalHtml.overflow;
+      documentElement.style.overscrollBehavior = originalHtml.overscrollBehavior;
+      window.scrollTo(0, scrollY);
+    };
+  }, []);
+}
+
 export function ProjectsLightbox({ image, onClose }: ProjectsLightboxProps) {
   if (!image) return null;
 
@@ -26,6 +78,8 @@ export function ProjectsLightbox({ image, onClose }: ProjectsLightboxProps) {
 }
 
 function ProjectsLightboxContent({ image, onClose }: ProjectsLightboxContentProps) {
+  useLockBodyScroll();
+
   const gallery = useMemo(() => {
     return image.gallery?.length
       ? image.gallery
@@ -89,35 +143,17 @@ function ProjectsLightboxContent({ image, onClose }: ProjectsLightboxContentProp
     return () => window.removeEventListener("keydown", onKeyDown);
   }, [goNext, goPrevious, hasGallery, onClose]);
 
-  // new
-  useEffect(() => {
-    const originalOverflow = document.body.style.overflow;
-    const originalTouchAction = document.body.style.touchAction;
-
-    document.body.style.overflow = "hidden";
-    document.body.style.touchAction = "none";
-
-    return () => {
-      document.body.style.overflow = originalOverflow;
-      document.body.style.touchAction = originalTouchAction;
-    };
-  }, []);
-
   if (!activeImage) return null;
 
   return (
     <div
-      //new
-      className="fixed inset-0 z-100 flex items-center justify-center bg-black/78 backdrop-blur-[2px] sm:p-4"
-      // className="fixed inset-0 z-100 flex items-center justify-center bg-black/90 backdrop-blur-sm sm:p-4"
+      className="fixed inset-0 z-[100] flex items-center justify-center bg-black/78 backdrop-blur-[2px] sm:p-4"
       onClick={onClose}
       role="dialog"
       aria-modal="true"
       aria-label="Преглед на снимка"
     >
       <div
-        // this is not working as i wanted, its creating image on left text on right i want image ot top and text below as the onew im using now, maybe just fix the text to take 2 or 3 lines and cap with overflow
-        //  className="relative grid h-[100dvh] max-h-[100dvh] w-full max-w-6xl grid-rows-[70dvh_30dvh] overflow-hidden border-white/10 bg-gray-950 shadow-2xl sm:flex sm:h-auto sm:max-h-[92vh] sm:rounded-2xl sm:border"
         className="relative flex h-dvh max-h-dvh w-full max-w-6xl flex-col overflow-hidden border-white/10 bg-gray-950 shadow-2xl sm:h-auto sm:max-h-[92vh] sm:rounded-2xl sm:border"
         onClick={(e) => e.stopPropagation()}
       >
@@ -131,8 +167,6 @@ function ProjectsLightboxContent({ image, onClose }: ProjectsLightboxContentProp
         </button>
 
         <div
-          //new this is not working text area have to be 20vh max.. not half screen
-          // className="relative flex min-h-0 touch-pan-y items-center justify-center bg-black sm:min-h-[50vh] sm:px-8 sm:py-6"
           className="relative flex min-h-0 flex-1 touch-pan-y items-center justify-center bg-black sm:min-h-[50vh] sm:px-8 sm:py-6"
           onTouchStart={handleTouchStart}
           onTouchEnd={handleTouchEnd}
