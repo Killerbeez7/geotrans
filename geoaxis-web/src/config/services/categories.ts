@@ -79,8 +79,8 @@ export const serviceCategories: ServiceCategory[] = [
         title: "Геодезическо заснемане за проектиране",
         shortTitle: "Заснемане за проект",
         meta: "Терен • Основа за проект",
-        thumbnail: "/images/services/zasnemane-plocha-thumb.jpeg",
-        heroImage: "/images/services/zasnemane-plocha-og.jpeg",
+        thumbnail: "/images/services/zasnemane/za-proekt.webp",
+        heroImage: "/images/services/zasnemane/za-proekt.webp",
         description: "Подробно заснемане на имота като основа за проектиране.",
         longDescription: [
           "Геодезическото заснемане за проектиране предоставя точна и актуална информация за съществуващото положение на терена. То се използва като основа при изработване на инвестиционни проекти и позволява правилно позициониране спрямо реалните условия.",
@@ -94,8 +94,8 @@ export const serviceCategories: ServiceCategory[] = [
       //   title: "Геодезическо заснемане за проектиране",
       //   shortTitle: "Заснемане за проект",
       //   meta: "Терен • Основа за проект",
-      //   thumbnail: "/images/services/zasnemane-plocha-thumb.jpeg",
-      //   heroImage: "/images/services/zasnemane-plocha-og.jpeg",
+      //   thumbnail: "/images/services/plocha-thumb.webp",
+      //   heroImage: "/images/services/plocha-og.webp",
       //   description: "Подробно заснемане на имота като основа за проектиране.",
       //   longDescription:
       //     "Геодезическото заснемане за проектиране предоставя точна и актуална информация за съществуващото положение на терена. Използва се като основа за инвестиционни проекти и помага за правилно позициониране и съобразяване с реалните условия.",
@@ -126,8 +126,8 @@ export const serviceCategories: ServiceCategory[] = [
         title: "Геодезическо заснемане на сграда",
         shortTitle: "Заснемане на сграда",
         meta: "Сграда • Документация",
-        thumbnail: "/images/services/zasnemane-sgrada-thumb.webp",
-        heroImage: "/images/services/zasnemane-sgrada-og.webp",
+        thumbnail: "/images/services/zasnemane/na-sgrada2.webp", // CHANGE IMAGE LATER
+        heroImage: "/images/services/zasnemane/na-sgrada2.webp", // CHANGE IMAGE LATER
         description: "Заснемане на сгради за документация и последващо проектиране.",
         longDescription:
           "Заснемането на сграда осигурява точни данни за съществуващото състояние. Използва се при реконструкции, узаконяване, архитектурни проекти и техническа документация.",
@@ -157,8 +157,8 @@ export const serviceCategories: ServiceCategory[] = [
         title: "Геодезическо заснемане на фасади",
         shortTitle: "Заснемане на фасади",
         meta: "Фасади • Архитектура",
-        thumbnail: "/images/services/geodezichesko-zasnemane-thumb.jpg",
-        heroImage: "/images/services/geodezichesko-zasnemane-og.jpg",
+        thumbnail: "/images/category/zasnemane-thumb.webp", // CHANGE IMAGE LATER
+        heroImage: "/images/category/zasnemane-og.webp", // CHANGE IMAGE LATER
         description:
           "Прецизно заснемане на фасади на сгради за архитектурни и реставрационни цели.",
         longDescription:
@@ -177,8 +177,8 @@ export const serviceCategories: ServiceCategory[] = [
         title: "Геодезическо заснемане на техническа инфраструктура",
         shortTitle: "Заснемане на техн. инфраструктура",
         meta: "Мрежи • Съоръжения",
-        thumbnail: "/images/services/plocha-thumb.jpg",
-        heroImage: "/images/services/plocha-og.jpg",
+        thumbnail: "/images/services/plocha-thumb.webp",
+        heroImage: "/images/services/plocha-og.webp",
         description: "Заснемане на мрежи и съоръжения за координация и проектиране.",
         longDescription:
           "Заснемането на техническа инфраструктура включва подземни и надземни мрежи и съоръжения. Използва се за координация, проектиране и предотвратяване на конфликти между системи.",
@@ -200,8 +200,8 @@ export const serviceCategories: ServiceCategory[] = [
         title: "Геодезическо заснемане на дървесна растителност",
         shortTitle: "Заснемане на дървесна растителност",
         meta: "Дървета • Терен",
-        thumbnail: "/images/services/durvestna-thumb.jpeg",
-        heroImage: "/images/services/durvestna-og.jpeg",
+        thumbnail: "/images/services/darvesna-thumb.webp",
+        heroImage: "/images/services/darvesna-og.webp",
         description: "Заснемане на дървета и зелени площи за проектиране и регулация.",
         longDescription:
           "Заснемането на дървесна растителност се използва при проектиране, благоустройство и устройствени процедури. Позволява точно позициониране и съобразяване със съществуващата среда.",
@@ -227,8 +227,8 @@ export const serviceCategories: ServiceCategory[] = [
     title: "Трасиране",
     shortTitle: "Трасиране",
     meta: "Оси • Линии • Контури",
-    thumbnail: "/images/category/trasirane-thumb.jpg",
-    heroImage: "/images/category/trasirane-og.jpg",
+    thumbnail: "/images/category/trasirane-thumb.webp",
+    heroImage: "/images/category/trasirane-og.webp",
     description:
       "Точно пренасяне на проектни оси, линии, граници и характерни точки върху терена.",
     longDescription:
@@ -254,8 +254,8 @@ export const serviceCategories: ServiceCategory[] = [
         slug: "na-imotni-granici",
         title: "Трасиране на имотни граници",
         meta: "Граници • Точки",
-        thumbnail: "/images/services/trasirane-granici-thumb.png",
-        heroImage: "/images/services/trasirane-granici-og.png",
+        thumbnail: "/images/services/trasirane/imotni-granici.webp", // CHANGE IMAGE LATER
+        heroImage: "/images/services/trasirane/imotni-granici.webp", // CHANGE IMAGE LATER
         description: "Точно обозначаване на границите на имота на място.",
         longDescription:
           "Трасирането на имотни граници определя точното положение на границите върху терена според наличните кадастрални и правни данни. Използва се при огради, строителство, сделки и при неяснота или спор за граници.",
@@ -284,8 +284,8 @@ export const serviceCategories: ServiceCategory[] = [
         slug: "na-sgrada",
         title: "Трасиране на сграда",
         meta: "Оси • Контури",
-        thumbnail: "/images/services/trasirane-thumb.jpg",
-        heroImage: "/images/services/trasirane-og.jpg",
+        thumbnail: "/images/services/trasirane/imotni-granici.webp", // CHANGE IMAGE LATER
+        heroImage: "/images/services/trasirane/imotni-granici.webp", // CHANGE IMAGE LATER
         description: "Пренасяне на проектните контури и оси на сградата върху терена.",
         longDescription:
           "Трасирането на сгради осигурява точното позициониране на бъдещата сграда спрямо проекта и имотните граници. Критично е за правилното изпълнение на строителството и избягване на отклонения.",
@@ -314,8 +314,8 @@ export const serviceCategories: ServiceCategory[] = [
         slug: "na-osi-i-konstruktivni-elementi",
         title: "Трасиране на оси и конструктивни елементи",
         meta: "Конструкция • Точност",
-        thumbnail: "/images/services/trasirane-thumb.jpg",
-        heroImage: "/images/services/trasirane-og.jpg",
+        thumbnail: "/images/services/trasirane/imotni-granici.webp", // CHANGE IMAGE LATER
+        heroImage: "/images/services/trasirane/imotni-granici.webp", // CHANGE IMAGE LATER
         description: "Трасиране на оси и конструктивни елементи по проект.",
         longDescription:
           "Трасирането на оси и конструктивни елементи осигурява висока точност при изпълнение на конструкцията. Използва се за правилно позициониране на колони, шайби и други ключови елементи.",
@@ -337,8 +337,8 @@ export const serviceCategories: ServiceCategory[] = [
         slug: "na-lineyni-saorazheniya",
         title: "Трасиране на линейни съоръжения",
         meta: "Трасета • Канали",
-        thumbnail: "/images/services/trasirane-granici-thumb.png",
-        heroImage: "/images/services/trasirane-granici-og.png",
+        thumbnail: "/images/services/trasirane/imotni-granici.webp", // CHANGE IMAGE LATER
+        heroImage: "/images/services/trasirane/imotni-granici.webp", // CHANGE IMAGE LATER
         description: "Трасиране на трасета и линейни обекти върху терена.",
         longDescription:
           "Трасирането на линейни съоръжения включва пътища, канали, кабели и други трасета. Осигурява точното им позициониране и съобразяване с проекта и съществуващата среда.",
@@ -360,8 +360,8 @@ export const serviceCategories: ServiceCategory[] = [
         slug: "na-ulichna-regulacia",
         title: "Трасиране на улична регулация",
         meta: "Регулация • Линии",
-        thumbnail: "/images/services/trasirane-thumb.jpg",
-        heroImage: "/images/services/trasirane-og.jpg",
+        thumbnail: "/images/services/trasirane/imotni-granici.webp", // CHANGE IMAGE LATER
+        heroImage: "/images/services/trasirane/imotni-granici.webp", // CHANGE IMAGE LATER
         description: "Трасиране на регулационни линии по действащ план.",
         longDescription:
           "Трасирането на улична регулация определя точното положение на регулационните линии върху терена. Използва се при строителство, огради и съобразяване с устройствени планове.",
@@ -383,8 +383,8 @@ export const serviceCategories: ServiceCategory[] = [
     title: "Кадастър",
     shortTitle: "Кадастър",
     meta: "Скици • Промени • Процедури",
-    thumbnail: "/images/category/cadaster-thumb.png",
-    heroImage: "/images/category/cadaster-og.png",
+    thumbnail: "/images/category/cadaster-thumb.webp",
+    heroImage: "/images/category/cadaster-og.webp",
     description:
       "Кадастрални услуги, изготвяне на документи и съдействие при процедури – скици, схеми, промени и нанасяне на обекти.",
     longDescription:
@@ -410,8 +410,8 @@ export const serviceCategories: ServiceCategory[] = [
         slug: "skica-na-pozemlen-imot",
         title: "Скица на поземлен имот",
         meta: "Имот • Скица",
-        thumbnail: "/images/services/kadastyr-thumb.jpg",
-        heroImage: "/images/services/kadastyr-og.jpg",
+        thumbnail: "/images/services/kadastyr-thumb.webp",
+        heroImage: "/images/services/kadastyr-og.webp",
         description: "Съдействие за издаване на скица на поземлен имот от кадастъра.",
         longDescription:
           "Скицата на поземлен имот е основен документ при сделки, процедури и справки. Съдействаме за подготовка и издаване на необходимите документи, както и за ориентиране в процеса.",
@@ -437,8 +437,8 @@ export const serviceCategories: ServiceCategory[] = [
         slug: "schema-na-samostoyatelen-obekt",
         title: "Схема на самостоятелен обект",
         meta: "Апартамент • Обект",
-        thumbnail: "/images/services/kadastyr-thumb.jpg",
-        heroImage: "/images/services/kadastyr-og.jpg",
+        thumbnail: "/images/services/kadastyr-thumb.webp",
+        heroImage: "/images/services/kadastyr-og.webp",
         description:
           "Съдействие за издаване на схема на самостоятелен обект от кадастъра.",
         longDescription:
@@ -461,8 +461,8 @@ export const serviceCategories: ServiceCategory[] = [
         slug: "proekt-za-izmenenie",
         title: "Проект за изменение на кадастрална карта",
         meta: "Промяна • Карта",
-        thumbnail: "/images/services/vertical_plan-thumb.jpg",
-        heroImage: "/images/services/vertical_plan-og.jpg",
+        thumbnail: "/images/services/proektirane-thumb.webp", // CHANGE IMAGE LATER
+        heroImage: "/images/services/proektirane-og.webp", // CHANGE IMAGE LATER
         description: "Изготвяне на проект за промени в кадастралната карта.",
         longDescription:
           "Проектът за изменение в кадастралната карта се изготвя при промяна на граници, данни или обекти. Осигуряваме необходимите материали и съдействие за процедурата.",
@@ -488,8 +488,8 @@ export const serviceCategories: ServiceCategory[] = [
         slug: "nanasyane-na-novi-sgradi",
         title: "Нанасяне на сграда в кадастъра",
         meta: "Сгради • Отразяване",
-        thumbnail: "/images/services/vertical_plan-thumb.jpg",
-        heroImage: "/images/services/vertical_plan-og.jpg",
+        thumbnail: "/images/services/proektirane-thumb.webp", // CHANGE IMAGE LATER
+        heroImage: "/images/services/proektirane-og.webp", // CHANGE IMAGE LATER
         description: "Отразяване на нови сгради и обекти в кадастъра.",
         longDescription:
           "След завършване на строителство е необходимо новите сгради и обекти да бъдат нанесени в кадастралната карта. Осигуряваме подготовка на материалите и съдействие по процедурата.",
@@ -511,8 +511,8 @@ export const serviceCategories: ServiceCategory[] = [
         slug: "udostoverenie-za-identichnost",
         title: "Удостоверение за идентичност на имот",
         meta: "Документи • Данни",
-        thumbnail: "/images/services/kadastyr-thumb.jpg",
-        heroImage: "/images/services/kadastyr-og.jpg",
+        thumbnail: "/images/services/kadastyr-thumb.webp",
+        heroImage: "/images/services/kadastyr-og.webp",
         description: "Проверка и установяване на съответствие между данни.",
         longDescription:
           "Удостоверяването на идентичност установява дали различни документи се отнасят за един и същ имот или обект. Полезно е при несъответствия или липсващи данни.",
@@ -539,8 +539,8 @@ export const serviceCategories: ServiceCategory[] = [
     title: "Проектиране",
     shortTitle: "Проектиране",
     meta: "Коти • Данни • Координация",
-    thumbnail: "/images/category/design-thumb.avif",
-    heroImage: "/images/category/design-og.avif",
+    thumbnail: "/images/category/design-thumb.webp",
+    heroImage: "/images/category/design-og.webp",
     description:
       "Проектантски услуги и изходни данни за реализация на инвестиционни намерения.",
     longDescription:
@@ -565,8 +565,8 @@ export const serviceCategories: ServiceCategory[] = [
         slug: "vertikalna-planirovka",
         title: "Вертикална планировка",
         meta: "Коти • Наклони",
-        thumbnail: "/images/services/vertical_plan-thumb.jpg",
-        heroImage: "/images/services/vertical_plan-og.jpg",
+        thumbnail: "/images/services/proektirane-thumb.webp", // CHANGE IMAGE LATER
+        heroImage: "/images/services/proektirane-og.webp", // CHANGE IMAGE LATER
         description:
           "Вертикална планировка с решения за коти, наклони и отводняване, съобразени с терена.",
         longDescription:
@@ -589,8 +589,8 @@ export const serviceCategories: ServiceCategory[] = [
         slug: "proektantski-uslugi",
         title: "Геодезически услуги за проектиране",
         meta: "Данни • Координация",
-        thumbnail: "/images/services/proektirane-thumb.jpg",
-        heroImage: "/images/services/proektirane-og.jpg",
+        thumbnail: "/images/services/proektirane-thumb.webp",
+        heroImage: "/images/services/proektirane-og.webp",
         description:
           "Подготовка на геодезически данни за проектиране и работа от проектанти.",
         longDescription:
@@ -613,8 +613,8 @@ export const serviceCategories: ServiceCategory[] = [
         slug: "geodezicheski-danni-za-proektirane",
         title: "Геодезически данни за проектиране",
         meta: "Данни • Основа",
-        thumbnail: "/images/services/proektirane-thumb.jpg",
-        heroImage: "/images/services/proektirane-og.jpg",
+        thumbnail: "/images/services/proektirane-thumb.webp",
+        heroImage: "/images/services/proektirane-og.webp",
         description:
           "Подготовка и структуриране на геодезически данни за работа от проектанти.",
         longDescription:
@@ -628,8 +628,8 @@ export const serviceCategories: ServiceCategory[] = [
         slug: "koordinacia-na-proekti",
         title: "Координация на проекти",
         meta: "Екип • Съгласуване",
-        thumbnail: "/images/services/proektirane-thumb.jpg",
-        heroImage: "/images/services/proektirane-og.jpg",
+        thumbnail: "/images/services/proektirane-thumb.webp",
+        heroImage: "/images/services/proektirane-og.webp",
         description: "Съгласуване между различни проектни части.",
         longDescription:
           "Координация между архитектура, конструкция, инфраструктура и други части на проекта. Намалява риска от грешки и несъответствия.",
@@ -642,8 +642,8 @@ export const serviceCategories: ServiceCategory[] = [
         slug: "predproektno-prouchvane",
         title: "Предпроектно проучване",
         meta: "Анализ • Възможности",
-        thumbnail: "/images/services/proektirane-thumb.jpg",
-        heroImage: "/images/services/proektirane-og.jpg",
+        thumbnail: "/images/services/proektirane-thumb.webp",
+        heroImage: "/images/services/proektirane-og.webp",
         description: "Оценка на възможностите за застрояване и развитие.",
         longDescription:
           "Предпроектното проучване анализира възможностите на имота според регулация, терен и ограничения. Помага да се вземат правилни решения преди инвестиция.",
@@ -695,8 +695,8 @@ export const serviceCategories: ServiceCategory[] = [
         slug: "izrabotvane-na-pup",
         title: "Изработване на ПУП (подробен устройствен план)",
         meta: "ПУП • Устройство",
-        thumbnail: "/images/category/pup-thumb.png",
-        heroImage: "/images/category/pup-og.png",
+        thumbnail: "/images/category/pup-thumb.webp",
+        heroImage: "/images/category/pup-og.webp",
         description: "Изработване на подробен устройствен план за имота.",
         longDescription:
           "Подробният устройствен план (ПУП) определя предназначението, параметрите на застрояване и регулацията на имота. Изготвя се при ново строителство или промяна на предназначението.",
@@ -722,8 +722,8 @@ export const serviceCategories: ServiceCategory[] = [
         slug: "izmenenie-na-pup",
         title: "Изменение на ПУП",
         meta: "Промяна • План",
-        thumbnail: "/images/category/pup-thumb.png",
-        heroImage: "/images/category/pup-og.png",
+        thumbnail: "/images/category/pup-thumb.webp",
+        heroImage: "/images/category/pup-og.webp",
         description: "Промяна на действащ устройствен план.",
         longDescription:
           "Изменението на ПУП се извършва при необходимост от промяна в параметрите на застрояване, граници или предназначение на имота.",
@@ -745,8 +745,8 @@ export const serviceCategories: ServiceCategory[] = [
         slug: "raboten-ustroistven-plan",
         title: "Работен устройствен план",
         meta: "РУП • Параметри",
-        thumbnail: "/images/services/proektirane-thumb.jpg",
-        heroImage: "/images/services/proektirane-og.jpg",
+        thumbnail: "/images/services/proektirane-thumb.webp",
+        heroImage: "/images/services/proektirane-og.webp",
         description: "Уточняване на параметрите на застрояване.",
         longDescription:
           "Работният устройствен план (РУП) уточнява параметрите на застрояване в рамките на действащ план. Използва се при сложни случаи и необходимост от детайлизиране.",
@@ -763,8 +763,8 @@ export const serviceCategories: ServiceCategory[] = [
         slug: "plan-za-regulacia",
         title: "План за регулация",
         meta: "Регулация • УПИ",
-        thumbnail: "/images/category/pup-thumb.png",
-        heroImage: "/images/services/pup-og.png",
+        thumbnail: "/images/category/pup-thumb.webp",
+        heroImage: "/images/services/pup-og.webp",
         description:
           "Определяне на регулационни линии и урегулирани поземлени имоти (УПИ).",
         longDescription:
@@ -782,8 +782,8 @@ export const serviceCategories: ServiceCategory[] = [
         slug: "razdelyane-i-obedinyavane-na-upi",
         title: "Разделяне и обединяване на УПИ",
         meta: "УПИ • Промени",
-        thumbnail: "/images/category/urban2-thumb.avif",
-        heroImage: "/images/category/urban.png",
+        thumbnail: "/images/category/urban-thumb.webp", // CHANGE IMAGE LATER
+        heroImage: "/images/category/urban-og.webp", // CHANGE IMAGE LATER
         description: "Разделяне или обединяване на урегулирани имоти.",
         longDescription:
           "Процедури за разделяне или обединяване на УПИ според нуждите на собственика и устройствените изисквания.",
@@ -805,8 +805,8 @@ export const serviceCategories: ServiceCategory[] = [
     title: "Консултации и документи",
     shortTitle: "Консултации",
     meta: "Не сте сигурни? • Насоки • Документи",
-    thumbnail: "/images/category/consulting-thumb.png",
-    heroImage: "/images/category/consulting-og.png",
+    thumbnail: "/images/category/consulting-thumb.webp",
+    heroImage: "/images/category/consulting-og.webp",
     description:
       "Консултация и насоки за избор на услуга, подготовка на документи и ориентация в процеса.",
     longDescription:
@@ -832,8 +832,8 @@ export const serviceCategories: ServiceCategory[] = [
         slug: "parvonalna-konsultacia",
         title: "Първоначална консултация",
         meta: "Казус • Насоки",
-        thumbnail: "/images/services/consulting-thumb.png",
-        heroImage: "/images/services/consulting-og.png",
+        thumbnail: "/images/services/consulting-thumb.webp",
+        heroImage: "/images/services/consulting-og.webp",
         description:
           "Първоначална консултация за изясняване на случая и следващите стъпки.",
         longDescription:
@@ -863,8 +863,8 @@ export const serviceCategories: ServiceCategory[] = [
         slug: "podgotovka-na-dokumenti",
         title: "Подготовка на документи",
         meta: "Документи • Подреждане",
-        thumbnail: "/images/services/konsult-thumb.jpg",
-        heroImage: "/images/services/konsult-og.jpg",
+        thumbnail: "/images/services/konsult-thumb.webp",
+        heroImage: "/images/services/konsult-og.webp",
         description:
           "Съдействие при подготовка и подреждане на документи за сделки, процедури и услуги.",
         longDescription:
@@ -891,8 +891,8 @@ export const serviceCategories: ServiceCategory[] = [
         slug: "sadeistvie-pri-proceduri",
         title: "Съдействие при процедури",
         meta: "Администрация • Координация",
-        thumbnail: "/images/services/konsult-thumb.jpg",
-        heroImage: "/images/services/konsult-og.jpg",
+        thumbnail: "/images/services/konsult-thumb.webp",
+        heroImage: "/images/services/konsult-og.webp",
         description:
           "Съдействие и насоки при административни, кадастрални и устройствени процедури.",
         longDescription:
@@ -919,8 +919,8 @@ export const serviceCategories: ServiceCategory[] = [
         slug: "proverka-na-danni-i-syvpadeniya",
         title: "Проверка на данни и съвпадения",
         meta: "Имот • Проверка",
-        thumbnail: "/images/category/urban2-thumb.avif",
-        heroImage: "/images/category/urban2-og.avif",
+        thumbnail: "/images/category/urban-thumb.webp", // CHANGE IMAGE LATER
+        heroImage: "/images/category/urban-og.webp", // CHANGE IMAGE LATER
         description: "Проверка за несъответствия в данни и документи.",
         longDescription:
           "Услугата включва сравнение на данни от документи, скици, схеми и кадастрални записи с цел установяване на несъответствия и уточняване на конкретния казус.",
@@ -945,8 +945,8 @@ export const serviceCategories: ServiceCategory[] = [
         slug: "nasoki-za-sledvashti-stypki",
         title: "Насоки за следващи стъпки",
         meta: "План • Действия",
-        thumbnail: "/images/services/consulting-thumb.png",
-        heroImage: "/images/services/consulting-og.png",
+        thumbnail: "/images/services/consulting-thumb.webp",
+        heroImage: "/images/services/consulting-og.webp",
         description: "Ясен план какво следва според вашия казус.",
         longDescription:
           "Услугата е насочена към клиенти, които имат конкретна цел, но не са сигурни какво следва. Изготвя се ясен ред на действията, нужните документи и подходящите услуги според случая.",
