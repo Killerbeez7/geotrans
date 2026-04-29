@@ -37,17 +37,20 @@ const scenarios = [
 ];
 
 export default function ServicesPage() {
-  const serviceCount = serviceCategories.reduce(
-    (total, category) => total + category.services.length,
-    0
-  );
+  // const serviceCount = serviceCategories.reduce(
+  //   (total, category) => total + category.services.length,
+  //   0
+  // );
 
   return (
     <>
       <ServicesHero
         eyebrow="Геодезически услуги"
         title="Изберете услуга според вашия случай"
-        description={`Подредихме ${serviceCategories.length} категории и ${serviceCount} конкретни услуги, за да намерите бързо правилната следваща стъпка за имот, проект или процедура.`}
+        // description={`Изберете категория и ще ви насочим към точната услуга за вашия имот, проект или процедура.`}
+        description={`Структурирахме услугите по категории, за да откриете бързо правилното решение за вашия проект или имот.`}
+        // description={`Открийте правилната услуга за вашия имот или проект.`}
+        // description={`Подредихме ${serviceCategories.length} категории и ${serviceCount} конкретни услуги, за да намерите бързо правилната следваща стъпка за имот, проект или процедура.`}
         image={servicesVisuals.heroImage}
         imageAlt={servicesVisuals.heroAlt}
         imagePosition={servicesVisuals.heroPosition}
