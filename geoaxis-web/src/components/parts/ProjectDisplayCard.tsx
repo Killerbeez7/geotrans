@@ -43,10 +43,10 @@ export function ProjectDisplayCard({ image, onClick, className }: ProjectCardPro
         src={image.src}
         alt={image.alt}
         fill
-        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+        sizes="(max-width: 640px) calc(100vw - 2rem), (max-width: 1024px) calc((100vw - 4rem) / 2), 400px"
         className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
         loading="lazy"
-        quality={75}
+        quality={70}
       />
 
       <div

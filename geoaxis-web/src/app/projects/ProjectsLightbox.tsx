@@ -246,6 +246,8 @@ function LightboxImage({ image }: { image: ProjectMedia }) {
         alt={hasError ? "Резервно изображение" : image.alt}
         width={1600}
         height={1200}
+        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 90vw, 1200px"
+        quality={76}
         className={`h-full w-full object-cover transition-opacity duration-300 sm:h-auto sm:max-h-[68vh] sm:max-w-full sm:rounded-xl sm:object-contain ${
           isLoading ? "opacity-0" : "opacity-100"
         }`}

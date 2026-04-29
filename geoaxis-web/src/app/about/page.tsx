@@ -92,8 +92,8 @@ export default function About() {
                   src={story.image.src}
                   alt={story.image.alt}
                   fill
-                  preload
-                  sizes="100vw"
+                  sizes="(max-width: 1024px) calc(100vw - 2rem), 560px"
+                  quality={74}
                   className="object-cover"
                 />
               </div>

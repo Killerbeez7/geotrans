@@ -266,7 +266,8 @@ export function CategoryOverviewCard({ category }: { category: ServiceCategory }
           src={category.thumbnail}
           alt={category.title}
           fill
-          sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw"
+          sizes="(max-width: 768px) calc(100vw - 2rem), (max-width: 1280px) calc((100vw - 4rem) / 2), 400px"
+          quality={70}
           className="object-cover transition duration-500 group-hover:scale-105"
         />
       </div>
@@ -337,7 +338,8 @@ export function ServiceSummaryCard({
           src={service.thumbnail}
           alt={service.title}
           fill
-          sizes="(max-width: 640px) 100vw, 14rem"
+          sizes="(max-width: 640px) calc(100vw - 2rem), 14rem"
+          quality={70}
           className="object-cover transition duration-500 group-hover:scale-105"
         />
       </div>
@@ -421,7 +423,8 @@ export function CategoryServicePanel({ service }: { service: Service }) {
               src={service.thumbnail}
               alt={service.title}
               fill
-              sizes="(max-width: 1024px) 100vw, 28vw"
+              sizes="(max-width: 1024px) calc(100vw - 2rem), 420px"
+              quality={74}
               className="object-cover"
             />
             <div className="absolute inset-0 bg-linear-to-t from-bg-inverse/20 via-transparent to-transparent" />
