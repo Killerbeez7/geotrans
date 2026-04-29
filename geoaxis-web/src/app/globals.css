@@ -212,7 +212,7 @@ body {
 
   .typo-h2 {
     /* base */
-    @apply text-tx-primary font-semibold text-2xl tracking-normal leading-[1.18];
+    @apply text-tx-primary font-medium text-2xl tracking-normal leading-[1.18];
     /* @apply text-tx-primary font-medium text-2xl tracking-normal leading-[1.18]; */
     /* mobile -md */
     @apply md:text-3xl;
