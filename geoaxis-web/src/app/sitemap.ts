@@ -16,7 +16,7 @@ const staticPages = [
   },
   {
     url: "/uslugi",
-    lastModified: "2026-04-27",
+    lastModified: "2026-04-29",
     priority: 0.9,
     changeFrequency: "weekly" as const,
   },
@@ -28,7 +28,7 @@ const staticPages = [
   },
   {
     url: "/projects",
-    lastModified: "2026-04-18",
+    lastModified: "2026-04-29",
     priority: 0.6,
     changeFrequency: "monthly" as const,
   },

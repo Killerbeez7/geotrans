@@ -46,7 +46,7 @@ export function ProjectsSection({
 
       <div className="flex justify-center pt-8 sm:pt-14">
         <CtaButton variant="primary" href={cta.href}>
-          Покажи още снимки
+          {cta.label}
         </CtaButton>
       </div>
       <ProjectsLightbox image={selectedImage} onClose={() => setSelectedImage(null)} />
