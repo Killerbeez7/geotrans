@@ -3,12 +3,12 @@ import { HELPFUL_GLOSSARY_TERMS } from "@/config/polezno/glossary";
 export function GlossarySectionLayout() {
   return (
     <div className="max-w-6xl">
-      <dl className="border-t border-br-light/60">
+      <dl className="">
         {HELPFUL_GLOSSARY_TERMS.map((term, index) => (
           <div
             key={term.term}
             id={`term-${index + 1}`}
-            className="grid gap-4 border-b border-br-light/50 py-7 transition md:grid-cols-[18rem_1fr] md:gap-10"
+            className="grid gap-4 border-b border-br-light/50 py-7 transition md:grid-cols-[18rem_1fr] md:gap-10 last:border-0"
           >
             <dt className="text-base font-semibold leading-snug text-accent-strong md:text-lg">
               {term.term}

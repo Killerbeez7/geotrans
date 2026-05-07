@@ -135,7 +135,7 @@ export default function ResursiPage() {
             </div>
           </section>
 
-          <section className="mt-12 border-t border-br-light/60 pt-8">
+          <section className="mt-12 pt-8">
             <h2 className="text-2xl font-semibold text-tx-primary">
               Външни справки и полезни сайтове
             </h2>

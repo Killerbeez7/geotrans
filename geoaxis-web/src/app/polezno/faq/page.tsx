@@ -6,6 +6,7 @@ import { HELPFUL_FAQ_GROUPS } from "@/config/polezno/faq";
 import { getHelpfulNavItem } from "@/config/polezno/helpful-nav";
 import { createSeo } from "@/lib/seo-builder";
 import { PoleznoPlainHero } from "../_components/PoleznoPlainHero";
+import { PoleznoCta } from "../_components/PoleznoCta";
 
 const pageContent = getHelpfulNavItem("faq");
 
@@ -28,68 +29,81 @@ export default function FaqPage() {
       />
 
       <Section tone="page" className="pt-10! sm:pt-12! lg:pt-16!">
-        <div className="max-w-5xl">
-          {HELPFUL_FAQ_GROUPS.map((group, groupIndex) => {
-            const groupNumber = String(groupIndex + 1);
+        <div className="mx-auto max-w-full">
+          <div className="space-y-14 lg:space-y-16">
+            {HELPFUL_FAQ_GROUPS.map((group, groupIndex) => {
+              const groupNumber = String(groupIndex + 1).padStart(2, "0");
 
-            return (
-              <section
-                key={group.slug}
-                id={group.slug}
-                className="scroll-mt-[calc(var(--header-h)+2rem)] border-t border-br-light/60 py-10 first:border-t-0 first:pt-0"
-              >
-                <header className="grid gap-4 md:grid-cols-[16rem_1fr] md:gap-10">
-                  <div>
-                    <h2 className="mt-2 text-2xl font-semibold leading-tight text-tx-primary">
-                      {groupNumber}. {group.title}
-                    </h2>
-                  </div>
+              return (
+                <section
+                  key={group.slug}
+                  id={group.slug}
+                  className="scroll-mt-[calc(var(--header-h)+2rem)]"
+                >
+                  <div className="border-b border-br-light/60 pt-10 first:border-b first:pt-0">
+                    <header className="max-w-3xl">
+                      <span className="inline-flex text-xs font-semibold uppercase tracking-[0.16em] text-accent">
+                        Раздел {groupNumber}
+                      </span>
 
-                  {group.intro ? (
-                    <p className="max-w-2xl text-base leading-7 text-tx-secondary">
-                      {group.intro}
-                    </p>
-                  ) : null}
-                </header>
+                      <h2 className="mt-2 text-2xl font-semibold leading-tight text-tx-primary sm:text-[2rem]">
+                        {group.title}
+                      </h2>
 
-                <div className="mt-8 border-t border-br-light/50">
-                  {group.items.map((item, itemIndex) => {
-                    const itemNumber = `${groupIndex + 1}.${itemIndex + 1}`;
-
-                    return (
-                      <article
-                        key={item.question}
-                        className="grid gap-3 border-b border-br-light/50 py-6 md:grid-cols-[16rem_1fr] md:gap-10"
-                      >
-                        <h3 className="flex gap-3 text-base font-semibold leading-snug text-tx-primary">
-                          <span className="min-w-8 text-xs font-semibold tracking-[0.08em] text-tx-muted">
-                            {itemNumber}
-                          </span>
-
-                          <span>{item.question}</span>
-                        </h3>
-
-                        <p className="max-w-2xl text-[15px] leading-8 text-tx-secondary">
-                          {item.answer}
+                      {group.intro ? (
+                        <p className="mt-4 max-w-3xl text-base leading-7 text-tx-secondary sm:text-[1.02rem] sm:leading-8">
+                          {group.intro}
                         </p>
-                      </article>
-                    );
-                  })}
-                </div>
-              </section>
-            );
-          })}
+                      ) : null}
+                    </header>
 
-          <div className="border-t border-br-light/60 pt-8">
-            <Link
-              href="/contacts"
-              className="inline-flex rounded-xl border border-br-light px-5 py-3 text-sm font-medium text-tx-primary transition hover:bg-bg-muted"
-            >
-              Не намирате отговор? Изпратете запитване
-            </Link>
+                    <div className="mt-8">
+                      {group.items.map((item) => {
+                        return (
+                          <article
+                            key={item.question}
+                            className="grid gap-4  py-6 md:grid-cols-[18rem_minmax(0,1fr)] md:gap-10"
+                          >
+                            <h3 className="text-base font-semibold leading-snug text-tx-primary">
+                              {item.question}
+                            </h3>
+
+                            <p className="text-[15px] leading-8 text-tx-secondary">
+                              {item.answer}
+                            </p>
+                          </article>
+                        );
+                      })}
+                    </div>
+                  </div>
+                </section>
+              );
+            })}
           </div>
+
+          {/* <div className="mt-14 pt-8">
+            <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+              <div className="max-w-2xl">
+                <h2 className="text-xl font-semibold leading-tight text-tx-primary">
+                  Не намирате точния отговор?
+                </h2>
+                <p className="mt-2 text-[15px] leading-7 text-tx-secondary">
+                  Изпратете кратко описание на случая и ще Ви насочим към подходящата
+                  услуга, документ или следваща стъпка.
+                </p>
+              </div>
+
+              <Link
+                href="/contacts"
+                className="inline-flex items-center justify-center rounded-xl border border-br-light bg-bg-page px-5 py-3 text-sm font-medium text-tx-primary transition hover:bg-bg-muted"
+              >
+                Изпратете запитване
+              </Link>
+            </div>
+          </div> */}
         </div>
       </Section>
+      <PoleznoCta />
     </main>
   );
 }
